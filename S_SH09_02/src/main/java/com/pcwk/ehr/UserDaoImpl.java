@@ -76,7 +76,9 @@ public class UserDaoImpl implements UserDao {
 				inVO.getLevel().getValue(), inVO.getLogin(),
 				inVO.getRecommend(), inVO.getEmail(), inVO.getuId()};
 		for(Object obj : args) {
+
 			LOG.debug("Object parammmmmm : " + obj.toString());
+
 		}
 		
 		flag = jdbcTemplate.update(sb.toString(), args);
