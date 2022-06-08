@@ -17,5 +17,6 @@ public interface UserService {
 	 * @throws SQLException
 	 */
 	public int add(UserVO inVO) throws SQLException;
-	
+	public int add(UserVO inVO) throws SQLException;
+	public int add(UserVO inVO) throws SQLException;
 }
