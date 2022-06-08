@@ -5,7 +5,7 @@ import java.sql.SQLException;
 public interface UserService {
 	
 	/**
-	 * 등업가능
+	 * 등업가능 내가고침
 	 * @throws SQLException
 	 */
 	public void upgradeLevels(UserVO inVO) throws SQLException;
