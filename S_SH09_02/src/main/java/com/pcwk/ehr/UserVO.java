@@ -1,7 +1,7 @@
 package com.pcwk.ehr;
 
 public class UserVO extends DTO{
-	
+	privateprivateprivate
 	private String uId; // 사용자 아이디
 	private String name; // 사용자 이름
 	private String passwd; // 사용자 비번
@@ -107,7 +107,7 @@ public class UserVO extends DTO{
 	public void upgradeLevel() {
 		Level nextLevel = this.level.nextLevel();
 		if(null == nextLevel) {
-			throw new IllegalArgumentException(this.level+"더이상 등업이 불가능 합니다.");
+			throw new IllegalArgumentException(this.level+"더이상 등업이 불가능 합니다. 등업 가능합니다.");
 		}else {
 			this.level = nextLevel;
 		}
