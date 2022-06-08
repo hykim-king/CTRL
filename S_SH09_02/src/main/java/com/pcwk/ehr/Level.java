@@ -6,7 +6,7 @@ public enum Level {
 	GOLD(3,null),SILVER(2,GOLD),BASIC(1,SILVER);
 	
 	private final int value;
-	//다음 레벨
+	//다음 레벨 다음ㅇ레벨
 	private final Level next;
 	
 	Level(int value,Level next){
