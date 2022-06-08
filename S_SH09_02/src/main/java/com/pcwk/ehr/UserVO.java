@@ -1,7 +1,7 @@
 package com.pcwk.ehr;
 
 public class UserVO extends DTO{
-	
+	privateprivateprivate
 	private String uId; // 사용자 아이디
 	private String name; // 사용자 이름
 	private String passwd; // 사용자 비번
