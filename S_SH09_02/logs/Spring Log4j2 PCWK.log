@@ -18,7 +18,7 @@ UserVO [uId=p04, name=김병완04, passwd=4444, level=BASIC, login=49, recommend
 SELECT u_id,             
        name,             
        passwd,           
-       u_level,          
+       u_level,          ddddddd
        login,            
        recommend,        
        email,            
