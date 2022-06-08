@@ -10,3 +10,6 @@
 | 6주차 |  |  |서버 합동 세미나 + 솝커톤  |
 | 7주차 |  |  |클론 코딩을 통한 실전 UI 구성, Animation, 통신 보충  |
 | 8주차 |  |  |e기획 경선 + 앱잼 전 보충 세미나 + 앱스토어 배포 가이드  |
+
+
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fhykim-king%2FCTRL.git&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
