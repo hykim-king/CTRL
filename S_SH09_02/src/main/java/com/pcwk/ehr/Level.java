@@ -14,7 +14,7 @@ public enum Level {
 		this.next = next;
 	}
 	/**
-	 * 다음 Level 가지고 오기
+	 * 다음 레벨 가지고 오기
 	 * @return Level
 	 */
 	public Level nextLevel() {
