@@ -3,7 +3,7 @@
 [2022-06-08 12:21:51.645] DEBUG UserDaoImpl.getCount(UserDaoImpl.java:128) - param:UserVO [uId=p04, name=김병완04, passwd=4444, level=BASIC, login=49, recommend=0, email=ralqod93@naver.com, regDt=날짜_사용않함, toString()=com.pcwk.ehr.UserVO@242aa8d9]
 [2022-06-08 12:21:51.646] DEBUG UserDaoImpl.getCount(UserDaoImpl.java:129) - sql:
 SELECT COUNT(*) AS cnt   
-FROM hr_member           
+FROM hr_member           qqqqqqqqqq
 WHERE u_id LIKE ? || '%' 
 
 [2022-06-08 12:21:51.646] DEBUG UserDaoImpl.getCount(UserDaoImpl.java:130) - ============================
