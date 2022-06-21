@@ -4,7 +4,7 @@
 
 
 # 0. 목차
-- Project 목적
+- Project 목적.  
 - CTRL 팀 소개
 - Project 기획
 - Project 설계
