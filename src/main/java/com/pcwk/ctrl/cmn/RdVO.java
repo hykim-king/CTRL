@@ -1,15 +1,15 @@
 package com.pcwk.ctrl.cmn;
 
-public class rdVO extends DTO {
+public class RdVO extends DTO {
 	private long rNum; // 댓글번호
 	private String rdCon; // 내용
 	private String rdReg; // 작성일
 	private String rdName; // 작성자
 	private long kNum; // 회원번호
 	
-	public rdVO() {}
+	public RdVO() {}
 
-	public rdVO(long rNum, String rdCon, String rdReg, String rdName, long kNum) {
+	public RdVO(long rNum, String rdCon, String rdReg, String rdName, long kNum) {
 		super();
 		this.rNum = rNum;
 		this.rdCon = rdCon;
