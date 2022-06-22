@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pcwk.ctrl.productDetail">
+    <select id="doDetailSelect" parameterType="ProductVO" resultType="ProductVO">
+		SELECT p_name,
+		       p_price,
+		       p_size,
+		       p_num
+		FROM product
+		WHERE p_num = #{pNum}                             
+    </select>
+</mapper>

@@ -18,14 +18,14 @@ import com.pcwk.ctrl.order.service.OrderService;
 
 @Controller
 @RequestMapping("order")
-public class OrderController {
+public class OrderLController {
 
 	final Logger LOG = LogManager.getLogger(getClass());
 	
 	@Autowired
 	OrderService orderService;
 	
-	public OrderController() {}
+	public OrderLController() {}
 	
 	@RequestMapping(value = "/orderList.do", method = RequestMethod.GET
 			, produces = "application/json;charset=UTF-8")

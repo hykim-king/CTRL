@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pcwk.ctrl.review">
     
-    <insert id="doReviewInsert" parameterType="com.pcwk.ctrl.review.domain.ReviewVO">
+    <insert id="doReviewInsert" parameterType="ReviewVO">
         INSERT INTO review (  
                     r_num,    
                     d_num,    

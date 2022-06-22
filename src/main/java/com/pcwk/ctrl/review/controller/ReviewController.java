@@ -57,7 +57,7 @@ public class ReviewController {
 		PrintWriter out = res.getWriter();
 		
  		if(1 == flag) {
-			out.println("<script>alert('상품 리뷰가 등록되었습니다.'); opener.location.href='/ctrl/detail/detail.do'; window.close();</script>");			
+			out.println("<script>alert('상품 리뷰가 등록되었습니다.'); opener.location.href='/ctrl/productDetail/productDetail.do'; window.close();</script>");			
 		}else {
 			out.println("<script>alert('다시 시도해주세요');</script>");			
 		}
