@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pcwk.ctrl.review">
+    
+    <insert id="doReviewInsert" parameterType="com.pcwk.ctrl.review.domain.ReviewVO">
+        INSERT INTO review (  
+                    r_num,    
+                    d_num,    
+                    o_num,    
+                    r_content,
+                    o_name,   
+                    r_dt      
+        ) VALUES (            
+            REVIEW_S.NEXTVAL, 
+            #{dNum},                
+            #{oNum},                
+            #{rContent},                
+            #{oName},                
+            SYSDATE           
+        )                     
+       
+    </insert>
+</mapper>
