@@ -72,19 +72,19 @@ p {
   margin: 1% 0% 4% 0%;
 }
 
-#o_name, #contents {
+#oName, #rContent {
   outline: none;
   width: 100%;
   font-size: 110%;
 }
 
-#o_name {
+#oName {
   border: none;
   height: 50px;
   background-color: #cccccc59;
 }
 
-#contents {
+#rContent {
   border: 2px solid #424242;
   height: 233px;
   resize: none;

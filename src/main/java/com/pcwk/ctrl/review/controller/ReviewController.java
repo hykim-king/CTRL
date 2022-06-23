@@ -1,7 +1,6 @@
 package com.pcwk.ctrl.review.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.pcwk.ctrl.review.domain.ReviewVO;
+import com.google.gson.Gson;
+import com.pcwk.ctrl.cmn.MessageVO;
+import com.pcwk.ctrl.cmn.ReviewVO;
 import com.pcwk.ctrl.review.service.ReviewService;
 
 @Controller
@@ -31,7 +32,7 @@ public class ReviewController {
 	
 	
 	@RequestMapping(value = "/reviewPopup.do", method = RequestMethod.GET
-			, produces = "application/json;charset=UTF-8")
+			, produces = "application/text;charset=UTF-8")
 	public String reviewPopup() {
 		LOG.debug("=================================");
 		LOG.debug("reviewPopup()");
@@ -40,28 +41,30 @@ public class ReviewController {
 		return "review/review_write_popup";
 	}
 	
-	@RequestMapping(value = "/reviewInsert.do", method = RequestMethod.GET
-			, produces = "application/text;charset=UTF-8")
-	public void reviewInsert(HttpServletRequest req, HttpServletResponse res, ReviewVO inVO) throws SQLException, IOException {
+	@RequestMapping(value = "/doReviewInsert.do", method = RequestMethod.GET
+			, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String doReviewInsert(ReviewVO inVO) throws SQLException {
+		String jsonString = "";
 		LOG.debug("=================================");
-		LOG.debug("reviewInsert()");
+		LOG.debug("inVO : " + inVO);
 		LOG.debug("=================================");
 		
-		inVO.setdNum(req.getParameter("d_num"));
-		inVO.setoNum(Long.parseLong(req.getParameter("o_num")));
-		inVO.setoName(req.getParameter("o_name"));
-		inVO.setrContent(req.getParameter("contents"));
-		
+		String resultMessage = "";
 		int flag = reviewService.doReviewInsert(inVO);
 		
-        res.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = res.getWriter();
-		
- 		if(1 == flag) {
-			out.println("<script>alert('상품 리뷰가 등록되었습니다.'); opener.location.href='/ctrl/productDetail/productDetail.do'; window.close();</script>");			
-		}else {
-			out.println("<script>alert('다시 시도해주세요');</script>");			
-		}
-	}
+        if(1 == flag) {
+        	resultMessage = "리뷰가 등록되었습니다!";
+        }else {
+        	resultMessage = "다시 시도해주세요.^^";
+        }
+	      
+		MessageVO message = new MessageVO(String.valueOf(flag), resultMessage);
+		jsonString = new Gson().toJson(message);
+		LOG.debug("=================================");
+		LOG.debug("jsonString : " + jsonString);
+		LOG.debug("=================================");
+		return jsonString;
 
+	}
 }

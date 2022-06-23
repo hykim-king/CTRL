@@ -39,7 +39,7 @@ public class OrderLController {
 		}
 		
 		List<Map<String, DTO>> list = orderService.doRetrieve(inVO);
-	    
+	    LOG.debug("list : " + list);
 		model.addAttribute("list", list);
 	    
 	    return "order/order_list";

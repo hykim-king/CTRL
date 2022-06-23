@@ -1,6 +1,6 @@
 package com.pcwk.ctrl.productDetail.service;
 
-import com.pcwk.ctrl.productDetail.domain.ProductVO;
+import com.pcwk.ctrl.cmn.ProductVO;
 
 public interface ProductDetailService {
 	

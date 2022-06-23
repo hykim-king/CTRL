@@ -79,24 +79,11 @@
             frm.oNum.value = oNum;
             frm.dNum.value = dNum;
             frm.kName.value = kName;
-            
             window.open("${CP}/review/reviewPopup.do","리뷰작성", "width=800, height=700, left=100, top=100");
 
 
             //--table click
         });
-        
-        /* 주문조회 */
-        function doRetrieve() {
-            //alert('doRetrieve()');
-            //javascript form submit()
-            // document.boardListFrm
-            let frm = document.getElementById("orderListFrm");
-            frm.work_div.value='doRetrieve';
-            
-            // form submit()
-            frm.submit();
-         }
       });
       
       
@@ -107,9 +94,6 @@
   <hr/>
   
   <div>
-     <div name="parentDiv" id="parentDiv">
-      <input type="button" value="조회" onclick="doRetrieve();">
-     </div>
     <form action="${CP}/order/orderList.do" name="orderListFrm" method="get" id="orderListFrm">
       <input type="text" name="work_div" id="work_div" style="display: none;">
       <input type="text" name="oNum" id="oNum" style="display: none;">

@@ -1,11 +1,6 @@
 package com.pcwk.ctrl.productDetail.dao;
 
-import java.sql.SQLException;
-import java.util.List;
-import java.util.Map;
-
-import com.pcwk.ctrl.cmn.DTO;
-import com.pcwk.ctrl.productDetail.domain.ProductVO;
+import com.pcwk.ctrl.cmn.ProductVO;
 
 public interface ProductDetailDao {
 	
