@@ -1,4 +1,4 @@
-package com.pcwk.ctrl.ordercontroller;
+package com.pcwk.ctrl.pay.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("ctrl")
-public class OrderController {
+public class PayController {
 	final Logger LOG = LogManager.getLogger(getClass());
 	
 	@RequestMapping(value = "/after.do", method = RequestMethod.GET)
@@ -17,7 +17,7 @@ public class OrderController {
 		LOG.debug("=after()=");
 		LOG.debug("====================");
 		
-		return "order/after";
+		return "pay/after";
 		//http://localhost:8081/ctrl/ctrl/after.do
 	}
 	
@@ -27,7 +27,7 @@ public class OrderController {
 		LOG.debug("=before()=");
 		LOG.debug("====================");
 		
-		return "order/before";
+		return "pay/before";
 		//http://localhost:8081/ctrl/ctrl/before.do
 	}
 	

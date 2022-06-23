@@ -30,7 +30,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
-    <title>부트스트랩 - boot_list</title>
+    <title>결제 전</title>
     
     <!-- 부트스트랩 -->
     <link href="${CP_RES}/css/before.css" rel="stylesheet">
@@ -38,6 +38,8 @@
     <script src="${CP_RES}/js/jquery-1.12.4.js"></script>
     <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
     <%-- <script src="${CP_RES}/js/bootstrap.min.js"></script> --%>
+     <!-- font awesome -->
+	<script src="https://kit.fontawesome.com/2974daa1cb.js" crossorigin="anonymous">
     <script type="text/javascript">
         $(document).ready(function(){
         	console.log('document.ready');
@@ -96,7 +98,7 @@
         <div class="payment">
             <h1 class="title">결제금액</h1>
             <h1 class="pay1">총 상품 금액</h1>
-            <a href="#"><p class="pay2">\242,000원/p></a>
+            <a href="#"><p class="pay2">\242,000원</p></a>
             <h1 class="pay1">배송비</h1>
             <a href="#"><p class="pay2">무료</p></a>
             <h1 class="pay1">최종 결제 금액</h1>

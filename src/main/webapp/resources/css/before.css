@@ -153,6 +153,8 @@ a, a:active {
 	transition:800ms ease all;
   }
 
+
+
 div.address{
 	float: left;
 	margin: 1% 0 3% 5%;
@@ -173,13 +175,13 @@ div.address{
 }
 
 .Home{
-	width: 60%;
+	width: 75%;
 	font-size: 100%;
 	margin: 5% 0 2% 10%;
 }
 
 .name{
-	width: 50%;
+	width: 60%;
 	font-size: 100%;
 	margin: 2% 0 2% 10%;
 }

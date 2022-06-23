@@ -30,7 +30,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" type="image/x-icon" href="${CP}/favicon.ico">
 	<!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
-    <title>after</title>
+    <title>결제 후</title>
     
     <!-- 부트스트랩 -->
     <link href="${CP_RES}/css/after.css" rel="stylesheet">
@@ -38,6 +38,8 @@
     <script src="${CP_RES}/js/jquery-1.12.4.js"></script>
     <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
     <%-- <script src="${CP_RES}/js/bootstrap.min.js"></script> --%>
+     <!-- font awesome -->
+	<script src="https://kit.fontawesome.com/2974daa1cb.js" crossorigin="anonymous">
     <script type="text/javascript">
         $(document).ready(function(){
         	console.log('document.ready');
@@ -88,6 +90,5 @@
 <div class="main">
     <input class="btn" type="button" value="쇼핑 계속 하기" src="#">
 </div>
-
 </body>
 </html>
