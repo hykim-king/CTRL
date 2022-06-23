@@ -22,9 +22,9 @@ public class ProductDetailController {
 
 	@RequestMapping(value = "/productDetail.do", method = RequestMethod.GET
 			, produces = "application/json;charset=UTF-8")
-	public String detail() {
+	public String productDetail() {
 		LOG.debug("=================================");
-		LOG.debug("detail()");
+		LOG.debug("productDetail()");
 		LOG.debug("=================================");
 		
 		return "productDetail/productDetail";
