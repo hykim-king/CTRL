@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
 #contents {
-	max-width: 1800px;	
-	width: 92%;
+	max-width: 1430px;	
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	margin: 30px auto 0;
@@ -10,7 +10,7 @@
 
 .product_contents {
 	display: flex;
- 	justify-content: center;  
+ 	justify-content: space-around;  
 	width: 100%;
 	padding: 20px 0px;
 	margin: 0 auto;
@@ -21,9 +21,8 @@
 }
 
 .product_contents > img {
-	width: 47%;
-	height: 750px;
-	margin-right: 51px;
+	width: 52%;
+	height: 800px;
 }
 
 .info {
@@ -31,7 +30,6 @@
 	flex-direction: column;
 	justify-content: center;
 	width: 30%;
-	margin-left: 83px;
 }
 
 .info > form {

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pcwk.ctrl.review.domain.ReviewVO;
 import com.pcwk.ctrl.review.service.ReviewService;
@@ -40,7 +41,7 @@ public class ReviewController {
 	}
 	
 	@RequestMapping(value = "/reviewInsert.do", method = RequestMethod.GET
-			, produces = "application/json;charset=UTF-8")
+			, produces = "application/text;charset=UTF-8")
 	public void reviewInsert(HttpServletRequest req, HttpServletResponse res, ReviewVO inVO) throws SQLException, IOException {
 		LOG.debug("=================================");
 		LOG.debug("reviewInsert()");

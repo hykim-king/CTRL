@@ -38,7 +38,6 @@
         		 oName : $("#o_name").val(),
         		 contents : $("#contents").val()
          };
-         
          //--EClass.callAjax
          EClass.callAjax(url, parameters, method, async);
       //--doReviewInsert
