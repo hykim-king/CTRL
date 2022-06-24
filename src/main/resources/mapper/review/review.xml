@@ -20,4 +20,31 @@
         )                     
        
     </insert>
+    <select id="getCount" parameterType="ReviewVO" resultType="int">
+        SELECT COUNT(*) AS cnt    
+        FROM review            
+        WHERE r_num LIKE #{rNum}  || '%' 
+    </select>   
+    
+    <resultMap type="ReviewVO" id="reviewResultMap">
+        <id property="rNum" column="r_num"/>
+        <result property="dNum" column="d_num"/>
+        <result property="oNum" column="o_num"/>
+        <result property="rContent" column="r_content"/>
+        <result property="oName" column="o_name"/>
+        <result property="rDt" column="r_dt"/>
+    </resultMap>    
+    
+    <select id="doSelectOne" parameterType="ReviewVO" resultMap="reviewResultMap">
+       <![CDATA[ 
+        SELECT  r_num,    
+                d_num,    
+                o_num,    
+                r_content,
+                o_name,   
+                r_dt   
+        FROM review 
+        WHERE r_num = #{rNum}
+        ]]>
+    </select>      
 </mapper>

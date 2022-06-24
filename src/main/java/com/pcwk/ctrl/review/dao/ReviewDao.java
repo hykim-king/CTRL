@@ -3,6 +3,7 @@ package com.pcwk.ctrl.review.dao;
 import java.sql.SQLException;
 
 import com.pcwk.ctrl.cmn.DTO;
+import com.pcwk.ctrl.cmn.ReviewVO;
 
 public interface ReviewDao {
 	
@@ -13,4 +14,22 @@ public interface ReviewDao {
 	 * @throws SQLException
 	 */
 	int doReviewInsert(DTO dto) throws SQLException;
+	
+	/**
+	 * 리뷰 테이블 갯수 조회
+	 * @param vo
+	 * @return 갯수
+	 * @throws SQLException
+	 */
+	int getCount(ReviewVO vo) throws SQLException;
+	
+	/**
+	 * 리뷰 테이블 단건 
+	 * 
+	 * @param inVO
+	 * @return UserVO
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 */
+	ReviewVO doSelectOne(ReviewVO inVO) throws SQLException;
 }

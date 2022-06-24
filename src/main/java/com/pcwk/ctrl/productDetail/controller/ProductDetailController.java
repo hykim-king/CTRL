@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.pcwk.ctrl.productDetail.service.ProductDetailService;
 
-@Controller
+@Controller("productDetailController")
 @RequestMapping("productDetail")
 public class ProductDetailController {
 

@@ -17,8 +17,10 @@ function count(type)  {
   
   // 더하기/빼기
   if(type === "plus") {
-    $("#buy_number").text(parseInt(bNumber) + 1);
-    bNumber = parseInt(bNumber) + 1;
+	  if(bNumber < 999) {
+		  $("#buy_number").text(parseInt(bNumber) + 1);
+		  bNumber = parseInt(bNumber) + 1;  
+	  }
     
     
   }else if(type === "minus")  {

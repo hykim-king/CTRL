@@ -19,7 +19,7 @@ import com.pcwk.ctrl.cmn.MessageVO;
 import com.pcwk.ctrl.cmn.ReviewVO;
 import com.pcwk.ctrl.review.service.ReviewService;
 
-@Controller
+@Controller("reviewController")
 @RequestMapping("review")
 public class ReviewController {
 

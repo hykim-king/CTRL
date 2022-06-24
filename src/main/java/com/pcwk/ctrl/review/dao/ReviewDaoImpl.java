@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.pcwk.ctrl.cmn.DTO;
+import com.pcwk.ctrl.cmn.ReviewVO;
 
 @Repository("reviewDao")
 public class ReviewDaoImpl implements ReviewDao {
@@ -37,6 +38,46 @@ public class ReviewDaoImpl implements ReviewDao {
 		LOG.debug("flag : " + flag);
 		
 		return flag;
+	}
+	
+	@Override
+	public int getCount(ReviewVO vo) throws SQLException {
+		int count = 0;
+		
+		String statement = this.NAMESPACE+".getCount";
+		
+		LOG.debug("=============================");
+		LOG.debug("param : "+vo.toString());
+		LOG.debug("statement : "+statement);
+		LOG.debug("=============================");
+		
+		count = this.sqlSessionTemplate.selectOne(statement, vo);
+		
+		LOG.debug("====================");
+		LOG.debug("=count="+count);
+		LOG.debug("====================");
+		
+		return count;
+	}
+	
+	@Override
+	@SuppressWarnings("deprecation")
+	public ReviewVO doSelectOne(ReviewVO inVO) throws SQLException{
+		ReviewVO outVO = null;
+		
+		String statement = this.NAMESPACE+".doSelectOne";
+		LOG.debug("=============================");
+		LOG.debug("param : "+inVO.toString());
+		LOG.debug("statement : "+statement);
+		LOG.debug("=============================");
+
+		outVO = this.sqlSessionTemplate.selectOne(statement, inVO);
+		
+		LOG.debug("=============================");
+		LOG.debug("outVO="+outVO.toString());
+		LOG.debug("=============================");
+		
+		return outVO;
 	}
 
 
