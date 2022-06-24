@@ -1,8 +1,6 @@
 package com.pcwk.ctrl.review.dao;
 
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.pcwk.ctrl.cmn.DTO;
-import com.pcwk.ctrl.cmn.KakaoMVO;
 
 @Repository("reviewDao")
 public class ReviewDaoImpl implements ReviewDao {

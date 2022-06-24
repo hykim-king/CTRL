@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.pcwk.ctrl.cmn.DTO;
-import com.pcwk.ctrl.cmn.KakaoMVO;
+import com.pcwk.ctrl.cmn.MemberVO;
 
 @Repository("orderDao")
 public class OrderDaoImpl implements OrderDao {
@@ -26,16 +26,16 @@ public class OrderDaoImpl implements OrderDao {
 	SqlSessionTemplate sqlSessionTemplate;
 
 	@Override
-	public List<Map<String, DTO>> doRetrieve(KakaoMVO kakaoMVO) throws SQLException {
+	public List<Map<String, DTO>> doRetrieve(MemberVO memberVO) throws SQLException {
 		List<Map<String, DTO>> outVO = null;
 		
 		String statement = this.NAMESPACE+".doRetrieve";
 		LOG.debug("=============================");
-		LOG.debug("param : " + kakaoMVO.toString());
+		LOG.debug("param : " + memberVO.toString());
 		LOG.debug("statement : " + statement);
 		LOG.debug("=============================");
 		
-		outVO = this.sqlSessionTemplate.selectList(statement,kakaoMVO);
+		outVO = this.sqlSessionTemplate.selectList(statement,memberVO);
 		
 		return outVO;
 	}

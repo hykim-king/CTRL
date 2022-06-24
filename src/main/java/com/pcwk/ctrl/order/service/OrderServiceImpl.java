@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pcwk.ctrl.cmn.DTO;
-import com.pcwk.ctrl.cmn.KakaoMVO;
+import com.pcwk.ctrl.cmn.MemberVO;
 import com.pcwk.ctrl.order.dao.OrderDao;
 
 @Service("orderService")
@@ -22,7 +22,7 @@ public class OrderServiceImpl implements OrderService {
 	private OrderDao orderDao;
 	
 	@Override
-	public List<Map<String, DTO>> doRetrieve(KakaoMVO kakaoMVO) throws SQLException {
-		return orderDao.doRetrieve(kakaoMVO);
+	public List<Map<String, DTO>> doRetrieve(MemberVO memberVO) throws SQLException {
+		return orderDao.doRetrieve(memberVO);
 	}
 }

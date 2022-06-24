@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Map;
 
 import com.pcwk.ctrl.cmn.DTO;
-import com.pcwk.ctrl.cmn.KakaoMVO;
+import com.pcwk.ctrl.cmn.MemberVO;
 
 public interface OrderService {
 	
 
-	public List<Map<String, DTO>> doRetrieve(KakaoMVO kakaoMVO) throws SQLException;
+	public List<Map<String, DTO>> doRetrieve(MemberVO memberVO) throws SQLException;
 }

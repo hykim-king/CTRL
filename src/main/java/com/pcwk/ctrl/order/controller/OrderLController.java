@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.pcwk.ctrl.cmn.DTO;
-import com.pcwk.ctrl.cmn.KakaoMVO;
+import com.pcwk.ctrl.cmn.MemberVO;
 import com.pcwk.ctrl.order.service.OrderService;
 
 @Controller
@@ -29,13 +29,13 @@ public class OrderLController {
 	
 	@RequestMapping(value = "/orderList.do", method = RequestMethod.GET
 			, produces = "application/json;charset=UTF-8")
-	public String orderList(Model model, KakaoMVO inVO) throws SQLException {
+	public String orderList(Model model, MemberVO inVO) throws SQLException {
 		LOG.debug("=================================");
 		LOG.debug("orderList()");
 		LOG.debug("=================================");
 		
-		if(0 == inVO.getkNum()) {
-			inVO.setkNum(11111);
+		if(null == inVO.getmNum()) {
+			inVO.setmNum("11111");
 		}
 		
 		List<Map<String, DTO>> list = orderService.doRetrieve(inVO);

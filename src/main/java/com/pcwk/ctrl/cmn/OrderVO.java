@@ -7,11 +7,11 @@ public class OrderVO extends DTO {
 	private String oTel; // 전화번호
 	private String oStatus; // 주문상태
 	private String oDt; // 주문날짜
-	private long kNum; // 회원번호
+	private String mNum; // 회원번호
 	
 	public OrderVO() {}
-	
-	public OrderVO(long oNum, String oAddr, String oName, String oTel, String oStatus, String oDt, long kNum) {
+
+	public OrderVO(long oNum, String oAddr, String oName, String oTel, String oStatus, String oDt, String mNum) {
 		super();
 		this.oNum = oNum;
 		this.oAddr = oAddr;
@@ -19,7 +19,7 @@ public class OrderVO extends DTO {
 		this.oTel = oTel;
 		this.oStatus = oStatus;
 		this.oDt = oDt;
-		this.kNum = kNum;
+		this.mNum = mNum;
 	}
 
 	public long getoNum() {
@@ -70,17 +70,19 @@ public class OrderVO extends DTO {
 		this.oDt = oDt;
 	}
 
-	public long getkNum() {
-		return kNum;
+	public String getmNum() {
+		return mNum;
 	}
 
-	public void setkNum(long kNum) {
-		this.kNum = kNum;
+	public void setmNum(String mNum) {
+		this.mNum = mNum;
 	}
 
 	@Override
 	public String toString() {
 		return "OrderVO [oNum=" + oNum + ", oAddr=" + oAddr + ", oName=" + oName + ", oTel=" + oTel + ", oStatus="
-				+ oStatus + ", oDt=" + oDt + ", kNum=" + kNum + ", toString()=" + super.toString() + "]";
+				+ oStatus + ", oDt=" + oDt + ", mNum=" + mNum + ", toString()=" + super.toString() + "]";
 	}
+	
+	
 }

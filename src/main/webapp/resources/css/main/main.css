@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 /* 메인페이지 헤더 및 푸터 영역 css 시작 */
 @font-face {
 	font-family: 'Vitro_core'; /* 로고, 소제목 */
@@ -36,7 +38,7 @@ body {
 }
 
 #top {
-	font-size: 120%;
+	font-size: 150%;
 	font-weight: bolder;
 }
 
@@ -47,8 +49,7 @@ a, a:active {
 
 #logo img {
 	display: inline-block;
-	max-height: 120px;
-    
+	max-height: 140px;
 }
 
 #logo a {
@@ -88,3 +89,32 @@ a, a:active {
 	border: none;
 }
 /* 메인페이지 헤더 및 푸터 영역 css 끝 */
+
+/* 메인페이지 슬라이드 영역*/
+.main_slider {
+  text-align: center;
+  margin-bottom: 3%;
+  z-index: auto;
+}
+
+.cate_img {
+	display: flex;
+	justify-content: space-around;
+/* 	padding-top: 20%; */
+}
+
+.cate_img img {
+/* 	display: inline-block; */
+	max-height: 300px;
+}
+
+.cate_img>ul {
+	list-style: none;
+}
+
+#best>h2 {
+	font-family: Vitro_core;
+	font-size: 200%;
+	text-align: center;
+}
+

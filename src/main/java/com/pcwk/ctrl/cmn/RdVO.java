@@ -5,17 +5,17 @@ public class RdVO extends DTO {
 	private String rdCon; // 내용
 	private String rdReg; // 작성일
 	private String rdName; // 작성자
-	private long kNum; // 회원번호
+	private String mNum; // 회원번호
 	
 	public RdVO() {}
 
-	public RdVO(long rNum, String rdCon, String rdReg, String rdName, long kNum) {
+	public RdVO(long rNum, String rdCon, String rdReg, String rdName, String mNum) {
 		super();
 		this.rNum = rNum;
 		this.rdCon = rdCon;
 		this.rdReg = rdReg;
 		this.rdName = rdName;
-		this.kNum = kNum;
+		this.mNum = mNum;
 	}
 
 	public long getrNum() {
@@ -50,17 +50,19 @@ public class RdVO extends DTO {
 		this.rdName = rdName;
 	}
 
-	public long getkNum() {
-		return kNum;
+	public String getmNum() {
+		return mNum;
 	}
 
-	public void setkNum(long kNum) {
-		this.kNum = kNum;
+	public void setmNum(String mNum) {
+		this.mNum = mNum;
 	}
 
 	@Override
 	public String toString() {
-		return "rdVO [rNum=" + rNum + ", rdCon=" + rdCon + ", rdReg=" + rdReg + ", rdName=" + rdName + ", kNum=" + kNum
+		return "RdVO [rNum=" + rNum + ", rdCon=" + rdCon + ", rdReg=" + rdReg + ", rdName=" + rdName + ", mNum=" + mNum
 				+ ", toString()=" + super.toString() + "]";
 	}
+
+	
 }
