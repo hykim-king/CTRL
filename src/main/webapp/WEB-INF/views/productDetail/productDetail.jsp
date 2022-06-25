@@ -113,13 +113,16 @@
            <div class="accord_title">
             <span>제품 정보</span>
            </div>
-           <div class="contents">
-            <span>This is first answer.</span>
+           <div class="contents info_contents">
+                        상품 이름 : <span>${productInfo.pName}</span>
+             <br/><br/>
+                        용량 : <span>${productInfo.pSize}</span></br/>
+                        가격 : <span class="detail_price">${productInfo.pPrice}</span>
            </div>
             <div class="accord_title">
             <span>고객 리뷰</span>
            </div>
-           <div class="contents">
+           <div class="contents review_contents">
             <span>This is second answer.</span>
            </div>
         </div>

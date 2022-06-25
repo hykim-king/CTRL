@@ -8,6 +8,8 @@ $(document).ready(function(){
    }
    let price =$(".product_price").text();
    $(".product_price").text(priceToString(price)+"원");
+   $(".detail_price").text(priceToString(price)+"원");
+   
     
    // 아코디언 메뉴
   $(".accord_title").click(function() {
@@ -21,9 +23,11 @@ $(document).ready(function(){
 /* 구매 수량 증가&감소 함수 - 수량과 total price가 같이 증가&감소 */ 
 function count(type)  { 
   // 현재 화면에 표시된 값
-  var bNumber = $("#buy_number").text(); // 구매 수량
-  var productPrice = $(".product_price").text(); // 상품 금액
-  
+  let bNumber = $("#buy_number").text(); // 구매 수량
+  let productPrice = $(".product_price").text(); // 상품 금액
+  let minusComma = productPrice.replace(",", ""); // 상품금액에서 , 제거
+  let priceNumber = minusComma.substring(0, minusComma.indexOf("원"));
+  console.log("priceNumber : " + priceNumber);
   // 더하기/빼기
   if(type === "plus") {
 	  if(bNumber < 999) {
@@ -43,5 +47,5 @@ function count(type)  {
   }
   
   // 총 금액 변경 
-  $("#total_num").text(bNumber * productPrice);
+  $("#total_num").text(bNumber * priceNumber);
 }
