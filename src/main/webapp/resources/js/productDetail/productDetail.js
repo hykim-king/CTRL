@@ -1,6 +1,15 @@
 'use strict';
 
 $(document).ready(function(){
+	
+   // 가격에 콤마 붙이는 함수
+   function priceToString(price) {
+	   return price.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+   }
+   let price =$(".product_price").text();
+   $(".product_price").text(priceToString(price)+"원");
+    
+   // 아코디언 메뉴
   $(".accord_title").click(function() {
     $(this).next(".contents").stop().slideToggle(300);
     $(this).toggleClass('on').siblings().removeClass('on');

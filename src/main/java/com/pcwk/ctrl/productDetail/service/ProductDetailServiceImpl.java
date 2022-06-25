@@ -17,8 +17,8 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 	private ProductDetailDao productDetailDao;
 
 	@Override
-	public ProductVO doProductDetailSelect(ProductVO vo) {
-		return productDetailDao.doProductDetailSelect(vo);
+	public ProductVO doProductDetailSelect(ProductVO inVO) {
+		return productDetailDao.doProductDetailSelect(inVO);
 	}
 
 	

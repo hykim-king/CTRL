@@ -26,6 +26,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
     <link rel="shortcut icon" type="image/x-icon" href="${CP }/favicon.ico">
+    <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+    <script src="${CP_RES }/js/etc/jquery-1.12.4.js"></script>
+    <!-- 사용자 정의 function, callAjax -->
+    <script src="${CP_RES }/js/etc/eclass.js"></script>
+    <!-- 사용자 정의 function, isEmpty -->
+    <script src="${CP_RES }/js/etc/eUtil.js"></script>
+ 
     <!-- 스타일 시트 -->
     <style type="text/css">
     * {
@@ -52,13 +59,11 @@
 </style>
     
     <title>주문 조회 페이지</title>
-    <!-- jQuery -->
-    <script src="${CP_RES}/js/jquery-1.12.4.js"></script>
 
         
     <script type="text/javascript">
       $(document).ready(function(){
-        console.log("document.ready");  
+        console.log("document.ready"); 
         
         // table click
         $('#listTable > tbody > tr').on("click", "input" ,function(){ 
@@ -66,22 +71,13 @@
             let clickInput = $(this); // $(this) : input
             let tdArray = clickInput.parents("tr").children(); // td들 지정
             
-            // 각각 값을  input에 넣음
+            // 각각 값을  가져오기
             let oNum = tdArray.eq(0).text(); // 주문 번호
             let dNum = tdArray.eq(5).text(); // 상세 번호
-            let kName = tdArray.last().text(); // 회원이름
+            let oName = tdArray.eq(6).text(); // 회원이름
+            let pNum = tdArray.last().text(); // 상품번호
             
-            console.log(oNum);
-            console.log(dNum);
-            console.log(kName);
-
-            let frm = document.getElementById("orderListFrm");
-            frm.oNum.value = oNum;
-            frm.dNum.value = dNum;
-            frm.kName.value = kName;
-            window.open("${CP}/review/reviewPopup.do","리뷰작성", "width=800, height=700, left=100, top=100");
-
-
+            window.open("${CP}/review/reviewPopup.do?oNum="+oNum+"&dNum="+dNum+"&oName="+oName+"&pNum="+pNum,"리뷰작성", "width=800, height=700, left=100, top=100");
             //--table click
         });
       });
@@ -93,15 +89,6 @@
   <h2>주문 조회</h2>
   <hr/>
   
-  <div>
-    <form action="${CP}/order/orderList.do" name="orderListFrm" method="get" id="orderListFrm">
-      <input type="text" name="work_div" id="work_div" style="display: none;">
-      <input type="text" name="oNum" id="oNum" style="display: none;">
-      <input type="text" name="dNum" id="dNum" style="display: none;">
-      <input type="text" name="kName" id="kName" style="display: none;">
-    </form> 
-  </div>
-  list.size : ${list.size()}
   <table id="listTable">
     <thead>
       <tr>
@@ -110,8 +97,10 @@
          <th width="80">금액</th>
          <th width="100">수량</th>
          <th width="80">진행상태</th>
+        <!--  아래 세개는 리뷰 페이지를 위해 필요한 것  : 조회 필요-->
          <th width="100" style="display: none;">상세번호</th>
          <th width="100" style="display: none;">회원이름</th>
+         <th width="100" style="display: none;">상품번호</th>
       </tr>
     </thead>
     <tbody>
@@ -129,7 +118,8 @@
                       <input type="button" value="리뷰 쓰기"/>
                     </td>
                     <td style="display: none;">${list.dNum}</td>
-                    <td style="display: none;">${list.kName}</td>
+                    <td style="display: none;">${list.oName}</td>
+                    <td style="display: none;">${list.pNum}</td>
                 </tr>                                                           
              </c:forEach>
          </c:when>

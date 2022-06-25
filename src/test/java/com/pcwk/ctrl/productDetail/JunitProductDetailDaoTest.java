@@ -1,4 +1,4 @@
-package com.pcwk.ctrl.review;
+package com.pcwk.ctrl.productDetail;
 
 
 import static org.junit.Assert.assertEquals;
@@ -17,7 +17,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.pcwk.ctrl.cmn.ProductVO;
 import com.pcwk.ctrl.cmn.ReviewVO;
+import com.pcwk.ctrl.productDetail.dao.ProductDetailDao;
 import com.pcwk.ctrl.review.dao.ReviewDao;
 
 @RunWith(SpringJUnit4ClassRunner.class) // JUnit기능을 스프링 프레임으로 확장!
@@ -25,15 +27,15 @@ import com.pcwk.ctrl.review.dao.ReviewDao;
 									"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"
 		
 }) // applicationContext.xml loading
-public class JunitReviewDaoTest {
+public class JunitProductDetailDaoTest {
 	final Logger LOG = LogManager.getLogger(this.getClass());
 	
 	@Autowired // 컨텍스트 프레임워크는 변수 타입과 일치하는 컨텍스트 내의 빈을 찾고, 변수에 주입
 	ApplicationContext context;
 	
 	@Autowired
-	ReviewDao reviewDao;
-	ReviewVO review01;
+	ProductDetailDao productDetailDao;
+	ProductVO product01;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -41,38 +43,29 @@ public class JunitReviewDaoTest {
 		LOG.debug("=0. setUp()=");
 		LOG.debug("=======================");
 		
-		review01 = new ReviewVO(202, "1", 1, "안녕하세요, junitReviewrDaoTest입니다.", "kjh", "날짜_사용안함");
+		product01 = new ProductVO("glass07", "glass", "뉴웨이브 데일리 글라스", 2700, "270ml");
 		
 		LOG.debug("context:"+context);
-		LOG.debug("reviewDao:"+reviewDao);
+		LOG.debug("productDetailDao:"+productDetailDao);
 		
 		assertNotNull(context);
-		assertNotNull(reviewDao);
+		assertNotNull(productDetailDao);
 	}
 	
 	@Test
-	public void doReviewInsert() throws SQLException {
-		
-		// 1. 삭제
-		
-		// 2. 1건 등록
-		reviewDao.doReviewInsert(review01);
-		assertEquals(1, reviewDao.getCount(review01));
-		
-		// 3. 단건 조회
-		ReviewVO outVO = reviewDao.doSelectOne(review01);
-		
-		// 4. 비교
-	    isSameData(outVO, review01);
+	public void doSelectOne() throws SQLException {
+		// 1. 1건 조회
+		ProductVO outVO = productDetailDao.doProductDetailSelect(product01);
+		LOG.debug("outVO : " + outVO);
+		// 2. 비교
+	    isSameData(outVO, product01);
 	}
 
-    private void isSameData(ReviewVO voVO, ReviewVO orgVO) {
-	      assertEquals(voVO.getrNum(), orgVO.getrNum());
-	      assertEquals(voVO.getdNum(), orgVO.getdNum());
-
-	      assertEquals(voVO.getoNum(), orgVO.getoNum());
-	      assertEquals(voVO.getrContent(), orgVO.getrContent());
-	      assertEquals(voVO.getoName(), orgVO.getoName());
+    private void isSameData(ProductVO voVO, ProductVO orgVO) {
+	      assertEquals(voVO.getpNum(), orgVO.getpNum());
+	      assertEquals(voVO.getpName(), orgVO.getpName());
+	      assertEquals(voVO.getpPrice(), orgVO.getpPrice());
+	      assertEquals(voVO.getpSize(), orgVO.getpSize());
     }
     
 	@After

@@ -1,6 +1,6 @@
 <%--
 /**
-    Class Name:
+    Class Name: 
     Description:
     Modification information
         
@@ -31,102 +31,102 @@
     
     <title>제품 상세 페이지</title>
     <!-- jQuery -->
-    <script src="${CP_RES}/js/jquery-1.12.4.js"></script>
+    <script src="${CP_RES}/js/etc/jquery-1.12.4.js"></script>
     <script type="text/javascript" src="${CP_RES }/js/productDetail/productDetail.js"></script>
-</head>
-<body>
- <!-- 메인 헤더 영역 시작 -->
- <div id="header">
-    <div id="top">
-        <div id="logo">
-          <a href="#"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
-        </div>
-        <div class="menu_left">
-            <ul>
-            <li><a href="#">접시</a></li>
-            <li><a href="#">머그컵</a></li>
-            <li><a href="#">유리잔</a></li>
-            <li><a href="#">보울/면기</a></li>
-            </ul>
-        </div>
-        <div class="menu_right">
-            <ul>
-            <li><a href="#">로그인</a></li>
-            <li><a href="#">마이페이지</a></li>
-            <li><a href="#">장바구니</a></li>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">공지사항</a></li>
-            </ul>
-            <form action="#" method="post" id="search" name="search">
-                <input type="text"/>
-                <button>
-                      <i class="fas fa-search fa-lg"></i>
-                </button>
-            </form>
-        </div> 
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/2974daa1cb.js" crossorigin="anonymous"></script>
+    <body>
+    <!-- 메인 헤더 영역 시작 -->
+    <div id="header">
+       <div id="top">
+           <div id="logo">
+             <a href="#"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
+           </div>
+           <div class="menu_left">
+               <ul>
+               <li><a href="#">접시</a></li>
+               <li><a href="#">머그컵</a></li>
+               <li><a href="#">유리잔</a></li>
+               <li><a href="#">보울/면기</a></li>
+               </ul>
+           </div>
+           <div class="menu_right">
+               <ul>
+               <li><a href="#">로그인</a></li>
+               <li><a href="#">마이페이지</a></li>
+               <li><a href="#">장바구니</a></li>
+               <li><a href="#">FAQ</a></li>
+               <li><a href="#">공지사항</a></li>
+               </ul>
+               <form action="#" method="post" id="search" name="search">
+                   <input type="text"/>
+                   <button>
+                         <i class="fas fa-search fa-lg"></i>
+                   </button>
+               </form>
+           </div> 
+       </div>
     </div>
-</div>
-<!-- 메인 헤더 영역 끝 -->
-
-<!-- 콘텐츠 영역 시작 -->
-  <div id="contents">
-    <!-- 상품 상세 콘텐츠 영역 첫번째 시작 (이미지, 이름, 가격, 버튼들)-->
-	  <div class="product_contents">
-	    <img alt="상품 이미지" src="${CP_RES}/img/glass01.jpg">
-	      
-	    <div class="info">
-	      <form action="#" method="get">
-	      
-		      <!-- 상품 이름, 용량, 가격 -->
-		      <strong class="product_name">상품 이름 + 용량</strong><br/>
-		      <hr/>
-		      <p class="product_price">3000</p>
-          
-          <!-- 수량 -->
-          <div id="amount">
-            <div id="buy_number">0</div>
-			      <div class="number_buttons">
-				      <input type="button" id="plus" name="plus" onclick='count("plus")' value="+"/>		      
-				      <input type="button" id="minus" onclick='count("minus")' name="minus" value="-"/>
-			      </div>
-          </div>
-          <!--// 수량 -->
-          
-          <!-- 총금액 -->  
-          <p class="total_price">Total price : </p>
-          <div id="total_num">0</div><br/>
-          
-          <div class="submit_buttons">
-						<input class="btn-2 button" type="submit" value="CART">
-						<input class="btn-1 button" type="submit" value="BUY">          
-          </div>			
-	      </form>
-	    </div> <!-- .info -->
-	  </div> <!-- .product_contents -->
-    <!-- 상품 상세 콘텐츠 영역 첫번째 끝 (이미지, 이름, 가격, 버튼들)-->  
-  <hr />
-  
-  <!-- 아코디언 메뉴(상세설명, 리뷰) -->
-  <div id="Accord_container">
-	  <div id="Accordion_wrap">
-	     <div class="accord_title">
-	      <span>제품 정보</span>
-	     </div>
-	     <div class="contents">
-	      <span>This is first answer.</span>
-	     </div>
-	      <div class="accord_title">
-	      <span>고객 리뷰</span>
-	     </div>
-	     <div class="contents">
-	      <span>This is second answer.</span>
-	     </div>
-	  </div>
-</div>
-  <!--// 아코디언 메뉴(상세설명, 리뷰) -->
-  
-  </div> 
-<!-- 콘텐츠 영역 끝 -->
-
-</body>
-</html>
+    <!-- 메인 헤더 영역 끝 -->
+    
+    <!-- 콘텐츠 영역 시작 -->
+    <div id="contents">
+      <!-- 상품 상세 콘텐츠 영역 첫번째 시작 (이미지, 이름, 가격, 버튼들)-->
+        <div class="product_contents">
+          <img alt="상품 이미지" src="${CP_RES}/img/${productInfo.pNum}.jpg">
+            
+          <div class="info">
+            <form action="#" method="get">
+            
+                <!-- 상품 이름, 용량, 가격 -->
+                <strong class="product_name">${productInfo.pName}</strong><br/>
+                <hr/>
+                <p class="product_price">${productInfo.pPrice}</p>
+            
+            <!-- 수량 -->
+            <div id="amount">
+              <div id="buy_number">0</div>
+                    <div class="number_buttons">
+                        <input type="button" id="plus" name="plus" onclick='count("plus")' value="+"/>              
+                        <input type="button" id="minus" onclick='count("minus")' name="minus" value="-"/>
+                    </div>
+            </div>
+            <!--// 수량 -->
+            
+            <!-- 총금액 -->  
+            <p class="total_price">Total price : </p>
+            <div id="total_num">0</div><br/>
+            
+            <div class="submit_buttons">
+                          <input class="btn-2 button" type="submit" value="CART">
+                          <input class="btn-1 button" type="submit" value="BUY">          
+            </div>            
+            </form>
+          </div> <!-- .info -->
+        </div> <!-- .product_contents -->
+      <!-- 상품 상세 콘텐츠 영역 첫번째 끝 (이미지, 이름, 가격, 버튼들)-->  
+    <hr />
+    
+    <!-- 아코디언 메뉴(상세설명, 리뷰) -->
+    <div id="Accord_container">
+        <div id="Accordion_wrap">
+           <div class="accord_title">
+            <span>제품 정보</span>
+           </div>
+           <div class="contents">
+            <span>This is first answer.</span>
+           </div>
+            <div class="accord_title">
+            <span>고객 리뷰</span>
+           </div>
+           <div class="contents">
+            <span>This is second answer.</span>
+           </div>
+        </div>
+    </div>
+    <!--// 아코디언 메뉴(상세설명, 리뷰) -->
+    </div> 
+    <!-- 콘텐츠 영역 끝 -->
+    </body>
+</html> 
+    

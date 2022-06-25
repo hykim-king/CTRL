@@ -30,11 +30,11 @@
     <link rel="stylesheet" type="text/css" href="${CP_RES }/css/review/review_write_popup.css">
     <title>상품 리뷰</title>
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
-    <script src="${CP_RES }/js/jquery-1.12.4.js"></script>
+    <script src="${CP_RES }/js/etc/jquery-1.12.4.js"></script>
     <!-- 사용자 정의 function, callAjax -->
-    <script src="${CP_RES }/js/eclass.js"></script>
+    <script src="${CP_RES }/js/etc/eclass.js"></script>
     <!-- 사용자 정의 function, isEmpty -->
-    <script src="${CP_RES }/js/eUtil.js"></script>
+    <script src="${CP_RES }/js/etc/eUtil.js"></script>
  
     <script type="text/javascript" src="${CP_RES }/js/review/review_write_popup.js"></script>
     
@@ -42,40 +42,44 @@
     $(document).ready(function(){
         //--doReviewInsert
         $("#doReviewInsert").on("click",function(e){
-        	
             if(eUtil.ISEmpty($("#oName").val())) {
                 alert("다시 시도해주세요");
                 $("#oName").focus();
                 
                 return;
             }
-            
+
             if(eUtil.ISEmpty($("#rContent").val())) {
                 alert("리뷰 내용을 작성해주세요");
                 $("#rContent").focus();
                 
                 return;
             }
-            
             let url = "${CP}/review/doReviewInsert.do";
             let method = "GET";
             let parameters = {
                     dNum : $("#dNum").val(),
                     oNum : $("#oNum").val(),
                     rContent : $("#rContent").val(),
-                    oName : $("#oName").val()
+                    oName : $("#oName").val(),
+                    pNum : $("#pNum").val()
             };
             
             let async = false;
             EClass.callAjax(url, parameters, method, async, function(data){
-            	// alert('data.msgId:'+data.msgId);
-            	
-                 if("1" == data.msgId) { // 성공
-                	alert(data.msgContents);
-	                opener.location.href="${CP}/productDetail/productDetail.do";
-                    window.close();
+                console.log('data.pNum:'+data.pNum);
+                let pNum = data.pNum;
+                let pName = data.pName;
+                let pPrice = data.pPrice;
+                let pSize = data.pSize;
+                
+                if(null != data) {
+                    alert("리뷰가 등록되었습니다!");
+                    opener.location.href="${CP}/productDetail/view.do?pNum=" + pNum + "&pName=" + pName + 
+                            "&pPrice="+pPrice + "&pSize="+pSize;                
+                    window.close();                 
                 }else {
-                	alert(data.msgContents);
+                    alert("다시 시도해주세요.^^");
                     window.close();
                 } 
             }); 
@@ -92,14 +96,16 @@
      <p>상품에 대한 리뷰를 작성해주세요</p>
        <form method="get" action="#" name="reviewFrm" id="reviewFrm">
           <!--주문 상세 번호-->
-          <input type="text" id="dNum" name="dNum"/> 
+          <input type="text" id="dNum" name="dNum" value="${dNum}"/> 
           <!--주문 번호-->
-          <input type="text" id="oNum" name="oNum"/> 
+          <input type="text" id="oNum" name="oNum" value="${oNum}"/> 
+          <!--상품 번호-->
+          <input type="text" id="pNum" name="pNum" value="${pNum}"/> 
           
           <!-- 입력받는 부분 -->
           <ul>
             <li><label for="oName">작성자</label></li>
-            <li class="border_bottom"><input type="text" name="oName" id="oName" readonly="readonly"></li>
+            <li class="border_bottom"><input type="text" name="oName" id="oName" readonly="readonly" value="${oName}"/></li>
             <li><label for="rContent">내용</label></li>
             <li><textarea rows="10" cols="40" name="rContent" id="rContent"></textarea></li>
             <li><input type="button" id="doReviewInsert" class="btn-1 button" value="REVIEW WRITE"></li>
