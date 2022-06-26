@@ -3,6 +3,7 @@
 <mapper namespace="com.pcwk.ctrl.productDetail">
     <select id="doProductDetailSelect" parameterType="ProductVO" resultType="ProductVO">
         SELECT p_num AS pNum,
+               p_category AS pCategory,
                p_name AS pName,
                p_price AS pPrice, 
                p_size AS pSize

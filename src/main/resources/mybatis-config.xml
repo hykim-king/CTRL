@@ -9,5 +9,11 @@
     <typeAliases>
         <typeAlias type="com.pcwk.ctrl.cmn.ReviewVO" alias="ReviewVO"/>
         <typeAlias type="com.pcwk.ctrl.cmn.ProductVO" alias="ProductVO"/>
+        <typeAlias type="com.pcwk.ctrl.cmn.RdVO" alias="RdVO"/>
+        <typeAlias type="com.pcwk.ctrl.cmn.MemberVO" alias="MemberVO"/>
+        <typeAlias type="com.pcwk.ctrl.cmn.ReviewRdVO" alias="ReviewRdVO"/>
     </typeAliases>
+    <typeHandlers>
+        <typeHandler handler="com.pcwk.ctrl.cmn.ClobHandler" javaType="String" jdbcType="LONGVARCHAR"/>
+    </typeHandlers>    
 </configuration>
