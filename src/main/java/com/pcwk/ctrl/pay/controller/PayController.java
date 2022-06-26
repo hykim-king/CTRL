@@ -7,27 +7,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("ctrl")
+@RequestMapping("pay")
 public class PayController {
 	final Logger LOG = LogManager.getLogger(getClass());
 	
-	@RequestMapping(value = "/after.do", method = RequestMethod.GET)
-	public String after() {
+	@RequestMapping(value = "/payAfter.do", method = RequestMethod.GET)
+	public String payAfter() {
 		LOG.debug("====================");
 		LOG.debug("=after()=");
 		LOG.debug("====================");
 		
-		return "pay/after";
+		return "pay/pay_after";
 		//http://localhost:8081/ctrl/ctrl/after.do
 	}
 	
-	@RequestMapping(value = "/before.do", method = RequestMethod.GET)
-	public String before() {
+	@RequestMapping(value = "/payBefore.do", method = RequestMethod.GET)
+	public String payBefore() {
 		LOG.debug("====================");
 		LOG.debug("=before()=");
 		LOG.debug("====================");
 		
-		return "pay/before";
+		return "pay/pay_before";
 		//http://localhost:8081/ctrl/ctrl/before.do
 	}
 	

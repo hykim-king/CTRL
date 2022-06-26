@@ -26,37 +26,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
+    <link rel="shortcut icon" type="image/x-icon" href="${CP }/favicon.ico">
+    <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+    <script src="${CP_RES }/js/etc/jquery-1.12.4.js"></script>
+    <!-- 사용자 정의 function, callAjax -->
+    <script src="${CP_RES }/js/etc/eclass.js"></script>
+    <!-- 사용자 정의 function, isEmpty -->
+    <script src="${CP_RES }/js/etc/eUtil.js"></script>
+     <!-- css -->
+    <link href="${CP_RES}/css/pay/before.css" rel="stylesheet">
+    
     <title>결제 전</title>
     
-    <!-- 부트스트랩 -->
-    <link href="${CP_RES}/css/before.css" rel="stylesheet">
-    <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
-    <script src="${CP_RES}/js/jquery-1.12.4.js"></script>
-    <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
-    <%-- <script src="${CP_RES}/js/bootstrap.min.js"></script> --%>
      <!-- font awesome -->
-	<script src="https://kit.fontawesome.com/2974daa1cb.js" crossorigin="anonymous">
+	<script src="https://kit.fontawesome.com/2974daa1cb.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
-        $(document).ready(function(){
-        	console.log('document.ready');
-        	
-        	$('.change').on(function(e) {
-				
-			});
-        	
-        });
+    $(document).ready(function(){
+        console.log("document.ready"); 
+    });
     </script>
+    
 </head>
 <body>
 	<!-- 메인 헤더 영역 시작 -->
  <div id="header">
     <div id="top">
         <div id="logo">
-            <a href="#"><img src="${CP_RES}/image/tableware_logo.png" alt="로고이미지"></a>
+            <a href="#"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
         </div>
         <div class="menu_left">
             <ul>
@@ -92,7 +92,7 @@
             <p class="name">이름<input class="orderer" type="text" value="김태민"></p>
             <p class="name">전화번호<input class="tel" type="tel" value="010-1234-5678"></p>
         <h1 class="title">주문상품</h1>
-            <input class="img" type="image" src="#" align="left" align="middle">
+            <input class="img" type="image" src="${CP_RES}/img/bowls01.jpg" align="left" align="middle">
             <p class="img1"><p>메트로시크 샐러드볼</p>\242,000원<p>1개</p>
     </div>
         <div class="payment">
@@ -113,7 +113,7 @@
             “쇼핑몰”은 개인정보 보호를 위하여 이용자의 개인정보를 처리하는 자를 최소한으로 제한하여야 하며 신용카드, 은행계좌 등을 포함한 이용자의 개인정보의 분실, 도난, 유출, 동의 없는 제3자 제공, 변조 등으로 인한 이용자의 손해에 대하여 모든 책임을 집니다.
             “쇼핑몰” 또는 그로부터 개인정보를 제공받은 제3자는 개인정보의 수집목적 또는 제공받은 목적을 달성한 때에는 당해 개인정보를 지체 없이 파기한다.
             “쇼핑몰”은 개인정보의 수집•이용•제공에 관한 동의란을 미리 선택한 것으로 설정해두지 않습니다. 또한 개인정보의 수집•이용•제공에 관한 이용자의 동의거절시 제한되는 서비스를 구체적으로 명시하고, 필수수집항목이 아닌 개인정보의 수집•이용•제공에 관한 이용자의 동의 거절을 이유로 회원가입 등 서비스 제공을 제한하거나 거절하지 않습니다.</p>
-            <input class="change" type="button" value="결제" src="#">
+            <input class="change" type="button" value="결제">
         </div>
 </body>
 </html>
