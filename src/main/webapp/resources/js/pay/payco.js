@@ -3,7 +3,7 @@
 $(document).ready(function(){
 	console.log('document.ready');
 	
-    $('#change').click(function() {
+    $('.change').click(function() {
     	var IMP = window.IMP;
     	IMP.init('imp91452155');
         // IMP.request_pay(param, callback) 결제창 호출

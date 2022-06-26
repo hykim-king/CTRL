@@ -31,4 +31,14 @@ public class PayController {
 		//http://localhost:8081/ctrl/ctrl/before.do
 	}
 	
+	@RequestMapping(value = "/payco.do", method = RequestMethod.GET)
+	public String payco() {
+		LOG.debug("====================");
+		LOG.debug("=before()=");
+		LOG.debug("====================");
+		
+		return "pay/payco";
+		//http://localhost:8081/ctrl/ctrl/before.do
+	}
+	
 }

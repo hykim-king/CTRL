@@ -37,6 +37,7 @@
     <script src="${CP_RES }/js/etc/eclass.js"></script>
     <!-- 사용자 정의 function, isEmpty -->
     <script src="${CP_RES }/js/etc/eUtil.js"></script>
+    <script src="${CP_RES }/js/payco/payco.js"></script>
      <!-- css -->
     <link href="${CP_RES}/css/pay/before.css" rel="stylesheet">
     
