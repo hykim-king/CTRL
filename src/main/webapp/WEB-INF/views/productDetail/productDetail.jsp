@@ -32,7 +32,7 @@
     <title>제품 상세 페이지</title>
     <!-- jQuery -->
     <script src="${CP_RES}/js/etc/jquery-1.12.4.js"></script>
-    <script type="text/javascript" src="${CP_RES }/js/productDetail/productDetail.js"></script>
+    
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/2974daa1cb.js" crossorigin="anonymous"></script>
     <body>
@@ -83,24 +83,24 @@
                 <hr/>
                 <p class="product_price">${productInfo.pPrice}</p>
             
-            <!-- 수량 -->
-            <div id="amount">
-              <div id="buy_number">0</div>
-                    <div class="number_buttons">
-                        <input type="button" id="plus" name="plus" onclick='count("plus")' value="+"/>              
-                        <input type="button" id="minus" onclick='count("minus")' name="minus" value="-"/>
-                    </div>
-            </div>
-            <!--// 수량 -->
-            
-            <!-- 총금액 -->  
-            <p class="total_price">Total price : </p>
-            <div id="total_num">0</div><br/>
-            
-            <div class="submit_buttons">
-                          <input class="btn-2 button" type="submit" value="CART">
-                          <input class="btn-1 button" type="submit" value="BUY">          
-            </div>            
+	            <!-- 수량 -->
+	            <div id="amount">
+	              <div id="buy_number">0</div>
+	                    <div class="number_buttons">
+	                        <input type="button" id="plus" name="plus" value="+"/>              
+	                        <input type="button" id="minus" name="minus" value="-"/>
+	                    </div>
+	            </div>
+	            <!--// 수량 -->
+	            
+	            <!-- 총금액 -->  
+	            <p class="total_price">Total price : </p>
+	            <div id="total_num">0</div><br/>
+	            
+	            <div class="submit_buttons">
+	                 <input class="btn-2 button" type="submit" value="CART">
+	                 <input class="btn-1 button" type="submit" value="BUY">          
+	            </div>            
             </form>
           </div> <!-- .info -->
         </div> <!-- .product_contents -->
@@ -130,6 +130,7 @@
     <!--// 아코디언 메뉴(상세설명, 리뷰) -->
     </div> 
     <!-- 콘텐츠 영역 끝 -->
+    <script type="text/javascript" src="${CP_RES }/js/productDetail/productDetail.js"></script>
     </body>
 </html> 
     
