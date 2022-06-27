@@ -88,7 +88,44 @@ a, a:active {
 	background: none;
 	border: none;
 }
+
+#footer {
+	width: 100%;
+	display: inline-block;
+    text-align: center;
+/* 	display: flex; */
+/*     justify-content: center; */
+    flex-direction: row;
+}
+
+.util, .ft_con, .ft_bottom {
+    border-top: 1px solid #424242;
+}
+
+.util_inner>ul {
+	list-style: none;
+	display: block;
+}
+
+.menu>li {
+	display: inline-block;
+}
+
+
 /* 메인페이지 헤더 및 푸터 영역 css 끝 */
+
+/* 베스트 상품 영역*/
+#best {/* 영역만 잡아둔 상태 */
+    background: orange;
+    padding-bottom: 600px;
+}
+
+#best>h2 {
+    font-family: Vitro_core;
+    font-size: 200%;
+    text-align: center;
+}
+
 
 /* 메인페이지 슬라이드 영역*/
 .main_slider {
@@ -112,9 +149,5 @@ a, a:active {
 	list-style: none;
 }
 
-#best>h2 {
-	font-family: Vitro_core;
-	font-size: 200%;
-	text-align: center;
-}
+
 

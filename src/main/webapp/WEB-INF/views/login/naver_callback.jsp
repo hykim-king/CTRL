@@ -13,6 +13,9 @@
     Copyright (C) by KandJang All right reserved.
 */
  --%>
+<%@page import="com.google.gson.JsonArray"%>
+<%@page import="com.google.gson.JsonObject"%>
+<%@page import="com.google.gson.JsonParser"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -22,6 +25,7 @@
 <%@ page import="java.net.HttpURLConnection" %>
 <%@ page import="java.io.BufferedReader" %>
 <%@ page import="java.io.InputStreamReader" %>
+<%@ page import="com.pcwk.ctrl.naver.controller.MemberProfile" %>
 <c:set var="CP" value="${pageContext.request.contextPath}"/>
 <c:set var="resources" value="/resources"/>
 <c:set var="CP_RES"    value="${CP}${resources}" />
@@ -80,13 +84,112 @@
 	      }
 	      br.close();
 	      if(responseCode==200) {
-	        out.println(res.toString());
+	        System.out.println(res.toString()); //res.toString(): json형식
+	         String obj = res.toString();
+	        
+	        JsonParser jsonParser = new JsonParser();
+	        
+	        JsonObject jsonObject = (JsonObject)jsonParser.parse(obj);
+	        System.out.println(jsonObject.get("access_token"));
+	        
+// 	        여기부터 access_token 가져오기위한 작업
+// 			while ((inputLine = br.readLine()) != null) {
+// 			    res.append(inputLine);
+// 			}
+// 			 br.close();
+// 			if(responseCode==200) {
+// 			    System.out.println(res.toString());
+// 			    JsonParser parsing = new JsonParser();
+// 			    Object obj = parsing.parse(res.toString());
+// 			    JsonObject jsonObj = (JsonObject)obj;
+			                
+// 			    access_token = (String)jsonObj.get("access_token");
+// 			    refresh_token = (String)jsonObj.get("refresh_token");
+// 			}	        
 	      }
 	    } catch (Exception e) {
 	      System.out.println(e);
 	    }
-    %>
+	    %>
+	    <%
+// 	    회원프로필 조회
+// 	    public static void main(String[] args) {
+// //	        "AAAAOp-0uiUysOy3BesOjX92vMUA7Uvd3F7twMpeg9ieXz656n9PCYlByDk6CzocQz4HQnS9KF8JIXIOonZjBvoWZXQ"; // 네이버 로그인 접근 토큰;
+// 	        String token = "AAAAOp-0uiUysOy3BesOjX92vMUA7Uvd3F7twMpeg9ieXz656n9PCYlByDk6CzocQz4HQnS9KF8JIXIOonZjBvoWZXQ";
+// 	        String header = "Bearer " + token; // Bearer 다음에 공백 추가
+
+
+// 	        String apiURL = "https://openapi.naver.com/v1/nid/me";
+
+
+// 	        Map<String, String> requestHeaders = new HashMap<>();
+// 	        requestHeaders.put("Authorization", header);
+// 	        String responseBody = get(apiURL,requestHeaders);
+
+// 	        System.out.println(responseBody);
+// 	    }
+
+
+// 	    private static String get(String apiUrl, Map<String, String> requestHeaders){
+// 	        HttpURLConnection con = connect(apiUrl);
+// 	        try {
+// 	            con.setRequestMethod("GET");
+// 	            for(Map.Entry<String, String> header :requestHeaders.entrySet()) {
+// 	                con.setRequestProperty(header.getKey(), header.getValue());
+// 	            }
+
+
+// 	            int responseCode = con.getResponseCode();
+// 	            if (responseCode == HttpURLConnection.HTTP_OK) { // 정상 호출
+// 	                return readBody(con.getInputStream());
+// 	            } else { // 에러 발생
+// 	                return readBody(con.getErrorStream());
+// 	            }
+// 	        } catch (IOException e) {
+// 	            throw new RuntimeException("API 요청과 응답 실패", e);
+// 	        } finally {
+// 	            con.disconnect();
+// 	        }
+// 	    }
+
+
+// 	    private static HttpURLConnection connect(String apiUrl){
+// 	        try {
+// 	            URL url = new URL(apiUrl);
+// 	            return (HttpURLConnection)url.openConnection();
+// 	        } catch (MalformedURLException e) {
+// 	            throw new RuntimeException("API URL이 잘못되었습니다. : " + apiUrl, e);
+// 	        } catch (IOException e) {
+// 	            throw new RuntimeException("연결이 실패했습니다. : " + apiUrl, e);
+// 	        }
+// 	    }
+
+
+// 	    private static String readBody(InputStream body){
+// 	        InputStreamReader streamReader = new InputStreamReader(body);
+
+
+// 	        try (BufferedReader lineReader = new BufferedReader(streamReader)) {
+// 	            StringBuilder responseBody = new StringBuilder();
+
+
+// 	            String line;
+// 	            while ((line = lineReader.readLine()) != null) {
+// 	                responseBody.append(line);
+// 	            }
+
+
+// 	            return responseBody.toString();
+// 	        } catch (IOException e) {
+// 	            throw new RuntimeException("API 응답을 읽는데 실패했습니다.", e);
+// 	        }
+// 	    }
+	    
+	    
+	    
+	    %>
+	  
 <!--     접근토큰 삭제요청 url(한 번 동의한 정보제공 항목에 대한 재동의를 위해서 필요), access_token부분을 매번 바꿔줘야함 -->
-<!--   https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=SFHYYlRp9uGKqdsmMrqu&client_secret=VLZrBQXQtb&access_token=AAAAOVHPytHNNX3NogxN7oqTSOT0-O7SUAJbFYr0KPsP8p7bbawSOYMMC0-ndhldKuko_1Hfg040kAErM_OWS8UY1HY&service_provider=NAVER  -->
+<!--   https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=SFHYYlRp9uGKqdsmMrqu&client_secret=VLZrBQXQtb&access_token=AAAAOaxe-zZ9jRkpiOXAtF0sqZ1IR6zUhurRgT_TV_E6wTEoxN6rXrZQXzzt6uErUY_Hvj6CBEeSILlzVUGoY-iWT8c&service_provider=NAVER  -->
 </body>
 </html>

@@ -1,10 +1,6 @@
 package com.pcwk.ctrl.login.controller;
 
-import java.io.IOException;
-import java.sql.SQLException;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,12 +8,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.pcwk.ctrl.cmn.MemberVO;
+
 
 @Controller("loginController")
 @RequestMapping("login")
-public class LoginController {
+public class LoginController<OAuth2AccessToken> {
 
 	final Logger LOG = LogManager.getLogger(getClass());
+	private Object apiResult;
 	
 	public LoginController () {}
 	
@@ -31,14 +30,17 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/callback.do")
-	public String naverLogin(HttpServletRequest req) throws Exception {
+	public String naverLogin(MemberVO inVO, HttpServletRequest req) throws Exception {
+		
+		
 		LOG.debug("=================================");
 		LOG.debug("naverLogin()");
 		LOG.debug("=================================");
 		
+		
+		
 		return "login/naver_callback";
 	}
-
-
 	
+
 }

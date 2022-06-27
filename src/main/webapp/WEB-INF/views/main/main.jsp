@@ -94,11 +94,45 @@
 	</div>
 	<!-- 베스트 상품 영역 끝-->
 
-	<!-- footer 시작 -->
-	<footer>
-		<div>footer</div>
-	</footer>
-
+	<!-- footer 시작 --><!-- 미완성 -->
+	<div id="footer">
+		<div class="">
+			<div class="util">
+			    <div class="util_inner">
+			        <ul class="menu">
+			            <li><a href="/shopinfo/company.html">회사소개</a></li>
+			            <li><a href="/member/agreement.html">이용약관</a></li>
+			            <li><a href="/member/privacy.html">개인정보취급방침</a></li>
+			            <li><a href="/shopinfo/guide.html">이용안내</a></li>
+			        </ul>
+			    </div>
+			</div>
+			<div class="ft_con ">
+		        <div class="ftInner">
+		            <div class="fsec01 sec">
+		                <p class="tit">고객센터</p>
+		                <span class="first">02-313-7300</span>
+		                <span>WEEKDAY AM 9:00 ~ PM 6:00</span>
+		                <span>LUNCH PM 12:00 ~ PM 1:00</span>
+		                <span>WEEKEND &amp; HOLYDAY OFF</span>
+		            </div>
+		            <div class="fsec02 sec">
+		                <p class="tit">Return &amp; Exchange</p>
+		                <span>반품 : 04100 서울특별시 마포구 서강로 136 아이비타워 3층 <br/> 반드시 고객센터에 접수 후 교환 및 반품해주세요.</span>
+		                <span>cj대한통운 고객센터 1588-1255</span> 
+		            </div>
+		        </div>
+		    </div>
+			<div class="ft_bottom ">
+		        <p class="address">
+		            <span>COMPANY : (주)TableWare CEO : CTRL    PHONE : 010-1234-5678</span></br> 
+		            <span>BUSINESS LICENCE : [123-45-67890]</span> </br>   
+		            <span>ADDRESS : 04100 서울특별시 마포구 서강로 136 아이비타워 3층 TableWare</span></br>
+		            <span>CONTACT : <strong><a href="https://github.com/hykim-king/CTRL.git">https://github.com/hykim-king/CTRL.git</a></strong></span>
+		        </p>
+		    </div>
+		</div>
+	</div>
 
 	<!-- footer 끝 -->
 
