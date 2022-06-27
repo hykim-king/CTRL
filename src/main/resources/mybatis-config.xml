@@ -12,6 +12,7 @@
         <typeAlias type="com.pcwk.ctrl.cmn.RdVO" alias="RdVO"/>
         <typeAlias type="com.pcwk.ctrl.cmn.MemberVO" alias="MemberVO"/>
         <typeAlias type="com.pcwk.ctrl.cmn.ReviewRdVO" alias="ReviewRdVO"/>
+        <typeAlias type="com.pcwk.ctrl.cmn.ReviewCartVO" alias="CartVO"/>
     </typeAliases>
     <typeHandlers>
         <typeHandler handler="com.pcwk.ctrl.cmn.ClobHandler" javaType="String" jdbcType="LONGVARCHAR"/>
