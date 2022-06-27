@@ -18,14 +18,14 @@ import com.pcwk.ctrl.order.service.OrderService;
 
 @Controller
 @RequestMapping("order")
-public class OrderLController {
+public class OrderController {
 
 	final Logger LOG = LogManager.getLogger(getClass());
 	
 	@Autowired
 	OrderService orderService;
 	
-	public OrderLController() {}
+	public OrderController() {}
 	
 	@RequestMapping(value = "/orderList.do", method = RequestMethod.GET
 			, produces = "application/json;charset=UTF-8")
@@ -35,7 +35,7 @@ public class OrderLController {
 		LOG.debug("=================================");
 		
 		if(null == inVO.getmNum()) {
-			inVO.setmNum("11111");
+			inVO.setmNum("1");
 		}
 		
 		List<Map<String, DTO>> list = orderService.doRetrieve(inVO);

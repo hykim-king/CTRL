@@ -10,10 +10,11 @@ import com.pcwk.ctrl.cmn.MemberVO;
 public interface OrderDao {
 	/**
 	 * 주문조회
-	 * @param MemberVO
-	 * @return List<Map<String, DTO>>
+	 * @param 
+	 * @return
 	 * @throws SQLException
 	 */
 	List<Map<String, DTO>> doRetrieve(MemberVO memberVO) throws SQLException;
+
 
 }
