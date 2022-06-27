@@ -73,7 +73,7 @@ public class JunitReviewDaoTest {
 	}
 	
 	@Test
-	@Ignore
+	//@Ignore
 	public void doReviewRetrieve() throws SQLException {
 		// 1. param 값 확인(pNum : 상품번호)
 		// 2. 리뷰, 댓글 테이블 조회
@@ -96,7 +96,7 @@ public class JunitReviewDaoTest {
 	}
 	
 	@Test
-	//@Ignore
+	@Ignore
 	public void AddAndGet() throws SQLException {
 		// 1. 리뷰 1건 등록
 		// 2. 단건 조회
