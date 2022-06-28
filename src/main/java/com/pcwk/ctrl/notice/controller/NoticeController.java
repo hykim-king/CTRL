@@ -26,7 +26,7 @@ public class NoticeController {
 	
 	public NoticeController() {}
 	
-	@RequestMapping(value = "/doSelect.do", method = RequestMethod.GET
+	@RequestMapping(value = "/notice.do", method = RequestMethod.GET
 			, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String  doNoticeSelect() throws IOException {

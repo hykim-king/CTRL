@@ -25,7 +25,7 @@ final Logger LOG = LogManager.getLogger(getClass());
 	
 	public CartController() {}
 
-	@RequestMapping(value = "/doSelect.do", method = RequestMethod.GET
+	@RequestMapping(value = "/cart.do", method = RequestMethod.GET
 			, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String  doCartSelect(CartVO inVO) throws IOException {
