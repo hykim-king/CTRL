@@ -11,9 +11,11 @@ import org.springframework.stereotype.Service;
 
 import com.pcwk.ctrl.cmn.DTO;
 import com.pcwk.ctrl.cmn.MemberVO;
+import com.pcwk.ctrl.cmn.ProductVO;
 import com.pcwk.ctrl.cmn.RdVO;
 import com.pcwk.ctrl.cmn.ReviewRdVO;
 import com.pcwk.ctrl.cmn.ReviewVO;
+import com.pcwk.ctrl.cmn.SearchVO;
 import com.pcwk.ctrl.review.dao.ReviewDao;
 
 @Service("reviewService")
@@ -30,7 +32,7 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<ReviewRdVO> doReviewsRetrieve(Map<String, Object> inVO) throws SQLException {
+	public List<ReviewRdVO> doReviewsRetrieve(SearchVO inVO) throws SQLException {
 		return reviewDao.doReviewsRetrieve(inVO);
 	}
 
@@ -55,8 +57,8 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public int getCountAll() throws SQLException {
-		return reviewDao.getCountAll();
+	public int getCountAll(ProductVO inVO) throws SQLException {
+		return reviewDao.getCountAll(inVO);
 	}
 
 	@Override

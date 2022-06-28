@@ -4,71 +4,73 @@
 
      <!-- 관리자 댓글 수정 -->
      <update id="rdUpdate" parameterType="ReviewVO">
-		UPDATE rd
-		SET rd_con = #{rdCon}
-		WHERE r_num = #{rNum}
+        UPDATE rd
+        SET rd_con = #{rdCon}
+        WHERE r_num = #{rNum}
      </update>     
      
      <!-- 회원 댓글 수정 -->
      <update id="reviewUpdate" parameterType="ReviewVO">
-		UPDATE review
-		SET r_content = #{rContent}
-		WHERE r_num = #{rNum}
+        UPDATE review
+        SET r_content = #{rContent}
+        WHERE r_num = #{rNum}
      </update>
 
-	<!-- 회원 테이블 조회 -->
-	<select id="doMemberSelect" parameterType="MemberVO" resultType="MemberVO">
-		SELECT m_num,
-		       m_name,
-		       m_email,
-		       m_tel,
-		       m_addr,
-		       m_grade
-		FROM member
-		WHERE m_num = #{mNum}
-	</select>     
+    <!-- 회원 테이블 조회 -->
+    <select id="doMemberSelect" parameterType="MemberVO" resultType="MemberVO">
+        SELECT m_num,
+               m_name,
+               m_email,
+               m_tel,
+               m_addr,
+               m_grade
+        FROM member
+        WHERE m_num = #{mNum}
+    </select>     
      
      <!-- 관리자 댓글 입력 -->
      <insert id="doRdInsert" parameterType="RdVO">
-		INSERT INTO rd (
-		    r_num,
-		    rd_con,
-		    rd_reg,
-		    rd_name,
-		    m_num
-		) VALUES (
-		    REVIEW_S.currval,
-		    #{rdCon},
-		    SYSDATE,
-		    #{rdName},
-		    #{mNum}
-		)    
+        INSERT INTO rd (
+            r_num,
+            rd_con,
+            rd_reg,
+            rd_name,
+            m_num
+        ) VALUES (
+            REVIEW_S.currval,
+            #{rdCon},
+            SYSDATE,
+            #{rdName},
+            #{mNum}
+        )    
      </insert>
      
-     <!-- 리뷰 테이블 전체 개수 조회 -->
-     <select id="getCountAll" parameterType="ReviewVO" resultType="int">
+     <!-- 상품별로 리뷰 테이블 전체 개수 조회 -->
+     <select id="getCountAll" parameterType="ProductVO" resultType="int">
         SELECT COUNT(*) AS cnt    
-        FROM review            
+        FROM detail t1 JOIN review t2
+        ON t1.d_num = t2.d_num
+        AND t1.o_num = t1.o_num
+        WHERE t1.p_num = #{pNum}
     </select>     
     
      <resultMap type="ReviewRdVO" id="reviewRdResultMap">
-        <result property="rNum" column="r_num" />
+        <id property="rNum" column="r_num" />
         <result property="rContent" column="r_content" jdbcType="CLOB" javaType="java.lang.String"/>
         <result property="rdCon" column="rd_con" jdbcType="CLOB" javaType="java.lang.String"/>
         <result property="rdName" column="rd_name"/>
-        <result property="pNum" column="p_num"/>
-        <result property="mNum" column="o_name"/>
+        <result property="oName" column="o_name"/>
+        <result property="mNum" column="m_num"/>
         <result property="oNum" column="o_num"/>
         <result property="dNum" column="d_num"/>
     </resultMap>    
     
     <!-- 리뷰와 관리자 댓글 조회 -->  
-    <select id="doReviewsRetrieve" parameterType="HashMap" resultMap="reviewRdResultMap" >
+    <select id="doReviewsRetrieve" parameterType="SearchVO" resultMap="reviewRdResultMap" >
         SELECT ttt1.r_num,
                ttt1.r_content,
                ttt1.rd_con,
                ttt1.rd_name,
-               ttt1.p_num,
                ttt1.o_name,
                ttt1.m_num,
                ttt1.o_num,
@@ -78,9 +80,8 @@
             FROM (
                 SELECT t2.r_num,
                        t2.r_content,
-                       t1.rd_con,
-                       t1.rd_name,
-                       t3.p_num,
+                       NVL(t1.rd_con,'N') as rd_con,
+                       NVL(t1.rd_name,'N') as rd_name,
                        t4.o_name,
                        t4.m_num,
                        t3.o_num,
@@ -94,7 +95,7 @@
                 ON t3.o_num = t4.o_num
                 JOIN product t5
                 ON t3.p_num = t5.p_num
-                WHERE t5.p_num = #{pNum}
+                WHERE t5.p_num = #{searchWord}
                 ORDER BY t2.r_dt
              ) tt1
              WHERE ROWNUM  <![CDATA[  <= #{pageSize} * (#{pageNum} - 1) + #{pageSize} ]]>
@@ -148,13 +149,13 @@
     <!-- 관리자가 작성한 리뷰 셀렉 -->
     <select id="doRdSelectOne" parameterType="RdVO" resultType="RdVO">
        <![CDATA[ 
-		SELECT r_num as rNum,
-		       rd_con as rdCon,
-		       rd_reg as rdReg,
-		       rd_name as rdName,
-		       m_num as mNum
-		FROM rd
-		WHERE r_num = #{rNum}
+        SELECT r_num as rNum,
+               rd_con as rdCon,
+               rd_reg as rdReg,
+               rd_name as rdName,
+               m_num as mNum
+        FROM rd
+        WHERE r_num = #{rNum}
         ]]>
     </select>      
     

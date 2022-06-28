@@ -2,13 +2,14 @@ package com.pcwk.ctrl.review.dao;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 
 import com.pcwk.ctrl.cmn.DTO;
 import com.pcwk.ctrl.cmn.MemberVO;
+import com.pcwk.ctrl.cmn.ProductVO;
 import com.pcwk.ctrl.cmn.RdVO;
 import com.pcwk.ctrl.cmn.ReviewRdVO;
 import com.pcwk.ctrl.cmn.ReviewVO;
+import com.pcwk.ctrl.cmn.SearchVO;
 
 public interface ReviewDao {
 	
@@ -48,14 +49,14 @@ public interface ReviewDao {
 	 * @return int
 	 * @throws SQLException
 	 */
-	int getCountAll() throws SQLException;
+	int getCountAll(ProductVO inVO) throws SQLException;
 	
 	/**
 	 * 회원 댓글 및 관리자 댓글 조회(페이징)
 	 * @return List<Map<String, DTO>>
 	 * @throws SQLException
 	 */
-	List<ReviewRdVO> doReviewsRetrieve(Map<String, Object> inVO) throws SQLException;
+	List<ReviewRdVO> doReviewsRetrieve(SearchVO inVO) throws SQLException;
 	
 	/**
 	 * 리뷰 입력

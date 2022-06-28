@@ -12,9 +12,11 @@ import org.springframework.stereotype.Repository;
 
 import com.pcwk.ctrl.cmn.DTO;
 import com.pcwk.ctrl.cmn.MemberVO;
+import com.pcwk.ctrl.cmn.ProductVO;
 import com.pcwk.ctrl.cmn.RdVO;
 import com.pcwk.ctrl.cmn.ReviewRdVO;
 import com.pcwk.ctrl.cmn.ReviewVO;
+import com.pcwk.ctrl.cmn.SearchVO;
 
 @Repository("reviewDao")
 public class ReviewDaoImpl implements ReviewDao {
@@ -125,7 +127,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public List<ReviewRdVO> doReviewsRetrieve(Map<String, Object> inVO) throws SQLException {
+	public List<ReviewRdVO> doReviewsRetrieve(SearchVO inVO) throws SQLException {
 		List<ReviewRdVO> outVO = null;
 		
 		String statement = this.NAMESPACE+".doReviewsRetrieve";
@@ -135,7 +137,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		LOG.debug("statement : "+statement);
 		LOG.debug("=============================");
 		
-		outVO = this.sqlSessionTemplate.selectList(statement, inVO);
+		outVO = sqlSessionTemplate.selectList(statement, inVO);
 		
 		LOG.debug("=============================");
 		LOG.debug("outVO="+outVO.toString());
@@ -145,7 +147,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public int getCountAll() throws SQLException {
+	public int getCountAll(ProductVO inVO) throws SQLException {
 		int flag = 0;
 		
 		String statement = this.NAMESPACE+".getCountAll";
@@ -153,7 +155,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		LOG.debug("statement : "+statement);
 		LOG.debug("=============================");
 		
-		flag = this.sqlSessionTemplate.selectOne(statement);
+		flag = this.sqlSessionTemplate.selectOne(statement,inVO);
 		
 		LOG.debug("=============================");
 		LOG.debug("flag="+flag);

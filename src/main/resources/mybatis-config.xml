@@ -14,6 +14,7 @@
         <typeAlias type="com.pcwk.ctrl.cmn.ReviewRdVO" alias="ReviewRdVO"/>
         <typeAlias type="com.pcwk.ctrl.cmn.CartVO" alias="CartVO"/>
         <typeAlias type="com.pcwk.ctrl.cmn.NoticeVO" alias="NoticeVO"/>
+        <typeAlias type="com.pcwk.ctrl.cmn.SearchVO" alias="SearchVO"/>
     </typeAliases>
     <typeHandlers>
         <typeHandler handler="com.pcwk.ctrl.cmn.ClobHandler" javaType="String" jdbcType="LONGVARCHAR"/>

@@ -2,13 +2,14 @@ package com.pcwk.ctrl.review.service;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 
 import com.pcwk.ctrl.cmn.DTO;
 import com.pcwk.ctrl.cmn.MemberVO;
+import com.pcwk.ctrl.cmn.ProductVO;
 import com.pcwk.ctrl.cmn.RdVO;
 import com.pcwk.ctrl.cmn.ReviewRdVO;
 import com.pcwk.ctrl.cmn.ReviewVO;
+import com.pcwk.ctrl.cmn.SearchVO;
 
 public interface ReviewService {
 	
@@ -45,17 +46,18 @@ public interface ReviewService {
 	
 	/**
 	 * 리뷰 테이블 전체 개수 조회
+	 * @param ProductVO
 	 * @return int
 	 * @throws SQLException
 	 */
-	public int getCountAll() throws SQLException;
+	public int getCountAll(ProductVO inVO) throws SQLException;
 	
 	/**
 	 * 회원 댓글 및 관리자 댓글 조회(페이징)
 	 * @return List<Map<String, DTO>>
 	 * @throws SQLException
 	 */
-	public List<ReviewRdVO> doReviewsRetrieve(Map<String, Object> inVO) throws SQLException;
+	public List<ReviewRdVO> doReviewsRetrieve(SearchVO inVO) throws SQLException;
 	
 	/**
 	 * 리뷰 입력

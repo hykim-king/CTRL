@@ -73,10 +73,13 @@
                 let pPrice = data.pPrice;
                 let pSize = data.pSize;
                 
+                let pageSize = 7;
+                let pageNum = 1;
+                
                 if(null != data) {
                     alert("리뷰가 등록되었습니다!");
                     opener.location.href="${CP}/productDetail/view.do?pNum=" + pNum + "&pName=" + pName + 
-                            "&pPrice="+pPrice + "&pSize="+pSize;                
+                            "&pPrice="+pPrice + "&pSize="+pSize + "&pageSize="+pageSize + "&pageNum=" + pageNum;                
                     window.close();                 
                 }else {
                     alert("다시 시도해주세요.^^");

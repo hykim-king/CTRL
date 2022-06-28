@@ -52,7 +52,7 @@ public class JunitReviewDaoTest {
 	RdVO rd01;
 	MemberVO member01;
 
-	SearchVO searchVO;
+	SearchVO search;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -60,10 +60,11 @@ public class JunitReviewDaoTest {
 		LOG.debug("=0. setUp()=");
 		LOG.debug("=======================");
 		
-		review01 = new ReviewVO(14, "1", 1, "안녕하세요, junitReviewrDaoTest입니다.", "kjh", "날짜_사용안함");
+		review01 = new ReviewVO(14, "1", 1, "안녕하세요, junitReviewrDaoTest입니다.",
+				"kjh", "날짜_사용안함");
 		product01 = new ProductVO("plate06", "plate", "디너플레이트 라 빅토리", 180000, "27cm");
 		rd01 = new RdVO(14, "감사합니다! 다음에도 또 이용해주세요", "날짜_사용안함" , "관리자", "55555");
-		searchVO = new SearchVO(10, 1, "", "");
+		search = new SearchVO(10, 1, "", "");
 		
 		LOG.debug("context:"+context);
 		LOG.debug("reviewDao:"+reviewDao);
@@ -83,13 +84,9 @@ public class JunitReviewDaoTest {
 		isProductSameData(paramVO, product01);
 		
 		// 2.
-		Map<String, Object> inVO = new HashMap<String, Object>();
-		LOG.debug(product01.getpNum());
-		inVO.put("pNum", product01.getpNum());
-		inVO.put("pageNum", searchVO.getPageNum());
-		inVO.put("pageSize", searchVO.getPageSize());
+		search.setSearchWord(paramVO.getpNum());
 		
-		List<ReviewRdVO> list = reviewDao.doReviewsRetrieve(inVO);
+		List<ReviewRdVO> list = reviewDao.doReviewsRetrieve(search);
 		for(ReviewRdVO vo : list) {
 			LOG.debug("vo="+vo);
 		}

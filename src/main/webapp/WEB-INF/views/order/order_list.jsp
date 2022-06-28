@@ -40,7 +40,7 @@
         $(document).ready(function(){
         console.log("document.ready"); 
         
-        // table click
+        // table click(김주혜)
         $('#listTable > tbody > tr').on("click", "input" ,function(){ 
             
             let clickInput = $(this); // $(this) : input
@@ -53,7 +53,7 @@
             let pNum = tdArray.last().text(); // 상품번호
             
             window.open("${CP}/review/reviewPopup.do?oNum="+oNum+"&dNum="+dNum+"&oName="+oName+"&pNum="+pNum,"리뷰작성", "width=800, height=700, left=100, top=100");
-            //--table click
+            //--table click(김주혜)
         });
       });
       
@@ -126,10 +126,11 @@
          <th width="70">수량</th>
          <th width="200">진행상태</th>
          
-         <!--  아래 세개는 리뷰 페이지를 위해 필요한 것  : 조회 필요-->
+         <!--  아래 세개는 리뷰 페이지를 위해 필요한 것  : 조회 필요(김주혜)-->
          <th width="100" style="display: none;">상세번호</th>
          <th width="100" style="display: none;">회원이름</th>
          <th width="100" style="display: none;">상품번호</th>
+         <!--//  아래 세개는 리뷰 페이지를 위해 필요한 것  : 조회 필요(김주혜)-->
          
       </tr>
       
@@ -146,9 +147,11 @@
                     <th width="200" class="text-left">${list.oStatus}
                       <br><input type="button" value="리뷰 쓰기"/>
                     </th>
+                    <!--  아래 세개는 리뷰 페이지를 위해 필요한 것  : 조회 필요(김주혜)-->
                     <th style="display: none;">${list.dNum}</th>
                     <th style="display: none;">${list.oName}</th>
                     <th style="display: none;">${list.pNum}</th>
+                    <!--//  아래 세개는 리뷰 페이지를 위해 필요한 것  : 조회 필요(김주혜)-->
                     
                 </tr>                                                           
              </c:forEach>
