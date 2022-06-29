@@ -87,7 +87,8 @@
     
     
     <!-- DataSource를 구현한 SimpleDriverDataSource -->
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+    <bean id="dataSource"  class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" >
+        <property name="validationQuery" value="SELECT 1 FROM DUAL"/>
         <!-- jdbc 드라이버 -->
         <property name="driverClassName" value="${jdbc.driver}"/>
         <!-- jdbc url -->
