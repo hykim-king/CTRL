@@ -9,7 +9,18 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
-    <!-- Root Context: defines shared resources visible to all other web components -->
+    <!-- 예외처리 -->
+    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+      <!-- 특정예외 -->
+      <property name="exceptionMappings">
+        <props>
+          <!-- <prop key="java.lang.NullPointerException">cmn/nullPointerException</prop> -->
+          <prop key="java.lang.IllegalArgumentException">cmn/illegalArgumentException</prop>
+        </props>
+      </property>
+      <!-- Default 예외 -->
+      <property name="defaultErrorView" value="cmn/error" />
+    </bean>
         
     <!-- mybatis db연결객체 -->
     <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
