@@ -19,7 +19,7 @@ public interface ReviewService {
 	 * @return 1(성공)/0(실패)
 	 * @throws SQLException
 	 */
-	public int rdUpdate(RdVO inVO) throws SQLException;
+	public int doRdUpdate(RdVO inVO) throws SQLException;
 	
 	/**
 	 * 회원 댓글 수정
@@ -27,7 +27,7 @@ public interface ReviewService {
 	 * @return 1(성공)/0(실패)
 	 * @throws SQLException
 	 */
-	public int reviewUpdate(ReviewVO inVO) throws SQLException;
+	public int doReviewUpdate(ReviewVO inVO) throws SQLException;
 	
 	/**
 	 * 회원 테이블 조회(param 검사)

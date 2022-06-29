@@ -202,10 +202,10 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public int reviewUpdate(ReviewVO inVO) throws SQLException {
+	public int doReviewUpdate(ReviewVO inVO) throws SQLException {
 		int flag = 0;
 		
-		String statement = NAMESPACE+".reviewUpdate";
+		String statement = NAMESPACE+".doReviewUpdate";
 		
 		LOG.debug("=============================");
 		LOG.debug("param : "+inVO.toString());
@@ -219,10 +219,10 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public int rdUpdate(RdVO inVO) throws SQLException {
+	public int doRdUpdate(RdVO inVO) throws SQLException {
 		int flag = 0;
 		
-		String statement = NAMESPACE+".rdUpdate";
+		String statement = NAMESPACE+".doRdUpdate";
 		
 		LOG.debug("=============================");
 		LOG.debug("param : "+inVO.toString());

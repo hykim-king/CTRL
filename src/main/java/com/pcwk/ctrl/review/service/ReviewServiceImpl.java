@@ -72,13 +72,13 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public int reviewUpdate(ReviewVO inVO) throws SQLException {
-		return reviewDao.reviewUpdate(inVO);
+	public int doReviewUpdate(ReviewVO inVO) throws SQLException {
+		return reviewDao.doReviewUpdate(inVO);
 	}
 
 	@Override
-	public int rdUpdate(RdVO inVO) throws SQLException {
-		return reviewDao.rdUpdate(inVO);
+	public int doRdUpdate(RdVO inVO) throws SQLException {
+		return reviewDao.doRdUpdate(inVO);
 	}
 
 
