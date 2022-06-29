@@ -5,6 +5,6 @@ import java.util.List;
 import com.pcwk.ctrl.cmn.NoticeVO;
 
 public interface NoticeService {
-	public  List<NoticeVO> doNoticeSelect();
+	public List<NoticeVO> doNoticeSelect();
 
 }

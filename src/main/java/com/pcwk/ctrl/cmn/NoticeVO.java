@@ -1,7 +1,7 @@
 package com.pcwk.ctrl.cmn;
 
 public class NoticeVO {
-	private long nNum;
+	private int nNum;
 	private String nTitle;
 	private String nContent;
 	private String nName;
@@ -9,7 +9,7 @@ public class NoticeVO {
 	
 	public NoticeVO() {}
 
-	public NoticeVO(long nNum, String nTitle, String nContent, String nName, String nRegdt) {
+	public NoticeVO(int nNum, String nTitle, String nContent, String nName, String nRegdt) {
 		super();
 		this.nNum = nNum;
 		this.nTitle = nTitle;
@@ -18,11 +18,11 @@ public class NoticeVO {
 		this.nRegdt = nRegdt;
 	}
 
-	public long getnNum() {
+	public int getnNum() {
 		return nNum;
 	}
 
-	public void setnNum(long nNum) {
+	public void setnNum(int nNum) {
 		this.nNum = nNum;
 	}
 
