@@ -63,6 +63,8 @@
         <result property="mNum" column="m_num"/>
         <result property="oNum" column="o_num"/>
         <result property="dNum" column="d_num"/>
+        <result property="rdReg" column="rd_reg"/>
+        <result property="rDt" column="r_dt"/>
     </resultMap>    
     
     <!-- 리뷰와 관리자 댓글 조회 -->  
@@ -74,7 +76,9 @@
                ttt1.o_name,
                ttt1.m_num,
                ttt1.o_num,
-               ttt1.d_num
+               ttt1.d_num,
+               ttt1.rd_reg,
+               ttt1.r_dt
         FROM (
             SELECT ROWNUM AS rown, tt1.*
             FROM (
@@ -85,7 +89,9 @@
                        t4.o_name,
                        t4.m_num,
                        t3.o_num,
-                       t3.d_num
+                       t3.d_num,
+                       t1.rd_reg,
+                       t2.r_dt
                 FROM rd t1 RIGHT OUTER JOIN review t2
                 ON t1.r_num = t2.r_num
                 JOIN detail t3

@@ -13,12 +13,17 @@
     Copyright (C) by KandJang All right reserved.
 */
  --%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <c:set var="CP" value="${pageContext.request.contextPath}"/>
 <c:set var="resources" value="/resources"/>
 <c:set var="CP_RES"    value="${CP}${resources}" />
+
+
+
 <!DOCTYPE html>
 <html>
     <meta charset="utf-8">
@@ -39,7 +44,7 @@
     <!-- 사용자 정의 function, isEmpty -->
     <script src="${CP_RES }/js/etc/eUtil.js"></script>
     <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
-    <script src="${CP_RES }/js/etc/bootstrap.min.js"></script>
+<%--     <script src="${CP_RES }/js/etc/bootstrap.min.js"></script> --%>
     <script type="text/javascript" src="${CP_RES}/js/productDetail/productDetail.js"></script>
     <!-- jquery_bootstrap paging -->
     <script type="text/javascript" src="${CP_RES}/js/etc/jquery.bootpag.js"></script>
@@ -50,12 +55,45 @@
     <script type="text/javascript">
        $(document).ready(function(){
            console.log("document.ready");
+           /*----------------- 리뷰(김주혜) 시작-------------------*/
+           
+           // 리뷰 - 버튼 누르면 관리자 댓글 나오게 하기
+           $("#review_table").on("click", ".rdButton", function() {
+               console.log("rdButton");
+              
+               $(this).toggleClass('open').siblings().removeClass('open');
+               $(this).next(".manager_comment").stop().slideToggle(250);
+           });
+           
 
            renderingPage('${pageTotal}', 1);
            
            let productImgSrc = $('#productImg').attr("src");
            let pNum = productImgSrc.substring(productImgSrc.lastIndexOf('/')+1,productImgSrc.lastIndexOf('.'));
            
+           // 몇일전, 몇시간전..등을 구하는 함수
+           function timeForToday(value) {
+               const today = new Date();
+               const timeValue = new Date(value);
+               
+               const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
+               if (betweenTime < 1) return '방금전';
+               if (betweenTime < 60) {
+                   return betweenTime+'분전';
+               }
+
+               const betweenTimeHour = Math.floor(betweenTime / 60);
+               if (betweenTimeHour < 24) {
+                   return betweenTimeHour+'시간전';
+               }
+
+               const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
+               if (betweenTimeDay < 365) {
+                   return betweenTimeDay+'일전';
+               }
+
+               return Math.floor(betweenTimeDay / 365)+'년전';
+           }
            
            // paging
            function renderingPage(pageTotal, page) {
@@ -118,28 +156,47 @@
                    let totalCnt = 0; // 총글수
                    let pageTotal = 1; // 페이지 수
                    
+                   
                    // 조회 데이터가 있는 경우
                    if(null != parsedData && parsedData.length > 0) {
                        
                        $.each(parsedData, function(i, reviewVO){
-                           console.log('$.each 후');
-/*                         if('N' == reviewVO.rdCon) {
-                              html += 
-                           } */
+                           let rContent = reviewVO.rContent;
+                           let rdCon = reviewVO.rdCon;
+
                            htmlData += " <div class='reivew_data'>                                                     ";
-                           htmlData += "     <div style='display:none;'>"+ <c:out value='reviewVO.rNum' />+"</div>";
+                           htmlData += "     <input type='button' id='reviewUpdate' value='수정' class='btn-1 button'>";
+                           htmlData += "     <div style='display:none;>"+ <c:out value='reviewVO.rNum'/>+"</div>";
+                           htmlData += "     <div style='display:none;'>"+ <c:out value='reviewVO.rNum'/>+"</div>";
                            htmlData += "     <div style='display:none;'>"+ <c:out value='reviewVO.mNum' />+"</div>";
                            htmlData += "     <div style='display:none;'>"+ <c:out value='reviewVO.oNum' />+"</div>";
-                           htmlData += "     <div style='display:none;'>"+ <c:out value='reviewVO.dNum' />+"</div>";
-                           htmlData += "     <strong class='customer_name'>"+ <c:out value='reviewVO.oName' />+"</strong> ";
-                           htmlData += "     <p class='review_contents'>" + <c:out value='reviewVO.rContent' />+"</p>        ";
-                           htmlData += " </div>                                                                        ";
+                           htmlData += "     <div style='display:none;'>"+ <c:out value='reviewVO.dNum' /> +"</div>";
+                           htmlData += "     <div class='review_head'>";
+                           htmlData += "        <strong class='customer_name'>"+ <c:out value='reviewVO.oName' />+"</strong> ";
+                           htmlData += "        <div class='review_contents'>" + timeForToday(reviewVO.rDt) +"</div>        ";
+                           htmlData += "     </div> ";
+                           htmlData += "     <p class='review_contents'>" + rContent.replaceAll('\n', '<br/>') +"</p>        ";
+                           htmlData += " </div>";
+                           if('N' != reviewVO.rdCon) {
+                                   htmlData += " <p class='rdButton'></p>        ";
+                                   htmlData += " <div class='manager_comment'> ";  
+                                   htmlData += "   <div class='review_buttons'>";
+                                   htmlData += "      <input type='button' id='doRdInsert' value='등록' class='btn-1 button'>";
+                                   htmlData += "      <input type='button' id='rdUpdate' value='수정' class='btn-1 button'>";
+                                   htmlData += "   </div> ";
+                                   htmlData += "   <div class='review_head'>";
+                                   htmlData += "      <strong class='customer_name'>"+reviewVO.rdName+"</strong>";
+                                   htmlData += "      <div class='review_contents'>" + timeForToday(reviewVO.rdReg)  +"</div>        ";
+                                   htmlData += "   </div> ";
+                                   htmlData += "   <div class='review_contents'>"+ rdCon.replaceAll('\n', '<br/>')+"</div>";
+                                   htmlData += " </div>"; 
+                           }
                        });
                        
                    }else {
                        htmlData += " <div class='reivew_data'>                                                     ";
                        htmlData += "     <p class='review_contents rAlign'>리뷰가 없습니다!</p>";
-                       htmlData += " </div>                                                                        ";
+                       htmlData += " </div>                                                                       ";
                    }
                    // 조회 데이터가 없는 경우
                    $("#review_table").append(htmlData); 
@@ -150,7 +207,11 @@
                console.log("doReviewsRetrieve");
                doReviewsRetrieve(1);
            });
+          
+           
+           /*----------------- 리뷰(김주혜) 끝-------------------*/
        });
+
     </script>
     <body>
     <!-- 메인 헤더 영역 시작 -->
@@ -186,7 +247,7 @@
     </div>
     <!-- 메인 헤더 영역 끝 -->
     
-    <!-- 콘텐츠 영역 시작 -->
+    <!-- 콘텐츠 영역 시작(김주혜) -->
     <div id="contents">
       <!-- 상품 상세 콘텐츠 영역 첫번째 시작 (이미지, 이름, 가격, 버튼들)(김주혜)-->
         <div class="product_contents">
@@ -214,6 +275,10 @@
                 <p class="total_price">Total price : </p>
                 <div id="total_num">0</div><br/>
                 
+                <!-- 배송비 무료 공지 -->
+                <p id="delivery_free">배송비 무료</p>
+                
+                <!-- 장바구니, 구매 버튼 -->
                 <div class="submit_buttons">
                      <input class="btn-2 button" type="submit" value="CART">
                      <input class="btn-1 button" type="submit" value="BUY">          
@@ -249,7 +314,7 @@
                 </div>
                 <!-- pagenation(김주혜) -->
                   <div class="rAlign">
-                      <div id="page-selection" class="text-center page"></div>
+                      <div id="page-selection" class="page"></div>
                   </div>             
                 <!--//pagenation(김주혜) ------------------------------------------------------>                
            </div>
@@ -258,7 +323,7 @@
     </div>
     <!--// 아코디언 메뉴(상세설명, 리뷰)(김주혜) -->
     </div> 
-    <!-- 콘텐츠 영역 끝 -->
+    <!-- 콘텐츠 영역 끝(김주혜) -->
     </body>
 </html> 
     

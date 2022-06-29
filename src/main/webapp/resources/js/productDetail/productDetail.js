@@ -1,6 +1,7 @@
 'use strict';
 
 $(document).ready(function(){
+	/* 상품 정보 관련 js */
 	
    // 가격에 콤마 붙이는 함수
    function priceToString(price) {
@@ -26,9 +27,11 @@ $(document).ready(function(){
   });
 
   $("#minus").on("click", function(e){
-	  count('minus');
+	  count('minus');  
   });
   
+
+
   /* 구매 수량 증가&감소 함수 - 수량과 total price가 같이 증가&감소 */ 
   function count(type)  { 
 	  // 현재 화면에 표시된 값
@@ -59,7 +62,10 @@ $(document).ready(function(){
 	  
 	  // 총 금액 변경 
 	  $("#total_num").text(priceToString(totalNum)+"원");
+	  console.log("#total_num");
   }
+  
+
   
 });
 
