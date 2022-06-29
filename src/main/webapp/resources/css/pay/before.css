@@ -153,11 +153,68 @@ a, a:active {
 	transition:800ms ease all;
   }
 
+.pay{
+	width: 130px;
+	height: 40px;
+	padding: 10px 25px;
+	border: 2px solid #000;
+	font-family: 'Lato', sans-serif;
+	font-weight: 500;
+	font-size: 50%;
+	background: transparent;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	position: relative;
+	display: inline-block;
+	border-radius: 20px;
+}
+.pay {
+	background: #424242;
+	color: #fff;
+	line-height: 42px;
+	padding: 0;
+	border: none;
+}
+
+.pay:hover {
+	background: transparent;
+	color: #424242;
+	box-shadow:
+	-7px -7px 20px 0px #fff9,
+	-4px -4px 5px 0px #fff9,
+	7px 7px 20px 0px #0002,
+	4px 4px 5px 0px #0001;
+}
+
+  .pay:before,
+  .pay:after{
+	content:'';
+	position:absolute;
+	top:0;
+	right:0;
+	height:2px;
+	width:0;
+	background: #424242;
+	transition:400ms ease all;
+  }
+
+  .pay:after{
+	right:inherit;
+	top:inherit;
+	left:0;
+	bottom:0;
+  }
+
+  .pay:hover:before,
+  .pay:hover:after{
+	width:100%;
+	transition:800ms ease all;
+  }
 
 
 div.address{
 	float: left;
-	margin: 1% 0 3% 5%;
+	margin: 1% 0 3% 10%;
 	position: relative;
 	max-width: 1680px;
 }
@@ -253,9 +310,9 @@ div.payment{
 	overflow-y: scroll;
 }
 
-.payment>.change{
+.payment>.pay{
 	min-width: 200px;
 	display: flex;
 	justify-content: center;
-	margin: 5% 0 0 40%;
+	margin: 3% 0 2% 30%;
 }

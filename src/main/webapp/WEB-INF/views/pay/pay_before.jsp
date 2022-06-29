@@ -40,6 +40,8 @@
     <script src="${CP_RES }/js/payco/payco.js"></script>
      <!-- css -->
     <link href="${CP_RES}/css/pay/before.css" rel="stylesheet">
+    	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
     
     <title>결제 전</title>
     
@@ -114,7 +116,39 @@
             “쇼핑몰”은 개인정보 보호를 위하여 이용자의 개인정보를 처리하는 자를 최소한으로 제한하여야 하며 신용카드, 은행계좌 등을 포함한 이용자의 개인정보의 분실, 도난, 유출, 동의 없는 제3자 제공, 변조 등으로 인한 이용자의 손해에 대하여 모든 책임을 집니다.
             “쇼핑몰” 또는 그로부터 개인정보를 제공받은 제3자는 개인정보의 수집목적 또는 제공받은 목적을 달성한 때에는 당해 개인정보를 지체 없이 파기한다.
             “쇼핑몰”은 개인정보의 수집•이용•제공에 관한 동의란을 미리 선택한 것으로 설정해두지 않습니다. 또한 개인정보의 수집•이용•제공에 관한 이용자의 동의거절시 제한되는 서비스를 구체적으로 명시하고, 필수수집항목이 아닌 개인정보의 수집•이용•제공에 관한 이용자의 동의 거절을 이유로 회원가입 등 서비스 제공을 제한하거나 거절하지 않습니다.</p>
-            <input class="change" type="button" value="결제">
+            <input class="pay" type="button" value="결제">
         </div>
+        
+ 	<script type="text/javascript">
+	    $('.pay').click(function() {
+	    	var IMP = window.IMP;
+	    	IMP.init('imp91452155');
+	        // IMP.request_pay(param, callback) 결제창 호출
+	        IMP.request_pay({ // param
+	            pg: "html5_inicis",
+	            pay_method: "card",
+	            merchant_uid: 'merchant_'+new Date().getTime(),
+	            name: "아메리카노",
+	            amount: 2000,
+	            buyer_email: "gildong@gmail.com",
+	            buyer_name: "홍길동",
+	            buyer_tel: "010-4242-4242",
+	            buyer_addr: "서울특별시 강남구 신사동",
+	            buyer_postcode: "01181"
+	        }, function (rsp) { // callback
+	        	console.log(rsp);
+	            if (rsp.success) {
+	              	var msg = '결제가 완료되었습니다.'
+	              	msg += '결제 금액:'+rsp.paid_amount;
+	              	window.location.href = "pay_after.jsp";
+	                // 결제 성공 시 로직,
+	            } else {
+	            	var msg = '결제가 실패하였습니다.'
+	                // 결제 실패 시 로직,
+	            }
+	            alert(msg);
+	        });
+	    });
+    </script>
 </body>
 </html>
