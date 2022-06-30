@@ -8,7 +8,7 @@
                p.p_price AS "pPrice",
                d.d_buy AS "dBuy",       
                ot.o_status AS "oStatus",
-               d.d_num AS "dNum",       
+               d.d_num AS "dNum",
                ot.o_name AS "oName"      
         FROM detail d JOIN product p  
         ON d.p_num = p.p_num          

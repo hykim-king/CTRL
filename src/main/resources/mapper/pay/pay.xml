@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pcwk.ctrl.pay">
+	<insert id="payOrderInsert" parameterType="OrderVO">
+		INSERT INTO order_t(
+			O_NUM,
+			O_ADDR,
+			O_NAME,
+			O_TEL,
+			O_STATUS,
+			O_DT,
+			M_NUM
+		) VALUES(
+			#{oNum},<!-- 시퀀명.nextval -->
+			#{oAddr},
+			#{oName},
+			#{oTel},
+			#{oStatus},
+			SYSDATE,
+			#{mNum}
+		)
+	</insert>
+	
+	<insert id="payDetailInsert" parameterType="DetailVO">
+		INSERT INTO detail(
+			O_NUM,
+			D_NUM,
+			D_BUY,
+			P_NUM
+		) VALUES(
+			#{oNum},
+			#{dNum},<!-- 시퀀명.nextval -->
+			#{dBuy},
+			#{pNum}
+		)
+	</insert>
+</mapper>
