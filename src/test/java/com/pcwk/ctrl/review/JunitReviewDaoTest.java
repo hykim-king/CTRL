@@ -115,7 +115,7 @@ public class JunitReviewDaoTest {
 		outVO.setrContent(outVO.getrContent()+upString);
 		LOG.debug(outVO.getrContent()+upString);
 		// 3. 
-		reviewDao.reviewUpdate(outVO);
+		reviewDao.doReviewUpdate(outVO);
 		
 		// 4.
 		ReviewVO resultVO = reviewDao.doSelectOne(outVO);
@@ -131,7 +131,7 @@ public class JunitReviewDaoTest {
 		outVO2.setRdCon(outVO2.getRdCon()+upString);
 		
 		// 7.
-		reviewDao.rdUpdate(outVO2);
+		reviewDao.doRdUpdate(outVO2);
 		
 		// 8.
 		RdVO resultVO2 = reviewDao.doRdSelectOne(outVO2);

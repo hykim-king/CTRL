@@ -11,8 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
     <link rel="shortcut icon" type="image/x-icon" href="${CP }/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="${CP_RES }/css/ctrl.css">
-    <link rel="stylesheet" type="text/css" href="${CP_RES }/css/detail.css">
+    <link rel="stylesheet" type="text/css" href="${CP_RES }/css/main/main.css">
     <link rel="stylesheet" type="text/css" href="${CP_RES}/css/my_page/my_page.css">
     
     <title>마이페이지</title>
@@ -67,7 +66,7 @@
 
 
 <!-- 마이페이지 시작 -->
-
+<div id="contents">
 <!-- ▼▼▼▼▼▼▼▼▼▼▼▼▼ 마이페이지  사각형  ▼▼▼▼▼▼▼▼▼▼▼▼▼ -->
 <title>my_page</title>
 
@@ -78,33 +77,26 @@
         <li class="order"><a href="${CP}/order/orderList.do">주문조회</a></li>
     </ul>
 </div>
-<!-- ▲▲▲▲▲▲▲▲▲▲▲▲▲ 마이페이지  사각형 끝  ▲▲▲▲▲▲▲▲▲▲▲▲▲-->
+<!-- ▲▲▲▲▲▲▲▲▲▲▲▲▲ 마이페이지  사각형 끝  ▲▲▲▲▲▲▲▲▲▲▲▲▲-->  
 
-<img src="${CP_RES}/img/photo2.jpg" alt="프로필 사진" class="ryan" width="200" height="200">
+<!-- ▼▼▼▼▼▼▼▼▼▼▼▼▼ 마이페이지  회원정보  ▼▼▼▼▼▼▼▼▼▼▼▼▼ --> 
+<div id="my_all">
+<img src="${CP_RES}/img/photo2.jpg" alt="프로필 사진" class="ryan" width="230" height="230">
 
-<table class="blueone" border="0" width="500" height="20">
-    <tr>
-        <th>번호</th>
-    </tr>
-    <c:forEach var="row" items="${list}">
-    <tr>
-        <td>${row.mNum }</td>
-    </tr>
-    </c:forEach>
+<!-- 이름, 이메일 테이블 -->
+<table class="blueone" border="0" width="640" height="20">
     
     <tr>
-        <th>이름</th>
+        <th> ♥ 이름 ♥</th>
     </tr>
     <c:forEach var="row" items="${list}">
     <tr>
         <td>${row.mName }</td>
     </tr>
     </c:forEach>
-</table> 
-
-<table class="blueone2" border="0" width="500" height="20">     
-    <tr>
-        <th>이메일</th>
+    
+     <tr>
+        <th>♥ 이메일 ♥</th>
     </tr>
     <c:forEach var="row" items="${list}">
     <tr>
@@ -112,8 +104,15 @@
     </tr>
     </c:forEach>
     
+</table> 
+<!-- // 이름, 이메일 테이블 -->
+
+<!-- 번호, 주소 테이블 -->
+<table class="blueone2" border="0" width="900" height="20">     
+   
+    
     <tr>
-        <th>핸드폰 번호</th>
+        <th>♥ 핸드폰 번호 ♥</th>
     </tr>
     <c:forEach var="row" items="${list}">
     <tr>
@@ -122,7 +121,7 @@
     </c:forEach>
     
     <tr>
-        <th>주소</th>
+        <th>♥ 주소 ♥</th>
     </tr>
     <c:forEach var="row" items="${list}">
     <tr>
@@ -130,7 +129,10 @@
     </tr>
     </c:forEach>
     
-</table>
-
+  </table>
+        <!-- // 번호, 주소 테이블 -->
+        <div class="solo"  style="border:1px solid #ddd; padding:5px;">개인정보처리자는 개인정보를 수집하는 경우에는 그 목적에 필요한 최소한의 개인정보를 수집해야 합니다. 이 경우 최소한의 개인정보 수집이라는 입증책임은 개인정보처리자가 부담합니다(「개인정보 보호법」 제16조제1항)</div>
+    </div>
+</div>
 </body>
 </html>

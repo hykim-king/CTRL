@@ -47,11 +47,5 @@ public class JunitorderDaoTest {
 		  assertNotNull(dao);
 	}
 
-	@Test
-	public void doRetrieve() throws SQLException {
-		  List<Map<String, DTO>> list = dao.doRetrieve(order01);
-		  for(Map<String, DTO> vo:list) {
-			  LOG.debug("vo="+vo);
-		  }
-	}
+	
 }
