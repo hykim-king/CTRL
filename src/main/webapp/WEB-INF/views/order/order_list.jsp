@@ -48,17 +48,17 @@
         console.log("document.ready"); 
         
         // table click
-        $('#listTable > tbody > tr').on("click", "input" ,function(){ 
+        $('#listTable > tbody tr').on("click", "input" ,function(){ 
             
             let clickInput = $(this); // $(this) : input
-            let tdArray = clickInput.parents("tr").children(); // td들 지정
+            let thArray = clickInput.parents("tr").children(); // th들 지정
             
             // 각각 값을  가져오기
-            let oNum = tdArray.eq(0).text(); // 주문 번호
-            let dNum = tdArray.eq(5).text(); // 상세 번호
-            let oName = tdArray.eq(6).text(); // 회원이름
-            let pNum = tdArray.last().text(); // 상품번호
-            
+            let oNum = thArray.first().text(); // 주문 번호
+            let dNum = thArray.eq(6).text(); // 상세 번호
+            let oName = thArray.eq(7).text(); // 회원이름
+            let pNum = thArray.last().text(); // 상품번호
+            console.log(oNum + "," + dNum + "," + oName + "," + pNum);
             window.open("${CP}/review/reviewPopup.do?oNum="+oNum+"&dNum="+dNum+"&oName="+oName+"&pNum="+pNum,"리뷰작성", "width=800, height=700, left=100, top=100");
             //--table click
         });
@@ -138,6 +138,7 @@
   </table>
       
       <table class="order3" id="listTable" width = "1000" height="100">
+      <tbody>
         <c:choose>
          <c:when test="${list.size() > 0}">
              <c:forEach var="list" items="${list}"> 

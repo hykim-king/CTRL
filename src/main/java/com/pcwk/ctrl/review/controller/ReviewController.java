@@ -46,6 +46,11 @@ public class ReviewController {
 		String oNum = req.getParameter("oNum");
 		String oName = req.getParameter("oName");
 		String pNum = req.getParameter("pNum");
+		
+		LOG.debug("dNum : " + dNum);
+		LOG.debug("oNum : " + oNum);
+		LOG.debug("oName : " + oName);
+		LOG.debug("pNum : " + pNum);
 
 		model.addAttribute("dNum", dNum);
 		model.addAttribute("oNum", oNum);

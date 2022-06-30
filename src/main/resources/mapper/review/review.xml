@@ -45,7 +45,7 @@
             rd_name,
             m_num
         ) VALUES (
-            REVIEW_S.currval,
+            #{rNum},
             #{rdCon},
             SYSDATE,
             #{rdName},
