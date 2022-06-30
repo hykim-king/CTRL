@@ -15,6 +15,13 @@ function showPopUp() {
   //연결하고싶은url
   const url = "http://localhost:8081/ctrl/login/login.do";
 
-  //등록된 url 및 window 속성 기준으로 팝업창을 연다.
-  window.open(url, "hello popup", windowStatus);
+  //등록된 url로 팝업창을 연다.
+  window.open(url, windowStatus);
 }
+
+//access_token 이용하여 사용자정보 얻은 후 alert(mName+"님 환영합니다!") -> 확인버튼 -> 팝업클로즈 + 메인새로고침(로그아웃)
+function getMemberInfo() {
+	
+}
+
+

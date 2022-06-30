@@ -44,8 +44,8 @@
 
 
 
-					<li><a href="${CP}/my_page.do">마이페이지</a></li>
-					<li><a href="${CP}/order/orderList.do">장바구니</a></li>
+					<li><a href="#">마이페이지</a></li>
+					<li><a href="#">장바구니</a></li>
 					<li><a href="#">FAQ</a></li>
 					<li><a href="#">공지사항</a></li>
 				</ul>
@@ -71,7 +71,7 @@
 	<!-- 메인페이지 카테고리 영역 시작 -->
 	<div id="main_cate">
 		<ul>
-			<li class="cate_img"><a href="#"><img src="${CP_RES}/img/main_plate06.jpg">
+			<li class="cate_img"><a href="#"><img src="${CP_RES}/img/plate07.jpg">
 					<div>
 						<span>접시</span>
 					</div> </a> <a href="#"><img src="${CP_RES}/img/main_cup11.jpg">

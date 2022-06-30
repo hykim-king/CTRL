@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pcwk.ctrl.member">
      
-   <insert id="doMemberInsert" parameterType="com.pcwk.ctrl.cmn.MemberVO">
+   <insert id="doMemberInsert" parameterType="MemberVO">
      INSERT INTO member (  
 			m_num,
 			m_name,
@@ -19,6 +19,19 @@
          #{mGrade} 
      )    
    </insert>  
+   
+  <select id="getAll" parameterType="MemberVO"  resultType="MemberVO">
+   SELECT
+	    m_num as mNum,
+	    m_name as mName,
+	    m_email as mEmail,
+	    m_tel as mTel,
+	    m_addr as mAddr,
+	    m_grade as mGrade
+	FROM
+	    member
+	WHERE m_num LIKE #{mNum} || '%'
+  </select>
 
 
 </mapper>
