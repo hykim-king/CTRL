@@ -86,10 +86,5 @@ public class MemberDaoImpl implements MemberDao {
 		return list;
 	}
 
-	@Override
-	public List<MemberVO> doRetrieve(DTO dto) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

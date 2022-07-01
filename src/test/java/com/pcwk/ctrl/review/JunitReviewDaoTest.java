@@ -60,10 +60,10 @@ public class JunitReviewDaoTest {
 		LOG.debug("=0. setUp()=");
 		LOG.debug("=======================");
 		
-		review01 = new ReviewVO(14, "1", 1, "안녕하세요, junitReviewrDaoTest입니다.",
+		review01 = new ReviewVO(24, "1", 1, "안녕하세요, junitReviewrDaoTest입니다.",
 				"kjh", "날짜_사용안함");
 		product01 = new ProductVO("plate06", "plate", "디너플레이트 라 빅토리", 180000, "27cm");
-		rd01 = new RdVO(14, "감사합니다! 다음에도 또 이용해주세요", "날짜_사용안함" , "관리자", "55555");
+		rd01 = new RdVO(24, "감사합니다! 다음에도 또 이용해주세요", "날짜_사용안함" , "관리자", "55555");
 		search = new SearchVO(10, 1, "", "");
 		
 		LOG.debug("context:"+context);

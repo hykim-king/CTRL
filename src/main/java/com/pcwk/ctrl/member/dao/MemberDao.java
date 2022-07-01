@@ -25,14 +25,6 @@ public interface MemberDao {
 	MemberVO doSelectOne(MemberVO inVO) throws SQLException;
 	
 	
-	/**
-	 * 목록조회 
-	 * @param dto
-	 * @return List<MemberVO>
-	 * @throws SQLException
-	 */
-	List<MemberVO> doRetrieve(DTO dto) throws SQLException;
-	
 	List<MemberVO> getAll(MemberVO inVO);
 	
 	
