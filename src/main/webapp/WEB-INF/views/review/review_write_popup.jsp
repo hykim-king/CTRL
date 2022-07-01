@@ -78,7 +78,7 @@
                 
                 if(null != data) {
                     alert("리뷰가 등록되었습니다!");
-                    opener.location.href="${CP}/productDetail/view.do?pNum=" + pNum + "&pName=" + pName + 
+                    window.location.href="${CP}/productDetail/view.do?pNum=" + pNum + "&pName=" + pName + 
                             "&pPrice="+pPrice + "&pSize="+pSize + "&pageSize="+pageSize + "&pageNum=" + pageNum;                
                     window.close();                 
                 }else {

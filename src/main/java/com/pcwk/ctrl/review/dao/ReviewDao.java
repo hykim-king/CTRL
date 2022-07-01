@@ -2,6 +2,7 @@ package com.pcwk.ctrl.review.dao;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import com.pcwk.ctrl.cmn.DTO;
 import com.pcwk.ctrl.cmn.MemberVO;
@@ -9,9 +10,16 @@ import com.pcwk.ctrl.cmn.ProductVO;
 import com.pcwk.ctrl.cmn.RdVO;
 import com.pcwk.ctrl.cmn.ReviewRdVO;
 import com.pcwk.ctrl.cmn.ReviewVO;
-import com.pcwk.ctrl.cmn.SearchVO;
 
 public interface ReviewDao {
+	
+	/**
+	 * 회원 등급 확인
+	 * @param inVO
+	 * @return 1(관리자) / 0(회원 혹인 비회원)
+	 * @throws SQLException
+	 */
+	int doSelectGrade(MemberVO inVO) throws SQLException;
 	
 	/**
 	 * 관리자 댓글 수정
@@ -19,7 +27,7 @@ public interface ReviewDao {
 	 * @return 1(성공)/0(실패)
 	 * @throws SQLException
 	 */
-	int doRdUpdate(RdVO inVO) throws SQLException;
+	int rdUpdate(RdVO inVO) throws SQLException;
 	
 	/**
 	 * 회원 댓글 수정
@@ -27,7 +35,7 @@ public interface ReviewDao {
 	 * @return 1(성공)/0(실패)
 	 * @throws SQLException
 	 */
-	int doReviewUpdate(ReviewVO inVO) throws SQLException;
+	int reviewUpdate(ReviewVO inVO) throws SQLException;
 	
 	/**
 	 * 회원 테이블 조회(param 검사)
@@ -45,7 +53,7 @@ public interface ReviewDao {
 	int doRdInsert(RdVO inVO) throws SQLException;
 	
 	/**
-	 * 리뷰 테이블 전체 개수 조회
+	 * 상품별 리뷰 테이블 전체 개수 조회
 	 * @return int
 	 * @throws SQLException
 	 */
@@ -56,7 +64,7 @@ public interface ReviewDao {
 	 * @return List<Map<String, DTO>>
 	 * @throws SQLException
 	 */
-	List<ReviewRdVO> doReviewsRetrieve(SearchVO inVO) throws SQLException;
+	List<ReviewRdVO> doReviewsRetrieve(Map<String, Object> inVO) throws SQLException;
 	
 	/**
 	 * 리뷰 입력
@@ -69,7 +77,7 @@ public interface ReviewDao {
 	/**
 	 * 관리자 댓글 테이블 갯수 조회
 	 * @param inVO
-	 * @return
+	 * @return int
 	 * @throws SQLException
 	 */
 	int getRdCount(RdVO inVO) throws SQLException;
@@ -77,7 +85,7 @@ public interface ReviewDao {
 	/**
 	 * 리뷰 테이블 갯수 조회
 	 * @param vo
-	 * @return 갯수
+	 * @return int
 	 * @throws SQLException
 	 */
 	int getCount(ReviewVO inVO) throws SQLException;

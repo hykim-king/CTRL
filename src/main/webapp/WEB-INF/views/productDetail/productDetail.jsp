@@ -17,6 +17,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="CP" value="${pageContext.request.contextPath}"/>
 <c:set var="resources" value="/resources"/>
@@ -163,11 +164,16 @@
                        $.each(parsedData, function(i, reviewVO){
                            let rContent = reviewVO.rContent;
                            let rdCon = reviewVO.rdCon;
-
+                           let managerNum = reviewVO.managerNum;
+                           let cnt = reviewVO.cnt;
+                           let memberNum = reviewVO.mNum;
+                           
                            htmlData += " <div class='reivew_data'>                                                     ";
-                           htmlData += "     <input type='button' id='reviewUpdate' value='수정' class='btn-1 button'>";
+                           console.log("memberNum : " + typeof memberNum);
+                           if(memberNum == "11111") { // 작성한 회원과 로그인한 사람이 같으면
+                            htmlData += "     <input type='button' id='reviewUpdate' value='수정' class='btn-1 button'>";
+                           }
                            htmlData += "     <div style='display:none;>"+ <c:out value='reviewVO.rNum'/>+"</div>";
-                           htmlData += "     <div style='display:none;'>"+ <c:out value='reviewVO.rNum'/>+"</div>";
                            htmlData += "     <div style='display:none;'>"+ <c:out value='reviewVO.mNum' />+"</div>";
                            htmlData += "     <div style='display:none;'>"+ <c:out value='reviewVO.oNum' />+"</div>";
                            htmlData += "     <div style='display:none;'>"+ <c:out value='reviewVO.dNum' /> +"</div>";
@@ -177,12 +183,18 @@
                            htmlData += "     </div> ";
                            htmlData += "     <p class='review_contents'>" + rContent.replaceAll('\n', '<br/>') +"</p>        ";
                            htmlData += " </div>";
-                           if('N' != reviewVO.rdCon) {
+                           if('N' != reviewVO.rdCon) { // 관리자 댓글이 있다면
+                                   console.log("reviewVO.managerNum : "+reviewVO.managerNum);
+                                   console.log("reviewVO.cnt : "+reviewVO.cnt);
+                                   console.log("reviewVO.cnt : "+ typeof reviewVO.cnt);
+                                   
                                    htmlData += " <p class='rdButton'></p>        ";
                                    htmlData += " <div class='manager_comment'> ";  
                                    htmlData += "   <div class='review_buttons'>";
-                                   htmlData += "      <input type='button' id='doRdInsert' value='등록' class='btn-1 button'>";
-                                   htmlData += "      <input type='button' id='rdUpdate' value='수정' class='btn-1 button'>";
+                                    if(managerNum == '55555' && cnt == 1) {  // 글을 등록한 관리자와 로그인한 관리자가 같고, 로그인한 사람이 관리자일때
+                                      htmlData += "      <input type='button' id='rdInsert' value='등록' class='btn-1 button'>";
+                                      htmlData += "      <input type='button' id='rdUpdate' value='수정' class='btn-1 button'>";
+                                    } 
                                    htmlData += "   </div> ";
                                    htmlData += "   <div class='review_head'>";
                                    htmlData += "      <strong class='customer_name'>"+reviewVO.rdName+"</strong>";
@@ -191,6 +203,7 @@
                                    htmlData += "   <div class='review_contents'>"+ rdCon.replaceAll('\n', '<br/>')+"</div>";
                                    htmlData += " </div>"; 
                            }
+
                        });
                        
                    }else {
@@ -200,6 +213,7 @@
                    }
                    // 조회 데이터가 없는 경우
                    $("#review_table").append(htmlData); 
+                  
                }); 
             }
            
@@ -207,6 +221,21 @@
                console.log("doReviewsRetrieve");
                doReviewsRetrieve(1);
            });
+           
+            // 회원 리뷰 입력
+           $(document).on("click", '#review_table #reviewUpdate', function(e) {
+               console.log('reviewUpdate');
+           });
+           
+            // 관리자 댓글 입력
+           $(document).on("click", '#review_table #rdInsert', function(e) {
+               console.log('rdInsert');
+           });
+           
+            // 관리자 댓글 수정
+           $(document).on("click", '#review_table #rdUpdate', function(e) {
+               console.log('rdUpdate');
+           });    
           
            
            /*----------------- 리뷰(김주혜) 끝-------------------*/
@@ -259,7 +288,7 @@
                 <!-- 상품 이름, 용량, 가격 -->
                 <strong class="product_name">${productInfo.pName}</strong><br/>
                 <hr/>
-                <p class="product_price">${productInfo.pPrice}</p>
+                <p class="product_price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${productInfo.pPrice}"/>원</p>
             
                 <!-- 수량 -->
                 <div id="amount">
@@ -300,13 +329,13 @@
                         상품 이름 : <span>${productInfo.pName}</span>
              <br/><br/>
                         용량 : <span>${productInfo.pSize}</span></br/>
-                        가격 : <span class="detail_price">${productInfo.pPrice}</span>
+                        가격 : <span class="detail_price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${productInfo.pPrice}"/>원</span>
            </div>
            <!-- 상세설명 끝 (김주혜)-->
            
            <!-- review 시작 (김주혜)-->
            <div class="accord_title">
-            <span>고객 리뷰</span>
+            <span>고객 리뷰(${totalCnt})</span>
            </div>
            
            <div id="reviewDiv" class="contents">

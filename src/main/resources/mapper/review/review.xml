@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pcwk.ctrl.review">
-    
      <!-- 회원 등급 확인 -->
      <select id="doSelectGrade" parameterType="MemberVO" resultType="int">
         SELECT COUNT(*) cnt
@@ -9,16 +8,16 @@
         WHERE m_num = #{mNum}
         AND m_grade = '1'     
      </select>
-         
+     
      <!-- 관리자 댓글 수정 -->
-     <update id="doRdUpdate" parameterType="ReviewVO">
+     <update id="rdUpdate" parameterType="ReviewVO">
         UPDATE rd
         SET rd_con = #{rdCon}
         WHERE r_num = #{rNum}
      </update>     
      
      <!-- 회원 댓글 수정 -->
-     <update id="doReviewUpdate" parameterType="ReviewVO">
+     <update id="reviewUpdate" parameterType="ReviewVO">
         UPDATE review
         SET r_content = #{rContent}
         WHERE r_num = #{rNum}
@@ -45,7 +44,7 @@
             rd_name,
             m_num
         ) VALUES (
-            #{rNum},
+            ${rNum},
             #{rdCon},
             SYSDATE,
             #{rdName},
@@ -71,12 +70,16 @@
         <result property="mNum" column="m_num"/>
         <result property="oNum" column="o_num"/>
         <result property="dNum" column="d_num"/>
+        <result property="managerNum" column="manager_num"/>
         <result property="rdReg" column="rd_reg"/>
         <result property="rDt" column="r_dt"/>
+        <result property="cnt" column="cnt"/>
     </resultMap>    
     
     <!-- 리뷰와 관리자 댓글 조회 -->  
-    <select id="doReviewsRetrieve" parameterType="SearchVO" resultMap="reviewRdResultMap" >
+    <select id="doReviewsRetrieve" parameterType="HashMap" resultMap="reviewRdResultMap" >
+        SELECT A.*, B.*
+        FROM(
         SELECT ttt1.r_num,
                ttt1.r_content,
                ttt1.rd_con,
@@ -85,8 +88,9 @@
                ttt1.m_num,
                ttt1.o_num,
                ttt1.d_num,
-               ttt1.rd_reg,
-               ttt1.r_dt
+               ttt1.manager_num,
+               ttt1.r_dt,
+               ttt1.rd_reg
         FROM (
             SELECT ROWNUM AS rown, tt1.*
             FROM (
@@ -98,8 +102,9 @@
                        t4.m_num,
                        t3.o_num,
                        t3.d_num,
-                       t1.rd_reg,
-                       t2.r_dt
+                       t1.m_num as manager_num,
+                       t2.r_dt,
+                       t1.rd_reg
                 FROM rd t1 RIGHT OUTER JOIN review t2
                 ON t1.r_num = t2.r_num
                 JOIN detail t3
@@ -109,12 +114,18 @@
                 ON t3.o_num = t4.o_num
                 JOIN product t5
                 ON t3.p_num = t5.p_num
-                WHERE t5.p_num = #{searchWord}
+                WHERE t5.p_num = #{pNum}
                 ORDER BY t2.r_dt DESC
              ) tt1
              WHERE ROWNUM  <![CDATA[  <= #{pageSize} * (#{pageNum} - 1) + #{pageSize} ]]>
         ) ttt1
         <![CDATA[  WHERE rown >=( #{pageSize} * ( #{pageNum} - 1) +1)  ]]>
+        )A CROSS JOIN (
+            SELECT COUNT(*) cnt
+            FROM member
+            WHERE m_num = #{mNum}
+            AND m_grade = '1' 
+       )B
      </select>
     
     <!-- 리뷰 테이블에 값 입력 -->

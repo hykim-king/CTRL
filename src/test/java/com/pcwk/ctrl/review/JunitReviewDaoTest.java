@@ -60,10 +60,11 @@ public class JunitReviewDaoTest {
 		LOG.debug("=0. setUp()=");
 		LOG.debug("=======================");
 		
-		review01 = new ReviewVO(24, "1", 1, "안녕하세요, junitReviewrDaoTest입니다.",
+		review01 = new ReviewVO(79, "1", 1, "안녕하세요, junitReviewrDaoTest입니다.",
 				"kjh", "날짜_사용안함");
 		product01 = new ProductVO("plate06", "plate", "디너플레이트 라 빅토리", 180000, "27cm");
-		rd01 = new RdVO(24, "감사합니다! 다음에도 또 이용해주세요", "날짜_사용안함" , "관리자", "55555");
+		rd01 = new RdVO(79, "감사합니다! 다음에도 또 이용해주세요", "날짜_사용안함" , "관리자", "55555");
+		member01 = new MemberVO("101010", "김주혜", "joohea5943@naver.com", "010-1111-2222", "땡땡시 땡땡구", "0");
 		search = new SearchVO(10, 1, "", "");
 		
 		LOG.debug("context:"+context);
@@ -84,9 +85,13 @@ public class JunitReviewDaoTest {
 		isProductSameData(paramVO, product01);
 		
 		// 2.
-		search.setSearchWord(paramVO.getpNum());
+       	Map<String, Object> mapParam = new HashMap<String, Object>(); // doReviewsRetrieve param
+       	mapParam.put("pageSize", search.getPageSize()); 
+       	mapParam.put("pageNum", search.getPageNum()); 
+       	mapParam.put("pNum", product01.getpNum());
+       	mapParam.put("mNum", "55555");
 		
-		List<ReviewRdVO> list = reviewDao.doReviewsRetrieve(search);
+		List<ReviewRdVO> list = reviewDao.doReviewsRetrieve(mapParam);
 		for(ReviewRdVO vo : list) {
 			LOG.debug("vo="+vo);
 		}
@@ -100,10 +105,11 @@ public class JunitReviewDaoTest {
 		// 3. 리뷰 1건 데이터 수정
 		// 4. 비교
 		
-		// 5. 관리자 댓글 1건 등록
-		// 6. 단건 조회
-		// 7. 관리자 댓글 1건 데이터 수정
-		// 8. 비교
+		// 5. 등급 조회
+		// 6. 관리자 댓글 1건 등록
+		// 7. 단건 조회
+		// 8. 관리자 댓글 1건 데이터 수정
+		// 9. 비교
 		
 		// 1.
 		reviewDao.doReviewInsert(review01);
@@ -115,25 +121,28 @@ public class JunitReviewDaoTest {
 		outVO.setrContent(outVO.getrContent()+upString);
 		LOG.debug(outVO.getrContent()+upString);
 		// 3. 
-		reviewDao.doReviewUpdate(outVO);
+		reviewDao.reviewUpdate(outVO);
 		
 		// 4.
 		ReviewVO resultVO = reviewDao.doSelectOne(outVO);
 		isReviewSameData(outVO, resultVO);
 		
-		
 		// 5.
+		int grade = reviewDao.doSelectGrade(member01);
+		assertEquals(0, reviewDao.doSelectGrade(member01));
+		
+		// 6.
 		reviewDao.doRdInsert(rd01);
 		assertEquals(1, reviewDao.getRdCount(rd01));
 		
-		// 6. 
+		// 7. 
 		RdVO outVO2 = reviewDao.doRdSelectOne(rd01);
 		outVO2.setRdCon(outVO2.getRdCon()+upString);
 		
-		// 7.
-		reviewDao.doRdUpdate(outVO2);
-		
 		// 8.
+		reviewDao.rdUpdate(outVO2);
+		
+		// 9.
 		RdVO resultVO2 = reviewDao.doRdSelectOne(outVO2);
 		isRdSameData(outVO2, resultVO2);
 	}

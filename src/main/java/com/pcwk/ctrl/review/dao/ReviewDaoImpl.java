@@ -41,7 +41,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		LOG.debug("statement :" + statement);
 		LOG.debug("=============================");
 		
-		flag = this.sqlSessionTemplate.insert(statement,dto);
+		flag = sqlSessionTemplate.insert(statement,dto);
 		LOG.debug("flag : " + flag);
 		
 		return flag;
@@ -58,7 +58,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		LOG.debug("statement : "+statement);
 		LOG.debug("=============================");
 		
-		count = this.sqlSessionTemplate.selectOne(statement, inVO);
+		count = sqlSessionTemplate.selectOne(statement, inVO);
 		
 		LOG.debug("====================");
 		LOG.debug("=count="+count);
@@ -78,7 +78,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		LOG.debug("statement : "+statement);
 		LOG.debug("=============================");
 		
-		count = this.sqlSessionTemplate.selectOne(statement, inVO);
+		count = sqlSessionTemplate.selectOne(statement, inVO);
 		
 		LOG.debug("====================");
 		LOG.debug("=count="+count);
@@ -97,7 +97,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		LOG.debug("statement : "+statement);
 		LOG.debug("=============================");
 
-		outVO = this.sqlSessionTemplate.selectOne(statement, inVO);
+		outVO = sqlSessionTemplate.selectOne(statement, inVO);
 		
 		LOG.debug("=============================");
 		LOG.debug("outVO="+outVO.toString());
@@ -117,7 +117,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		LOG.debug("statement : "+statement);
 		LOG.debug("=============================");
 
-		outVO = this.sqlSessionTemplate.selectOne(statement, inVO);
+		outVO = sqlSessionTemplate.selectOne(statement, inVO);
 		
 		LOG.debug("=============================");
 		LOG.debug("outVO="+outVO.toString());
@@ -127,7 +127,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public List<ReviewRdVO> doReviewsRetrieve(SearchVO inVO) throws SQLException {
+	public List<ReviewRdVO> doReviewsRetrieve(Map<String, Object> inVO) throws SQLException {
 		List<ReviewRdVO> outVO = null;
 		
 		String statement = this.NAMESPACE+".doReviewsRetrieve";
@@ -148,20 +148,20 @@ public class ReviewDaoImpl implements ReviewDao {
 
 	@Override
 	public int getCountAll(ProductVO inVO) throws SQLException {
-		int flag = 0;
+		int count = 0;
 		
 		String statement = this.NAMESPACE+".getCountAll";
 		LOG.debug("=============================");
 		LOG.debug("statement : "+statement);
 		LOG.debug("=============================");
 		
-		flag = this.sqlSessionTemplate.selectOne(statement,inVO);
+		count = sqlSessionTemplate.selectOne(statement,inVO);
 		
 		LOG.debug("=============================");
-		LOG.debug("flag="+flag);
+		LOG.debug("count="+count);
 		LOG.debug("=============================");
 		
-		return flag;
+		return count;
 	}
 
 	@Override
@@ -175,7 +175,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		LOG.debug("statement :" + statement);
 		LOG.debug("=============================");
 		
-		flag = this.sqlSessionTemplate.insert(statement,inVO);
+		flag = sqlSessionTemplate.insert(statement,inVO);
 		LOG.debug("flag : " + flag);
 		
 		return flag;
@@ -192,7 +192,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		LOG.debug("statement :" + statement);
 		LOG.debug("=============================");
 		
-		outVO = this.sqlSessionTemplate.selectOne(statement, inVO);
+		outVO = sqlSessionTemplate.selectOne(statement, inVO);
 		
 		LOG.debug("=============================");
 		LOG.debug("outVO="+outVO.toString());
@@ -202,10 +202,10 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public int doReviewUpdate(ReviewVO inVO) throws SQLException {
+	public int reviewUpdate(ReviewVO inVO) throws SQLException {
 		int flag = 0;
 		
-		String statement = NAMESPACE+".doReviewUpdate";
+		String statement = NAMESPACE+".reviewUpdate";
 		
 		LOG.debug("=============================");
 		LOG.debug("param : "+inVO.toString());
@@ -219,10 +219,10 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public int doRdUpdate(RdVO inVO) throws SQLException {
+	public int rdUpdate(RdVO inVO) throws SQLException {
 		int flag = 0;
 		
-		String statement = NAMESPACE+".doRdUpdate";
+		String statement = NAMESPACE+".rdUpdate";
 		
 		LOG.debug("=============================");
 		LOG.debug("param : "+inVO.toString());
@@ -233,6 +233,22 @@ public class ReviewDaoImpl implements ReviewDao {
 		LOG.debug("flag: "+flag);
 		
 		return flag;
+	}
+
+	@Override
+	public int doSelectGrade(MemberVO inVO) throws SQLException {
+		int count = 0;
+		
+		String statement = NAMESPACE + ".doSelectGrade";
+		LOG.debug("=============================");
+		LOG.debug("param : "+inVO.toString());
+		LOG.debug("statement :" + statement);
+		LOG.debug("=============================");
+		
+		count = sqlSessionTemplate.selectOne(statement, inVO);
+		LOG.debug("count: "+count);
+		
+		return count;
 	}
 
 

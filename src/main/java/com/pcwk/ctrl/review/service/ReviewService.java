@@ -2,6 +2,7 @@ package com.pcwk.ctrl.review.service;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import com.pcwk.ctrl.cmn.DTO;
 import com.pcwk.ctrl.cmn.MemberVO;
@@ -14,12 +15,20 @@ import com.pcwk.ctrl.cmn.SearchVO;
 public interface ReviewService {
 	
 	/**
+	 * 회원 등급 확인
+	 * @param inVO
+	 * @return 1(관리자) / 0(회원 혹인 비회원)
+	 * @throws SQLException
+	 */
+	public int doSelectGrade(MemberVO inVO) throws SQLException;
+	
+	/**
 	 * 관리자 댓글 수정
 	 * @param inVO
 	 * @return 1(성공)/0(실패)
 	 * @throws SQLException
 	 */
-	public int doRdUpdate(RdVO inVO) throws SQLException;
+	public int rdUpdate(RdVO inVO) throws SQLException;
 	
 	/**
 	 * 회원 댓글 수정
@@ -27,7 +36,7 @@ public interface ReviewService {
 	 * @return 1(성공)/0(실패)
 	 * @throws SQLException
 	 */
-	public int doReviewUpdate(ReviewVO inVO) throws SQLException;
+	public int reviewUpdate(ReviewVO inVO) throws SQLException;
 	
 	/**
 	 * 회원 테이블 조회(param 검사)
@@ -54,10 +63,10 @@ public interface ReviewService {
 	
 	/**
 	 * 회원 댓글 및 관리자 댓글 조회(페이징)
-	 * @return List<Map<String, DTO>>
+	 * @return List<ReviewRdVO>
 	 * @throws SQLException
 	 */
-	public List<ReviewRdVO> doReviewsRetrieve(SearchVO inVO) throws SQLException;
+	public List<ReviewRdVO> doReviewsRetrieve(Map<String, Object> inVO) throws SQLException;
 	
 	/**
 	 * 리뷰 입력

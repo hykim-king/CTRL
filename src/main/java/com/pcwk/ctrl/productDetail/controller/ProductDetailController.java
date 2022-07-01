@@ -2,7 +2,11 @@ package com.pcwk.ctrl.productDetail.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.pcwk.ctrl.cmn.MemberVO;
 import com.pcwk.ctrl.cmn.ProductVO;
 import com.pcwk.ctrl.cmn.ReviewRdVO;
 import com.pcwk.ctrl.cmn.SearchVO;
@@ -38,35 +43,41 @@ public class ProductDetailController {
 	@RequestMapping(value = "/doReviewsRetrieve.do", method = RequestMethod.GET
 			, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String doReviewsRetrieve(SearchVO inVO) throws SQLException {
+	public String doReviewsRetrieve(SearchVO sInVO) throws SQLException {
 		
-		String jsonString = "";
-		
+		String jsonString = ""; // 리뷰, 관리자 댓글 테이블 조회
+
 		LOG.debug("=================================");
 		LOG.debug("doReviewsRetrieve()");
-		LOG.debug("=inVO=" + inVO);
+		LOG.debug("=sInVO=" + sInVO);
 		LOG.debug("=================================");
 		
        //페이지 사이즈
-       if(0 == inVO.getPageSize()) {
-          inVO.setPageSize(10);
+       if(0 == sInVO.getPageSize()) {
+    	   sInVO.setPageSize(10);
        }
       
        //페이지 번호
-       if(0 == inVO.getPageNum()) {
-          inVO.setPageNum(1);
+       if(0 == sInVO.getPageNum()) {
+    	   sInVO.setPageNum(1);
        }
        
        //검색어
-       if(null == inVO.getSearchWord()) {
-          inVO.setSearchWord(StringUtil.nvl(inVO.getSearchWord(), ""));
+       if(null == sInVO.getSearchWord()) {
+    	   sInVO.setSearchWord(StringUtil.nvl(sInVO.getSearchWord(), ""));
        }
-		
-		List<ReviewRdVO> list = reviewService.doReviewsRetrieve(inVO);
+       
+       	Map<String, Object> mapParam = new HashMap<String, Object>(); // doReviewsRetrieve param
+       	mapParam.put("pageSize", sInVO.getPageSize()); 
+       	mapParam.put("pageNum", sInVO.getPageNum()); 
+       	mapParam.put("pNum", sInVO.getSearchWord());
+       	mapParam.put("mNum", "55555");  // value : session.getAttribute("")
+       	
+		List<ReviewRdVO> list = reviewService.doReviewsRetrieve(mapParam);
 		for(ReviewRdVO vo :list) {
 			LOG.debug("vo : " + vo);
 		}
-
+		
 	    Gson gson = new Gson();
 	      
 	    jsonString = gson.toJson(list);
@@ -100,17 +111,21 @@ public class ProductDetailController {
 	}
 	
 	@RequestMapping(value="/view.do", method = RequestMethod.GET)
-	public String productDetailView(Model model, ProductVO pInVO, SearchVO sInVO) throws SQLException {
+	public String productDetailView(ProductVO pInVO, SearchVO sInVO, Model model, HttpSession session) throws SQLException {
 		
 		LOG.debug("==================");
 	    LOG.debug("=productDetailView()=");
 	    LOG.debug("=pInVO=" + pInVO);
 	    LOG.debug("=sInVO=" + sInVO);
 	    LOG.debug("==================");
-		
-	    
-        sInVO.setSearchWord(pInVO.getpNum());
-        List<ReviewRdVO> list = reviewService.doReviewsRetrieve(sInVO);
+        
+       	Map<String, Object> mapParam = new HashMap<String, Object>(); // doReviewsRetrieve param
+       	mapParam.put("pageSize", sInVO.getPageSize()); 
+       	mapParam.put("pageNum", sInVO.getPageNum()); 
+       	mapParam.put("pNum", pInVO.getpNum());
+       	mapParam.put("mNum", "55555"); // value : session.getAttribute("")
+       	
+        List<ReviewRdVO> list = reviewService.doReviewsRetrieve(mapParam);
         
         int totalCnt = 0;//총글수
         double pageTotal = 0;//총 페이지

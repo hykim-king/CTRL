@@ -32,7 +32,7 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<ReviewRdVO> doReviewsRetrieve(SearchVO inVO) throws SQLException {
+	public List<ReviewRdVO> doReviewsRetrieve(Map<String, Object> inVO) throws SQLException {
 		return reviewDao.doReviewsRetrieve(inVO);
 	}
 
@@ -72,13 +72,18 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public int doReviewUpdate(ReviewVO inVO) throws SQLException {
-		return reviewDao.doReviewUpdate(inVO);
+	public int reviewUpdate(ReviewVO inVO) throws SQLException {
+		return reviewDao.reviewUpdate(inVO);
 	}
 
 	@Override
-	public int doRdUpdate(RdVO inVO) throws SQLException {
-		return reviewDao.doRdUpdate(inVO);
+	public int rdUpdate(RdVO inVO) throws SQLException {
+		return reviewDao.rdUpdate(inVO);
+	}
+
+	@Override
+	public int doSelectGrade(MemberVO inVO) throws SQLException {
+		return reviewDao.doSelectGrade(inVO);
 	}
 
 
