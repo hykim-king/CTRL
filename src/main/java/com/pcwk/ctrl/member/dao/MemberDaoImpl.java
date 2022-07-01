@@ -67,21 +67,6 @@ public class MemberDaoImpl implements MemberDao {
 		return outVO;
 	}
 
-	@Override
-	public List<MemberVO> doRetrieve(DTO dto) throws SQLException {
-		SearchVO inVO = (SearchVO) dto;
-		String statement = NAMESPACE+".doRetrieve";
-		LOG.debug("==============================");
-		LOG.debug("param:" + dto.toString());
-		LOG.debug("statement:" +statement);
-		LOG.debug("==============================");		
-		List<MemberVO> list = sqlSessionTemplate.selectList(statement,inVO);
-		
-		for(MemberVO vo  :list) {
-			LOG.debug(vo);
-		}
-		return list;
-	}
 
 	@Override
 	public List<MemberVO> getAll(MemberVO inVO) {
@@ -99,6 +84,12 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		
 		return list;
+	}
+
+	@Override
+	public List<MemberVO> doRetrieve(DTO dto) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

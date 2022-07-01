@@ -67,19 +67,6 @@ public class JunitMemberDaoTest {
 
 	}
 
-	@Test
-	@Ignore
-	public void doRetrieve() throws SQLException {
-		searchVO.setSearchDiv("");
-//		searchVO.setSearchWord("테스트");
-
-		List<MemberVO> list = dao.doRetrieve(member01);
-		for (MemberVO vo : list) {
-			LOG.debug("vo=" + vo);
-
-		}
-
-	}
 	
 	@Test
 	public void getAll() throws SQLException{
