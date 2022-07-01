@@ -127,6 +127,10 @@ public class ProductDetailController {
        	
         List<ReviewRdVO> list = reviewService.doReviewsRetrieve(mapParam);
         
+		LOG.debug("==================");
+	    LOG.debug("=list=" + list);
+	    LOG.debug("==================");
+        
         int totalCnt = 0;//총글수
         double pageTotal = 0;//총 페이지
         

@@ -170,9 +170,9 @@
                            
                            htmlData += " <div class='reivew_data'>                                                     ";
                            console.log("memberNum : " + typeof memberNum);
-                           if(memberNum == "11111") { // 작성한 회원과 로그인한 사람이 같으면
-                            htmlData += "     <input type='button' id='reviewUpdate' value='수정' class='btn-1 button'>";
-                           }
+                            if(memberNum == "11111") {  // 작성한 회원과 로그인한 사람이 같으면
+                              htmlData += "     <input type='button' id='reviewUpdate' value='수정' class='btn-1 button'>";
+                            } 
                            htmlData += "     <div style='display:none;>"+ <c:out value='reviewVO.rNum'/>+"</div>";
                            htmlData += "     <div style='display:none;'>"+ <c:out value='reviewVO.mNum' />+"</div>";
                            htmlData += "     <div style='display:none;'>"+ <c:out value='reviewVO.oNum' />+"</div>";
@@ -191,7 +191,7 @@
                                    htmlData += " <p class='rdButton'></p>        ";
                                    htmlData += " <div class='manager_comment'> ";  
                                    htmlData += "   <div class='review_buttons'>";
-                                    if(managerNum == '55555' && cnt == 1) {  // 글을 등록한 관리자와 로그인한 관리자가 같고, 로그인한 사람이 관리자일때
+                                    if(managerNum == '55555' && cnt == 1) {  
                                       htmlData += "      <input type='button' id='rdInsert' value='등록' class='btn-1 button'>";
                                       htmlData += "      <input type='button' id='rdUpdate' value='수정' class='btn-1 button'>";
                                     } 

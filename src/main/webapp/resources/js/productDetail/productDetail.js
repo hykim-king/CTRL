@@ -9,10 +9,6 @@ $(document).ready(function(){
 	   return price.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
    }
    
-   let price =$(".product_price").text();
-   $(".product_price").text(priceToString(price)+"원");
-   $(".detail_price").text(priceToString(price)+"원");
-   
     
    // 아코디언 메뉴
   $(".accord_title").click(function() {

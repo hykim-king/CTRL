@@ -65,7 +65,7 @@
                     pNum : $("#pNum").val()
             };
             
-            let async = false;
+            let async = true;
             EClass.callAjax(url, parameters, method, async, function(data){
                 console.log('data.pNum:'+data.pNum);
                 let pNum = data.pNum;
@@ -78,8 +78,8 @@
                 
                 if(null != data) {
                     alert("리뷰가 등록되었습니다!");
-                    window.location.href="${CP}/productDetail/view.do?pNum=" + pNum + "&pName=" + pName + 
-                            "&pPrice="+pPrice + "&pSize="+pSize + "&pageSize="+pageSize + "&pageNum=" + pageNum;                
+                    opener.location.href="${CP}/productDetail/view.do?pNum=" + pNum + "&pName=" + pName + 
+                    "&pPrice="+pPrice + "&pSize="+pSize + "&pageSize="+pageSize + "&pageNum=" + pageNum;             
                     window.close();                 
                 }else {
                     alert("다시 시도해주세요.^^");
