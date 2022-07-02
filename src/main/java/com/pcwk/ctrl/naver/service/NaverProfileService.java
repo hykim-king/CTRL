@@ -14,8 +14,16 @@ public interface NaverProfileService {
 	 * @return
 	 * @throws SQLException
 	 */
-	MemberVO doRetrieve(String accessToken) throws SQLException;
-
 	MemberVO doMemberInsert(String accessToken) throws SQLException, NullPointerException;
 	
+	
+	/**
+	 * member 중복 check(DB와 비교)
+	 * @param inVO
+	 * @return 1(mNum존재)/0(없음)
+	 * @throws SQLException
+	 */
+	public int memberCheck(MemberVO inVO) throws SQLException;
+
 }
+

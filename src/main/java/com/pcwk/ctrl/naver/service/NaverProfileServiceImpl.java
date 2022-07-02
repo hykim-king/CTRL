@@ -14,6 +14,7 @@ import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,12 +23,21 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.pcwk.ctrl.cmn.MemberVO;
+import com.pcwk.ctrl.cmn.MessageVO;
+import com.pcwk.ctrl.member.dao.MemberDao;
+import com.pcwk.ctrl.member.service.MemberService;
 import com.pcwk.ctrl.naver.Item;
 
 @Service("naverProfileService")
 public class NaverProfileServiceImpl implements NaverProfileService {
 	final Logger LOG = LogManager.getLogger(getClass());
 
+	@Autowired
+	MemberDao memberDao;
+	
+	@Autowired
+	MemberService memberService;
+	
 	public NaverProfileServiceImpl() {}
 	
 	
@@ -132,42 +142,12 @@ public class NaverProfileServiceImpl implements NaverProfileService {
 
 
 	@Override
-	public MemberVO doRetrieve(String accessToken) {
-		 String header = "Bearer " + accessToken; // Bearer 다음에 공백 추가
-	        String apiURL = "https://openapi.naver.com/v1/nid/me?query="+accessToken;//json
-	        Item item = null;
-	        
-	        Map<String, String> requestHeaders = new HashMap<>();
-	        requestHeaders.put("Authorization", header);
-	        String responseBody = get(apiURL,requestHeaders);
-
-	        //{"resultcode":"00","message":"success","response":{"id":"OBb9C5C3HCNatxsH_rPkcvNFnvEfarinsnH7qICMaFU","email":"eunbin620@naver.com","mobile":"010-9406-3269","mobile_e164":"+821094063269","name":"\uc774\uc740\ube48"}}
-	        LOG.debug(responseBody);
-	        
-	        JsonParser jsonParser = new JsonParser();
-	        JsonElement jsonElement = jsonParser.parse(responseBody);
-	        JsonObject jsonObject = jsonElement.getAsJsonObject();
-	        JsonElement response = jsonObject.get("response");
-	        
-	        LOG.debug("response="+response);
-	        
-	        Gson gson = new Gson();
-	        item = gson.fromJson(response, Item.class);
-	        
-	        MemberVO memberVO = new MemberVO();
-	        
-	        memberVO.setmNum(item.getId());
-	        memberVO.setmEmail(item.getEmail());
-	        memberVO.setmName(item.getName());
-	        memberVO.setmTel(item.getMobile());
-	        memberVO.setmGrade("2");	//관리자(1), 회원(2)
-	        
-	        LOG.debug("Id: "+item.getId());
-	        LOG.debug("Email: "+item.getEmail());
-	        LOG.debug("Name: "+item.getName());
-	        LOG.debug("Mobile: "+item.getMobile());
-			
-	        return memberVO;
+	public int memberCheck(MemberVO inVO) throws SQLException {
+		return memberDao.memberCheck(inVO);
 	}
+
+
+
+
 
 }

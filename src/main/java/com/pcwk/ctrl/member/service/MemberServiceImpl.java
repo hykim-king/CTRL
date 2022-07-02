@@ -49,4 +49,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
+	//test
+//	@Override
+//	public List<MemberVO> memberCheck(MemberVO inVO) throws SQLException {
+//		return memberDao.memberCheck(inVO);
+//	}
+
+
 }

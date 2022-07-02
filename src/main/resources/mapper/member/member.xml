@@ -1,37 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pcwk.ctrl.member">
-     
-   <insert id="doMemberInsert" parameterType="MemberVO">
-     INSERT INTO member (  
-			m_num,
-			m_name,
-			m_email,
-			m_tel,
-			m_addr,
-			m_grade     
-     ) VALUES (            
-         #{mNum}, 
-         #{mName}, 
-         #{mEmail}, 
-         #{mTel}, 
-         #{mAddr}, 
-         #{mGrade} 
-     )    
-   </insert>  
-   
-  <select id="getAll" parameterType="MemberVO"  resultType="MemberVO">
-   SELECT
-	    m_num as mNum,
-	    m_name as mName,
-	    m_email as mEmail,
-	    m_tel as mTel,
-	    m_addr as mAddr,
-	    m_grade as mGrade
-	FROM
-	    member
-	WHERE m_num LIKE #{mNum} || '%'
-  </select>
+
+	<insert id="doMemberInsert" parameterType="MemberVO">
+		INSERT INTO member (
+		m_num,
+		m_name,
+		m_email,
+		m_tel,
+		m_addr,
+		m_grade
+		) VALUES (
+		#{mNum},
+		#{mName},
+		#{mEmail},
+		#{mTel},
+		#{mAddr},
+		#{mGrade}
+		)
+	</insert>
+
+	<resultMap type="MemberVO" id="memberResultMap">
+		<id property="mNum" column="m_num" />
+		<result property="mName" column="m_name" />
+		<result property="mEmail" column="m_email" />
+		<result property="mTel" column="m_tel" />
+		<result property="mAddr" column="m_addr" />
+		<result property="mGrade" column="m_grade" />
+	</resultMap>
+
+    <!-- member 중복 check -->
+    <select id="memberCheck" parameterType="MemberVO" resultType="int">
+      SELECT COUNT(*) AS cnt
+      FROM member
+      WHERE m_num = #{mNum}
+    </select>
+
+
+	<!-- namespace+id = com.pcwk.ctrl.member.doSelectOne -->
+	<select id="doSelectOne" parameterType="MemberVO" resultMap="memberResultMap">
+       <![CDATA[ 
+        SELECT m_num,      
+               m_name,      
+               m_email,    
+               m_tel,           
+               m_addr,             
+               m_grade      
+        FROM member 
+        WHERE m_num = #{mNum}
+        ]]>
+	</select>
+
+
+	<select id="getAll" parameterType="MemberVO" resultType="MemberVO">
+		SELECT	m_num as mNum,
+				m_name as mName,
+				m_email as mEmail,
+				m_tel as mTel,
+				m_addr as mAddr,
+				m_grade as mGrade
+		FROM member
+		WHERE m_num LIKE #{mNum} || '%'
+	</select>
 
 
 </mapper>

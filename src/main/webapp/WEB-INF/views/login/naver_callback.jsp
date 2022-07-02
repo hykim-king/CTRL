@@ -45,6 +45,15 @@
     <script src="${CP_RES}/js/bootstrap.min.js"></script>
     <!-- jquery_bootstrap paging -->
     <script type="text/javascript" src="${CP_RES}/js/jquery.bootpag.js"></script>
+     <script type="text/javascript">
+      $(document).ready(function(){
+        console.log("document.ready");  
+          
+      });
+      
+      
+    </script>
+
 </head>
 
 <body>
@@ -98,11 +107,12 @@
         } catch (Exception e) {
           System.out.println(e);
         }
-       response.sendRedirect("/ctrl/login/doMemberInsert.do?access_token="+accessToken);
+       response.sendRedirect("/ctrl/login/memberCheck.do?access_token="+accessToken);
         %>  
+        
 <!--     접근토큰 삭제요청 url(한 번 동의한 정보제공 항목에 대한 재동의를 위해서 필요), access_token부분을 매번 바꿔줘야함 -->
 <!--   https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=SFHYYlRp9uGKqdsmMrqu&client_secret=VLZrBQXQtb&access_token=AAAAOaxe-zZ9jRkpiOXAtF0sqZ1IR6zUhurRgT_TV_E6wTEoxN6rXrZQXzzt6uErUY_Hvj6CBEeSILlzVUGoY-iWT8c&service_provider=NAVER  -->
 
- 
+ <h2>로그인 성공</h2>
 </body>
 </html>

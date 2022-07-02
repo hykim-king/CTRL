@@ -24,10 +24,9 @@ public class NaverProfile {
 	final static Logger LOG = LogManager.getLogger(NaverProfile.class);
 
 	
-    public static void main(String[] args) {
-        String token = "AAAAOZyBvcOw7_xGAt0lnoPuQbHtcCNIIT46tLRLP_EbZ-E6WbKKT4oQwm3RPN5YdWZTAmuKpFg7x5xIBEaw0HM7sRg"; // 네이버 로그인 접근 토큰;
-        String header = "Bearer " + token; // Bearer 다음에 공백 추가
-        String apiURL = "https://openapi.naver.com/v1/nid/me?query="+token;//json
+    public static void main(String accessToken) {
+        String header = "Bearer " + accessToken; // Bearer 다음에 공백 추가
+        String apiURL = "https://openapi.naver.com/v1/nid/me?query="+accessToken;//json
 
         Map<String, String> requestHeaders = new HashMap<>();
         requestHeaders.put("Authorization", header);

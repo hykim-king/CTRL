@@ -46,6 +46,7 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return list;
 	}
+	
 
 
 	@Override
@@ -59,14 +60,33 @@ public class MemberDaoImpl implements MemberDao {
 		LOG.debug("statement:" + statement);
 		LOG.debug("==============================");
 		
-		outVO = this.sqlSessionTemplate.selectOne(statement, inVO);		
-		LOG.debug("==============================");
-		LOG.debug("**outVO=" + outVO.toString());
-		LOG.debug("==============================");
-
+		outVO = this.sqlSessionTemplate.selectOne(statement, inVO);
+		if(null == outVO) {
+			LOG.debug("=======미등록 회원========");
+			LOG.debug("outVO:"+outVO);
+			LOG.debug("=======미등록 회원========");
+		}else {
+			LOG.debug("==============================");
+			LOG.debug("**outVO=" + outVO.toString());
+			LOG.debug("==============================");
+		}
 		return outVO;
 	}
 
+	
+	@Override
+	public int memberCheck(MemberVO inVO) throws SQLException {
+		String statement = this.NAMESPACE+".memberCheck";
+		LOG.debug("=============================");
+		LOG.debug("param :" + inVO.toString());
+		LOG.debug("statement" + statement);
+		LOG.debug("=============================");
+		
+		int count = sqlSessionTemplate.selectOne(statement, inVO);
+		LOG.debug("count: " + count);
+		return count;
+	}
+	
 
 	@Override
 	public List<MemberVO> getAll(MemberVO inVO) {
@@ -85,6 +105,7 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return list;
 	}
+
 
 
 }

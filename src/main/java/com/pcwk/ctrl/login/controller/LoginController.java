@@ -1,6 +1,7 @@
 package com.pcwk.ctrl.login.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
 
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.pcwk.ctrl.cmn.MemberVO;
+import com.pcwk.ctrl.cmn.MessageVO;
 import com.pcwk.ctrl.cmn.StringUtil;
 import com.pcwk.ctrl.member.service.MemberService;
 import com.pcwk.ctrl.naver.service.NaverProfileService;
@@ -49,7 +52,7 @@ public class LoginController {
 	@RequestMapping(value = "/callback.do")
 	public String naverCallback(HttpSession session, HttpServletRequest req, Model model)throws IOException, ParseException {
 		
-	    //session.invalidate();
+//	    session.invalidate();
 	    
 		LOG.debug("=================================");
 		LOG.debug("naverCallback()");
@@ -58,28 +61,13 @@ public class LoginController {
 		return "login/naver_callback";
 	}
 	
-	//네이버 프로필 출력
-//	@RequestMapping(value = "/doRetrieve.do", method=RequestMethod.GET
-//			, produces="application/json;charset=UTF-8")
-//	@ResponseBody
-//	public MemberVO doRetrieve(MemberVO inVO, HttpServletRequest req, HttpSession session)throws Exception{
-//		String accessToken = req.getParameter("access_token");
-//		
-//		inVO = naverProfileService.doRetrieve(accessToken);
-//		
-//		LOG.debug("=================================");
-//		LOG.debug("doRetrieve");
-//		LOG.debug("inVO: "+inVO);
-//		LOG.debug("=================================");
-//		
-//		return inVO;
-//	}
+
 	
-	@RequestMapping(value="/doMemberInsert.do", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value="/memberCheck.do", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseBody//스프링에서 비동기 처리를 하는 경우 HTTP 요청의 본문 body 부분이 그대로 전달된다
-	public MemberVO doMemberInsert(MemberVO inVO, HttpServletRequest req, HttpSession session) throws Exception{
-//		String jsonString = "";
+	public MemberVO memberCheck(MemberVO inVO, HttpServletRequest req, HttpSession session) throws Exception{
 		String accessToken = req.getParameter("access_token");
+		String resultMessaage = "";
 		
 		inVO = naverProfileService.doMemberInsert(accessToken);
 		
@@ -87,56 +75,47 @@ public class LoginController {
 			inVO.setmAddr(StringUtil.nvl(inVO.getmAddr(), ""));
 		}
 		
-		LOG.debug("==============================");
-		LOG.debug("doMemberInsert");
-		LOG.debug("inVO "+ inVO);
-		LOG.debug("==============================");
+		LOG.debug("memberCheck");
+		LOG.debug("inVO: "+ inVO);
 		
-		List<MemberVO> list = memberService.doMemberInsert(inVO);
-		String resultMessaage = "";
-		
-		if(null == list) {
-			resultMessaage = inVO.getmNum() + "가 등록되었습니다";
+		MemberVO outVO = memberService.doSelectOne(inVO);
+		if(null == outVO) {
+			List<MemberVO> list = memberService.doMemberInsert(inVO);
+			LOG.debug("==============================");
+			LOG.debug("doMemberInsert");
+			LOG.debug("inVO "+ inVO);
+			LOG.debug("==============================");
+			resultMessaage = inVO.getmNum() + " 가 등록되었습니다";
 		}else {
-			resultMessaage = inVO.getmNum() + "등록 실패";
+			resultMessaage = outVO.getmNum() + "는 이미 등록된 회원번호입니다.";
 		}
-//		MessageVO message = new MessageVO(String.valueOf(list), resultMessaage);
-//		Gson gson = new Gson();
-//		
-//		jsonString = gson.toJson(message);
-//		LOG.debug("==============================");
-//		LOG.debug("=jsonString="+ jsonString);
-//		LOG.debug("==============================");	
-//		
-		return inVO;
+		
+		LOG.debug("==============================");
+		LOG.debug("resultMessaage: "+ resultMessaage);
+		LOG.debug("==============================");
+		
+		return outVO;
 	}
 	
 	
+	@RequestMapping(value = "doSelectOne.do",method = RequestMethod.GET
+	         ,produces = "application/json;charset=UTF-8")
+	@ResponseBody //스프링에서 비동기 처리를 하는 경우, Http 요청의 본문 body부분이 전달된다.
+	public String doSelectOne(MemberVO inVO) throws SQLException {
+		LOG.debug("==============================");
+		LOG.debug("=inVO="+inVO);
+		LOG.debug("==============================");
+		
+		MemberVO outVO = memberService.doSelectOne(inVO);
+		Gson gson = new Gson();
+		String jsonString = gson.toJson(outVO);
+		
+		LOG.debug("==============================");
+		LOG.debug("=jsonString="+jsonString);
+		LOG.debug("==============================");      
+		return jsonString;
+	}
+
 	
-//	@RequestMapping(value = "/accessToken.do", method = RequestMethod.GET, 
-//			produces = "application/json;charset=UTF-8")
-//	@ResponseBody
-//	public String accessToken(MemberVO inVO, HttpSession session) throws Exception{
-//	String jsonString = "";
-//	LOG.debug("=================================");
-//	LOG.debug("accessToken()");
-//	LOG.debug("inVO: "+inVO);
-//	LOG.debug("=================================");	
-//	
-//	MessageVO message = memberService.memberCheck(inVO);
-//	
-//	if(null != message && "10".equals(message.getMsgId())) {
-//	MemberVO loginMember = memberService.doSelectOne(inVO);
-//	if(null != loginMember) {
-//		session.setAttribute("member", loginMember);
-//	
-//	message.setMsgContents(loginMember.getmName()+"님 환영합니다!");
-//	}
-//	
-//	}
-//	
-//	return jsonString;
-//	
-//	}
 	
 }

@@ -25,7 +25,19 @@ public interface MemberDao {
 	MemberVO doSelectOne(MemberVO inVO) throws SQLException;
 	
 	
-	List<MemberVO> getAll(MemberVO inVO);
+	List<MemberVO> getAll(MemberVO inVO) throws SQLException;
+
+	//test
+//	List<MemberVO> memberCheck(MemberVO inVO) throws SQLException;
+
+	/**
+	 * member 중복 check(DB와 비교)
+	 * @param inVO
+	 * @return 1(mNum존재)/0(없음)
+	 * @throws SQLException
+	 */
+	int memberCheck(MemberVO inVO) throws SQLException;
+	
 	
 	
 }

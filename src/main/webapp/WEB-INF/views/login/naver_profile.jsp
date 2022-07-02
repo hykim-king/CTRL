@@ -51,85 +51,47 @@
 <script type="text/javascript">
 $(document).ready(function(){
      console.log("document.ready");
-   
-     let url = "${CP}/login/doMemberInsert.do";
-     let method = "POST";
-     let parameters = {
-    		 "mNum" : $("#mNum").val(),
-             "mName" : $("#mName").val(),
-             "mEmail" : $("#mEmail").val(),
-             "mTel" : $("#mTel").val(),
-             "mAddr" : $("#mAddr").val(),
-             "mGrade" : $("#mGrade").val()
-     };
-     let async;
-     
-     EClass.callAjax(url, method, parameters, async, function(data){
-         console.log("data.msgId :"+ data.msgId);
-         console.log("data.msgContents :"+ data.msgContents);
-         if("1" == data.msgId){//수정성공
-             alert(data.msgContents);
-             //목록 조회
-             //trigger통한 호출
-             //$("#doRetrieve").trigger("click");
-             
-             doRetrieve(1);
-             //하단 초기화
-             init();
-         }else{
-             alert(data.msgContents);
-         }
-     });
      
      
+    
+     $("#doMemberInsert").one("click", function(){
+         console.log("doMemberInsert");
+     
+	     let url = "${CP}/login/doMemberInsert.do";
+	     let method = "POST";
+	     let parameters = {
+	    		 "mNum" : $("#mNum").val(),
+	             "mName" : $("#mName").val(),
+	             "mEmail" : $("#mEmail").val(),
+	             "mTel" : $("#mTel").val(),
+	             "mAddr" : $("#mAddr").val(),
+	             "mGrade" : $("#mGrade").val()
+	     };
+	     let async;
+	     
+	     EClass.callAjax(url, method, parameters, async, function(data){
+	         console.log("data.msgId :"+ data.msgId);
+	         console.log("data.msgContents :"+ data.msgContents);
+	         if("1" == data.msgId){
+	             alert(data.msgContents);
+	             //목록 조회
+	             //trigger통한 호출
+	             //$("#doRetrieve").trigger("click");
+	             
+	             doRetrieve(1);
+	             //하단 초기화
+	             init();
+	         }else{
+	             alert(data.msgContents);
+	         }
+	     });
+	     
 });    
 </script>       
 
 </head>
 <body>
-    <!-- 제목  -->
-    <div class="">
-      <h2></h2>
-    </div>
-    <!--// 제목  ---------------------------------------------------------------->
-    
-     <!-- table -->
-     <div class="table-responsive">
-         <table id="user_table" class="table table-striped table-bordered table-hover table-condensed">
-             <thead class="bg-primary">
-                 <tr>
-                 <th class="text-center col-sm-1 col-md-1 col-lg-1">번호</th>
-                 <th class="text-center col-sm-2 col-md-6 col-lg-2">회원번호</th>
-                 <th class="text-center col-sm-2 col-md-6 col-lg-2">이름</th>
-                 <th class="text-center col-sm-2 col-md-6 col-lg-2">이메일</th>
-                 <th class="text-center col-sm-3 col-md-6 col-lg-3">연락처</th>
-                 <th class="text-center col-sm-2 col-md-6 col-lg-2">주소</th>
-                 <th class="text-center col-sm-2 col-md-6 col-lg-2">등급</th>
-                 </tr>
-             </thead>
-             <tbody>
-                 <c:choose>
-                     <c:when test="${list.size() > 0 }">
-                     <c:forEach var="vo" items="${list }">
-                         <tr>
-                         <td class="text-center col-sm-1 col-md-1 col-lg-1">${vo.num }</td>
-                         <td class="text-left col-sm-2 col-md-6 col-lg-2">${vo.mNum }</td>
-                         <td class="text-left col-sm-2 col-md-6 col-lg-2">${vo.mName }</td>
-                         <td class="text-center col-sm-2 col-md-6 col-lg-2">${vo.mEmail }</td>
-                         <td class="text-left col-sm-3 col-md-6 col-lg-3">${vo.mTel }</td>
-                         <td class="text-center col-sm-2 col-md-6 col-lg-2">${vo.mAddr }</td>
-                         <td class="text-center col-sm-2 col-md-6 col-lg-2">${vo.mGrade }</td>
-                         </tr>
-                     </c:forEach>
-                     </c:when>
-                         <c:otherwise>
-                             <tr><td colspan="99" class="text-center">NO data found</td></tr>
-                         </c:otherwise>
-                 </c:choose>
-             </tbody>
-         </table>
-     </div>
-     <!-- table ---------------------------------------->
+   
 	
 </body>
 </html>

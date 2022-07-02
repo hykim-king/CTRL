@@ -16,15 +16,25 @@
 <link rel="stylesheet" type="text/css" href="${CP_RES}/css/main/main.css">
 
 <title>TableWare</title>
+<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+<script src="${CP_RES }/js/etc/jquery-1.12.4.js"></script>
+<!-- 사용자 정의 function, callAjax -->
+<script src="${CP_RES }/js/etc/eclass.js"></script>
+<!-- 사용자 정의 function, isEmpty -->
+<script src="${CP_RES }/js/etc/eUtil.js"></script>
 
 <!-- font awesome -->
-<script src="https://kit.fontawesome.com/2974daa1cb.js"
-	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/2974daa1cb.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="${CP_RES}/js/login/login_popup.js"></script>
+<script type="text/javascript">
 
-
+	//login click
+// 	$("#login").on("click", function(){
+//             window.open("${CP}/login/login.do");
+//         });
+</script>
 <body>
-	<!-- 메인 헤더 영역 시작 -->
+	<!-- 메인 헤더 영역 시작 (이은빈)-->
 	<div id="header">
 		<div id="top">
 			<div id="logo">
@@ -40,10 +50,8 @@
 			</div>
 			<div class="menu_right">
 				<ul>
-					<li><a href="javascript:showPopUp()">로그인</a></li>
-
-
-
+<!-- 					<li><a href="javascript:showPopUp();">로그인</a></li> -->
+					<li><a href="javascript:showPopUp()" class="login">로그인</a></li>
 					<li><a href="#">마이페이지</a></li>
 					<li><a href="#">장바구니</a></li>
 					<li><a href="#">FAQ</a></li>
@@ -59,7 +67,7 @@
 		</div>
 	</div>
 
-	<!-- 메인 헤더 영역 끝 -->
+	<!-- 메인 헤더 영역 끝 (이은빈)-->
 
 	<!-- 이미지 슬라이드 영역 시작 -->
 	<div class="main_slider">

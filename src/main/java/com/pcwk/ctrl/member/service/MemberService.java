@@ -16,6 +16,15 @@ public interface MemberService {
 	 */
 	 List<MemberVO> doMemberInsert(MemberVO inVO) throws SQLException;
 	
+//	 /**
+//	  * 
+//	  * test
+//	  * @param inVO
+//	  * @return
+//	  * @throws SQLException
+//	  */
+//	 List<MemberVO> memberCheck(MemberVO inVO) throws SQLException;
+	
 	/**
 	 * 회원 여부 확인
 	 * @param inVO
@@ -23,7 +32,7 @@ public interface MemberService {
 	 * @throws SQLException
 	 */
 	public MessageVO memberCheck(MemberVO inVO) throws SQLException;
-	
+//	
 	
 	/**
 	 * 회원 단건 조회
