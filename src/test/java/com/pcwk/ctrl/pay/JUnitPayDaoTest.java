@@ -53,7 +53,7 @@ public class JUnitPayDaoTest {
 	}
 
 	@Test
-	@Ignore
+	//@Ignore
 	public void payOrderInsert() throws SQLException {
 		LOG.debug("========================");
 		LOG.debug("=1.payOrderInsert()=");

@@ -17,6 +17,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <link rel="shortcut icon" type="image/x-icon" href="${CP}/favicon.ico">
 <c:set var="CP" value="${pageContext.request.contextPath}"/>
@@ -91,17 +92,19 @@
             <p class="name">이름<input class="orderer" type="text" value="김태민"></p>
             <p class="name">전화번호<input class="tel" type="tel" value="010-1234-5678"></p>
         <h1 class="title">주문상품</h1>
-            <input class="img" type="image" src="${CP_RES}/img/bowls01.jpg" align="left" align="middle">
-            <p class="img1"><p>${productInfo.pName}</p>${productInfo.pPrice}<p>1개</p>
-    </div>
+            <input class="img" type="image" src="${CP_RES}/img/<%=request.getParameter("pNum")%>.jpg" align="left" align="middle">
+            <p class="img1"><p id="product_name"><%=request.getParameter("product_name")%></p>
+            <p id="product_price"><fmt:formatNumber type="number"  maxFractionDigits="3" value='<%=request.getParameter("product_price")%>'/>원</p>
+            <p id="buy_number"><%=request.getParameter("buy_number")%>개</p>
+    </div>	
         <div class="payment">
             <h1 class="title">결제금액</h1>
             <h1 class="pay1">총 상품 금액</h1>
-            <p class="pay2">\242,000원</p>
+            <p class="pay2"><fmt:formatNumber type="number"  maxFractionDigits="3" value='<%=request.getParameter("totalNum")%>'/>원</p>
             <h1 class="pay1">배송비</h1>
             <p class="pay2">무료</p>
             <h1 class="pay1">최종 결제 금액</h1>
-            <p class="pay2">\242,000원</p>
+            <p class="pay2"><fmt:formatNumber type="number"  maxFractionDigits="3" value='<%=request.getParameter("totalNum")%>'/>원</p>
             <p><input class="check" type="checkbox" checked>아래 내용에 모두 동의합니다.(필수)</p>
             <p class="pay3">“쇼핑몰”은 이용자의 개인정보 수집시 서비스 제공을 위하여 필요한 범위에서 최소한의 개인정보를 수집합니다.
             “쇼핑몰”은 회원가입시 구매계약이행에 필요한 정보를 미리 수집하지 않습니다. 다만, 관련 법령상 의무이행을 위하여 구매계약 이전에 본인확인이 필요한 경우로서 최소한의 특정 개인정보를 수집하는 경우에는 그러하지 아니합니다.
@@ -115,43 +118,85 @@
             <input class="pay" type="button" value="결제">
         </div>
         
- 	<script type="text/javascript">
-    $('.pay').click(function() {
+    <script>
+	function getParameter(name) {
+	    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+	    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+	        results = regex.exec(location.search);
+	    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
+	</script>
+        
+    <script type="text/javascript">
+    $('.pay').click(function(){
     	var IMP = window.IMP;
     	var amount = 100;
+		console.log(getParameter("product_price"));
     	IMP.init('imp91452155');
         // IMP.request_pay(param, callback) 결제창 호출
         IMP.request_pay({ // param
             pg: "html5_inicis",//이니시스 웹표준 결제창
             pay_method: "card",//결제방법
             merchant_uid: 'merchant_'+new Date().getTime(),//주문번호
-            name: "아메리카노",//상품명
-           	amount: 100,//가격
-            buyer_email: "gildong@gmail.com",//이메일
-            buyer_name: "홍길동",//이름
-            buyer_tel: "010-4242-4242",//연락처
-            buyer_addr: "서울특별시 강남구 신사동",//주소
-            count :1//상품건수
-        }, function (rsp) { // callback
-            if (rsp.success) {
+            name: $("#product_name").text(),//상품명
+           	amount: getParameter("totalNum"),//가격
+            buyer_email: "gildong@gmail.com",//이메일 세션받을곳
+            buyer_name: "홍길동",//이름 - 세션받을곳
+            buyer_tel: "010-4242-4242",//연락처 세션받을곳
+            buyer_addr: "서울특별시 강남구 신사동",//주소 세션받을곳
+            count :1//상품건수	
+        }),function(rsp){//callback
+        	if(rsp.success){
               	var msg = '결제가 완료되었습니다.';
               	console.log(rsp);
               	console.log('상품명: '+rsp.name);
+              	console.log('주문번호: '+merchant_uid);
               	console.log('상품 금액: '+rsp.paid_amount);
               	console.log('주문자 이름: '+rsp.buyer_name);
               	console.log('주문자 번호: '+rsp.buyer_tel);
               	console.log('주문자 주소: '+rsp.buyer_addr);
               	console.log('삼풍 수량: '+rsp.count);
-              	//window.location.href="/ctrl/pay/payAfter.do";
-                // 결제 성공 시 로직,
-            } else {
+              	
+               	payOrderInsert(merchant_uid, rsp.name, rsp.paid_amount, rsp.buyer_name,
+               			rsp.buyer_tel, rsp.buyer_addr, rsp.count);
+              	
+              	window.location.href="/ctrl/pay/payAfter.do";
+                // 결제 성공 시 로직
+        	}else{
             	var msg = '결제가 실패하였습니다.'
-            	console.log(rsp);
-                // 결제 실패 시 로직,
-            }
+                	console.log(rsp);
+                    // 결제 실패 시 로직
+        	}
             alert(msg);
-        });
-    });
+        };
+        
+//        function payOrderInsert(){
+//            let url = "${CP}/pay/payOrderInsert.do";
+//            let method = "GET";
+//      		let async = true;   
+//  	    let parameters = {
+//       			   oNum : merchant_uid,
+//      	   	   	   oName : rsp.buyer_name,
+//                   oAddr : rsp.buyer_addr,
+//                   oTel : rsp.buyer_tel,
+//                   oStatus : "10",
+//                   oDt : SYSDATE,
+//                   mNum : "222",
+//  	    };
+    	    
+//          EClass.callAjax(url, parameters, method, async, function(data) {
+//              console.log("EClass.callAjax data : " + data);
+                
+//              if(null != data){
+//              	alert("DB에 접근함!");
+//              }else{
+//              	alert("DB에 접근못함!");
+//              }
+//          });
+//      };
+   });
+    	
     </script>
+
 </body>
 </html>

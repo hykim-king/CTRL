@@ -56,6 +56,9 @@
     <script type="text/javascript">
        $(document).ready(function(){
            console.log("document.ready");
+           
+           
+           
            /*----------------- 리뷰(김주혜) 시작-------------------*/
            
            // 리뷰 - 버튼 누르면 관리자 댓글 나오게 하기
@@ -283,10 +286,10 @@
           <img alt="상품 이미지" src="${CP_RES}/img/${productInfo.pNum}.jpg" id="productImg">
             
           <div class="info">
-            <form action="#" method="get">
+            <form action="/ctrl/pay/payBefore.do" method="get">
             
                 <!-- 상품 이름, 용량, 가격 -->
-                <strong class="product_name">${productInfo.pName}</strong><br/>
+                <strong class="product_name" id="product_name">${productInfo.pName}</strong><br/>
                 <hr/>
                 <p class="product_price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${productInfo.pPrice}"/>원</p>
             
@@ -310,7 +313,7 @@
                 <!-- 장바구니, 구매 버튼 -->
                 <div class="submit_buttons">
                      <input class="btn-2 button" type="submit" value="CART">
-                     <input class="btn-1 button" type="submit" value="BUY">          
+                     <input class="btn-1 button" id="btn-1" type="submit" value="BUY">          
                 </div>            
             </form>
           </div> <!-- .info -->
@@ -353,6 +356,23 @@
     <!--// 아코디언 메뉴(상세설명, 리뷰)(김주혜) -->
     </div> 
     <!-- 콘텐츠 영역 끝(김주혜) -->
+    
+    <!-- payBefore로 GET방식으로 값 넘기기(김병완) -->
+    <script type="text/javascript">
+    $("#btn-1").on("click", function(){
+  	 	let productImgSrc = $('#productImg').attr("src");
+     	let pNum = productImgSrc.substring(productImgSrc.lastIndexOf('/')+1,productImgSrc.lastIndexOf('.'));
+  	    let product_name = $(".product_name").text();
+  	    let product_price = $(".product_price").text();
+  	    let buy_number = $("#buy_number").text();
+  	    let totalNum = $("#total_num").text();
+     	
+     	location.href = "/ctrl/pay/payBefore.do?pNum=" + pNum + "&product_name=" + product_name
+     			+ "&product_price=" + prod.uct_price + "&buy_number=" + buy_number + 
+     			"&totalNum=" + totalNum; 
+    });
+    </script>
+    <!-- //payBefore로 GET방식으로 값 넘기기(김병완) -->
     </body>
 </html> 
     
