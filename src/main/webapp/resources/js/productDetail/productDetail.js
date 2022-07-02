@@ -45,7 +45,10 @@ $(document).ready(function(){
 		  
 		  
 	  }else if(type === "minus")  {
-		  if(bNumber == 1) {
+		  if(bNumber == 0 ) {
+			  $("#buy_number").text('0');
+			  return;
+		  }else if(bNumber == 1 ) {
 			  $("#buy_number").text('1');
 			  return;
 		  }

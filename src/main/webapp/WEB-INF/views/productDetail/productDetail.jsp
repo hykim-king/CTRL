@@ -235,10 +235,16 @@
                 
            });
            
-            // 관리자 댓글 수정
+           // 관리자 댓글 수정
            $(document).on("click", '#review_table #rdUpdate', function(e) {
                console.log('rdUpdate');
-           });    
+               
+               var managerCommentTag = $(this).parents('.manager_comment').html();
+               var rNumber = managerCommentTag.substring(managerCommentTag.indexOf('>')+1, managerCommentTag.indexOf('/')-1);
+               rNumber = parseInt(rNumber);
+               window.open("${CP}/review/rdUpdatePopup.do?rNum="+rNumber,"댓글 작성", "width=800, height=700, left=100, top=100");
+               
+           });   
           
            
            /*----------------- 리뷰(김주혜) 끝-------------------*/

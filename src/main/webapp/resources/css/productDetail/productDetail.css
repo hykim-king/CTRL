@@ -14,21 +14,18 @@
     width: 100%;
     padding: 20px 0px;
     margin: 0 auto;
-    
-    border-top: 2px dotted rgba(243, 156, 18, 0.48);
-    border-left: 2px dotted rgba(243, 156, 18, 0.48);
-    border-right: 2px dotted rgba(243, 156, 18, 0.48);  
 }
 
 .product_contents > img {
-    width: 50%;
+    width: 55%;
 }
 
 .info {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 30%;
+    width: 37%;
+    margin-left: 39px;
 }
 
 .info > form {
@@ -88,7 +85,7 @@ input[type="button"] {
     background-color: #424242;
     color: #fff;
     border: none;
-    font-size: 67%;
+    font-size: 141%;
 }
 
 /* 총 금액 */
@@ -210,6 +207,7 @@ input[type="button"] {
     float: left;
     width: 58%;
     margin-top: 50px;
+    margin-left: 22px;
 }
 
 .accord_title,
@@ -291,7 +289,6 @@ input[type="button"] {
 
 .rAlign {
     text-align: center;
-    border-top : 1px solid rgba(243, 156, 18, 0.48);
 }
 
 /* 관리자 댓글이 닫혀 있을 때 화살표 */

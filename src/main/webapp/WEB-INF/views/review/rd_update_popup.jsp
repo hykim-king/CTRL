@@ -60,13 +60,12 @@
                 
                 return;
             }
-            let url = "${CP}/review/doRdInsert.do";
+
+            let url = "${CP}/review/doRdUpdate.do";
             let method = "GET";
             let parameters = {
             		rNum : $("#rNum").val(),
-            		rdCon : $("#rdCon").val(),
-            		rdName : $("#rdName").val(),
-            		mNum : $("#mNum").val()
+            		rdCon : $("#rdCon").val()
             };
             
             let async = true;
@@ -75,8 +74,8 @@
                 console.log("data.msgContents :"+ data.msgContents);
                 
                 if("1" == data.msgId) {
-                    alert(data.msgContents);           
-                    window.close(); 
+                    alert(data.msgContents);
+                    window.close();            
                     opener.location.reload();
                 }else {
                     alert(data.msgContents);
@@ -97,8 +96,6 @@
        <form method="get" action="#" name="reviewFrm" id="reviewFrm">
           <!--댓글번호-->
           <input type="text" id="rNum" name="rNum" value="${rNum}"/> 
-          <!--회원번호-->
-          <input type="text" id="mNum" name="mNum" value="${mNum}"/> 
           
           <!-- 입력받는 부분 -->
           <ul>

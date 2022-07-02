@@ -73,7 +73,7 @@ p {
 }
 
 #oName, #rContent,
-#rdName {
+#rdName, #rdCon {
   outline: none;
   width: 100%;
   font-size: 110%;
