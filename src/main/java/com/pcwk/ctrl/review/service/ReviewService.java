@@ -46,12 +46,12 @@ public interface ReviewService {
 	public MemberVO doMemberSelect(MemberVO inVO) throws SQLException;
 	
 	/**
-	 * 관리자 댓글 입력
-	 * @param rdVO
+	 * 관리자가 맞는 지 확인 후 관리자 댓글 입력
+	 * @param mInVO, rInVO
 	 * @return 1(성공)/0(실패)
 	 * @throws SQLException
 	 */
-	public int doRdInsert(RdVO inVO) throws SQLException;
+	public int doRdInsert(MemberVO mInVO, RdVO rInVO) throws SQLException;
 	
 	/**
 	 * 리뷰 테이블 전체 개수 조회

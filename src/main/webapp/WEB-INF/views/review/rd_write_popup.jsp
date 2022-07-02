@@ -42,61 +42,43 @@
     $(document).ready(function(){
         //--doReviewInsert
         $("#doReviewInsert").on("click",function(e){
-            if(eUtil.ISEmpty($("#dNum").val())) {
+            if(eUtil.ISEmpty($("#rNum").val())) {
                 alert("다시 시도해주세요");
-                $("#oName").focus();
                 
                 return;
             }
             
-            if(eUtil.ISEmpty($("#oNum").val())) {
+            if(eUtil.ISEmpty($("#rdName").val())) {
                 alert("다시 시도해주세요");
-                $("#oName").focus();
-                
-                return;
-            }
-            
-            if(eUtil.ISEmpty($("#oName").val())) {
-                alert("다시 시도해주세요");
-                $("#oName").focus();
                 
                 return;
             }
 
-            if(eUtil.ISEmpty($("#rContent").val())) {
+            if(eUtil.ISEmpty($("#rdCon").val())) {
                 alert("리뷰 내용을 작성해주세요");
-                $("#rContent").focus();
+                $("#rdCon").focus();
                 
                 return;
             }
-            let url = "${CP}/review/doReviewInsert.do";
+            let url = "${CP}/review/doRdInsert.do";
             let method = "GET";
             let parameters = {
-                    dNum : $("#dNum").val(),
-                    oNum : $("#oNum").val(),
-                    rContent : $("#rContent").val(),
-                    oName : $("#oName").val(),
-                    pNum : $("#pNum").val()
+            		rNum : $("#rNum").val(),
+            		rdCon : $("#rdCon").val(),
+            		rdName : $("#rdName").val(),
+            		mNum : $("#mNum").val()
             };
             
             let async = true;
             EClass.callAjax(url, parameters, method, async, function(data){
-                console.log('data.pNum:'+data.pNum);
-                let pNum = data.pNum;
-                let pName = data.pName;
-                let pPrice = data.pPrice;
-                let pSize = data.pSize;
+                console.log("data.msgId :"+ data.msgId);
+                console.log("data.msgContents :"+ data.msgContents);
                 
-                let pageSize = 7;
-                let pageNum = 1;
-                
-                if(null != data) {
-                    alert("리뷰가 등록되었습니다!");
-                    opener.location.href="${CP}/productDetail/view.do?pNum=" + pNum + "&pName=" + pName + 
-                    "&pPrice="+pPrice + "&pSize="+pSize + "&pageSize="+pageSize + "&pageNum=" + pageNum;             
+                if("1" == data.msgId) {
+                    alert(data.msgContents);           
                     window.close();                 
                 }else {
-                    alert("다시 시도해주세요.^^");
+                    alert(data.msgContents);
                     window.close();
                 } 
             }); 
@@ -110,21 +92,19 @@
 </head>
 <body>
    <div class="container">
-     <p>상품에 대한 리뷰를 작성해주세요</p>
+     <p>회원 리뷰에 대한 댓글을 작성하세요</p>
        <form method="get" action="#" name="reviewFrm" id="reviewFrm">
-          <!--주문 상세 번호-->
-          <input type="text" id="dNum" name="dNum" value="${dNum}"/> 
-          <!--주문 번호-->
-          <input type="text" id="oNum" name="oNum" value="${oNum}"/> 
-          <!--상품 번호-->
-          <input type="text" id="pNum" name="pNum" value="${pNum}"/> 
+          <!--댓글번호-->
+          <input type="text" id="rNum" name="rNum" value="${rNum}"/> 
+          <!--회원번호-->
+          <input type="text" id="mNum" name="mNum" value="${mNum}"/> 
           
           <!-- 입력받는 부분 -->
           <ul>
-            <li><label for="oName">작성자</label></li>
-            <li class="border_bottom"><input type="text" name="oName" id="oName" readonly="readonly" value="${oName}"/></li>
-            <li><label for="rContent">내용</label></li>
-            <li><textarea rows="10" cols="40" name="rContent" id="rContent"></textarea></li>
+            <li><label for="rdName">작성자</label></li>
+            <li class="border_bottom"><input type="text" name="rdName" id="rdName" readonly="readonly" value="${rdName}"/></li>
+            <li><label for="rdCon">내용</label></li>
+            <li><textarea rows="10" cols="40" name="rdCon" id="rdCon"></textarea></li>
             <li><input type="button" id="doReviewInsert" class="btn-1 button" value="REVIEW WRITE"></li>
           </ul>
           <!--// 입력받는 부분 -->

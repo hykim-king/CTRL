@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pcwk.ctrl.review">
-     <!-- 회원 등급 확인 -->
-     <select id="doSelectGrade" parameterType="MemberVO" resultType="int">
-        SELECT COUNT(*) cnt
-        FROM member
-        WHERE m_num = #{mNum}
-        AND m_grade = '1'     
-     </select>
      
      <!-- 관리자 댓글 수정 -->
      <update id="rdUpdate" parameterType="ReviewVO">
@@ -25,14 +18,16 @@
 
     <!-- 회원 테이블 조회 -->
     <select id="doMemberSelect" parameterType="MemberVO" resultType="MemberVO">
-        SELECT m_num,
-               m_name,
-               m_email,
-               m_tel,
-               m_addr,
-               m_grade
+        <![CDATA[
+        SELECT m_num as "mNum",
+               m_name as "mName",
+               m_email as "mEmail",
+               m_tel as "mTel",
+               m_addr as "mAddr",
+               m_grade as "mGrade"
         FROM member
         WHERE m_num = #{mNum}
+        ]]>
     </select>     
      
      <!-- 관리자 댓글 입력 -->
@@ -68,11 +63,9 @@
         <result property="rdName" column="rd_name"/>
         <result property="oName" column="o_name"/>
         <result property="mNum" column="m_num"/>
-        <result property="oNum" column="o_num"/>
-        <result property="dNum" column="d_num"/>
         <result property="managerNum" column="manager_num"/>
-        <result property="rdReg" column="rd_reg"/>
         <result property="rDt" column="r_dt"/>
+        <result property="rdReg" column="rd_reg"/>
         <result property="cnt" column="cnt"/>
     </resultMap>    
     
@@ -86,8 +79,6 @@
                ttt1.rd_name,
                ttt1.o_name,
                ttt1.m_num,
-               ttt1.o_num,
-               ttt1.d_num,
                ttt1.manager_num,
                ttt1.r_dt,
                ttt1.rd_reg
@@ -100,8 +91,6 @@
                        NVL(t1.rd_name,'N') as rd_name,
                        t4.o_name,
                        t4.m_num,
-                       t3.o_num,
-                       t3.d_num,
                        t1.m_num as manager_num,
                        t2.r_dt,
                        t1.rd_reg

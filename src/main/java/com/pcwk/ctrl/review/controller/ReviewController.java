@@ -41,28 +41,56 @@ public class ReviewController {
 	public ReviewController() {}
 	
 	@RequestMapping(value = "/rdPopup.do", method = RequestMethod.GET, produces = "application/text;charset=UTF-8")
-	public String rdPopup(MemberVO memberVO, RdVO rdVO, HttpServletResponse response, Model model) throws SQLException, IOException {
-		
-		String jsonString = "";
-		
+	public String rdPopup(HttpServletRequest req, MemberVO memberParam, Model model) throws SQLException, IOException {
 		LOG.debug("=================================");
 		LOG.debug("rdPopup()");
 		LOG.debug("=================================");
 		
-		int flag = reviewService.doSelectGrade(memberVO);
+		// jsp에 보내기 위한 값 추출
+		String rNum = req.getParameter("rNum"); // 댓글 번호
+		String mNum = "55555"; // 회원번호, value : session.getAttribute("")
 		
-		// VIEW 전송
-		// response encoding
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
+		// 관리자 이름을 추출하기 위한 파라미터 준비
+		memberParam.setmNum(mNum);
 		
-		if(1 == flag) { // memberVO가 관리자이면
-		    out.println("<script>window.open('${CP}/review/reviewPopup.do?oNum='+oNum+'&dNum='+dNum+'&oName='+oName"
-		    		+ "+'&pNum='+pNum,'리뷰작성', 'width=800, height=700, left=100, top=100');</script>");			
-		} else { // memberVO가 관리자가 아니면
-			out.println("<script>alert('접근할 수 없습니다.'); </script>");			
+		// 관리자 번호로 select해서 관리자 이름 추출
+		MemberVO memberVO = reviewService.doMemberSelect(memberParam);
+		String mName = memberVO.getmName();
+		
+		model.addAttribute("rNum", rNum);
+		model.addAttribute("mNum", mNum);
+		model.addAttribute("rdName", mName);
+		
+		return "review/rd_write_popup";
+		
+	}
+
+	@RequestMapping(value = "/doRdInsert.do", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String doRdInsert(MemberVO mInVO, RdVO rInVO) throws SQLException {
+		LOG.debug("=================================");
+		LOG.debug("rInVO : " + rInVO);
+		LOG.debug("=================================");
+
+		mInVO.setmNum(rInVO.getmNum());
+		
+		int flag = reviewService.doRdInsert(mInVO, rInVO);
+				
+		String resultMsg = "";
+		if (1 == flag) {
+			resultMsg = "댓글이 등록되었습니다!";
+		}else {
+			resultMsg = "다시 시도해주세요.^^";
 		}
+		MessageVO message = new MessageVO(String.valueOf(flag), resultMsg);
+		
+		String jsonString = new Gson().toJson(message);
+		LOG.debug("================================="); 
+		LOG.debug("jsonString : " + jsonString); 
+		LOG.debug("=================================");
+		
 		return jsonString;
+		
 	}
 	
 	@RequestMapping(value = "/reviewPopup.do", method = RequestMethod.GET, produces = "application/text;charset=UTF-8")

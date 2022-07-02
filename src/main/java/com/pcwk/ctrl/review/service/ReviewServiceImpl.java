@@ -15,7 +15,6 @@ import com.pcwk.ctrl.cmn.ProductVO;
 import com.pcwk.ctrl.cmn.RdVO;
 import com.pcwk.ctrl.cmn.ReviewRdVO;
 import com.pcwk.ctrl.cmn.ReviewVO;
-import com.pcwk.ctrl.cmn.SearchVO;
 import com.pcwk.ctrl.review.dao.ReviewDao;
 
 @Service("reviewService")
@@ -62,8 +61,25 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public int doRdInsert(RdVO inVO) throws SQLException {
-		return reviewDao.doRdInsert(inVO);
+	public int doRdInsert(MemberVO mInVO, RdVO rInVO) throws SQLException {
+		// 1. 회원테이블 조회(관리자인지 여부, 이름 알아내기)
+		// 2. 관리자라면 관리자 댓글 입력
+		LOG.debug("===================");
+		LOG.debug("=mInVO="+mInVO);
+		LOG.debug("=rInVO="+rInVO);
+		LOG.debug("===================");
+		
+		MemberVO outVO = reviewDao.doMemberSelect(mInVO);
+		LOG.debug("outVO.getmGrade() : " + outVO.getmGrade());
+		int rdFlag = 0;
+		if( outVO.getmGrade().equals("1") ) { // 관리자 1, 회원 0
+
+			rdFlag = reviewDao.doRdInsert(rInVO); 
+		}
+		LOG.debug("===================");
+		LOG.debug("=rdFlag="+rdFlag);
+		LOG.debug("===================");
+		return rdFlag;
 	}
 
 	@Override

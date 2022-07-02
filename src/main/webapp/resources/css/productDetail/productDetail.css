@@ -88,6 +88,7 @@ input[type="button"] {
     background-color: #424242;
     color: #fff;
     border: none;
+    font-size: 67%;
 }
 
 /* 총 금액 */
@@ -274,6 +275,7 @@ input[type="button"] {
 .review_head {
     display : flex;
     align-items: center;
+    margin-top: 15px;
 }
 
 .customer_name {
@@ -315,33 +317,22 @@ input[type="button"] {
     display: none;
     border-top: 0.5px solid rgba(243, 156, 18, 0.48);
     background-clip: border-box;
-    padding: 20px 0px 20px 15px;
+    padding: 0px 0px 30px 15px;
     position: relative;
 }
 
-.review_buttons {
-    display:flex;
-    width: 14%;
-    font-size: 44%;
-    position: absolute;
-    right: 15px;
-}
-
-#reviewUpdate{
+#rdInsert,
+#rdUpdate,
+#reviewUpdate {
     width: 7%;
     font-size: 67%;
     position: absolute;
     right: 15px;
-}
-
-#doRdInsert,
-#rdUpdate,
-#reviewUpdate {
     line-height: 0px;
 }
 
-#doRdInsert {
-    margin-right: 5px;
+#rdUpdate {
+    margin-top: 15px;
 }
 
 #doRdInsert:hover,

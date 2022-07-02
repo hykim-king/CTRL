@@ -26,14 +26,14 @@
 }
 
 body, .container {
-	display: flex;
+    display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
 body{
-  min-width: 200px; /* 최소 폭 */	
+  min-width: 200px; /* 최소 폭 */  
   height: 100vh;
 }
 
@@ -56,7 +56,7 @@ p {
 }
 
 #reviewFrm > input {
-	display: none;
+    display: none;
 }
 
 #reviewFrm>ul {
@@ -72,20 +72,22 @@ p {
   margin: 1% 0% 4% 0%;
 }
 
-#oName, #rContent {
+#oName, #rContent,
+#rdName {
   outline: none;
   width: 100%;
   font-size: 110%;
 }
 
-#oName {
+#oName, #rdName {
   border: none;
   height: 50px;
   background-color: #cccccc59;
 }
 
-#rContent {
+#rContent, #rdCon {
   border: 2px solid #424242;
+  width: 100%;
   height: 233px;
   resize: none;
   box-sizing: border-box;

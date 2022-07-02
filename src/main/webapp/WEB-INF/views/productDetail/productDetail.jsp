@@ -56,9 +56,6 @@
     <script type="text/javascript">
        $(document).ready(function(){
            console.log("document.ready");
-           
-           
-           
            /*----------------- 리뷰(김주혜) 시작-------------------*/
            
            // 리뷰 - 버튼 누르면 관리자 댓글 나오게 하기
@@ -160,52 +157,49 @@
                    let totalCnt = 0; // 총글수
                    let pageTotal = 1; // 페이지 수
                    
-                   
                    // 조회 데이터가 있는 경우
                    if(null != parsedData && parsedData.length > 0) {
                        
                        $.each(parsedData, function(i, reviewVO){
                            let rContent = reviewVO.rContent;
                            let rdCon = reviewVO.rdCon;
-                           let managerNum = reviewVO.managerNum;
                            let cnt = reviewVO.cnt;
                            let memberNum = reviewVO.mNum;
+                           let rdReg = reviewVO.rdReg;
                            
                            htmlData += " <div class='reivew_data'>                                                     ";
-                           console.log("memberNum : " + typeof memberNum);
                             if(memberNum == "11111") {  // 작성한 회원과 로그인한 사람이 같으면
-                              htmlData += "     <input type='button' id='reviewUpdate' value='수정' class='btn-1 button'>";
+                              htmlData += "  <input type='button' id='reviewUpdate' value='수정' class='btn-1 button'>";
                             } 
-                           htmlData += "     <div style='display:none;>"+ <c:out value='reviewVO.rNum'/>+"</div>";
-                           htmlData += "     <div style='display:none;'>"+ <c:out value='reviewVO.mNum' />+"</div>";
-                           htmlData += "     <div style='display:none;'>"+ <c:out value='reviewVO.oNum' />+"</div>";
-                           htmlData += "     <div style='display:none;'>"+ <c:out value='reviewVO.dNum' /> +"</div>";
                            htmlData += "     <div class='review_head'>";
                            htmlData += "        <strong class='customer_name'>"+ <c:out value='reviewVO.oName' />+"</strong> ";
                            htmlData += "        <div class='review_contents'>" + timeForToday(reviewVO.rDt) +"</div>        ";
                            htmlData += "     </div> ";
                            htmlData += "     <p class='review_contents'>" + rContent.replaceAll('\n', '<br/>') +"</p>        ";
                            htmlData += " </div>";
-                           if('N' != reviewVO.rdCon) { // 관리자 댓글이 있다면
-                                   console.log("reviewVO.managerNum : "+reviewVO.managerNum);
-                                   console.log("reviewVO.cnt : "+reviewVO.cnt);
-                                   console.log("reviewVO.cnt : "+ typeof reviewVO.cnt);
                                    
-                                   htmlData += " <p class='rdButton'></p>        ";
+                           htmlData += " <p class='rdButton'></p>        ";
                                    htmlData += " <div class='manager_comment'> ";  
-                                   htmlData += "   <div class='review_buttons'>";
-                                    if(managerNum == '55555' && cnt == 1) {  
-                                      htmlData += "      <input type='button' id='rdInsert' value='등록' class='btn-1 button'>";
-                                      htmlData += "      <input type='button' id='rdUpdate' value='수정' class='btn-1 button'>";
+                                   htmlData += "   <div style='display:none;' id='reviewNum'>"+reviewVO.rNum+"</div>";
+                                    if(cnt == 1) {  // 로그인한 사람이 관리자일때   
+                                        if('N' == rdCon){
+                                          htmlData += " <input type='button' id='rdInsert' value='등록' class='btn-1 button'>";                                           
+                                        }else {
+                                          htmlData += " <input type='button' id='rdUpdate' value='수정' class='btn-1 button'>";
+                                      }
                                     } 
-                                   htmlData += "   </div> ";
                                    htmlData += "   <div class='review_head'>";
-                                   htmlData += "      <strong class='customer_name'>"+reviewVO.rdName+"</strong>";
-                                   htmlData += "      <div class='review_contents'>" + timeForToday(reviewVO.rdReg)  +"</div>        ";
+                                   if('N' != reviewVO.rdName) {
+                                     htmlData += "      <strong id='rdName' class='customer_name'>"+<c:out value='reviewVO.rdName' />+"</strong>";
+                                   }
+                                   if(null != reviewVO.rdReg) {
+                                     htmlData += "      <div class='review_contents'>" + timeForToday(reviewVO.rdReg)  +"</div>        ";
+                                   }
                                    htmlData += "   </div> ";
-                                   htmlData += "   <div class='review_contents'>"+ rdCon.replaceAll('\n', '<br/>')+"</div>";
+                                   if('N' != rdCon){
+                                        htmlData += "   <div class='review_contents'>"+ rdCon.replaceAll('\n', '<br/>')+"</div>";
+                                   }
                                    htmlData += " </div>"; 
-                           }
 
                        });
                        
@@ -225,7 +219,7 @@
                doReviewsRetrieve(1);
            });
            
-            // 회원 리뷰 입력
+            // 회원 리뷰 수정
            $(document).on("click", '#review_table #reviewUpdate', function(e) {
                console.log('reviewUpdate');
            });
@@ -233,6 +227,12 @@
             // 관리자 댓글 입력
            $(document).on("click", '#review_table #rdInsert', function(e) {
                console.log('rdInsert');
+               var managerCommentTag = $(this).parents('.manager_comment').html();
+               var rNumber = managerCommentTag.substring(managerCommentTag.indexOf('>')+1, managerCommentTag.indexOf('/')-1);
+               rNumber = parseInt(rNumber);
+               console.log("rNumber : " + rNumber);
+               window.open("${CP}/review/rdPopup.do?rNum="+rNumber,"댓글 작성", "width=800, height=700, left=100, top=100");
+                
            });
            
             // 관리자 댓글 수정
@@ -289,7 +289,7 @@
             <form action="/ctrl/pay/payBefore.do" method="get">
             
                 <!-- 상품 이름, 용량, 가격 -->
-                <strong class="product_name" id="product_name">${productInfo.pName}</strong><br/>
+                <strong class="product_name">${productInfo.pName}</strong><br/>
                 <hr/>
                 <p class="product_price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${productInfo.pPrice}"/>원</p>
             
@@ -313,7 +313,7 @@
                 <!-- 장바구니, 구매 버튼 -->
                 <div class="submit_buttons">
                      <input class="btn-2 button" type="submit" value="CART">
-                     <input class="btn-1 button" id="btn-1" type="submit" value="BUY">          
+                     <input class="btn-1 button" type="submit" value="BUY">          
                 </div>            
             </form>
           </div> <!-- .info -->
