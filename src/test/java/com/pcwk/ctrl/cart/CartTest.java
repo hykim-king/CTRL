@@ -3,6 +3,7 @@ package com.pcwk.ctrl.cart;
 import static org.junit.Assert.*;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,7 +16,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.pcwk.ctrl.cart.dao.CartDao;
-import com.pcwk.ctrl.cmn.CartVO;
+import com.pcwk.ctrl.cmn.ProductVO;
 
 
 @RunWith(SpringJUnit4ClassRunner.class) // JUnit기능을 스프링 프레임으로 확장!
@@ -30,7 +31,7 @@ public class CartTest {
 	
 	@Autowired
 	CartDao cartDao;
-	CartVO cart01;
+	ProductVO cart01;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -38,7 +39,7 @@ public class CartTest {
 		LOG.debug("=0. setUp()=");
 		LOG.debug("=======================");
 		
-		cart01 = new CartVO("glass07", "뉴웨이브 데일리 글라스", 2700);
+		cart01 = new ProductVO("glass07", "glass", "뉴웨이브 데일리 글라스", 2700, "270ml");
 		
 		
 		LOG.debug("context:"+context);
@@ -51,17 +52,10 @@ public class CartTest {
 
 	@Test
 	public void doSelectone() throws SQLException {
-				// 1. 1건 조회
-			 	CartVO outVO = cartDao.doCartSelect(cart01);
-				LOG.debug("outVO : " + outVO);
-				// 2. 비교
-			    isSameData(outVO, cart01);
+		List<ProductVO> list = cartDao.doCartSelect(cart01);
+		for(ProductVO vo : list) {
+			LOG.debug("vo="+vo);
+		}
 	}
-	
-	 private void isSameData(CartVO voVO, CartVO orgVO) {
-	      assertEquals(voVO.getpNum(), orgVO.getpNum());
-	      assertEquals(voVO.getpName(), orgVO.getpName());
-	      assertEquals(voVO.getpPrice(), orgVO.getpPrice());
-   }
 
 }

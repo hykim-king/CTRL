@@ -1,9 +1,11 @@
 package com.pcwk.ctrl.cart.service;
 
-import com.pcwk.ctrl.cmn.CartVO;
+import java.util.List;
+
+import com.pcwk.ctrl.cmn.ProductVO;
 
 public interface CartService {
 	
-	public CartVO doCartSelect(CartVO inVO);
+	public List<ProductVO> doCartSelect(ProductVO inVO);
 	
 }

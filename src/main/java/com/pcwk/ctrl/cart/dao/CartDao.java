@@ -1,7 +1,12 @@
 package com.pcwk.ctrl.cart.dao;
 
-import com.pcwk.ctrl.cmn.CartVO;
+
+import java.util.List;
+
+import com.pcwk.ctrl.cmn.ProductVO;
 
 public interface CartDao {
-	CartVO doCartSelect(CartVO  vo);	
+	
+	List<ProductVO> doCartSelect(ProductVO inVO);
+	
 }
