@@ -75,7 +75,7 @@
     <div id="header">
         <div id="top">
             <div id="logo">
-                <a href="#"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
+                <a href="${CP}/main/main.do"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
             </div>
             <div class="menu_left">
                 <ul>
@@ -89,7 +89,7 @@
                 <ul>
                     <li>로그아웃</li>
 
-                    <li><a href="#">마이페이지</a></li>
+                    <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
                     <li><a href="#">장바구니</a></li>
                     <li><a href="#">FAQ</a></li>
                     <li><a href="#">공지사항</a></li>
@@ -116,7 +116,7 @@
 <div class="my_box">
     <ul>
         <li class="my"><strong>마이페이지</strong><li>
-        <li class="info"><a href="${CP}/my_page.do">회원정보</a></li>
+        <li class="info"><a href="${CP}/memberInfo/memberInfo.do">회원정보</a></li>
         <li class="order"><a href="${CP}/order/orderList.do"><strong>주문조회</strong></a></li>
     </ul>
 </div>

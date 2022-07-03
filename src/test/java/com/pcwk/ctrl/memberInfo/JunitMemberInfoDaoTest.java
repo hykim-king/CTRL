@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.pcwk.ctrl.cmn.MemberVO;
-import com.pcwk.ctrl.my_page.dao.My_pageDao;
+import com.pcwk.ctrl.memberInfo.dao.MemberInfoDao;
 
 @WebAppConfiguration 
 @RunWith(SpringJUnit4ClassRunner.class) //JUnit기능을 스프링 프레임으로 확장!
@@ -32,7 +32,7 @@ public class JunitMy_pageDaoTest {
 	ApplicationContext context;
 	
 	@Autowired
-	My_pageDao dao;
+	MemberInfoDao dao;
 	MemberVO member01;
 
 	@Before

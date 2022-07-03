@@ -1,4 +1,4 @@
-package com.pcwk.ctrl.my_page.controller;
+package com.pcwk.ctrl.memberInfo.controller;
 
 import java.util.List;
 
@@ -10,22 +10,23 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.pcwk.ctrl.my_page.service.My_pageService;
 import com.pcwk.ctrl.cmn.MemberVO;
+import com.pcwk.ctrl.memberInfo.service.MemberInfoService;
 
 
-@Controller
-public class My_pageController {
+@Controller("memberInfoController")
+@RequestMapping("memberInfo")
+public class MemberInfoController {
 	
 	final Logger LOG = LogManager.getLogger(getClass());
 	   
 	   @Autowired
-	   My_pageService memberService;
+	   MemberInfoService memberService;
 	   
-	   public My_pageController() {}
+	   public MemberInfoController() {}
 	   
 	   // 회원목록
-	   @RequestMapping(value="/my_page.do", method=RequestMethod.GET)
+	   @RequestMapping(value="/memberInfo.do", method=RequestMethod.GET)
 		public String memberList(Model model) {
 			LOG.debug("==========================");
 			LOG.debug("memberList()");
@@ -33,7 +34,7 @@ public class My_pageController {
 			
 			List<MemberVO> list = memberService.memberList();
 			model.addAttribute("list", list);
-			return "my_page/my_page";
+			return "memberInfo/memberInfo";
 			
 		}
 }

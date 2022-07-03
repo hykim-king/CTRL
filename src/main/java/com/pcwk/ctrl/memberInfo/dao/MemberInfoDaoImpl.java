@@ -1,4 +1,4 @@
-package com.pcwk.ctrl.my_page.dao;
+package com.pcwk.ctrl.memberInfo.dao;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.pcwk.ctrl.cmn.MemberVO;
 
 @Repository
-public class My_pageDaoImpl implements My_pageDao {
+public class MemberInfoDaoImpl implements MemberInfoDao {
 	
 	// mybatis db 연결객체
 		@Autowired

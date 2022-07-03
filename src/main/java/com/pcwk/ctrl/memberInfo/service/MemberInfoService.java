@@ -1,10 +1,10 @@
-package com.pcwk.ctrl.my_page.service;
+package com.pcwk.ctrl.memberInfo.service;
 
 import java.util.List;
 
 import com.pcwk.ctrl.cmn.MemberVO;
 
-public interface My_pageService {
+public interface MemberInfoService {
 
 	public List<MemberVO> memberList();
 

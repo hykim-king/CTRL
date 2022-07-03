@@ -52,7 +52,7 @@
 				<ul>
 <!-- 					<li><a href="javascript:showPopUp();">로그인</a></li> -->
 					<li><a href="javascript:showPopUp()" class="login">로그인</a></li>
-					<li><a href="#">마이페이지</a></li>
+					<li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
 					<li><a href="#">장바구니</a></li>
 					<li><a href="#">FAQ</a></li>
 					<li><a href="#">공지사항</a></li>
