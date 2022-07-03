@@ -48,24 +48,24 @@
                 return;
             }
             
-            if(eUtil.ISEmpty($("#rdName").val())) {
+            if(eUtil.ISEmpty($("#oName").val())) {
                 alert("다시 시도해주세요");
                 
                 return;
             }
 
-            if(eUtil.ISEmpty($("#rdCon").val())) {
+            if(eUtil.ISEmpty($("#rContent").val())) {
                 alert("리뷰 내용을 작성해주세요");
-                $("#rdCon").focus();
+                $("#rContent").focus();
                 
                 return;
             }
 
-            let url = "${CP}/review/doRdUpdate.do";
+            let url = "${CP}/review/doReviewUpdate.do";
             let method = "GET";
             let parameters = {
             		rNum : $("#rNum").val(),
-            		rdCon : $("#rdCon").val()
+            		rContent : $("#rContent").val()
             };
             
             let async = true;
@@ -92,17 +92,17 @@
 </head>
 <body>
    <div class="container">
-     <p>회원 리뷰에 대한 댓글을 수정하세요</p>
+     <p>댓글을 수정하세요</p>
        <form method="get" action="#" name="reviewFrm" id="reviewFrm">
           <!--댓글번호-->
           <input type="text" id="rNum" name="rNum" value="${rNum}"/> 
           
           <!-- 입력받는 부분 -->
           <ul>
-            <li><label for="rdName">작성자</label></li>
-            <li class="border_bottom"><input type="text" name="rdName" id="rdName" readonly="readonly" value="${rdName}"/></li>
+            <li><label for="oName">작성자</label></li>
+            <li class="border_bottom"><input type="text" name="oName" id="oName" readonly="readonly" value="${oName}"/></li>
             <li><label for="rdCon">내용</label></li>
-            <li><textarea rows="10" cols="40" name="rdCon" id="rdCon"></textarea></li>
+            <li><textarea rows="10" cols="40" name="rContent" id="rContent"></textarea></li>
             <li><input type="button" id="doReviewInsert" class="btn-1 button" value="REVIEW WRITE"></li>
           </ul>
           <!--// 입력받는 부분 -->

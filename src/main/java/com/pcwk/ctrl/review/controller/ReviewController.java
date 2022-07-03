@@ -40,6 +40,49 @@ public class ReviewController {
 	
 	public ReviewController() {}
 	
+	@RequestMapping(value = "/reviewUpdatePopup.do", method = RequestMethod.GET, produces = "application/text;charset=UTF-8")
+	public String reviewUpdatePopup(HttpServletRequest req, MemberVO memberParam, Model model) throws SQLException, IOException {
+		LOG.debug("=================================");
+		LOG.debug("reviewUpdatePopup()");
+		LOG.debug("=================================");
+		
+		// jsp에 보내기 위한 값 추출
+		String rNum = req.getParameter("rNum"); // 댓글 번호
+		String oName = req.getParameter("oName"); // 주문한 회원 이름
+		
+		model.addAttribute("rNum", rNum); // 댓글번호
+		model.addAttribute("oName", oName); // 주문한 회원 이름
+		
+		return "review/review_update_popup";
+		
+	}
+	
+	@RequestMapping(value = "/doReviewUpdate.do", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String doReviewUpdate(ReviewVO inVO) throws SQLException {
+		LOG.debug("=================================");
+		LOG.debug("inVO : " + inVO);
+		LOG.debug("=================================");
+		
+		int flag = reviewService.reviewUpdate(inVO);
+				
+		String resultMsg = "";
+		if (1 == flag) {
+			resultMsg = "댓글이 수정되었습니다!";
+		}else {
+			resultMsg = "다시 시도해주세요";
+		}
+		MessageVO message = new MessageVO(String.valueOf(flag), resultMsg);
+		
+		String jsonString = new Gson().toJson(message);
+		LOG.debug("================================="); 
+		LOG.debug("jsonString : " + jsonString); 
+		LOG.debug("=================================");
+		
+		return jsonString;
+		
+	}
+	
 	@RequestMapping(value = "/rdUpdatePopup.do", method = RequestMethod.GET, produces = "application/text;charset=UTF-8")
 	public String rdUpdatePopup(HttpServletRequest req, MemberVO memberParam, Model model) throws SQLException, IOException {
 		LOG.debug("=================================");
@@ -77,7 +120,7 @@ public class ReviewController {
 		if (1 == flag) {
 			resultMsg = "댓글이 수정되었습니다!";
 		}else {
-			resultMsg = "다시 시도해주세요.^^";
+			resultMsg = "다시 시도해주세요";
 		}
 		MessageVO message = new MessageVO(String.valueOf(flag), resultMsg);
 		
@@ -130,7 +173,7 @@ public class ReviewController {
 		if (1 == flag) {
 			resultMsg = "댓글이 등록되었습니다!";
 		}else {
-			resultMsg = "다시 시도해주세요.^^";
+			resultMsg = "다시 시도해주세요";
 		}
 		MessageVO message = new MessageVO(String.valueOf(flag), resultMsg);
 		

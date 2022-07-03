@@ -1,4 +1,4 @@
-package com.pcwk.ctrl.my_page;
+package com.pcwk.ctrl.memberInfo;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -24,7 +24,7 @@ import com.pcwk.ctrl.memberInfo.dao.MemberInfoDao;
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml",
         "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"		
 }) //applicationContext.xml loading
-public class JunitMy_pageDaoTest {
+public class JunitMemberInfoDaoTest {
 	
 	final Logger LOG = LogManager.getLogger(this.getClass());
 	

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.pcwk.ctrl.cmn.DTO;
 import com.pcwk.ctrl.cmn.MemberVO;
+import com.pcwk.ctrl.cmn.OrderVO;
 import com.pcwk.ctrl.cmn.ProductVO;
 import com.pcwk.ctrl.cmn.RdVO;
 import com.pcwk.ctrl.cmn.ReviewRdVO;
@@ -101,7 +102,6 @@ public class ReviewServiceImpl implements ReviewService {
 	public int doSelectGrade(MemberVO inVO) throws SQLException {
 		return reviewDao.doSelectGrade(inVO);
 	}
-
 
 	
 }

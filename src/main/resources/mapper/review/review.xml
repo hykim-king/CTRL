@@ -5,14 +5,16 @@
      <!-- 관리자 댓글 수정 -->
      <update id="rdUpdate" parameterType="ReviewVO">
         UPDATE rd
-        SET rd_con = #{rdCon}
+        SET rd_con = #{rdCon},
+            rd_reg = SYSDATE
         WHERE r_num = #{rNum}
      </update>     
      
      <!-- 회원 댓글 수정 -->
      <update id="reviewUpdate" parameterType="ReviewVO">
         UPDATE review
-        SET r_content = #{rContent}
+        SET r_content = #{rContent},
+            r_dt = SYSDATE
         WHERE r_num = #{rNum}
      </update>
 

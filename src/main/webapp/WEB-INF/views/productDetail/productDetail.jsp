@@ -168,6 +168,8 @@
                            let rdReg = reviewVO.rdReg;
                            
                            htmlData += " <div class='reivew_data'>                                                     ";
+                           htmlData += "   <div style='display:none;' id='reviewNum'>"+reviewVO.rNum+"</div>";
+                           htmlData += "   <div style='display:none;' id='reviewOname'>"+reviewVO.oName+"</div>";
                             if(memberNum == "11111") {  // 작성한 회원과 로그인한 사람이 같으면
                               htmlData += "  <input type='button' id='reviewUpdate' value='수정' class='btn-1 button'>";
                             } 
@@ -179,27 +181,27 @@
                            htmlData += " </div>";
                                    
                            htmlData += " <p class='rdButton'></p>        ";
-                                   htmlData += " <div class='manager_comment'> ";  
-                                   htmlData += "   <div style='display:none;' id='reviewNum'>"+reviewVO.rNum+"</div>";
-                                    if(cnt == 1) {  // 로그인한 사람이 관리자일때   
-                                        if('N' == rdCon){
-                                          htmlData += " <input type='button' id='rdInsert' value='등록' class='btn-1 button'>";                                           
-                                        }else {
-                                          htmlData += " <input type='button' id='rdUpdate' value='수정' class='btn-1 button'>";
-                                      }
-                                    } 
-                                   htmlData += "   <div class='review_head'>";
-                                   if('N' != reviewVO.rdName) {
-                                     htmlData += "      <strong id='rdName' class='customer_name'>"+<c:out value='reviewVO.rdName' />+"</strong>";
-                                   }
-                                   if(null != reviewVO.rdReg) {
-                                     htmlData += "      <div class='review_contents'>" + timeForToday(reviewVO.rdReg)  +"</div>        ";
-                                   }
-                                   htmlData += "   </div> ";
-                                   if('N' != rdCon){
-                                        htmlData += "   <div class='review_contents'>"+ rdCon.replaceAll('\n', '<br/>')+"</div>";
-                                   }
-                                   htmlData += " </div>"; 
+                           htmlData += " <div class='manager_comment'> ";  
+                           htmlData += "   <div style='display:none;' id='reviewNum'>"+reviewVO.rNum+"</div>";
+                           if(cnt == 1) {  // 로그인한 사람이 관리자일때   
+                                if('N' == rdCon){
+                                   htmlData += " <input type='button' id='rdInsert' value='등록' class='btn-1 button'>";                                           
+                                }else {
+                                   htmlData += " <input type='button' id='rdUpdate' value='수정' class='btn-1 button'>";
+                                }
+                           } 
+                           htmlData += "   <div class='review_head'>";
+                           if('N' != reviewVO.rdName) {
+                             htmlData += "      <strong id='rdName' class='customer_name'>"+<c:out value='reviewVO.rdName' />+"</strong>";
+                           }
+                           if(null != reviewVO.rdReg) {
+                             htmlData += "      <div class='review_contents'>" + timeForToday(reviewVO.rdReg)  +"</div>        ";
+                           }
+                           htmlData += "   </div> ";
+                           if('N' != rdCon){
+                                htmlData += "   <div class='review_contents'>"+ rdCon.replaceAll('\n', '<br/>')+"</div>";
+                           }
+                           htmlData += " </div>"; 
 
                        });
                        
@@ -222,6 +224,22 @@
             // 회원 리뷰 수정
            $(document).on("click", '#review_table #reviewUpdate', function(e) {
                console.log('reviewUpdate');
+               
+               
+               var reviewDataTag = $(this).parents('.reivew_data').html();
+               
+               var rNumber = reviewDataTag.substring(reviewDataTag.indexOf('>')+1, reviewDataTag.indexOf('/')-1);
+               rNumber = parseInt(rNumber);
+               console.log("rNumber : " + rNumber);
+               
+               var tagCut = reviewDataTag.substring(reviewDataTag.indexOf('O')+1);
+               var oName = tagCut.substring(tagCut.indexOf('>')+1, tagCut.indexOf('/')-1);
+               console.log("oName : " + oName);
+               
+               
+               
+               window.open("${CP}/review/reviewUpdatePopup.do?rNum="+rNumber+"&oName="+oName,"댓글 작성", "width=800, height=700, left=100, top=100");
+               
            });
            
             // 관리자 댓글 입력
@@ -318,7 +336,7 @@
                 
                 <!-- 장바구니, 구매 버튼 -->
                 <div class="submit_buttons">
-                     <input class="btn-2 button" type="submit" value="CART">
+                     <input class="btn-2 button" type="submit" value="CART" >
                      <input class="btn-1 button" type="submit" value="BUY">          
                 </div>            
             </form>
@@ -365,17 +383,16 @@
     
     <!-- payBefore로 GET방식으로 값 넘기기(김병완) -->
     <script type="text/javascript">
-    $("#btn-1").on("click", function(){
-  	 	let productImgSrc = $('#productImg').attr("src");
-     	let pNum = productImgSrc.substring(productImgSrc.lastIndexOf('/')+1,productImgSrc.lastIndexOf('.'));
-  	    let product_name = $(".product_name").text();
-  	    let product_price = $(".product_price").text();
-  	    let buy_number = $("#buy_number").text();
-  	    let totalNum = $("#total_num").text();
-     	
-     	location.href = "/ctrl/pay/payBefore.do?pNum=" + pNum + "&product_name=" + product_name
-     			+ "&product_price=" + prod.uct_price + "&buy_number=" + buy_number + 
-     			"&totalNum=" + totalNum; 
+    $("#btn-1").on("click", function(){  
+        let productImgSrc = $('#productImg').attr("src");
+        let pNum = productImgSrc.substring(productImgSrc.lastIndexOf('/')+1,productImgSrc.lastIndexOf('.'));
+        let product_name = $(".product_name").text();
+        let product_price = $(".product_price").text();
+        let buy_number = $("#buy_number").text();
+        let totalNum = $("#total_num").text();
+        location.href = "/ctrl/pay/payBefore.do?pNum=" + pNum + "&product_name=" + product_name
+                + "&product_price=" + prod.uct_price + "&buy_number=" + buy_number + 
+                "&totalNum=" + totalNum;  
     });
     </script>
     <!-- //payBefore로 GET방식으로 값 넘기기(김병완) -->
