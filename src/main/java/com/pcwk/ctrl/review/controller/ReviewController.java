@@ -90,18 +90,9 @@ public class ReviewController {
 		LOG.debug("=================================");
 		
 		// jsp에 보내기 위한 값 추출
-		String rNum = req.getParameter("rNum"); // 댓글 번호
-		String mNum = "55555"; // 회원번호, value : session.getAttribute("")
-		
-		// 관리자 이름을 추출하기 위한 파라미터 준비
-		memberParam.setmNum(mNum);
-		
-		// 관리자 번호로 select해서 관리자 이름 추출
-		MemberVO memberVO = reviewService.doMemberSelect(memberParam);
-		String mName = memberVO.getmName();
+		String rNum = req.getParameter("rNum"); // 댓글 번호	
 		
 		model.addAttribute("rNum", rNum); // 댓글번호
-		model.addAttribute("rdName", mName); // 작성자
 		
 		return "review/rd_update_popup";
 		
@@ -141,18 +132,8 @@ public class ReviewController {
 		
 		// jsp에 보내기 위한 값 추출
 		String rNum = req.getParameter("rNum"); // 댓글 번호
-		String mNum = "55555"; // 회원번호, value : session.getAttribute("")
-		
-		// 관리자 이름을 추출하기 위한 파라미터 준비
-		memberParam.setmNum(mNum);
-		
-		// 관리자 번호로 select해서 관리자 이름 추출
-		MemberVO memberVO = reviewService.doMemberSelect(memberParam);
-		String mName = memberVO.getmName();
 		
 		model.addAttribute("rNum", rNum);
-		model.addAttribute("mNum", mNum);
-		model.addAttribute("rdName", mName);
 		
 		return "review/rd_write_popup";
 		

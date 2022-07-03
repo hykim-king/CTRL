@@ -6,7 +6,8 @@
      <update id="rdUpdate" parameterType="ReviewVO">
         UPDATE rd
         SET rd_con = #{rdCon},
-            rd_reg = SYSDATE
+            rd_reg = SYSDATE,
+            rd_name = #{rdName}
         WHERE r_num = #{rNum}
      </update>     
      

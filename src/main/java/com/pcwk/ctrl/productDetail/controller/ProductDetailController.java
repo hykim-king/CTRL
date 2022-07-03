@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
@@ -43,7 +44,7 @@ public class ProductDetailController {
 	@RequestMapping(value = "/doReviewsRetrieve.do", method = RequestMethod.GET
 			, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String doReviewsRetrieve(SearchVO sInVO) throws SQLException {
+	public String doReviewsRetrieve(SearchVO sInVO, HttpServletRequest req) throws SQLException {
 		
 		String jsonString = ""; // 리뷰, 관리자 댓글 테이블 조회
 
@@ -71,8 +72,18 @@ public class ProductDetailController {
        	mapParam.put("pageSize", sInVO.getPageSize()); 
        	mapParam.put("pageNum", sInVO.getPageNum()); 
        	mapParam.put("pNum", sInVO.getSearchWord());
-       	mapParam.put("mNum", "55555");  // value : session.getAttribute("")
        	
+       	HttpSession session = req.getSession();
+       	Object member = session.getAttribute("member");
+       	MemberVO memberVO = (MemberVO)member;
+       	
+        if(session.getAttribute("member") != null){
+        	LOG.debug("***mNum: "+memberVO.getmNum());
+        	mapParam.put("mNum", memberVO.getmNum());  // value : session.getAttribute("")
+        }else {
+            System.out.println("session:null");
+             
+         }
 		List<ReviewRdVO> list = reviewService.doReviewsRetrieve(mapParam);
 		for(ReviewRdVO vo :list) {
 			LOG.debug("vo : " + vo);
@@ -111,7 +122,7 @@ public class ProductDetailController {
 	}
 	
 	@RequestMapping(value="/view.do", method = RequestMethod.GET)
-	public String productDetailView(ProductVO pInVO, SearchVO sInVO, Model model, HttpSession session) throws SQLException {
+	public String productDetailView(ProductVO pInVO, SearchVO sInVO, Model model, HttpServletRequest req) throws SQLException {
 		
 		LOG.debug("==================");
 	    LOG.debug("=productDetailView()=");
@@ -123,7 +134,18 @@ public class ProductDetailController {
        	mapParam.put("pageSize", sInVO.getPageSize()); 
        	mapParam.put("pageNum", sInVO.getPageNum()); 
        	mapParam.put("pNum", pInVO.getpNum());
-       	mapParam.put("mNum", "55555"); // value : session.getAttribute("")
+       	
+       	HttpSession session = req.getSession();
+       	Object member = session.getAttribute("member");
+       	MemberVO memberVO = (MemberVO)member;
+       	
+        if(session.getAttribute("member") != null){
+        	LOG.debug("***mNum: "+memberVO.getmNum());
+        	mapParam.put("mNum", memberVO.getmNum());  // value : session.getAttribute("")
+        }else {
+            System.out.println("session:null");
+             
+         }
        	
         List<ReviewRdVO> list = reviewService.doReviewsRetrieve(mapParam);
         

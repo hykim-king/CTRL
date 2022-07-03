@@ -98,12 +98,12 @@
           <!--댓글번호-->
           <input type="text" id="rNum" name="rNum" value="${rNum}"/> 
           <!--회원번호-->
-          <input type="text" id="mNum" name="mNum" value="${mNum}"/> 
+          <input type="text" id="mNum" name="mNum" value="${sessionScope.member.mNum}"/> 
           
           <!-- 입력받는 부분 -->
           <ul>
             <li><label for="rdName">작성자</label></li>
-            <li class="border_bottom"><input type="text" name="rdName" id="rdName" readonly="readonly" value="${rdName}"/></li>
+            <li class="border_bottom"><input type="text" name="rdName" id="rdName" readonly="readonly" value="${sessionScope.member.mName}"/></li>
             <li><label for="rdCon">내용</label></li>
             <li><textarea rows="10" cols="40" name="rdCon" id="rdCon"></textarea></li>
             <li><input type="button" id="doReviewInsert" class="btn-1 button" value="REVIEW WRITE"></li>

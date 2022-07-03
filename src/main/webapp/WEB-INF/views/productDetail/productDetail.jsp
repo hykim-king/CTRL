@@ -61,7 +61,7 @@
            // 리뷰 - 버튼 누르면 관리자 댓글 나오게 하기
            $("#review_table").on("click", ".rdButton", function() {
                console.log("rdButton");
-              
+              console.log($('#buy_number').text());
                $(this).toggleClass('open').siblings().removeClass('open');
                $(this).next(".manager_comment").stop().slideToggle(250);
            });
@@ -170,7 +170,7 @@
                            htmlData += " <div class='reivew_data'>                                                     ";
                            htmlData += "   <div style='display:none;' id='reviewNum'>"+reviewVO.rNum+"</div>";
                            htmlData += "   <div style='display:none;' id='reviewOname'>"+reviewVO.oName+"</div>";
-                            if(memberNum == "11111") {  // 작성한 회원과 로그인한 사람이 같으면
+                            if(memberNum == "${sessionScope.member.mNum}") {  // 작성한 회원과 로그인한 사람이 같으면
                               htmlData += "  <input type='button' id='reviewUpdate' value='수정' class='btn-1 button'>";
                             } 
                            htmlData += "     <div class='review_head'>";
@@ -234,8 +234,7 @@
                
                var tagCut = reviewDataTag.substring(reviewDataTag.indexOf('O')+1);
                var oName = tagCut.substring(tagCut.indexOf('>')+1, tagCut.indexOf('/')-1);
-               console.log("oName : " + oName);
-               
+               console.log("tagCut : " + tagCut);
                
                
                window.open("${CP}/review/reviewUpdatePopup.do?rNum="+rNumber+"&oName="+oName,"댓글 작성", "width=800, height=700, left=100, top=100");
