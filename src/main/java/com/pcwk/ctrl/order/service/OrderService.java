@@ -6,9 +6,19 @@ import java.util.Map;
 
 import com.pcwk.ctrl.cmn.DTO;
 import com.pcwk.ctrl.cmn.MemberVO;
+import com.pcwk.ctrl.cmn.OrderListVO;
+import com.pcwk.ctrl.cmn.OrderVO;
+import com.pcwk.ctrl.cmn.ProductVO;
+import com.pcwk.ctrl.cmn.SearchVO;
 
 public interface OrderService {
 	
-
-	public List<Map<String, DTO>> doRetrieve(MemberVO memberVO) throws SQLException;
+	/**
+	 * 주문조회
+	 * @return List<MemberVO>
+	 * @throws SQLException
+	 */
+	public List<OrderListVO> doRetrieve(DTO dto) throws SQLException;
+	
+	public int getCount(OrderListVO oVO) throws SQLException;
 }

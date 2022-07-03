@@ -1,6 +1,7 @@
 package com.pcwk.ctrl.order.dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,10 @@ import org.springframework.stereotype.Repository;
 
 import com.pcwk.ctrl.cmn.DTO;
 import com.pcwk.ctrl.cmn.MemberVO;
+import com.pcwk.ctrl.cmn.OrderListVO;
+import com.pcwk.ctrl.cmn.OrderVO;
+import com.pcwk.ctrl.cmn.ProductVO;
+import com.pcwk.ctrl.cmn.SearchVO;
 
 @Repository("orderDao")
 public class OrderDaoImpl implements OrderDao {
@@ -26,18 +31,38 @@ public class OrderDaoImpl implements OrderDao {
 	SqlSessionTemplate sqlSessionTemplate;
 
 	@Override
-	public List<Map<String, DTO>> doRetrieve(MemberVO memberVO) throws SQLException {
-		List<Map<String, DTO>> outVO = null;
+	public List<OrderListVO> doRetrieve(DTO dto) throws SQLException {
+		List<OrderListVO> list = new ArrayList<OrderListVO>();
 		
 		String statement = this.NAMESPACE+".doRetrieve";
-		LOG.debug("=============================");
-		LOG.debug("param : " + memberVO.toString());
-		LOG.debug("statement : " + statement);
-		LOG.debug("=============================");
+		SearchVO inVO = (SearchVO)dto;
 		
-		outVO = this.sqlSessionTemplate.selectList(statement,memberVO);
+		list = sqlSessionTemplate.selectList(statement, inVO);
 		
-		return outVO;
+		for(OrderListVO vo : list) {
+			LOG.debug("vo : "+vo);
+		}
+		
+		
+		return list;
 	}
-
+	
+	@Override
+	public int getCount(OrderListVO oVO) throws SQLException {
+		int count = 0;
+		
+		String statement = this.NAMESPACE+".getCount";
+		LOG.debug("=============================");
+		LOG.debug("param : "+oVO.toString());
+		LOG.debug("statement : "+statement);
+		LOG.debug("=============================");
+		
+		count = this.sqlSessionTemplate.selectOne(statement,oVO);
+		
+		LOG.debug("=============================");
+		LOG.debug("count="+count);
+		LOG.debug("=============================");
+		
+		return count;
+	}
 }

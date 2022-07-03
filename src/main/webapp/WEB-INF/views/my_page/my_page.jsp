@@ -74,7 +74,7 @@
     <ul>
         <li class="my"><strong>마이페이지</strong><li>
         <li class="info"><a href="${CP}/my_page.do"><strong>회원정보</strong></a></li>
-        <li class="order"><a href="${CP}/order/orderList.do">주문조회</a></li>
+        <li class="order"><a href="${CP}/order/orderView.do">주문조회</a></li>
     </ul>
 </div>
 <!-- ▲▲▲▲▲▲▲▲▲▲▲▲▲ 마이페이지  사각형 끝  ▲▲▲▲▲▲▲▲▲▲▲▲▲-->  

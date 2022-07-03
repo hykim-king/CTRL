@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pcwk.ctrl.order">
-    <select id="doRetrieve" resultType="HashMap">
+     <!--  <select id="orderList" resultType="HashMap">
         SELECT d.o_num AS "oNum",       
                d.p_num AS "pNum",   
                p.p_name AS "pName",     
@@ -18,5 +18,61 @@
         ON ot.m_num = m.m_num
         WHERE ot.m_num = #{mNum}         
         ORDER BY ot.o_dt DESC         
-    </select>
+    </select> --> 
+    
+    <!-- 총 게시글 갯수 출력 -->
+<select id="getCount" parameterType="com.pcwk.ctrl.cmn.OrderListVO" resultType="int">
+      SELECT count(*)
+              FROM detail d JOIN product p
+              ON d.p_num = p.p_num          
+              JOIN order_t ot               
+              ON d.o_num = ot.o_num         
+              JOIN member m               
+              ON ot.m_num = m.m_num
+              WHERE m.m_num = #{mNum} 
+</select>
+
+<resultMap type="com.pcwk.ctrl.cmn.OrderListVO" id="orderListResultMap">
+    <id property="rNum" column="r_num" />
+    <result property="oNum" column="o_num"/>
+    <result property="dNum" column="d_num"/>
+    <result property="dBuy" column="d_buy"/>
+    <result property="mName" column="m_name"/>
+    <result property="mEmail" column="m_email"/>
+    <result property="mTel" column="m_tel"/>
+    <result property="mAddr" column="m_addr"/>
+    <result property="mGrade" column="m_grade"/>
+    <result property="oAddr" column="o_addr"/>
+    <result property="oName" column="o_name"/>
+    <result property="oTel" column="o_tel"/>
+    <result property="oStatus" column="o_status"/>
+    <result property="oDt" column="o_dt"/>
+    <result property="mNum" column="m_num"/>
+    <result property="pNum" column="p_num"/>
+    <result property="pCategory" column="p_category"/>
+    <result property="pName" column="p_name"/>
+    <result property="pPrice" column="p_price"/>
+    <result property="pSize" column="p_size"/>
+</resultMap>
+
+<!-- 페이징 처리 후 게시글 조회 -->
+<select id="doRetrieve" parameterType="com.pcwk.ctrl.cmn.SearchVO" resultMap="orderListResultMap">
+    SELECT * FROM(
+        SELECT ROWNUM AS NUM, 
+        N.*    
+        FROM(
+        SELECT * FROM
+        detail d JOIN product p  
+        ON d.p_num = p.p_num          
+    JOIN order_t ot               
+    ON d.o_num = ot.o_num         
+    JOIN member m               
+    ON ot.m_num = m.m_num
+    WHERE ot.m_num = #{searchWord}   
+    ORDER BY d.o_num DESC
+    )N
+    <![CDATA[ WHERE ROWNUM  <= #{pageSize} * (#{pageNum} - 1) + #{pageSize} ]]>
+)
+<![CDATA[  WHERE NUM >=( #{pageSize} * ( #{pageNum} - 1) +1)  ]]>
+</select>
 </mapper>

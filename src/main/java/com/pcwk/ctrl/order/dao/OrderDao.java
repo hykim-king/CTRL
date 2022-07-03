@@ -2,19 +2,18 @@ package com.pcwk.ctrl.order.dao;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 
 import com.pcwk.ctrl.cmn.DTO;
-import com.pcwk.ctrl.cmn.MemberVO;
+import com.pcwk.ctrl.cmn.OrderListVO;
+import com.pcwk.ctrl.cmn.OrderVO;
 
 public interface OrderDao {
 	/**
 	 * 주문조회
-	 * @param 
-	 * @return
+	 * @return List<MemberVO>
 	 * @throws SQLException
 	 */
-	List<Map<String, DTO>> doRetrieve(MemberVO memberVO) throws SQLException;
-
-
+	List<OrderListVO> doRetrieve(DTO dto) throws SQLException;
+	
+	int getCount (OrderListVO oVO) throws SQLException;
 }
