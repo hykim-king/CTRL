@@ -1,25 +1,25 @@
 package com.pcwk.ctrl.login.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.pcwk.ctrl.cmn.MemberVO;
-import com.pcwk.ctrl.cmn.MessageVO;
 import com.pcwk.ctrl.cmn.StringUtil;
 import com.pcwk.ctrl.member.service.MemberService;
 import com.pcwk.ctrl.naver.service.NaverProfileService;
@@ -50,10 +50,8 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/callback.do")
-	public String naverCallback(HttpSession session, HttpServletRequest req, Model model)throws IOException, ParseException {
+	public String naverCallback()throws IOException, ParseException {
 		
-//	    session.invalidate();
-	    
 		LOG.debug("=================================");
 		LOG.debug("naverCallback()");
 		LOG.debug("=================================");
@@ -65,7 +63,7 @@ public class LoginController {
 	
 	@RequestMapping(value="/memberCheck.do", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseBody//스프링에서 비동기 처리를 하는 경우 HTTP 요청의 본문 body 부분이 그대로 전달된다
-	public MemberVO memberCheck(MemberVO inVO, HttpServletRequest req, HttpSession session) throws Exception{
+	public MemberVO memberCheck(MemberVO inVO, HttpServletRequest req, HttpSession session, HttpServletResponse response) throws Exception{
 		String accessToken = req.getParameter("access_token");
 		String resultMessaage = "";
 		
@@ -93,6 +91,27 @@ public class LoginController {
 		LOG.debug("==============================");
 		LOG.debug("resultMessaage: "+ resultMessaage);
 		LOG.debug("==============================");
+		
+		session = req.getSession();
+//		PrintWriter pw = response.getWriter();
+		if(null != session) {
+			session.setAttribute("member", inVO);
+			LOG.debug("session:"+session);
+			response.sendRedirect("/ctrl/main/main.do");
+//			pw.println("<script>alert('로그인');document.location.href='/ctrl/main/main.do';</script>");
+		}else {
+			LOG.debug("session is null");
+//			pw.println("<script>alert('로그인 실패');document.location.href='/ctrl/main/main.do';</script>");
+		}
+		
+//        response.sendRedirect("/ctrl/main/main.do");
+		
+//		PrintWriter pw = response.getWriter();
+//		if(null != session) {
+//			pw.println("<script>alert('로그인');document.location.href='/ctrl/main/main.do';</script>");
+//		}else {
+//			pw.println("<script>alert('로그인 실패');document.location.href='/ctrl/main/main.do';</script>");
+//		}
 		
 		return outVO;
 	}

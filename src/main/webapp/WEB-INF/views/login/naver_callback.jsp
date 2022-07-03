@@ -13,6 +13,8 @@
     Copyright (C) by KandJang All right reserved.
 */
  --%>
+<%@page import="javax.servlet.http.HttpSession"%>
+<%@page import="com.pcwk.ctrl.cmn.MemberVO"%>
 <%@page import="com.google.gson.JsonElement"%>
 <%@page import="com.google.gson.JsonArray"%>
 <%@page import="com.google.gson.JsonObject"%>
@@ -40,23 +42,21 @@
     <!-- 부트스트랩 -->
     <link href="${CP_RES}/css/bootstrap.min.css" rel="stylesheet">
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
-    <script src="${CP_RES}/js/jquery-1.12.4.js"></script>
-    <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
-    <script src="${CP_RES}/js/bootstrap.min.js"></script>
-    <!-- jquery_bootstrap paging -->
-    <script type="text/javascript" src="${CP_RES}/js/jquery.bootpag.js"></script>
-     <script type="text/javascript">
+    <script src="${CP_RES }/js/etc/jquery-1.12.4.js"></script>
+    <!-- 사용자 정의 function, callAjax -->
+    <script src="${CP_RES }/js/etc/eclass.js"></script>
+    <!-- 사용자 정의 function, isEmpty -->
+    <script src="${CP_RES }/js/etc/eUtil.js"></script>
+    <script type="text/javascript">
       $(document).ready(function(){
-        console.log("document.ready");  
-          
+        console.log("document.ready"); 
       });
-      
-      
     </script>
 
 </head>
 
 <body>
+    
     <%
         String clientId = "SFHYYlRp9uGKqdsmMrqu";//애플리케이션 클라이언트 아이디값";
         String clientSecret = "VLZrBQXQtb";//애플리케이션 클라이언트 시크릿값";
@@ -107,12 +107,26 @@
         } catch (Exception e) {
           System.out.println(e);
         }
-       response.sendRedirect("/ctrl/login/memberCheck.do?access_token="+accessToken);
-        %>  
         
+        
+       response.sendRedirect("/ctrl/login/memberCheck.do?access_token="+accessToken);
+       %>
+       <%
+       Object member = session.getAttribute("member"); 
+       MemberVO memberVO = (MemberVO)member;
+       if(session.getAttribute("member") != null){
+          System.out.println("mNum: "+memberVO.getmNum());
+          System.out.println("mName: "+memberVO.getmName());
+          System.out.println("mEmail: "+memberVO.getmEmail());
+       }else {
+          System.out.println("session:null");
+           
+       }
+       %>
+<!-- 세션값 가져오기 -->
+       
+       
 <!--     접근토큰 삭제요청 url(한 번 동의한 정보제공 항목에 대한 재동의를 위해서 필요), access_token부분을 매번 바꿔줘야함 -->
 <!--   https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=SFHYYlRp9uGKqdsmMrqu&client_secret=VLZrBQXQtb&access_token=AAAAOaxe-zZ9jRkpiOXAtF0sqZ1IR6zUhurRgT_TV_E6wTEoxN6rXrZQXzzt6uErUY_Hvj6CBEeSILlzVUGoY-iWT8c&service_provider=NAVER  -->
-
- <h2>로그인 성공</h2>
 </body>
 </html>
