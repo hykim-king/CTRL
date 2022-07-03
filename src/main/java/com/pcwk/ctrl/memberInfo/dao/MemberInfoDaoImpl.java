@@ -17,6 +17,6 @@ public class MemberInfoDaoImpl implements MemberInfoDao {
 		
 		@Override
 		public List<MemberVO> memberList(){     // 호출매퍼.호출ID
-			return sqlSessionTemplate.selectList("com.pcwk.ctrl.my_page.memberList");
+			return sqlSessionTemplate.selectList("com.pcwk.ctrl.memberInfo.memberList");
 		}
 }

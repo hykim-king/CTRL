@@ -12,7 +12,7 @@
     <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
     <link rel="shortcut icon" type="image/x-icon" href="${CP }/favicon.ico">
     <link rel="stylesheet" type="text/css" href="${CP_RES }/css/main/main.css">
-    <link rel="stylesheet" type="text/css" href="${CP_RES}/css/my_page/my_page.css">
+    <link rel="stylesheet" type="text/css" href="${CP_RES}/css/memberInfo/memberInfo.css">
     
     <title>마이페이지</title>
     <!-- jQuery -->

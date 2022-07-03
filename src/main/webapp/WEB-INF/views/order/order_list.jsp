@@ -39,6 +39,8 @@
     <script src="${CP_RES }/js/etc/eclass.js"></script>
     <!-- 사용자 정의 function, isEmpty -->
     <script src="${CP_RES }/js/etc/eUtil.js"></script>
+     <!-- jquery_bootstrap paging -->
+    <script type="text/javascript" src="${CP_RES}/js/etc/jquery.bootpag.js"></script>
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/2974daa1cb.js"
                         crossorigin="anonymous"></script>
@@ -49,8 +51,130 @@
         $(document).ready(function(){
         console.log("document.ready"); 
         
-        // table click
-        $('#listTable > tbody tr').on("click", "input" ,function(){ 
+        //뭔지 모르겠음 -> 안되면 지워보기
+        renderingPage('${pageTotal}',1);
+        
+        // 페이징 시작 ------------------------
+        // totalData : 총 데이터 수
+        // dataPerPage : 한 페이지에 나타낼 글 수
+        // pageCount : 페이징에 나타낼 페이지 수
+        // page : 현재 페이지
+        function renderingPage(pageTotal, page) {
+            console.log("pageTotal : " + pageTotal);
+            console.log("page : " + page);
+            
+            // pageTotal을 int로 변환하기
+            pageTotal = parseInt(pageTotal);
+            console.log("pageTotal : " + pageTotal);
+            
+            // 이전 연결된 EventHandler 제거
+            $("#page-selection").unbind('page');
+            
+            // 아마..? 페이지 양옆 ← 와 → 로 나타내기(이해 x)
+            $('#page-selection').bootpag({
+                total: pageTotal,
+                page: page,
+                maxVisible: 5,
+                leaps: true,
+                firstLastUse: true,
+                first: '←',
+                last: '→',
+                wrapClass: 'pagination',
+                activeClass: 'active',
+                disabledClass: 'disabled',
+                nextClass: 'next', // 다음
+                prevClass: 'prev', // 이전
+                lastClass: 'last',
+                firstClass: 'first'
+            }).on("page", function(event, num){
+                console.log("num : " + num);
+                doRetrieve(num);
+            }); 
+            
+        }
+        
+        function doRetrieve(page) {
+            console.log("function doRetrieve");
+            console.log("page: " + page);
+            
+            let url = "${CP}/order/orderList.do";
+            let method = "GET";
+            let async = true;
+            let parameters = {
+                    pageSize: 5, // 총몇개?
+                    pageNum: page,
+                    searchWord: "1",
+                    // 뭘로 찾을거냐
+            };
+            
+            EClass.callAjax(url, parameters, method, async, function(data) {
+                console.log("EClass.callAjax data : " + data);
+        
+                
+            //1.
+            let parsedData = data;
+            
+             $("#listTable > tbody").empty();
+            
+             let htmlData = ""; // 동적으로 tbody아래 데이터 생성
+             let totalCnt  = 0; // 총글수, 
+             let pageTotal = 1; // 총 페이지수
+             //let last = pageGroup * pageCount; // 화면에 보여질 마지막 페이지 번호
+             
+             // 조회 데이터가 있는 경우
+                    if(null != parsedData && parsedData.length > 0) {
+                 
+                // totalCnt = parsedData[0].totalCnt                   
+                // console.log('totalCnt : ' + totalCnt);
+                // pageTotal = totalCnt/$("#pageSize").val();
+                // console.log('pageTotal : ' + pageTotal);
+                // pageTotal = Math.ceil(pageTotal);                  
+                // console.log('pageTotal : ' + pageTotal);
+                 
+                $.each(parsedData, function(i, memberVO){
+                     htmlData += "<tr> ";
+                     htmlData += "<th width='150'  class='oNum'>" +memberVO.oNum+"</th>"
+                     htmlData += "<th width='130'><img src='${CP_RES}/img/" +memberVO.pNum+ ".jpg' alt='상품 이미지' width='90'/></th>";
+                     htmlData += "<th width='330'><a class='text'>" +memberVO.pName+ "</a></th>";
+                     htmlData += "<th width='150'>" +memberVO.pPrice+ " </th>";
+                     htmlData += "<th width='90'>" +memberVO.dBuy+ "</th>";
+                     htmlData += "<th width='150'>"+memberVO.oStatus+ "<br><input class='btn-2 button' type='button' value='리뷰쓰기' ></th>";
+                     htmlData += "<th style='display: none;'>" +memberVO.dNum+ "</th>";
+                     htmlData += "<th style='display: none;'>"+memberVO.oName+ "</th>";
+                     htmlData += "<th style='display: none;'>"+memberVO.pNum+ "</th>";
+                     htmlData += "</tr> ";
+                 });
+             //데이터가 없는 경우
+             }else{
+                 htmlData += "<tr><td colspan='99' class='text-center'>NO data found</td></tr> ";
+             }
+             
+             //2.
+             $("#listTable > tbody").append(htmlData);
+             
+         })
+         
+     }
+     
+     $("#doRetrieve").on("click", function(e) {
+         console.log("doRetrieve");
+         doRetrieve(1);
+     });
+ });
+             // paging
+             // 기존 페이징 지우기
+             //$("#page-selection").empty();
+             
+             // paging 호출
+             //renderingPage(pageTotal, page);
+             
+             // 관리 데이터 초기화
+             //init();
+             
+         
+        
+        // table click (김주혜)
+        $(document).on('click', '#listTable > tbody input', function(e){
             
             let clickInput = $(this); // $(this) : input
             let thArray = clickInput.parents("tr").children(); // th들 지정
@@ -64,18 +188,18 @@
             window.open("${CP}/review/reviewPopup.do?oNum="+oNum+"&dNum="+dNum+"&oName="+oName+"&pNum="+pNum,"리뷰작성", "width=800, height=700, left=100, top=100");
             //--table click
         });
-      });
+      
       
       
     </script>
 
 </head>
 <body>
- <!-- 메인 헤더 영역 시작 -->
+ <!-- 메인 헤더 영역 시작(이은빈) -->
     <div id="header">
         <div id="top">
             <div id="logo">
-                <a href="${CP}/main/main.do"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
+                <a href="#"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
             </div>
             <div class="menu_left">
                 <ul>
@@ -89,7 +213,7 @@
                 <ul>
                     <li>로그아웃</li>
 
-                    <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
+                    <li><a href="#">마이페이지</a></li>
                     <li><a href="#">장바구니</a></li>
                     <li><a href="#">FAQ</a></li>
                     <li><a href="#">공지사항</a></li>
@@ -110,20 +234,20 @@
 
 <!-- 마이페이지 시작 -->
 <div id="contents">
-<!-- ▼▼▼▼▼▼▼▼▼▼▼▼▼ 마이페이지  사각형  ▼▼▼▼▼▼▼▼▼▼▼▼▼ -->
+<!-- ▼▼▼▼▼▼▼▼▼▼▼▼▼ 마이페이지  사각형(최유빈)  ▼▼▼▼▼▼▼▼▼▼▼▼▼ -->
 <title>my_page</title>
 
 <div class="my_box">
     <ul>
         <li class="my"><strong>마이페이지</strong><li>
         <li class="info"><a href="${CP}/memberInfo/memberInfo.do">회원정보</a></li>
-        <li class="order"><a href="${CP}/order/orderList.do"><strong>주문조회</strong></a></li>
+        <li class="order"><a href="${CP}/order/orderView.do"><strong>주문조회</strong></a></li>
     </ul>
 </div>
 <!-- ▲▲▲▲▲▲▲▲▲▲▲▲▲ 마이페이지  사각형 끝  ▲▲▲▲▲▲▲▲▲▲▲▲▲-->
 
   
-  <table class="order2" width = "1000" height="50px">
+  <table id="orderTable" class="order2" width = "1000" height="50px">
       <tr>
          <th width="150"> 주문번호</th>
          <th width="130"></th>
@@ -149,9 +273,9 @@
                     <th width="150"  class="oNum"> ${list.oNum}</th>
                     <th width="130"><img src="${CP_RES}/img/${list.pNum}.jpg" alt="상품 이미지" width="90"/></th>
                     <th width="330"><a class="text">${list.pName}</a></th>
-                    <th width="150"><fmt:formatNumber type="number" maxFractionDigits="3" value="${list.pPrice}"/>
+                    <th width="150">${list.pPrice}
                     </th>
-                    <th width="90">${list.dBuy}개</th>
+                    <th width="90">${list.dBuy}</th>
                     <th width="150">${list.oStatus}
                       <br><input class="btn-2 button" type="button" value="리뷰쓰기" >
                     </th>
@@ -168,5 +292,11 @@
         </tbody>
        </table>
        </div>
+       
+       <!-- pagenation(페이징 1,2,3,4,5 버튼 나타내기) -->
+        <div class="text-center col-sm-12 col-md-12 col-lg-12">
+            <div id="page-selection" class="text-center page"></div>
+        </div>
+        <!-- pagenation ---------------------------------------->
 </body>
 </html>
