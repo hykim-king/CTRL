@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.pcwk.ctrl.cmn.ProductVO;
 import com.pcwk.ctrl.menu.service.MenuService;
 
-@Controller
+@Controller("menuController")
+@RequestMapping("menu")
 public class MenuController {
 	
 	final Logger LOG = LogManager.getLogger(getClass());
