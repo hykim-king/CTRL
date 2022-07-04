@@ -478,8 +478,8 @@
         let buy_number = $("#buy_number").text();
         let totalNum = $("#total_num").text();
         location.href = "/ctrl/pay/payBefore.do?pNum=" + pNum + "&product_name=" + product_name
-                + "&product_price=" + prod.uct_price + "&buy_number=" + buy_number + 
-                "&totalNum=" + totalNum;  
+                + "&product_price=" + product_price + "&buy_number=" + buy_number + 
+                "&totalNum=" + totalNum;
     });
     </script>
     <!-- //payBefore로 GET방식으로 값 넘기기(김병완) -->

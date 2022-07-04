@@ -204,7 +204,7 @@
               	console.log('주문자 주소: '+rsp.buyer_addr);
               	console.log('삼풍 수량: '+rsp.count);
               	
-               	payOrderInsert(merchant_uid, rsp.name, rsp.paid_amount, rsp.buyer_name,
+                payOrderInsert(merchant_uid, rsp.name, rsp.paid_amount, rsp.buyer_name,
                			rsp.buyer_tel, rsp.buyer_addr, rsp.count , status);
               	
                	payDetailInsert(merchant_uid,rsp.count,name);
@@ -219,7 +219,7 @@
             alert(msg);
         };
     
-        function payOrderInsert(){
+        function payOrderInsert(payOrderInsert){
             let url = "${CP}/pay/payOrderInsert.do";
             let method = "GET";
       		let async = true;   
@@ -239,7 +239,7 @@
           });
       };
       
-      function payOrderInsert(){
+      function payDetailInsert(payDetailInsert){
           let url = "${CP}/pay/payDetailInsert.do";
           let method = "GET";
     		let async = true;
