@@ -12,5 +12,5 @@ public interface MenuDao {
 	 * @return List<ProductVO>
 	 * @throws SQLException
 	 */
-	public List<ProductVO> menuList();
+	public List<ProductVO> menuList(ProductVO inVO);
 }

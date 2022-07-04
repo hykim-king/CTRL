@@ -6,5 +6,5 @@ import com.pcwk.ctrl.cmn.ProductVO;
 
 public interface MenuService {
 	
-	public List<ProductVO> menuList();
+	public List<ProductVO> menuList(ProductVO inVO);
 }

@@ -27,11 +27,36 @@
 <script src="https://kit.fontawesome.com/2974daa1cb.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="${CP_RES}/js/login/login_popup.js"></script>
 <script type="text/javascript">
-
-	//login click
-// 	$("#login").on("click", function(){
-//             window.open("${CP}/login/login.do");
-//         });
+        $(document).ready(function(){
+        console.log("document.ready");
+        
+        // bowls 카테고리로 이동
+        $("#bowls").on("click", function(e){
+            console.log("bowls:");
+            console.log("pCategory:" + $("#pCategory").val());
+            window.location.href = "${CP}/menu/menuMove.do?pCategory=bowls";
+        });
+        // cup 카테고리로 이동
+        $("#cup").on("click", function(e){
+            console.log("cup:");
+            console.log("pCategory:" + $("#pCategory").val());
+            window.location.href = "${CP}/menu/menuMove.do?pCategory=cup";
+        });
+        // cup 카테고리로 이동
+        $("#glass").on("click", function(e){
+            console.log("glass:");
+            console.log("pCategory:" + $("#pCategory").val());
+            window.location.href = "${CP}/menu/menuMove.do?pCategory=glass";
+        });
+        // cup 카테고리로 이동
+        $("#plate").on("click", function(e){
+            console.log("plate:");
+            console.log("pCategory:" + $("#pCategory").val());
+            window.location.href = "${CP}/menu/menuMove.do?pCategory=plate";
+        });
+        
+        
+          })
 </script>
 <body>
 	<!-- 메인 헤더 영역 시작 (이은빈)-->
@@ -42,10 +67,10 @@
 			</div>
 			<div class="menu_left">
 				<ul>
-					<li><a href="#">접시</a></li>
-					<li><a href="#">머그컵</a></li>
-					<li><a href="#">유리잔</a></li>
-					<li><a href="#">보울/면기</a></li>
+					<li><a href="#" id="bowls">접시</a></li>
+					<li><a href="#" id="cup">머그컵</a></li>
+					<li><a href="#" id="glass">유리잔</a></li>
+					<li><a href="#" id="plate">보울/면기</a></li>
 				</ul>
 			</div>
 			<div class="menu_right">

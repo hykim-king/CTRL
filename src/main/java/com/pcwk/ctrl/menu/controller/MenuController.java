@@ -1,5 +1,6 @@
 package com.pcwk.ctrl.menu.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -25,14 +26,18 @@ public class MenuController {
 	public MenuController() {}
 	
 	// 메뉴 목록
-	@RequestMapping(value="/menuList.do", method=RequestMethod.GET)
-	public String menuList(Model model) {
-		LOG.debug("==========================");
-		LOG.debug("menuList()");
-		LOG.debug("==========================");
-		
-		List<ProductVO> list = menuService.menuList();
-		model.addAttribute("list", list);
-		return "menu/menu_list";
-	}
+		@RequestMapping(value="/menuMove.do", method=RequestMethod.GET)
+		public String menuMove(ProductVO inVO, Model model) throws SQLException{
+		      
+		      String viewName = "menu/menu_list";
+		      LOG.debug("=================================");
+		      LOG.debug("bowls");
+		      LOG.debug("inVO : "+ inVO);
+		      LOG.debug("=================================");
+		      
+		      List<ProductVO> list = menuService.menuList(inVO);
+		      model.addAttribute("list", list);
+		      
+		      return viewName;
+		   }
 }

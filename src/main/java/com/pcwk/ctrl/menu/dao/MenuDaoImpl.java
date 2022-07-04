@@ -16,7 +16,7 @@ public class MenuDaoImpl implements MenuDao {
 	SqlSessionTemplate sqlSessionTemplate;
 	
 	@Override
-	public List<ProductVO> menuList(){
-		return sqlSessionTemplate.selectList("com.pcwk.ctrl.menu.menuList");
+	public List<ProductVO> menuList(ProductVO inVO){
+		return sqlSessionTemplate.selectList("com.pcwk.ctrl.menu.menuList",inVO);
 	}
 }

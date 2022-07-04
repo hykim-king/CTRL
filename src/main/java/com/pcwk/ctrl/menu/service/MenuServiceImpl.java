@@ -15,7 +15,7 @@ public class MenuServiceImpl implements MenuService {
 	MenuDaoImpl menuDao;
 	
 	@Override
-	public List<ProductVO> menuList(){
-		return menuDao.menuList();
+	public List<ProductVO> menuList(ProductVO inVO){
+		return menuDao.menuList(inVO);
 	}
 }
