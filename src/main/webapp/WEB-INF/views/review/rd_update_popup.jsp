@@ -64,9 +64,10 @@
             let url = "${CP}/review/doRdUpdate.do";
             let method = "GET";
             let parameters = {
-            		rNum : $("#rNum").val(),
-            		rdCon : $("#rdCon").val(),
-            		rdName : $("#rdName").val()
+                    rNum : $("#rNum").val(),
+                    rdCon : $("#rdCon").val(),
+                    rdName : $("#rdName").val(),
+                    mNum : $("#mNum").val()
             };
             
             let async = true;
@@ -97,7 +98,8 @@
        <form method="get" action="#" name="reviewFrm" id="reviewFrm">
           <!--댓글번호-->
           <input type="text" id="rNum" name="rNum" value="${rNum}"/> 
-          
+          <!--회원번호-->
+          <input type="text" id="mNum" name="mNum" value="${sessionScope.member.mNum}"/> 
           <!-- 입력받는 부분 -->
           <ul>
             <li><label for="rdName">작성자</label></li>
