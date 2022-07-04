@@ -147,10 +147,10 @@
         <div class="payment">
             <h1 class="title">결제금액</h1>
             <h1 class="pay1">총 상품 금액</h1>
-            <p class="pay2"><fmt:formatNumber type="number"  maxFractionDigits="3" value='<%=request.getParameter("totalNum")%>'/>원</p>
+            <p class="pay2" id="totalNum"><fmt:formatNumber type="number"  maxFractionDigits="3" value='<%=request.getParameter("totalNum")%>'/>원</p>
             <h1 class="pay1">배송비</h1>
             <p class="pay2">무료</p>
-            <h1 class="pay1">최종 결제 금액</h1>
+            <h1 class="pay1" id="totalNum">최종 결제 금액</h1>
             <p class="pay2"><fmt:formatNumber type="number"  maxFractionDigits="3" value='<%=request.getParameter("totalNum")%>'/>원</p>
             <p><input class="check" type="checkbox" checked>아래 내용에 모두 동의합니다.(필수)</p>
             <p class="pay3">“쇼핑몰”은 이용자의 개인정보 수집시 서비스 제공을 위하여 필요한 범위에서 최소한의 개인정보를 수집합니다.
@@ -186,7 +186,7 @@
             pay_method: "card",//결제방법
             merchant_uid: 'merchant_'+new Date().getTime(),//주문번호
             name: $("#product_name").text(),//상품명
-           	amount: getParameter("totalNum"),//가격
+           	amount: $("#totalNum").text(),//가격
             buyer_email: "gildong@gmail.com",//이메일 세션받을곳
             buyer_name: "홍길동",//이름 - 세션받을곳
             buyer_tel: "010-4242-4242",//연락처 세션받을곳
