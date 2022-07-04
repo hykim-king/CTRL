@@ -21,13 +21,11 @@ public class PayServiceImpl implements PayService {
 	
 	@Override
 	public int payOrderInsert(OrderVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
 		return payDao.payOrderInsert(inVO);
 	}
 
 	@Override
 	public int payDetailInsert(DetailVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
 		return payDao.payDetailInsert(inVO);
 	}
 

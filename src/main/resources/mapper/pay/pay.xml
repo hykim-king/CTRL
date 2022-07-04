@@ -11,7 +11,7 @@
 			O_DT,
 			M_NUM
 		) VALUES(
-			#{oNum},<!-- 시퀀명.nextval -->
+			ORDER_S.nextval,<!-- 시퀀명.nextval -->
 			#{oAddr},
 			#{oName},
 			#{oTel},
@@ -29,7 +29,7 @@
 			P_NUM
 		) VALUES(
 			#{oNum},
-			#{dNum},<!-- 시퀀명.nextval -->
+			DETAIL_S.nextval,<!-- 시퀀명.nextval -->
 			#{dBuy},
 			#{pNum}
 		)

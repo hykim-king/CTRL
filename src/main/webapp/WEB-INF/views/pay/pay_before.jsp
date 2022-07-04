@@ -38,52 +38,99 @@
     <script src="${CP_RES }/js/etc/eclass.js"></script>
     <!-- 사용자 정의 function, isEmpty -->
     <script src="${CP_RES }/js/etc/eUtil.js"></script>
-    <script src="${CP_RES }/js/payco/payco.js"></script>
+
      <!-- css -->
     <link href="${CP_RES}/css/pay/before.css" rel="stylesheet">
-    	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
     
     <title>결제 전</title>
     
-     <!-- font awesome -->
-	<script src="https://kit.fontawesome.com/2974daa1cb.js" crossorigin="anonymous"></script>
-	
-    
-</head>
+<!-- font awesome -->
+<script src="https://kit.fontawesome.com/2974daa1cb.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="${CP_RES}/js/login/login_popup.js"></script>
+<script type="text/javascript" src="${CP_RES}/js/login/logout.js"></script>
+<script type="text/javascript">
+        $(document).ready(function(){
+        console.log("document.ready");
+        
+        // bowls 카테고리로 이동
+        $("#bowls").on("click", function(e){
+            console.log("bowls:");
+            console.log("pCategory:" + $("#pCategory").val());
+            window.location.href = "${CP}/menu/menuMove.do?pCategory=bowls";
+        });
+        // cup 카테고리로 이동
+        $("#cup").on("click", function(e){
+            console.log("cup:");
+            console.log("pCategory:" + $("#pCategory").val());
+            window.location.href = "${CP}/menu/menuMove.do?pCategory=cup";
+        });
+        // cup 카테고리로 이동
+        $("#glass").on("click", function(e){
+            console.log("glass:");
+            console.log("pCategory:" + $("#pCategory").val());
+            window.location.href = "${CP}/menu/menuMove.do?pCategory=glass";
+        });
+        // cup 카테고리로 이동
+        $("#plate").on("click", function(e){
+            console.log("plate:");
+            console.log("pCategory:" + $("#pCategory").val());
+            window.location.href = "${CP}/menu/menuMove.do?pCategory=plate";
+        });
+        
+        
+          })
+</script>
+
 <body>
-	<!-- 메인 헤더 영역 시작 -->
- <div id="header">
-    <div id="top">
-        <div id="logo">
-            <a href="#"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
+      <!-- 메인 헤더 영역 시작 (이은빈)-->
+    <div id="header">
+            <div id="logo">
+                <a href="#"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
+            </div>
+        <div id="top">
+            <div class="menu_left">
+                <ul>
+                    <li><a href="#" id="bowls">접시</a></li>
+                    <li><a href="#" id="cup">머그컵</a></li>
+                    <li><a href="#" id="glass">유리잔</a></li>
+                    <li><a href="#" id="plate">보울/면기</a></li>
+                </ul>
+            </div>
+            <div class="menu_right">
+                <!-- 로그인 전 화면 -->
+                <%String mNum = (String)session.getAttribute("mNum"); %>
+                <% if (null == mNum) {%>
+                    <ul>
+                        <li><a href="javascript:showPopUp()" class="login">로그인</a></li>
+                        <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
+                        <li><a href="#">장바구니</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">공지사항</a></li>
+                    </ul>
+                     <!-- 로그인 후 화면 -->
+                <%}else {%>
+                    <ul>
+                        <li><a href="javascript:logout()" class="logout">로그아웃</a></li>
+                        <li><a href="#">마이페이지</a></li>
+                        <li><a href="#">장바구니</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">공지사항</a></li>
+                    </ul>
+                <%}; %>
+                <form action="#" method="post" id="search" name="search">
+                    <input type="text" />
+                    <button>
+                        <i class="fas fa-search fa-lg"></i>
+                    </button>
+                </form>
+            </div>
         </div>
-        <div class="menu_left">
-            <ul>
-            <li><a href="#">접시</a></li>
-            <li><a href="#">머그컵</a></li>
-            <li><a href="#">유리잔</a></li>
-            <li><a href="#">보울/면기</a></li>
-            </ul>
-        </div>
-        <div class="menu_right">
-            <ul>
-            <li><a href="#">로그인</a></li>
-            <li><a href="#">마이페이지</a></li>
-            <li><a href="#">장바구니</a></li>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">공지사항</a></li>
-            </ul>
-            <form action="#" method="post" id="search" name="search">
-                <input type="text"/>
-                <button>
-                    <i class="fas fa-search fa-lg"></i>
-                </button>
-            </form>
-        </div> 
     </div>
-</div>
-<!-- 메인 헤더 영역 끝 -->
+
+    <!-- 메인 헤더 영역 끝 (이은빈)-->
+
 <!-- 배송지 -->
     <div class="address">
         <h1 class="title">배송지</h1>
@@ -158,9 +205,11 @@
               	console.log('삼풍 수량: '+rsp.count);
               	
                	payOrderInsert(merchant_uid, rsp.name, rsp.paid_amount, rsp.buyer_name,
-               			rsp.buyer_tel, rsp.buyer_addr, rsp.count);
+               			rsp.buyer_tel, rsp.buyer_addr, rsp.count , status);
               	
-              	window.location.href="/ctrl/pay/payAfter.do";
+               	payDetailInsert(merchant_uid,rsp.count,name);
+               	
+               	window.location.href="/ctrl/pay/payAfter.do";
                 // 결제 성공 시 로직
         	}else{
             	var msg = '결제가 실패하였습니다.'
@@ -169,32 +218,44 @@
         	}
             alert(msg);
         };
-        
-//        function payOrderInsert(){
-//            let url = "${CP}/pay/payOrderInsert.do";
-//            let method = "GET";
-//      		let async = true;   
-//  	    let parameters = {
-//       			   oNum : merchant_uid,
-//      	   	   	   oName : rsp.buyer_name,
-//                   oAddr : rsp.buyer_addr,
-//                   oTel : rsp.buyer_tel,
-//                   oStatus : "10",
-//                   oDt : SYSDATE,
-//                   mNum : "222",
-//  	    };
+    
+        function payOrderInsert(){
+            let url = "${CP}/pay/payOrderInsert.do";
+            let method = "GET";
+      		let async = true;   
+	  	    let parameters = {
+       			   oNum : merchant_uid,
+      	   	   	   oName : rsp.buyer_name,
+                   oAddr : rsp.buyer_addr,
+                   oTel : rsp.buyer_tel,
+                   oStatus : status,
+                   oDt : SYSDATE,
+                   mNum : "222",
+  	    };
     	    
-//          EClass.callAjax(url, parameters, method, async, function(data) {
-//              console.log("EClass.callAjax data : " + data);
+          EClass.callAjax(url, parameters, method, async, function(data) {
+              console.log("EClass.callAjax data : " + data);
                 
-//              if(null != data){
-//              	alert("DB에 접근함!");
-//              }else{
-//              	alert("DB에 접근못함!");
-//              }
-//          });
-//      };
-   });
+          });
+      };
+      
+      function payOrderInsert(){
+          let url = "${CP}/pay/payDetailInsert.do";
+          let method = "GET";
+    		let async = true;
+	  	    let parameters = {
+	  	    	   oNum : merchant_uid,
+	  	    	   dNum : ${"dNum"},
+	  	    	   dBuy : ${"buy_number"},
+	  	    	   pNum : $("#product_name").text(),
+	    };
+  	    
+        EClass.callAjax(url, parameters, method, async, function(data) {
+            console.log("EClass.callAjax data : " + data);
+              
+        });
+    };
+ });
     	
     </script>
 
