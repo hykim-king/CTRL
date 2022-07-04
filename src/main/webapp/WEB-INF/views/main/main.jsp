@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="CP" value="${pageContext.request.contextPath}" />
 <c:set var="resources" value="/resources" />
@@ -60,7 +60,7 @@
           })
 </script>
 <body>
-	  <!-- 메인 헤더 영역 시작 (이은빈)-->
+      <!-- 메인 헤더 영역 시작 (이은빈)-->
     <div id="header">
             <div id="logo">
                 <a href="#"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
@@ -68,24 +68,24 @@
         <div id="top">
             <div class="menu_left">
                 <ul>
-					<li><a href="#" id="bowls">접시</a></li>
-					<li><a href="#" id="cup">머그컵</a></li>
-					<li><a href="#" id="glass">유리잔</a></li>
-					<li><a href="#" id="plate">보울/면기</a></li>
-				</ul>
-			</div>
-			<div class="menu_right">
-				<!-- 로그인 전 화면 -->
+                    <li><a href="#" id="bowls">접시</a></li>
+                    <li><a href="#" id="cup">머그컵</a></li>
+                    <li><a href="#" id="glass">유리잔</a></li>
+                    <li><a href="#" id="plate">보울/면기</a></li>
+                </ul>
+            </div>
+            <div class="menu_right">
+                <!-- 로그인 전 화면 -->
                 <%String mNum = (String)session.getAttribute("mNum"); %>
                 <% if (null == mNum) {%>
                     <ul>
                         <li><a href="javascript:showPopUp()" class="login">로그인</a></li>
-						<li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
-						<li><a href="#">장바구니</a></li>
-						<li><a href="#">FAQ</a></li>
-						<li><a href="#">공지사항</a></li>
-				    </ul>
-				     <!-- 로그인 후 화면 -->
+                        <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
+                        <li><a href="#">장바구니</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">공지사항</a></li>
+                    </ul>
+                     <!-- 로그인 후 화면 -->
                 <%}else {%>
                     <ul>
                         <li><a href="javascript:logout()" class="logout">로그아웃</a></li>
@@ -95,28 +95,28 @@
                         <li><a href="#">공지사항</a></li>
                     </ul>
                 <%}; %>
-				<form action="#" method="post" id="search" name="search">
-					<input type="text" />
-					<button>
-						<i class="fas fa-search fa-lg"></i>
-					</button>
-				</form>
-			</div>
-		</div>
-	</div>
+                <form action="#" method="post" id="search" name="search">
+                    <input type="text" />
+                    <button>
+                        <i class="fas fa-search fa-lg"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 
-	<!-- 메인 헤더 영역 끝 (이은빈)-->
+    <!-- 메인 헤더 영역 끝 (이은빈)-->
 
-	<!-- 이미지 슬라이드 영역 시작 -->
-	 <div id="main_body">
+    <!-- 이미지 슬라이드 영역 시작 -->
+     <div id="main_body">
         <div class="main_slider">
             <img src="${CP_RES}/img/slider3.jpg" width="1680">
         </div>
-	<!-- 이미지 슬라이드 영역 끝 -->
+    <!-- 이미지 슬라이드 영역 끝 -->
 
 
-	<!-- 메인페이지 카테고리 영역 시작 -->
-	<div id="main_cate">
+    <!-- 메인페이지 카테고리 영역 시작 -->
+    <div id="main_cate">
             <ul>
                 <li class="cate_img">
                    <a href="#"  class="plate_div"><img src="${CP_RES}/img/plate07.jpg">
@@ -134,16 +134,16 @@
                  </li>
             </ul>
         </div>
-	<!-- 메인페이지 카테고리 영역 끝 -->
+    <!-- 메인페이지 카테고리 영역 끝 -->
 
-	<!-- 베스트 상품 영역 시작-->
-	<div id="best">
-		<h2>Best Product</h2>
-	</div>
-	<!-- 베스트 상품 영역 끝-->
+    <!-- 베스트 상품 영역 시작-->
+    <div id="best">
+        <h2>Best Product</h2>
+    </div>
+    <!-- 베스트 상품 영역 끝-->
 
-	<!-- footer 시작 -->
-	 <div id="footer">
+    <!-- footer 시작 -->
+     <div id="footer">
             <div class="ft_content">
                <div>
                    <div class="logo_text">
@@ -186,7 +186,7 @@
             </div>
         </div>
 
-	<!-- footer 끝 -->
+    <!-- footer 끝 -->
 
 
 </body>
