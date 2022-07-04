@@ -59,6 +59,20 @@ public class LoginController {
 		return "login/naver_callback";
 	}
 	
+	
+	@RequestMapping(value="/doLogout.do")
+	public String doLogout(HttpSession session)throws SQLException{
+		LOG.debug("===========================");
+		LOG.debug("=doLogout()=");
+		LOG.debug("===========================");		
+		
+		if(null != session.getAttribute("member")) {
+			session.removeAttribute("member");
+			session.invalidate();
+		}
+		
+		return "main/main";
+	}
 
 	
 	@RequestMapping(value="/memberCheck.do", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
@@ -94,25 +108,13 @@ public class LoginController {
 		
 		   
 		session = req.getSession();
-//		PrintWriter pw = response.getWriter();
 		if(null != session) {
 			session.setAttribute("member", inVO);
 			LOG.debug("session:"+session);
 			response.sendRedirect("/ctrl/main/main.do");
-//			pw.println("<script>alert('로그인');document.location.href='/ctrl/main/main.do';</script>");
 		}else {
 			LOG.debug("session is null");
-//			pw.println("<script>alert('로그인 실패');document.location.href='/ctrl/main/main.do';</script>");
 		}
-		
-//        response.sendRedirect("/ctrl/main/main.do");
-		
-//		PrintWriter pw = response.getWriter();
-//		if(null != session) {
-//			pw.println("<script>alert('로그인');document.location.href='/ctrl/main/main.do';</script>");
-//		}else {
-//			pw.println("<script>alert('로그인 실패');document.location.href='/ctrl/main/main.do';</script>");
-//		}
 		
 		return outVO;
 	}

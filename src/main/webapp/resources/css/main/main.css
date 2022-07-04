@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* 메인페이지 헤더 및 푸터 영역 css 시작 (이은빈)*/
+/* 메인페이지 헤더 및 푸터 영역 css 시작 (이은빈)****************************************/
 @font-face {
 	font-family: 'Vitro_core'; /* 로고, 소제목 */
 	src:
@@ -30,6 +30,8 @@ body {
 }
 
 #header {
+	top:0;
+    z-index: 999;   
 	width: 100%;
 	max-width: 1800px; /* 최대 폭, 값 없으면 화면 축소시 가운데로 x */
 	height: 140px;
@@ -100,8 +102,8 @@ body {
 }
 
 #footer {
+	width: 100%;
 	position: relative;
-	padding: 0 9.5% 0 8%;
     top: 150px;
     display: inline-block;
     flex-direction: row;
@@ -119,14 +121,15 @@ body {
 }
 
 .util, .ft_top, .ft_bottom, .ft_content {
-    border-top: 1px solid #424242;
     display: flex;
     text-align: left;
-    padding: 10px;
     color: #fff;
     position: relative;
 }
 
+.logoNcopy{
+	padding-left: 190px;
+}
 
 .logo_text{
 	font-size: 50px;
@@ -140,6 +143,10 @@ body {
 .ft_bottom #git {
 	color: #fff;
 	text-decoration: none;
+}
+
+.address {
+	padding-left: 190px;
 }
 
 #footer .fsec01 .sec {
@@ -167,7 +174,9 @@ body {
     display: block;
 }
 
-
+.util_inner {
+	padding-right: 190px;
+}
 
 .util_inner>ul {
 	list-style: none;
@@ -187,7 +196,7 @@ body {
 }
 
 
-/* 메인페이지 헤더 및 푸터 영역 css 끝 (이은빈)*/
+/* 메인페이지 헤더 및 푸터 영역 css 끝 (이은빈)******************************************/
 
 #main_body {
 	display: flex;
