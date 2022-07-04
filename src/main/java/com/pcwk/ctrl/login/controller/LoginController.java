@@ -92,6 +92,7 @@ public class LoginController {
 		LOG.debug("resultMessaage: "+ resultMessaage);
 		LOG.debug("==============================");
 		
+		   
 		session = req.getSession();
 //		PrintWriter pw = response.getWriter();
 		if(null != session) {
