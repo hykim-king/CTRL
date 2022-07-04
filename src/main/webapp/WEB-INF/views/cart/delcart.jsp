@@ -2,9 +2,10 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
-session.getAttribute("cart");
-session.removeAttribute("cart");
-response.sendRedirect("ShopMallMain.jsp");
+     // 특정 쿠키만 삭제하기
+     Cookie kc = new Cookie("pNum", null) ;
+     kc.setMaxAge(0) ;
+     response.addCookie(kc) ;
 %>
 <html>
 <head>
