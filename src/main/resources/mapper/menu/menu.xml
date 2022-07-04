@@ -9,6 +9,7 @@
         P_PRICE AS pPrice,
         P_SIZE AS pSize
         FROM product
+        WHERE p_category = #{pCategory}
         ORDER BY pNum
     </select>
    
