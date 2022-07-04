@@ -30,13 +30,15 @@
    <link rel="shortcut icon" type="image/x-icon" href="${CP }/favicon.ico">
    <title>부트 스트랩-boot_list</title>
     <!-- 부트스트랩 -->
-    <link href="${CP_RES}/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${CP_RES}/css/etc/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${CP_RES }/css/main/main.css">
     <link rel="stylesheet" type="text/css" href="${CP_RES}/css/menu/menu.css">
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
-    <script src="${CP_RES}/js/jquery-1.12.4.js"></script>
+    <script src="${CP_RES}/js/etc/jquery-1.12.4.js"></script>
+    <!-- 사용자 정의 function, callAjax -->
+    <script src="${CP_RES }/js/etc/eclass.js"></script>
     <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
-    <script src="${CP_RES}/js/bootstrap.min.js"></script>
+    <script src="${CP_RES}/js/etc/bootstrap.min.js"></script>
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/2974daa1cb.js"
                         crossorigin="anonymous"></script>
@@ -47,7 +49,40 @@
       $(document).ready(function(){
          console.log("document.ready");
          
-         
+         /* 이미지 클릭시 상세페이지로 이동 (김주혜)*/
+         $(document).on("click", "#list img", function(e){
+        	 console.log('클릭');
+             let productImgSrc = $(this).attr("src");
+             let pNum = productImgSrc.substring(productImgSrc.lastIndexOf('/')+1,productImgSrc.lastIndexOf('.'));
+             console.log(productImgSrc);
+             console.log(pNum);
+             
+             let url = "${CP}/productDetail/doSelect.do";
+             let method = "GET";
+             let parameters = {
+                     pNum : pNum
+             }; 
+             
+             let async = true;
+             
+             EClass.callAjax(url, parameters, method, async, function(data){
+                 console.log(data);
+                 // {"pNum":"glass01","pName":"뚱뚱이 고블렛잔 ","pPrice":27700,"pSize":"530ml","no":0}
+                 let pNum = data.pNum;
+                 let pName = data.pName;
+                 let pPrice = data.pPrice;
+                 let pSize = data.pSize;
+                 
+                 let pageSize = 7;
+                 let pageNum = 1;
+                 
+                 window.location.href="${CP}/productDetail/view.do?pNum=" + pNum + "&pName=" + pName + 
+                         "&pPrice="+pPrice + "&pSize="+pSize+ "&pageSize="+pageSize + "&pageNum=" + pageNum;
+                 
+             }); 
+             
+         });
+         /* 이미지 클릭시 상세페이지로 이동 (김주혜)*/
       });
     </script>
 </head>
