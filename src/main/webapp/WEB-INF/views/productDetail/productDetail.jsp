@@ -34,7 +34,7 @@
     <!-- 부트스트랩 -->
     <link href="${CP_RES }/css/etc/bootstrap.min.css" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="${CP }/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="${CP_RES }/css/main/main.css">
+    <link rel="stylesheet" type="text/css" href="${CP_RES}/css/main/main.css">
     <link rel="stylesheet" type="text/css" href="${CP_RES }/css/productDetail/productDetail.css">
     
     <title>제품 상세 페이지</title>
@@ -52,10 +52,39 @@
     
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/2974daa1cb.js" crossorigin="anonymous"></script>
-    
+	<script type="text/javascript" src="${CP_RES}/js/login/login_popup.js"></script>
+	<script type="text/javascript" src="${CP_RES}/js/login/logout.js"></script>    
     <script type="text/javascript">
        $(document).ready(function(){
            console.log("document.ready");
+           
+           /*----------------- 헤더에서 각 카테고리로 이동하는 기능 시작(최유빈)-------------------*/
+           // bowls 카테고리로 이동
+           $("#bowls").on("click", function(e){
+               console.log("bowls:");
+               console.log("pCategory:" + $("#pCategory").val());
+               window.location.href = "${CP}/menu/menuMove.do?pCategory=bowls";
+           });
+           // cup 카테고리로 이동
+           $("#cup").on("click", function(e){
+               console.log("cup:");
+               console.log("pCategory:" + $("#pCategory").val());
+               window.location.href = "${CP}/menu/menuMove.do?pCategory=cup";
+           });
+           // cup 카테고리로 이동
+           $("#glass").on("click", function(e){
+               console.log("glass:");
+               console.log("pCategory:" + $("#pCategory").val());
+               window.location.href = "${CP}/menu/menuMove.do?pCategory=glass";
+           });
+           // cup 카테고리로 이동
+           $("#plate").on("click", function(e){
+               console.log("plate:");
+               console.log("pCategory:" + $("#pCategory").val());
+               window.location.href = "${CP}/menu/menuMove.do?pCategory=plate";
+           });
+           /*----------------- 헤더에서 각 카테고리로 이동하는 기능 끝(최유빈)-------------------*/
+           
            /*----------------- 리뷰(김주혜) 시작-------------------*/
            
            // 리뷰 - 버튼 누르면 관리자 댓글 나오게 하기
@@ -269,38 +298,52 @@
 
     </script>
     <body>
-    <!-- 메인 헤더 영역 시작 -->
+      <!-- 메인 헤더 영역 시작 (이은빈)-->
     <div id="header">
-       <div id="top">
-           <div id="logo">
-             <a href="#"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
-           </div>
-           <div class="menu_left">
-               <ul>
-               <li><a href="#">접시</a></li>
-               <li><a href="#">머그컵</a></li>
-               <li><a href="#">유리잔</a></li>
-               <li><a href="#">보울/면기</a></li>
-               </ul>
-           </div>
-           <div class="menu_right">
-               <ul>
-               <li><a href="#">로그인</a></li>
-               <li><a href="#">마이페이지</a></li>
-               <li><a href="#">장바구니</a></li>
-               <li><a href="#">FAQ</a></li>
-               <li><a href="#">공지사항</a></li>
-               </ul>
-               <form action="#" method="post" id="search" name="search">
-                   <input type="text"/>
-                   <button>
-                         <i class="fas fa-search fa-lg"></i>
-                   </button>
-               </form>
-           </div> 
-       </div>
+            <div id="logo">
+                <a href="${CP}/main/main.do"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
+            </div>
+        <div id="top">
+            <div class="menu_left">
+                <ul>
+                    <li><a href="#" id="bowls">접시</a></li>
+                    <li><a href="#" id="cup">머그컵</a></li>
+                    <li><a href="#" id="glass">유리잔</a></li>
+                    <li><a href="#" id="plate">보울/면기</a></li>
+                </ul>
+            </div>
+            <div class="menu_right">
+                <!-- 로그인 전 화면 -->
+                <%String mNum = (String)session.getAttribute("mNum"); %>
+                <% if (null == mNum) {%>
+                    <ul>
+                        <li><a href="javascript:showPopUp()" class="login">로그인</a></li>
+                        <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
+                        <li><a href="#">장바구니</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">공지사항</a></li>
+                    </ul>
+                     <!-- 로그인 후 화면 -->
+                <%}else {%>
+                    <ul>
+                        <li><a href="javascript:logout()" class="logout">로그아웃</a></li>
+                        <li><a href="#">마이페이지</a></li>
+                        <li><a href="#">장바구니</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">공지사항</a></li>
+                    </ul>
+                <%}; %>
+                <form action="#" method="post" id="search" name="search">
+                    <input type="text" />
+                    <button>
+                        <i class="fas fa-search fa-lg"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
-    <!-- 메인 헤더 영역 끝 -->
+
+    <!-- 메인 헤더 영역 끝 (이은빈)-->
     
     <!-- 콘텐츠 영역 시작(김주혜) -->
     <div id="contents">
@@ -379,6 +422,51 @@
     <!--// 아코디언 메뉴(상세설명, 리뷰)(김주혜) -->
     </div> 
     <!-- 콘텐츠 영역 끝(김주혜) -->
+    <!-- footer 시작(이은빈) -->
+     <div id="footer">
+            <div class="ft_content">
+               <div>
+                   <div class="logo_text">
+                       Table</br>Ware
+                   </div>
+                   <p>
+                       CopyRright &copy; </br>All right reserved by CTRL
+                   </p>
+               </div>
+                
+                <div class="ft_top ">
+                        <div class="fsec01 sec">
+                            <p class="tit">CS CENTER</p>
+                            <span class="first">02-313-7300</span>
+                            <span>WEEKDAY AM 9:00 ~ PM 6:00</span>
+                            <span>LUNCH PM 12:00 ~ PM 1:00</span>
+                            <span>WEEKEND &amp; HOLYDAY OFF</span>
+                        </div>
+                        <div class="fsec02 sec">
+                            <p class="tit">RETURN &amp; EXCHANGE</p>
+                            <span>반품 : 04100 서울특별시 마포구 서강로 136 아이비타워 3층 <br/> 반드시 고객센터에 접수 후 교환 및 반품해주세요.</span>
+                            <span>cj대한통운 고객센터 1588-1255</span> 
+                        </div>
+                </div>
+                <div class="util">
+                    <div class="util_inner">
+                        <ul class="menu">
+                            <li><a href="#"><span>이용약관</a></li>
+                            <li><a href="#">개인정보취급방침</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="ft_bottom ">
+                <p class="address">
+                    <span>COMPANY : (주)TableWare CEO : CTRL    PHONE : 010-1234-5678</span></br> 
+                    <span>CONTACT : <strong><a href="https://github.com/hykim-king/CTRL.git" id="git">https://github.com/hykim-king/CTRL.git</a></strong></span></br>
+                    <span>BUSINESS LICENCE : [123-45-67890] | ADDRESS : 04100 서울특별시 마포구 서강로 136 아이비타워 3층 TableWare</span>
+                </p>
+            </div>
+        </div>
+
+    <!-- footer 끝 (이은빈)-->
     
     <!-- payBefore로 GET방식으로 값 넘기기(김병완) -->
     <script type="text/javascript">
