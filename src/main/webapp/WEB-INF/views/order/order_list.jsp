@@ -199,14 +199,14 @@
     <div id="header">
         <div id="top">
             <div id="logo">
-                <a href="#"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
+                <a href="${CP}/main/main.do"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
             </div>
             <div class="menu_left">
                 <ul>
-                    <li><a href="#">접시</a></li>
-                    <li><a href="#">머그컵</a></li>
-                    <li><a href="#">유리잔</a></li>
-                    <li><a href="#">보울/면기</a></li>
+                    <li><a href="${CP}/menu/menuMove.do?pCategory=plate" id="plate">접시</a></li>
+                    <li><a href="${CP}/menu/menuMove.do?pCategory=cup" id="cup">머그컵</a></li>
+                    <li><a href="${CP}/menu/menuMove.do?pCategory=glass" id="glass">유리잔</a></li>
+                    <li><a href="${CP}/menu/menuMove.do?pCategory=bowls" id="bowls">보울/면기</a></li>
                 </ul>
             </div>
             <div class="menu_right">
@@ -294,9 +294,54 @@
        </div>
        
        <!-- pagenation(페이징 1,2,3,4,5 버튼 나타내기) -->
-        <div class="text-center col-sm-12 col-md-12 col-lg-12">
             <div id="page-selection" class="text-center page"></div>
-        </div>
         <!-- pagenation ---------------------------------------->
+
+<!-- footer 시작(이은빈) ---------------------------------------------------->
+         <div id="footer">
+                <div class="ft_content">
+                   <div class="logoNcopy">
+                       <div class="logo_text">
+                           Table<br>Ware
+                       </div>
+                       <p>
+                           CopyRright &copy; <br>All right reserved by CTRL
+                       </p>
+                   </div>
+                    
+                    <div class="ft_top ">
+                            <div class="fsec01 sec">
+                                <p class="tit">CS CENTER</p>
+                                <span class="first">02-313-7300</span>
+                                <span>WEEKDAY AM 9:00 ~ PM 6:00</span>
+                                <span>LUNCH PM 12:00 ~ PM 1:00</span>
+                                <span>WEEKEND &amp; HOLYDAY OFF</span>
+                            </div>
+                            <div class="fsec02 sec">
+                                <p class="tit">RETURN &amp; EXCHANGE</p>
+                                <span>반품 : 04100 서울특별시 마포구 서강로 136 아이비타워 3층 <br/> 반드시 고객센터에 접수 후 교환 및 반품해주세요.</span>
+                                <span>cj대한통운 고객센터 1588-1255</span> 
+                            </div>
+                    </div>
+                    <div class="util">
+                        <div class="util_inner">
+                            <ul class="menu">
+                                <li><a href="#"><span>이용약관</a></li>
+                                <li><a href="#">개인정보취급방침</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="ft_bottom ">
+                    <p class="address">
+                        <span>COMPANY : (주)TableWare CEO : CTRL    PHONE : 010-1234-5678</span></br> 
+                        <span>CONTACT : <strong><a href="https://github.com/hykim-king/CTRL.git" id="git">https://github.com/hykim-king/CTRL.git</a></strong></span></br>
+                        <span>BUSINESS LICENCE : [123-45-67890] | ADDRESS : 04100 서울특별시 마포구 서강로 136 아이비타워 3층 TableWare</span>
+                    </p>
+                </div>
+            </div>
+    
+        <!-- footer 끝 ------------------------------------------------------------->
+
 </body>
 </html>
