@@ -14,8 +14,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
 <link rel="shortcut icon" type="image/x-icon" href="${CP}/favicon.ico">
-<link rel="stylesheet" type="text/css" href="${CP_RES}/css/main/main.css">
-<link rel="stylesheet" type="text/css" href="${CP_RES}/css/cart/cart.css">
+<link rel="stylesheet" type="text/css"
+     href="${CP_RES}/css/main/main.css">
+<link rel="stylesheet" type="text/css"
+     href="${CP_RES}/css/cart/cart.css">
 <!-- 부트스트랩 -->
 <link href="${CP_RES }/css/etc/bootstrap.min.css" rel="stylesheet">
 
@@ -25,7 +27,6 @@
 <script src="https://kit.fontawesome.com/2974daa1cb.js"
      crossorigin="anonymous"></script>
 <script type="text/javascript" src="${CP_RES}/js/login/login_popup.js"></script>
-
 <body>
      <!-- 메인 헤더 영역 시작 -->
      <div id="header">
@@ -71,37 +72,145 @@
      <br />
      <br />
      <br />
-     <br />
-     ${inquiry[0].pName}
-     ${inquiry[0].pName}
+     <br /> ${inquiry[0].pName} ${inquiry[0].pName}
 
-     
+
+
+     <div class="name_1">
+          <span class="name_2"
+               style="border-radius: 15px 15px 15px 0; border: 3px solid #FFAD5B; padding: 0.5em 0.6em; color: #FF8000;">장바구니</span>
+     </div>
+
+
+
+     <table>
+          <thead>
+               <tr>
+                    <th>체크박스</th>
+                    <th>이미지</th>
+                    <th>상품명</th>
+                    <th>판매가</th>
+                    <th>수량</th>
+                    <th>합계</th>
+               </tr>
+          </thead>
+          <tbody>
+               <tr>
+                    <td><img src="이미지"></td>
+                    <td>Ninja</td>
+                    <td>Asma Ad</td>
+                    <td>120</td>
+                    <td>
+                         <button class="view">view</button>
+                         <button class="delete">Delete</button>
+                    </td>
+                     <td>
+                         <button class="view">view</button>
+                         <button class="delete">Delete</button>
+                    </td>
+               </tr>
+
+               <tr>
+                    <td><img src="이미지" alt="img"></td>
+                    <td rowspan="2">Shades</td>
+                    <td>David</td>
+                    <td>180</td>
+                    <td>
+                         <button class="view">view</button>
+                         <button class="delete">Delete</button>
+                    </td>
+                     <td>
+                         <button class="view">view</button>
+                         <button class="delete">Delete</button>
+                    </td>
+               </tr>
+
+               <tr>
+                    <td><img src="이미지"
+                         alt="img"></td>
+                    <td>Alex</td>
+                    <td>160</td>
+                    <td>
+                         <button class="view">view</button>
+                         <button class="delete">Delete</button>
+                    </td>
+                     <td>
+                         <button class="view">view</button>
+                         <button class="delete">Delete</button>
+                    </td>
+               </tr>
+
+               <tr>
+                    <td><img src="이미지" alt="img"></td>
+                    <td rowspan="2">Valhala</td>
+                    <td>Kawtar</td>
+                    <td>190</td>
+                    <td>
+                         <button class="view">view</button>
+                         <button class="delete">Delete</button>
+                    </td>
+                     <td>
+                         <button class="view">view</button>
+                         <button class="delete">Delete</button>
+                    </td>
+               </tr>
+
+               <tr>
+                    <td><img src="이미지"
+                         alt="img"></td>
+                    <td>Katara</td>
+                    <td>110</td>
+                    <td>
+                         <button class="view">view</button>
+                         <button class="delete">Delete</button>
+                    </td>
+                     <td>
+                         <button class="view">view</button>
+                         <button class="delete">Delete</button>
+                    </td>
+               </tr>
+
+               <tr>
+                    <td><img src="이미지" alt="img"></td>
+                    <td>Union</td>
+                    <td>Ashraf</td>
+                    <td>90</td>
+                    <td>
+                         <button class="view">view</button>
+                         <button class="delete">Delete</button>
+                    </td>
+                     <td>
+                         <button class="view">view</button>
+                         <button class="delete">Delete</button>
+                    </td>
+               </tr>
+          </tbody>
+          <tfoot>
+               <td colspan="5" class="tablefoot"></td>
+          </tfoot>
+     </table>
+
      <!-- 장바 구니 -->
-               <table class="outbox">
-                    <thead>
-                         <tr class="out">
-                              <th width="5%;"  >NO.</th>
-                              <th width="40%;" >이미지</th>
-                              <th width="15%;" >상품명</th>
-                              <th width="10%;" >판매가</th>
-                              <th width="15%;" >수량</th>
-                              <th width="15%;" >합계</th>
-                         </tr>
-                    </thead>
-                    <tbody>
-                         <tr>
-                              <td>1</td>
-                              <td>게시글1</td>
-                              <td>${inquiry[0].pName}</td>
-                              <td>${inquiry[0].pPrice}</td>
-                              <td>${inquiry[1].pName}</td>
-                              <td style="display:none">1</td>
-                         </tr>
-                    </tbody>
-               </table>
-          <!--//장바 구니 ------------------------------------------->
-     
 
+     <!--//장바 구니 ------------------------------------------->
+
+     <c:choose>
+          <c:when test="${NoticeVO.size()  > 0}">
+               <c:forEach var="NoticeVO" items="${NoticeVO }">
+
+                    <div class="faq">
+                         <div class="faq_question">${NoticeVO.nTitle }</div>
+                         <div class="faq_answer_container">
+                              <div class="faq_answer">${NoticeVO.nContent}</div>
+                         </div>
+                    </div>
+                    <td>${inquiry[0].pName}</td>
+                    <td>${inquiry[0].pPrice}</td>
+                    <td>${inquiry[1].pName}</td>
+
+               </c:forEach>
+          </c:when>
+     </c:choose>
 
 </body>
 </html>
