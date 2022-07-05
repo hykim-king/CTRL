@@ -43,13 +43,13 @@
             console.log("pCategory:" + $("#pCategory").val());
             window.location.href = "${CP}/menu/menuMove.do?pCategory=cup";
         });
-        // cup 카테고리로 이동
+        // glass 카테고리로 이동
         $("#glass").on("click", function(e){
             console.log("glass:");
             console.log("pCategory:" + $("#pCategory").val());
             window.location.href = "${CP}/menu/menuMove.do?pCategory=glass";
         });
-        // cup 카테고리로 이동
+        // plate 카테고리로 이동
         $("#plate").on("click", function(e){
             console.log("plate:");
             console.log("pCategory:" + $("#pCategory").val());
@@ -67,10 +67,10 @@
         <div id="top">
             <div class="menu_left">
                 <ul>
-                    <li><a href="#" id="bowls">접시</a></li>
+                    <li><a href="#" id="plate">접시</a></li>
                     <li><a href="#" id="cup">머그컵</a></li>
                     <li><a href="#" id="glass">유리잔</a></li>
-                    <li><a href="#" id="plate">보울/면기</a></li>
+                    <li><a href="#" id="bowls">보울/면기</a></li>
                 </ul>
             </div>
             <div class="menu_right">
