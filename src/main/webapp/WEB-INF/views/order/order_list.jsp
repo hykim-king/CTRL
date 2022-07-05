@@ -31,7 +31,7 @@
     <link href="${CP_RES }/css/etc/bootstrap.min.css" rel="stylesheet">
     <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
     <link rel="shortcut icon" type="image/x-icon" href="${CP }/favicon.ico">
-    <link rel="stylesheet" mtype="text/css" href="${CP_RES }/css/main/main.css">
+    <link rel="stylesheet" type="text/css" href="${CP_RES }/css/main/main.css">
     <link rel="stylesheet" type="text/css" href="${CP_RES}/css/order/order_list.css">
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
     <script src="${CP_RES }/js/etc/jquery-1.12.4.js"></script>
@@ -133,12 +133,12 @@
                  
                 $.each(parsedData, function(i, memberVO){
                      htmlData += "<tr> ";
-                     htmlData += "<th width='150' class='oNum' height='98.5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +memberVO.oNum+"</th>"
-                     htmlData += "<th width='130'><img src='${CP_RES}/img/" +memberVO.pNum+ ".jpg' alt='상품 이미지' width='97'/></th>";
+                     htmlData += "<th width='150'  class='oNum'>" +memberVO.oNum+"</th>"
+                     htmlData += "<th width='130'><img src='${CP_RES}/img/" +memberVO.pNum+ ".jpg' alt='상품 이미지' width='90'/></th>";
                      htmlData += "<th width='330'><a class='text'>" +memberVO.pName+ "</a></th>";
-                     htmlData += "<th width='150'style='text-align:center;'>" +memberVO.pPrice+ "원 </th>";
-                     htmlData += "<th width='90' style='text-align:center;'>" +memberVO.dBuy+ "개</th>";
-                     htmlData += "<th width='150' style='text-align:center;'>"+memberVO.oStatus+ "<br><input class='btn-2 button' type='button' value='리뷰쓰기' ></th>";
+                     htmlData += "<th width='150'>" +memberVO.pPrice+ " </th>";
+                     htmlData += "<th width='90'>" +memberVO.dBuy+ "</th>";
+                     htmlData += "<th width='150'>"+memberVO.oStatus+ "<br><input class='btn-2 button' type='button' value='리뷰쓰기' ></th>";
                      htmlData += "<th style='display: none;'>" +memberVO.dNum+ "</th>";
                      htmlData += "<th style='display: none;'>"+memberVO.oName+ "</th>";
                      htmlData += "<th style='display: none;'>"+memberVO.pNum+ "</th>";
@@ -199,14 +199,14 @@
     <div id="header">
         <div id="top">
             <div id="logo">
-                <a href="${CP}/main/main.do"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
+                <a href="#"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
             </div>
             <div class="menu_left">
                 <ul>
-                    <li><a href="${CP}/menu/menuMove.do?pCategory=plate" id="plate">접시</a></li>
-                    <li><a href="${CP}/menu/menuMove.do?pCategory=cup" id="cup">머그컵</a></li>
-                    <li><a href="${CP}/menu/menuMove.do?pCategory=glass" id="glass">유리잔</a></li>
-                    <li><a href="${CP}/menu/menuMove.do?pCategory=bowls" id="bowls">보울/면기</a></li>
+                    <li><a href="#">접시</a></li>
+                    <li><a href="#">머그컵</a></li>
+                    <li><a href="#">유리잔</a></li>
+                    <li><a href="#">보울/면기</a></li>
                 </ul>
             </div>
             <div class="menu_right">
@@ -249,12 +249,12 @@
   
   <table id="orderTable" class="order2" width = "1000" height="50px">
       <tr>
-         <th width="150"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;주문번호</th>
+         <th width="150"> 주문번호</th>
          <th width="130"></th>
          <th width="330">상품정보</th>
-         <th width="130" style="text-align:center;">금액</th>
-         <th width="90" style="text-align:center;">수량</th>
-         <th width="150" style="text-align:center;">진행상태</th>
+         <th width="150">금액</th>
+         <th width="90">수량</th>
+         <th width="150">진행상태</th>
          
          <!--  아래 세개는 리뷰 페이지를 위해 필요한 것  : 조회 필요-->
          <th width="100" style="display: none;">상세번호</th>
@@ -263,20 +263,20 @@
       </tr>
   </table>
       
-      <table class="order3" id="listTable" width = "1000" height="98">
+      <table class="order3" id="listTable" width = "1000" height="100">
       <tbody>
         <c:choose>
          <c:when test="${list.size() > 0}">
              <c:forEach var="list" items="${list}"> 
                <!-- 문자: 왼쪽, 숫자: 오른쪽, 같은면: 가운데 -->
                 <tr>
-                    <th width="150" class="oNum" height="98.5"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${list.oNum}</th>
-                    <th width="130"><img src="${CP_RES}/img/${list.pNum}.jpg" alt="상품 이미지" width="97"/></th>
+                    <th width="150"  class="oNum"> ${list.oNum}</th>
+                    <th width="130"><img src="${CP_RES}/img/${list.pNum}.jpg" alt="상품 이미지" width="90"/></th>
                     <th width="330"><a class="text">${list.pName}</a></th>
-                    <th width="130" style="text-align:center;"><fmt:formatNumber type="number" maxFractionDigits="3" value="${list.pPrice}"/>원
+                    <th width="150">${list.pPrice}
                     </th>
-                    <th width="90" style="text-align:center;">${list.dBuy}개</th>
-                    <th width="150" style="text-align:center;">${list.oStatus}
+                    <th width="90">${list.dBuy}</th>
+                    <th width="150">${list.oStatus}
                       <br><input class="btn-2 button" type="button" value="리뷰쓰기" >
                     </th>
                     <th style="display: none;">${list.dNum}</th>
@@ -294,54 +294,9 @@
        </div>
        
        <!-- pagenation(페이징 1,2,3,4,5 버튼 나타내기) -->
+        <div class="text-center col-sm-12 col-md-12 col-lg-12">
             <div id="page-selection" class="text-center page"></div>
+        </div>
         <!-- pagenation ---------------------------------------->
-
-<!-- footer 시작(이은빈) ---------------------------------------------------->
-         <div id="footer">
-                <div class="ft_content">
-                   <div class="logoNcopy">
-                       <div class="logo_text">
-                           Table<br>Ware
-                       </div>
-                       <p>
-                           CopyRright &copy; <br>All right reserved by CTRL
-                       </p>
-                   </div>
-                    
-                    <div class="ft_top ">
-                            <div class="fsec01 sec">
-                                <p class="tit">CS CENTER</p>
-                                <span class="first">02-313-7300</span>
-                                <span>WEEKDAY AM 9:00 ~ PM 6:00</span>
-                                <span>LUNCH PM 12:00 ~ PM 1:00</span>
-                                <span>WEEKEND &amp; HOLYDAY OFF</span>
-                            </div>
-                            <div class="fsec02 sec">
-                                <p class="tit">RETURN &amp; EXCHANGE</p>
-                                <span>반품 : 04100 서울특별시 마포구 서강로 136 아이비타워 3층 <br/> 반드시 고객센터에 접수 후 교환 및 반품해주세요.</span>
-                                <span>cj대한통운 고객센터 1588-1255</span> 
-                            </div>
-                    </div>
-                    <div class="util">
-                        <div class="util_inner">
-                            <ul class="menu">
-                                <li><a href="#"><span>이용약관</a></li>
-                                <li><a href="#">개인정보취급방침</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="ft_bottom ">
-                    <p class="address">
-                        <span>COMPANY : (주)TableWare CEO : CTRL    PHONE : 010-1234-5678</span></br> 
-                        <span>CONTACT : <strong><a href="https://github.com/hykim-king/CTRL.git" id="git">https://github.com/hykim-king/CTRL.git</a></strong></span></br>
-                        <span>BUSINESS LICENCE : [123-45-67890] | ADDRESS : 04100 서울특별시 마포구 서강로 136 아이비타워 3층 TableWare</span>
-                    </p>
-                </div>
-            </div>
-    
-        <!-- footer 끝 ------------------------------------------------------------->
-
 </body>
 </html>
