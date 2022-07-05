@@ -83,9 +83,9 @@ public class PayController {
 		
 		String pNum = req.getParameter("pNum");
 		String product_name = req.getParameter("product_name");
-		String product_price = req.getParameter("product_price");
+		String product_price = req.getParameter("price");
 		String buy_number = req.getParameter("buy_number");
-		String totalNum = req.getParameter("totalNum");
+		String totalNum = req.getParameter("total");
 		
 		model.addAttribute("pNum",pNum);
 		model.addAttribute("product_name",product_name);

@@ -357,8 +357,6 @@
           <img alt="상품 이미지" src="${CP_RES}/img/${productInfo.pNum}.jpg" id="productImg">
             
           <div class="info">
-            <form action="/ctrl/pay/payBefore.do" method="get">
-            
                 <!-- 상품 이름, 용량, 가격 -->
                 <strong class="product_name">${productInfo.pName}</strong><br/>
                 <hr/>
@@ -475,16 +473,23 @@
     
     <!-- payBefore로 GET방식으로 값 넘기기(김병완) -->
     <script type="text/javascript">
-    $("#btn-1").on("click", function(){  
+    $(".btn-1").on("click", function(){
+    	let productPrice = $(".product_price").text(); // 상품 금액
+  	  	let minusComma = productPrice.replace(",", ""); // 상품금액에서 , 제거
+  	  	let priceNumber = minusComma.substring(0, minusComma.indexOf("원"));
+  	  	
+    	let totalNum = $("#total_num").text(); // 상품 금액
+  	  	let mminusComma = totalNum.replace(",", ""); // 상품금액에서 , 제거
+  	  	let total = minusComma.substring(0, minusComma.indexOf("원"));
+  	  	
         let productImgSrc = $('#productImg').attr("src");
         let pNum = productImgSrc.substring(productImgSrc.lastIndexOf('/')+1,productImgSrc.lastIndexOf('.'));
         let product_name = $(".product_name").text();
-        let product_price = $(".product_price").text();
         let buy_number = $("#buy_number").text();
-        let totalNum = $("#total_num").text();
+        
         location.href = "/ctrl/pay/payBefore.do?pNum=" + pNum + "&product_name=" + product_name
-                + "&product_price=" + product_price + "&buy_number=" + buy_number + 
-                "&totalNum=" + totalNum;
+                + "&product_price=" + priceNumber + "&buy_number=" + buy_number +
+                "&totalNum=" + total;
     });
     </script>
     <!-- //payBefore로 GET방식으로 값 넘기기(김병완) -->

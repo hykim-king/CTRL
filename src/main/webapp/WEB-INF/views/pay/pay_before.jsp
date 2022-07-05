@@ -30,6 +30,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- css -->
+    <link href="${CP_RES}/css/pay/before.css" rel="stylesheet">
+    <!-- jQuery -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+	<!-- iamport.payment.js -->
+	<script src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js" type="text/javascript"></script>
     <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
     <link rel="shortcut icon" type="image/x-icon" href="${CP }/favicon.ico">
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
@@ -38,21 +44,13 @@
     <script src="${CP_RES }/js/etc/eclass.js"></script>
     <!-- 사용자 정의 function, isEmpty -->
     <script src="${CP_RES }/js/etc/eUtil.js"></script>
-
-     <!-- css -->
-    <link href="${CP_RES}/css/pay/before.css" rel="stylesheet">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-	<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
     
     <title>결제 전</title>
     
 <!-- font awesome -->
 <script src="https://kit.fontawesome.com/2974daa1cb.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="${CP_RES}/js/login/login_popup.js"></script>
-<script type="text/javascript" src="${CP_RES}/js/login/logout.js"></script>
 <script type="text/javascript">
-        $(document).ready(function(){
-        console.log("document.ready");
         
         // bowls 카테고리로 이동
         $("#bowls").on("click", function(e){
@@ -78,13 +76,9 @@
             console.log("pCategory:" + $("#pCategory").val());
             window.location.href = "${CP}/menu/menuMove.do?pCategory=plate";
         });
-        
-        
-          })
 </script>
-
 <body>
-      <!-- 메인 헤더 영역 시작 (이은빈)-->
+      <!-- 메인 헤더 영역 시작 (이은빈)----------------------------------------------->
     <div id="header">
             <div id="logo">
                 <a href="#"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
@@ -99,26 +93,32 @@
                 </ul>
             </div>
             <div class="menu_right">
-                <!-- 로그인 전 화면 -->
-                <%String mNum = (String)session.getAttribute("mNum"); %>
-                <% if (null == mNum) {%>
-                    <ul>
-                        <li><a href="javascript:showPopUp()" class="login">로그인</a></li>
-                        <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
-                        <li><a href="#">장바구니</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">공지사항</a></li>
-                    </ul>
-                     <!-- 로그인 후 화면 -->
-                <%}else {%>
-                    <ul>
-                        <li><a href="javascript:logout()" class="logout">로그아웃</a></li>
-                        <li><a href="#">마이페이지</a></li>
-                        <li><a href="#">장바구니</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">공지사항</a></li>
-                    </ul>
-                <%}; %>
+                <c:choose>
+                    <c:when test="${null !=sessionScope.member}">
+	                    <ul>
+                         <li>
+                           <a href="${CP}/login/doLogout.do">
+                            <span>${sessionScope.member.mName}님</span>
+                            <span>&nbsp;로그아웃</span></a>
+                         </li>
+                         <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
+                         <li><a href="#">장바구니</a></li>
+                         <li><a href="#">FAQ</a></li>
+                         <li><a href="#">공지사항</a></li>
+	                    </ul>
+                    </c:when>
+                    <c:otherwise>
+	                    <ul>
+                         <li>
+                           <a href="${CP}/login/login.do">로그인</a>
+                         </li>
+                         <li><a href="#">마이페이지</a></li>
+                         <li><a href="#">장바구니</a></li>
+                         <li><a href="#">FAQ</a></li>
+                         <li><a href="#">공지사항</a></li>
+	                    </ul>
+                    </c:otherwise>
+                </c:choose>
                 <form action="#" method="post" id="search" name="search">
                     <input type="text" />
                     <button>
@@ -129,7 +129,7 @@
         </div>
     </div>
 
-    <!-- 메인 헤더 영역 끝 (이은빈)-->
+    <!-- 메인 헤더 영역 끝 (이은빈)-------------------------------------------------->
 
 <!-- 배송지 -->
     <div class="address">
@@ -151,7 +151,7 @@
             <h1 class="pay1">배송비</h1>
             <p class="pay2">무료</p>
             <h1 class="pay1" id="totalNum">최종 결제 금액</h1>
-            <p class="pay2"><fmt:formatNumber type="number"  maxFractionDigits="3" value='<%=request.getParameter("totalNum")%>'/>원</p>
+            <p class="pay2"><fmt:formatNumber type="number"  maxFractionDigits="3" value='<%=request.getParameter("totalNum")%>'/></p>
             <p><input class="check" type="checkbox" checked>아래 내용에 모두 동의합니다.(필수)</p>
             <p class="pay3">“쇼핑몰”은 이용자의 개인정보 수집시 서비스 제공을 위하여 필요한 범위에서 최소한의 개인정보를 수집합니다.
             “쇼핑몰”은 회원가입시 구매계약이행에 필요한 정보를 미리 수집하지 않습니다. 다만, 관련 법령상 의무이행을 위하여 구매계약 이전에 본인확인이 필요한 경우로서 최소한의 특정 개인정보를 수집하는 경우에는 그러하지 아니합니다.
@@ -174,7 +174,7 @@
 	}
 	</script>
         
-    <script type="text/javascript">
+   <script type="text/javascript">
     $('.pay').click(function(){
     	var IMP = window.IMP;
     	var amount = 100;
@@ -218,44 +218,45 @@
         	}
             alert(msg);
         };
-    
-        function payOrderInsert(payOrderInsert){
-            let url = "${CP}/pay/payOrderInsert.do";
-            let method = "GET";
-      		let async = true;   
+        
+/*  	     function payOrderInsert(merchant_uid,name,paid_amount,buyer_name,buyer_tel,buyer_addr,count){
+	        let url = "${CP}/pay/payOrderInsert.do";
+	        let method = "GET";
+	  		let async = true;   
 	  	    let parameters = {
-       			   oNum : merchant_uid,
-      	   	   	   oName : rsp.buyer_name,
-                   oAddr : rsp.buyer_addr,
-                   oTel : rsp.buyer_tel,
-                   oStatus : status,
-                   oDt : SYSDATE,
-                   mNum : "222",
-  	    };
-    	    
-          EClass.callAjax(url, parameters, method, async, function(data) {
-              console.log("EClass.callAjax data : " + data);
-                
-          });
-      };
-      
-      function payDetailInsert(payDetailInsert){
-          let url = "${CP}/pay/payDetailInsert.do";
-          let method = "GET";
-    		let async = true;
+	   			   oNum : merchant_uid,
+	  	   	   	   oName : buyer_name,
+	               oAddr : buyer_addr,
+	               oTel : buyer_tel,
+	               oStatus : "결제완료",
+	               oDt : SYSDATE,
+	               mNum : "222"
+		    };
+		    
+	      EClass.callAjax(url, parameters, method, async, function(data) {
+	          console.log("EClass.callAjax data : " + data);
+	            
+	      });
+	  };
+	  
+	    function payDetailInsert(merchant_uid, count, name){
+	      let url = "${CP}/pay/payDetailInsert.do";
+	      let method = "GET";
+			let async = true;
 	  	    let parameters = {
 	  	    	   oNum : merchant_uid,
-	  	    	   dNum : ${"dNum"},
-	  	    	   dBuy : ${"buy_number"},
+	  	    	   dNum : $("#dNum"),
+	  	    	   dBuy : $("buy_number"),
 	  	    	   pNum : $("#product_name").text(),
 	    };
-  	    
-        EClass.callAjax(url, parameters, method, async, function(data) {
-            console.log("EClass.callAjax data : " + data);
-              
-        });
-    };
+		    
+	    EClass.callAjax(url, parameters, method, async, function(data) {
+	        console.log("EClass.callAjax data : " + data);
+	          
+	    });
+	}; */
  });
+    
     	
     </script>
 
