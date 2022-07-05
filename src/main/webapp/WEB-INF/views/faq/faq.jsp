@@ -27,10 +27,10 @@
 <!-- font awesome -->
 <script src="https://kit.fontawesome.com/2974daa1cb.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="${CP_RES}/js/login/login_popup.js"></script>
-<script type="text/javascript" src="${CP_RES}/js/login/logout.js"></script>
 <script type="text/javascript">
         $(document).ready(function(){
         console.log("document.ready");
+        
         
         // bowls 카테고리로 이동
         $("#bowls").on("click", function(e){
@@ -57,11 +57,10 @@
             window.location.href = "${CP}/menu/menuMove.do?pCategory=plate";
         });
         
-        
           })
 </script>
 <body>
-       <!-- 메인 헤더 영역 시작 (이은빈)-->
+      <!-- 메인 헤더 영역 시작 (이은빈)----------------------------------------------->
     <div id="header">
             <div id="logo">
                 <a href="#"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
@@ -69,44 +68,50 @@
         <div id="top">
             <div class="menu_left">
                 <ul>
-                         <li><a href="#" id="bowls">접시</a></li>
-                         <li><a href="#" id="cup">머그컵</a></li>
-                         <li><a href="#" id="glass">유리잔</a></li>
-                         <li><a href="#" id="plate">보울/면기</a></li>
-                    </ul>
-               </div>
-               <div class="menu_right">
-                    <!-- 로그인 전 화면 -->
-                <%String mNum = (String)session.getAttribute("mNum"); %>
-                <% if (null == mNum) {%>
-                    <ul>
-                        <li><a href="javascript:showPopUp()" class="login">로그인</a></li>
-                              <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
-                              <li><a href="#">장바구니</a></li>
-                              <li><a href="#">FAQ</a></li>
-                              <li><a href="#">공지사항</a></li>
-                        </ul>
-                         <!-- 로그인 후 화면 -->
-                <%}else {%>
-                    <ul>
-                        <li><a href="javascript:logout()" class="logout">로그아웃</a></li>
-                        <li><a href="#">마이페이지</a></li>
-                        <li><a href="#">장바구니</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">공지사항</a></li>
-                    </ul>
-                <%}; %>
-                    <form action="#" method="post" id="search" name="search">
-                         <input type="text" />
-                         <button>
-                              <i class="fas fa-search fa-lg"></i>
-                         </button>
-                    </form>
-               </div>
-          </div>
-     </div>
+                    <li><a href="#" id="bowls">접시</a></li>
+                    <li><a href="#" id="cup">머그컵</a></li>
+                    <li><a href="#" id="glass">유리잔</a></li>
+                    <li><a href="#" id="plate">보울/면기</a></li>
+                </ul>
+            </div>
+            <div class="menu_right">
+                <c:choose>
+                    <c:when test="${null !=sessionScope.member}">
+                         <ul>
+                         <li>
+                           <a href="${CP}/login/doLogout.do">
+                            <span>${sessionScope.member.mName}님</span>
+                            <span>&nbsp;로그아웃</span></a>
+                         </li>
+                         <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
+                         <li><a href="#">장바구니</a></li>
+                         <li><a href="#">FAQ</a></li>
+                         <li><a href="#">공지사항</a></li>
+                         </ul>
+                    </c:when>
+                    <c:otherwise>
+                         <ul>
+                         <li>
+                           <a href="${CP}/login/login.do">로그인</a>
+                         </li>
+                         <li><a href="#">마이페이지</a></li>
+                         <li><a href="#">장바구니</a></li>
+                         <li><a href="#">FAQ</a></li>
+                         <li><a href="#">공지사항</a></li>
+                         </ul>
+                    </c:otherwise>
+                </c:choose>
+                <form action="#" method="post" id="search" name="search">
+                    <input type="text" />
+                    <button>
+                        <i class="fas fa-search fa-lg"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 
-     <!-- 메인 헤더 영역 끝 (이은빈)-->
+    <!-- 메인 헤더 영역 끝 (이은빈)-------------------------------------------------->
 
      <!-- faq 시작 -->
 
@@ -179,52 +184,52 @@
      </div>
      <!-- faq 끝 -->
      
-     <!-- footer 시작 -->
-      <div id="footer">
-            <div class="ft_content">
-               <div>
-                   <div class="logo_text">
-                       Table</br>Ware
-                   </div>
-                   <p>
-                       CopyRright &copy; </br>All right reserved by CTRL
-                   </p>
-               </div>
-                
-                <div class="ft_top ">
-                        <div class="fsec01 sec">
-                            <p class="tit">CS CENTER</p>
-                            <span class="first">02-313-7300</span>
-                            <span>WEEKDAY AM 9:00 ~ PM 6:00</span>
-                            <span>LUNCH PM 12:00 ~ PM 1:00</span>
-                            <span>WEEKEND &amp; HOLYDAY OFF</span>
+     <!-- footer 시작(이은빈) ---------------------------------------------------->
+          <div id="footer">
+                 <div class="ft_content">
+                    <div class="logoNcopy">
+                        <div class="logo_text">
+                            Table<br>Ware
                         </div>
-                        <div class="fsec02 sec">
-                            <p class="tit">RETURN &amp; EXCHANGE</p>
-                            <span>반품 : 04100 서울특별시 마포구 서강로 136 아이비타워 3층 <br/> 반드시 고객센터에 접수 후 교환 및 반품해주세요.</span>
-                            <span>cj대한통운 고객센터 1588-1255</span> 
-                        </div>
-                </div>
-                <div class="util">
-                    <div class="util_inner">
-                        <ul class="menu">
-                            <li><a href="#"><span>이용약관</a></li>
-                            <li><a href="#">개인정보취급방침</a></li>
-                        </ul>
+                        <p>
+                            CopyRright &copy; <br>All right reserved by CTRL
+                        </p>
                     </div>
-                </div>
-            </div>
-            <div class="ft_bottom ">
-                <p class="address">
-                    <span>COMPANY : (주)TableWare CEO : CTRL    PHONE : 010-1234-5678</span></br> 
-                    <span>CONTACT : <strong><a href="https://github.com/hykim-king/CTRL.git" id="git">https://github.com/hykim-king/CTRL.git</a></strong></span></br>
-                    <span>BUSINESS LICENCE : [123-45-67890] | ADDRESS : 04100 서울특별시 마포구 서강로 136 아이비타워 3층 TableWare</span>
-                </p>
-            </div>
-        </div>
-
-     <!-- footer 끝 -->
+                     
+                     <div class="ft_top ">
+                             <div class="fsec01 sec">
+                                 <p class="tit">CS CENTER</p>
+                                 <span class="first">02-313-7300</span>
+                                 <span>WEEKDAY AM 9:00 ~ PM 6:00</span>
+                                 <span>LUNCH PM 12:00 ~ PM 1:00</span>
+                                 <span>WEEKEND &amp; HOLYDAY OFF</span>
+                             </div>
+                             <div class="fsec02 sec">
+                                 <p class="tit">RETURN &amp; EXCHANGE</p>
+                                 <span>반품 : 04100 서울특별시 마포구 서강로 136 아이비타워 3층 <br/> 반드시 고객센터에 접수 후 교환 및 반품해주세요.</span>
+                                 <span>cj대한통운 고객센터 1588-1255</span> 
+                             </div>
+                     </div>
+                     <div class="util">
+                         <div class="util_inner">
+                             <ul class="menu">
+                                 <li><a href="#"><span>이용약관</span></a></li>
+                                 <li><a href="#">개인정보취급방침</a></li>
+                             </ul>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="ft_bottom ">
+                     <p class="address">
+                         <span>COMPANY : (주)TableWare CEO : CTRL    PHONE : 010-1234-5678</span></br> 
+                         <span>CONTACT : <strong><a href="https://github.com/hykim-king/CTRL.git" id="git">https://github.com/hykim-king/CTRL.git</a></strong></span></br>
+                         <span>BUSINESS LICENCE : [123-45-67890] | ADDRESS : 04100 서울특별시 마포구 서강로 136 아이비타워 3층 TableWare</span>
+                     </p>
+                 </div>
+             </div>
      
+         <!-- footer 끝 ------------------------------------------------------------->
+
 
 
 </body>

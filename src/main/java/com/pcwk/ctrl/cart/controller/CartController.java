@@ -58,6 +58,10 @@ public class CartController {
 		LOG.debug("=============================");
 
 		Cookie[] cookies = request.getCookies();
+		
+		
+		// List<String> list.cookies
+	
 		String pNum = cookies[0].getValue();
 
 		for (Cookie cookie : cookies) {
