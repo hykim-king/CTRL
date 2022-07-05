@@ -37,6 +37,7 @@ public class MenuController {
 		      
 		      List<ProductVO> list = menuService.menuList(inVO);
 		      model.addAttribute("list", list);
+		      model.addAttribute("menuName", inVO.getpCategory());
 		      
 		      return viewName;
 		   }
