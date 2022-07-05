@@ -15,12 +15,20 @@ import com.pcwk.ctrl.cmn.ReviewVO;
 public interface ReviewDao {
 	
 	/**
-	 * 회원 등급 확인
+	 * 관리자 댓글 삭제
 	 * @param inVO
-	 * @return 1(관리자) / 0(회원 혹인 비회원)
+	 * @return 1(성공)/0(실패)
 	 * @throws SQLException
 	 */
-	int doSelectGrade(MemberVO inVO) throws SQLException;
+	int rdDelete(RdVO inVO) throws SQLException;
+	
+	/**
+	 * 회원 댓글 삭제
+	 * @param inVO
+	 * @return 1(성공)/0(실패)
+	 * @throws SQLException
+	 */
+	int reviewDelete(ReviewVO inVO) throws SQLException;
 	
 	/**
 	 * 관리자 댓글 수정

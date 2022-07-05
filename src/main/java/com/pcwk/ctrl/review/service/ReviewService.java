@@ -16,20 +16,28 @@ import com.pcwk.ctrl.cmn.SearchVO;
 public interface ReviewService {
 	
 	/**
-	 * 회원 등급 확인
-	 * @param inVO
-	 * @return 1(관리자) / 0(회원 혹인 비회원)
-	 * @throws SQLException
-	 */
-	public int doSelectGrade(MemberVO inVO) throws SQLException;
-	
-	/**
-	 * 관리자 댓글 수정
-	 * @param inVO
+	 * 관리자 댓글 삭제
+	 * @param mInVO, rdInVO
 	 * @return 1(성공)/0(실패)
 	 * @throws SQLException
 	 */
-	public int rdUpdate(RdVO inVO) throws SQLException;
+	int rdDelete(MemberVO mInVO, RdVO rdInVO) throws SQLException;
+	
+	/**
+	 * 회원 댓글+회원 댓글의 관리자 댓글 삭제
+	 * @param rInVO
+	 * @return 1(성공)/0(실패)
+	 * @throws SQLException
+	 */
+	int reviewDelete(ReviewVO rInVO, RdVO rdInVO) throws SQLException;
+	
+	/**
+	 * 관리자 댓글 수정
+	 * @param mInVO, rdInVO
+	 * @return 1(성공)/0(실패)
+	 * @throws SQLException
+	 */
+	public int rdUpdate(MemberVO mInVO, RdVO rdInVO) throws SQLException;
 	
 	/**
 	 * 회원 댓글 수정

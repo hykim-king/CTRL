@@ -58,30 +58,30 @@
            console.log("document.ready");
            
            /*----------------- 헤더에서 각 카테고리로 이동하는 기능 시작(최유빈)-------------------*/
-           // bowls 카테고리로 이동
-           $("#bowls").on("click", function(e){
-               console.log("bowls:");
-               console.log("pCategory:" + $("#pCategory").val());
-               window.location.href = "${CP}/menu/menuMove.do?pCategory=bowls";
-           });
-           // cup 카테고리로 이동
-           $("#cup").on("click", function(e){
-               console.log("cup:");
-               console.log("pCategory:" + $("#pCategory").val());
-               window.location.href = "${CP}/menu/menuMove.do?pCategory=cup";
-           });
-           // cup 카테고리로 이동
-           $("#glass").on("click", function(e){
-               console.log("glass:");
-               console.log("pCategory:" + $("#pCategory").val());
-               window.location.href = "${CP}/menu/menuMove.do?pCategory=glass";
-           });
-           // cup 카테고리로 이동
-           $("#plate").on("click", function(e){
-               console.log("plate:");
-               console.log("pCategory:" + $("#pCategory").val());
-               window.location.href = "${CP}/menu/menuMove.do?pCategory=plate";
-           });
+	        // bowls 카테고리로 이동
+	        $("#bowls").on("click", function(e){
+	            console.log("bowls:");
+	            console.log("pCategory:" + $("#pCategory").val());
+	            window.location.href = "${CP}/menu/menuMove.do?pCategory=bowls";
+	        });
+	        // cup 카테고리로 이동
+	        $("#cup").on("click", function(e){
+	            console.log("cup:");
+	            console.log("pCategory:" + $("#pCategory").val());
+	            window.location.href = "${CP}/menu/menuMove.do?pCategory=cup";
+	        });
+	        // glass 카테고리로 이동
+	        $("#glass").on("click", function(e){
+	            console.log("glass:");
+	            console.log("pCategory:" + $("#pCategory").val());
+	            window.location.href = "${CP}/menu/menuMove.do?pCategory=glass";
+	        });
+	        // plate 카테고리로 이동
+	        $("#plate").on("click", function(e){
+	            console.log("plate:");
+	            console.log("pCategory:" + $("#pCategory").val());
+	            window.location.href = "${CP}/menu/menuMove.do?pCategory=plate";
+	        });
            /*----------------- 헤더에서 각 카테고리로 이동하는 기능 끝(최유빈)-------------------*/
            
            /*----------------- 리뷰(김주혜) 시작-------------------*/
@@ -199,6 +199,7 @@
                            htmlData += "   <div style='display:none;' id='reviewNum'>"+reviewVO.rNum+"</div>";
                            htmlData += "   <div style='display:none;' id='reviewOname'>"+reviewVO.oName+"</div>";
                             if(memberNum == "${sessionScope.member.mNum}") {  // 작성한 회원과 로그인한 사람이 같으면
+                              htmlData += "  <input type='button' id='reviewDelete' value='삭제' class='btn-1 button'>";
                               htmlData += "  <input type='button' id='reviewUpdate' value='수정' class='btn-1 button'>";
                             } 
                            htmlData += "     <div class='review_head'>";
@@ -212,9 +213,10 @@
                            htmlData += " <div class='manager_comment'> ";  
                            htmlData += "   <div style='display:none;' id='reviewNum'>"+reviewVO.rNum+"</div>";
                            if(cnt == 1) {  // 로그인한 사람이 관리자일때   
-                                if('N' == rdCon){
+                                if('N' == rdCon){ // 댓글 내용이 없을 때 
                                    htmlData += " <input type='button' id='rdInsert' value='등록' class='btn-1 button'>";                                           
                                 }else {
+                                   htmlData += " <input type='button' id='rdDelete' value='삭제' class='btn-1 button'>";
                                    htmlData += " <input type='button' id='rdUpdate' value='수정' class='btn-1 button'>";
                                 }
                            } 
@@ -267,6 +269,66 @@
                
                window.open("${CP}/review/reviewUpdatePopup.do?rNum="+rNumber+"&oName="+oName,"댓글 작성", "width=800, height=700, left=100, top=100");
                
+           });
+            
+           // 회원 리뷰 삭제 
+           $(document).on("click", '#review_table #reviewDelete', function(e) {
+               var reviewDataTag = $(this).parents('.reivew_data').html();
+               
+               var rNumber = reviewDataTag.substring(reviewDataTag.indexOf('>')+1, reviewDataTag.indexOf('/')-1);
+               rNumber = parseInt(rNumber);
+               console.log("rNumber : " + rNumber);
+               
+               let url = "${CP}/review/reviewDelete.do";
+               let method = "GET";
+               let async = true;
+               let parameters = {
+                       rNum : rNumber
+               };
+               
+               EClass.callAjax(url, parameters, method, async, function(data) {
+                   
+                   console.log("data.msgId :"+ data.msgId);
+                   console.log("data.msgContents :"+ data.msgContents);
+                   
+                   if("1" == data.msgId){
+                       alert(data.msgContents);
+                       window.location.reload();
+                    }else{
+                       alert(data.msgContents);
+                       window.location.reload();
+                    } 
+               });
+           });
+           
+           // 관리자 댓글 삭제 
+           $(document).on("click", '#review_table #rdDelete', function(e) {
+               var managerCommentTag = $(this).parents('.manager_comment').html();
+               var rNumber = managerCommentTag.substring(managerCommentTag.indexOf('>')+1, managerCommentTag.indexOf('/')-1);
+               rNumber = parseInt(rNumber);
+               console.log("rNumber : " + rNumber);
+               
+               
+               let url = "${CP}/review/rdDelete.do";
+               let method = "GET";
+               let async = true;
+               let parameters = {
+                       rNum : rNumber
+               };
+               
+               EClass.callAjax(url, parameters, method, async, function(data) {
+                   
+                   console.log("data.msgId :"+ data.msgId);
+                   console.log("data.msgContents :"+ data.msgContents);
+                   
+                   if("1" == data.msgId){
+                       alert(data.msgContents);
+                       window.location.reload();
+                    }else{
+                       alert(data.msgContents);
+                       window.location.reload();
+                    } 
+               });
            });
            
             // 관리자 댓글 입력
@@ -331,7 +393,7 @@
                          <li>
                            <a href="${CP}/login/login.do">로그인</a>
                          </li>
-                         <li><a href="#">마이페이지</a></li>
+                         <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
                          <li><a href="#">장바구니</a></li>
                          <li><a href="#">FAQ</a></li>
                          <li><a href="#">공지사항</a></li>

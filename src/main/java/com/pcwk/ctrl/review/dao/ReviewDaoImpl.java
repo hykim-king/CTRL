@@ -237,19 +237,37 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public int doSelectGrade(MemberVO inVO) throws SQLException {
-		int count = 0;
+	public int rdDelete(RdVO inVO) throws SQLException {
+		int flag = 0;
 		
-		String statement = NAMESPACE + ".doSelectGrade";
+		String statement = NAMESPACE+".rdDelete";
+		
 		LOG.debug("=============================");
 		LOG.debug("param : "+inVO.toString());
 		LOG.debug("statement :" + statement);
 		LOG.debug("=============================");
 		
-		count = sqlSessionTemplate.selectOne(statement, inVO);
-		LOG.debug("count: "+count);
+		flag = sqlSessionTemplate.delete(statement, inVO);
+		LOG.debug("flag: "+flag);
 		
-		return count;
+		return flag;
+	}
+
+	@Override
+	public int reviewDelete(ReviewVO inVO) throws SQLException {
+		int flag = 0;
+		
+		String statement = NAMESPACE+".reviewDelete";
+		
+		LOG.debug("=============================");
+		LOG.debug("param : "+inVO.toString());
+		LOG.debug("statement :" + statement);
+		LOG.debug("=============================");
+		
+		flag = sqlSessionTemplate.delete(statement, inVO);
+		LOG.debug("flag: "+flag);
+		
+		return flag;
 	}
 
 }

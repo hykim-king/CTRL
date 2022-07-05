@@ -105,11 +105,10 @@ public class JunitReviewDaoTest {
 		// 3. 리뷰 1건 데이터 수정
 		// 4. 비교
 		
-		// 5. 등급 조회
-		// 6. 관리자 댓글 1건 등록
-		// 7. 단건 조회
-		// 8. 관리자 댓글 1건 데이터 수정
-		// 9. 비교
+		// 5. 관리자 댓글 1건 등록
+		// 6. 단건 조회
+		// 7. 관리자 댓글 1건 데이터 수정
+		// 8. 비교
 		
 		// 1.
 		reviewDao.doReviewInsert(review01);
@@ -128,25 +127,20 @@ public class JunitReviewDaoTest {
 		isReviewSameData(outVO, resultVO);
 		
 		// 5.
-		int grade = reviewDao.doSelectGrade(member01);
-		assertEquals(0, reviewDao.doSelectGrade(member01));
-		
-		// 6.
 		reviewDao.doRdInsert(rd01);
 		assertEquals(1, reviewDao.getRdCount(rd01));
 		
-		// 7. 
+		// 6. 
 		RdVO outVO2 = reviewDao.doRdSelectOne(rd01);
 		outVO2.setRdCon(outVO2.getRdCon()+upString);
 		
-		// 8.
+		// 7.
 		reviewDao.rdUpdate(outVO2);
 		
-		// 9.
+		// 8.
 		RdVO resultVO2 = reviewDao.doRdSelectOne(outVO2);
 		isRdSameData(outVO2, resultVO2);
 	}
-
     private void isReviewSameData(ReviewVO voVO, ReviewVO orgVO) {
 	      assertEquals(voVO.getrNum(), orgVO.getrNum());
 	      assertEquals(voVO.getdNum(), orgVO.getdNum());

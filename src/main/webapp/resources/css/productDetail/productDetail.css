@@ -320,7 +320,9 @@ input[type="button"] {
 
 #rdInsert,
 #rdUpdate,
-#reviewUpdate {
+#reviewUpdate,
+#reviewDelete,
+#rdDelete {
     width: 7%;
     font-size: 67%;
     position: absolute;
@@ -328,7 +330,13 @@ input[type="button"] {
     line-height: 0px;
 }
 
+#reviewUpdate,
 #rdUpdate {
+    margin-right: 67px;
+}
+
+#rdUpdate,
+#rdDelete {
     margin-top: 15px;
 }
 

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -39,6 +40,80 @@ public class ReviewController {
 	ProductDetailService productDetailService;
 	
 	public ReviewController() {}
+	
+	@RequestMapping(value = "/reviewDelete.do", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String reviewDelete(ReviewVO rInVO, RdVO rdInVO) throws SQLException, IOException {
+		String jsonString = "";
+		
+		LOG.debug("=================================");
+		LOG.debug("=reviewDelete()=");
+		LOG.debug("=rInVO=" + rInVO);
+		LOG.debug("=================================");
+		
+		rdInVO.setrNum(rInVO.getrNum());
+		
+		int flag = reviewService.reviewDelete(rInVO, rdInVO);
+		LOG.debug("=flag="+flag);
+		String resultMsg = "";
+		
+		if (1 == flag) {
+			resultMsg = "리뷰가 삭제되었습니다!";
+		}else {
+			resultMsg = "다시 시도해주세요";
+		}
+		MessageVO message = new MessageVO(String.valueOf(flag), resultMsg);
+		
+		jsonString = new Gson().toJson(message);
+		
+		LOG.debug("=================================");
+		LOG.debug("=jsonString="+jsonString);
+		LOG.debug("=================================");
+		
+		return jsonString;
+		
+	}
+	
+	@RequestMapping(value = "/rdDelete.do", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String rdDelete(MemberVO mInVO, RdVO rInVO, HttpServletRequest req) throws SQLException, IOException {
+		String jsonString = "";
+		
+		LOG.debug("=================================");
+		LOG.debug("=rdDelete()=");
+		LOG.debug("=rInVO=" + rInVO);
+		LOG.debug("=================================");
+		
+		// 세션으로 회원 번호 받기
+       	HttpSession session = req.getSession();
+       	Object member = session.getAttribute("member");
+       	MemberVO memberVO = (MemberVO)member;
+       	
+        if(session.getAttribute("member") != null){
+        	LOG.debug("***mNum: "+memberVO.getmNum());
+        	mInVO.setmNum(memberVO.getmNum());  // value : session.getAttribute("")
+        }
+		
+		int flag = reviewService.rdDelete(mInVO, rInVO);
+		LOG.debug("=flag="+flag);
+		String resultMsg = "";
+		
+		if (1 == flag) {
+			resultMsg = "관리자 댓글이 삭제되었습니다!";
+		}else {
+			resultMsg = "다시 시도해주세요";
+		}
+		MessageVO message = new MessageVO(String.valueOf(flag), resultMsg);
+		
+		jsonString = new Gson().toJson(message);
+		
+		LOG.debug("=================================");
+		LOG.debug("=jsonString="+jsonString);
+		LOG.debug("=================================");
+		
+		return jsonString;
+		
+	}
 	
 	@RequestMapping(value = "/reviewUpdatePopup.do", method = RequestMethod.GET, produces = "application/text;charset=UTF-8")
 	public String reviewUpdatePopup(HttpServletRequest req, MemberVO memberParam, Model model) throws SQLException, IOException {
@@ -100,12 +175,14 @@ public class ReviewController {
 	
 	@RequestMapping(value = "/doRdUpdate.do", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String doRdUpdate(RdVO inVO) throws SQLException {
+	public String doRdUpdate(MemberVO mInVO, RdVO rInVO) throws SQLException {
 		LOG.debug("=================================");
-		LOG.debug("inVO : " + inVO);
+		LOG.debug("rInVO : " + rInVO);
 		LOG.debug("=================================");
 		
-		int flag = reviewService.rdUpdate(inVO);
+		mInVO.setmNum(rInVO.getmNum());
+		
+		int flag = reviewService.rdUpdate(mInVO, rInVO);
 				
 		String resultMsg = "";
 		if (1 == flag) {
