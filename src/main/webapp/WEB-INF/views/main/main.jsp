@@ -60,8 +60,6 @@
         
         $(document).on("click","#")
         
-        
-        
           })
 </script>
 <body>
@@ -99,17 +97,17 @@
                          <li>
                            <a href="${CP}/login/login.do">로그인</a>
                          </li>
-                         <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
+                         <li><a href="#">마이페이지</a></li>
                          <li><a href="#">장바구니</a></li>
                          <li><a href="#">FAQ</a></li>
                          <li><a href="#">공지사항</a></li>
 	                    </ul>
                     </c:otherwise>
                 </c:choose>
-                <form action="#" method="post" id="search" name="search">
-                    <input type="text" />
+                <form action="${CP}/productSearch/View.do" method="get" id="search" name="search">
+                    <input type="text" id="searchWord" class="searchWord"/>
                     <button>
-                        <i class="fas fa-search fa-lg"></i>
+                        <i class="fas fa-search fa-lg" id="doRetrive"></i>
                     </button>
                 </form>
             </div>
@@ -131,17 +129,26 @@
     <div id="main_cate">
             <ul>
                 <li class="cate_img">
-                   <a href="#"  class="plate_div" id="plate02"><img id="plate02" src="${CP_RES}/img/plate07.jpg">
-                      <span>접시</span>
+                
+                   <a href="#"  class="plate_div" id="plate02">
+	                   <figure><img id="plate02" src="${CP_RES}/img/plate07.jpg">
+	                      <figcaption>plate</figcaption>
+	                   </figure>
                    </a>
-                   <a href="#"  class="cup_div"><img src="${CP_RES}/img/main_cup11.jpg">
-                       <span>머그컵</span>
+                   <a href="#"  class="cup_div">
+	                   <figure><img src="${CP_RES}/img/main_cup11.jpg">
+	                       <figcaption>cup</figcaption>
+	                   </figure>
                    </a>
-                   <a href="#" class="glass_div"><img src="${CP_RES}/img/main_glass08.png">
-                       <span>유리잔</span>
+                   <a href="#" class="glass_div">
+                       <figure><img src="${CP_RES}/img/main_glass08.png">
+                            <figcaption>glass</figcaption>
+                       </figure>
                    </a>
-                   <a href="#" class="bowl_div"><img src="${CP_RES}/img/main_bowls05.jpg">
-                       <span>보울/면기</span>
+                   <a href="#" class="bowl_div">
+                       <figure><img src="${CP_RES}/img/main_bowls05.jpg">
+                           <figcaption>bowls</figcaption>
+                       </figure>
                    </a>
                  </li>
             </ul>

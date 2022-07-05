@@ -201,6 +201,7 @@ body {
 #main_body {
 	display: flex;
 	flex-direction: column;
+	z-index: -1;
 }
 
 
@@ -228,13 +229,36 @@ body {
     z-index: -1;
 }
 
+/* 메인페이지 카테고리 영역 */
+#main_cate figure {
+  width: 100%; height: 100%;
+}
+
+#main_cate figcaption {
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  position: absolute; /* 이미지와 겹치게 처리 */
+  top: 0; left: 0;
+  color: #fff; text-align: center;
+  line-height: 300px;
+  opacity: 0; /* 처음엔 안보이고 */
+  transition: 0.3s;
+  font-size: 200%;
+  font-weight: bold;
+}
+
+#main_cate a:hover figcaption, #main_cate a:focus figcaption{
+  /* 마우스를 올리면 보이게 처리 */
+  opacity: 1;
+}
+
 #main_cate {
     position: relative;
     display: block;
     box-sizing: border-box;
     top: 120px;
-    z-index: -100;
 }
+
 
 .cate_img a {
 	position: relative;
@@ -246,14 +270,6 @@ background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 
     background-size: cover;
 }
 
-#main_cate span {
-	position: absolute;
-    left: 15px;
-    bottom: 15px;
-    font-size: 23px;
-    font-weight: bold;
-    color: #0000008f;
-}
 
 .cate_img {
 	display: flex;
@@ -272,6 +288,7 @@ background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 
 
 /** 유빈이꺼 사진 (테스트) **/
 .cate_img{
-	z-index:999;
-	pointer-events: none; 
+    z-index:999;
+/*     pointer-events: none; 잠시 주석처리 할게요..~ */
 }
+
