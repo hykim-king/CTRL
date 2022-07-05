@@ -6,6 +6,8 @@
     display: flex;
     flex-direction: column;
     margin: 30px auto 0;
+    position: relative;
+    top: 160px;
 }
 
 
@@ -109,8 +111,8 @@ label{
 
 /* 상품 테이블 */
 .order3{
-	border-bottom: 2px solid #ddd;
-	font-size: 22px;
+    border-bottom: 2px solid #ddd;
+    font-size: 22px;
     position: relative;
     left: 401px;
     bottom: 518px;
@@ -138,6 +140,7 @@ label{
   color: #fff;
   padding: 0;
   border: none;
+  font-size: 16px;
 }
 .btn-2:hover {
   background: transparent;
@@ -171,3 +174,7 @@ label{
   transition:800ms ease all;
 }
 
+#page-selection{
+    position:relative;
+    bottom:350px;
+}

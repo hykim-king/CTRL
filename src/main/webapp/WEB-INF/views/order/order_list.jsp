@@ -31,7 +31,7 @@
     <link href="${CP_RES }/css/etc/bootstrap.min.css" rel="stylesheet">
     <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
     <link rel="shortcut icon" type="image/x-icon" href="${CP }/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="${CP_RES }/css/main/main.css">
+    <link rel="stylesheet" mtype="text/css" href="${CP_RES }/css/main/main.css">
     <link rel="stylesheet" type="text/css" href="${CP_RES}/css/order/order_list.css">
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
     <script src="${CP_RES }/js/etc/jquery-1.12.4.js"></script>
@@ -133,12 +133,12 @@
                  
                 $.each(parsedData, function(i, memberVO){
                      htmlData += "<tr> ";
-                     htmlData += "<th width='150'  class='oNum'>" +memberVO.oNum+"</th>"
-                     htmlData += "<th width='130'><img src='${CP_RES}/img/" +memberVO.pNum+ ".jpg' alt='상품 이미지' width='90'/></th>";
+                     htmlData += "<th width='150' class='oNum' height='98.5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +memberVO.oNum+"</th>"
+                     htmlData += "<th width='130'><img src='${CP_RES}/img/" +memberVO.pNum+ ".jpg' alt='상품 이미지' width='97'/></th>";
                      htmlData += "<th width='330'><a class='text'>" +memberVO.pName+ "</a></th>";
-                     htmlData += "<th width='150'>" +memberVO.pPrice+ " </th>";
-                     htmlData += "<th width='90'>" +memberVO.dBuy+ "</th>";
-                     htmlData += "<th width='150'>"+memberVO.oStatus+ "<br><input class='btn-2 button' type='button' value='리뷰쓰기' ></th>";
+                     htmlData += "<th width='150'style='text-align:center;'>" +memberVO.pPrice+ "원 </th>";
+                     htmlData += "<th width='90' style='text-align:center;'>" +memberVO.dBuy+ "개</th>";
+                     htmlData += "<th width='150' style='text-align:center;'>"+memberVO.oStatus+ "<br><input class='btn-2 button' type='button' value='리뷰쓰기' ></th>";
                      htmlData += "<th style='display: none;'>" +memberVO.dNum+ "</th>";
                      htmlData += "<th style='display: none;'>"+memberVO.oName+ "</th>";
                      htmlData += "<th style='display: none;'>"+memberVO.pNum+ "</th>";
@@ -249,12 +249,12 @@
   
   <table id="orderTable" class="order2" width = "1000" height="50px">
       <tr>
-         <th width="150"> 주문번호</th>
+         <th width="150"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;주문번호</th>
          <th width="130"></th>
          <th width="330">상품정보</th>
-         <th width="150">금액</th>
-         <th width="90">수량</th>
-         <th width="150">진행상태</th>
+         <th width="130" style="text-align:center;">금액</th>
+         <th width="90" style="text-align:center;">수량</th>
+         <th width="150" style="text-align:center;">진행상태</th>
          
          <!--  아래 세개는 리뷰 페이지를 위해 필요한 것  : 조회 필요-->
          <th width="100" style="display: none;">상세번호</th>
@@ -263,20 +263,20 @@
       </tr>
   </table>
       
-      <table class="order3" id="listTable" width = "1000" height="100">
+      <table class="order3" id="listTable" width = "1000" height="98">
       <tbody>
         <c:choose>
          <c:when test="${list.size() > 0}">
              <c:forEach var="list" items="${list}"> 
                <!-- 문자: 왼쪽, 숫자: 오른쪽, 같은면: 가운데 -->
                 <tr>
-                    <th width="150"  class="oNum"> ${list.oNum}</th>
-                    <th width="130"><img src="${CP_RES}/img/${list.pNum}.jpg" alt="상품 이미지" width="90"/></th>
+                    <th width="150" class="oNum" height="98.5"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${list.oNum}</th>
+                    <th width="130"><img src="${CP_RES}/img/${list.pNum}.jpg" alt="상품 이미지" width="97"/></th>
                     <th width="330"><a class="text">${list.pName}</a></th>
-                    <th width="150">${list.pPrice}
+                    <th width="130" style="text-align:center;"><fmt:formatNumber type="number" maxFractionDigits="3" value="${list.pPrice}"/>원
                     </th>
-                    <th width="90">${list.dBuy}</th>
-                    <th width="150">${list.oStatus}
+                    <th width="90" style="text-align:center;">${list.dBuy}개</th>
+                    <th width="150" style="text-align:center;">${list.oStatus}
                       <br><input class="btn-2 button" type="button" value="리뷰쓰기" >
                     </th>
                     <th style="display: none;">${list.dNum}</th>

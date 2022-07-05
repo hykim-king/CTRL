@@ -56,6 +56,12 @@
             window.location.href = "${CP}/menu/menuMove.do?pCategory=plate";
         });
         
+        $("#plate02").get(0).click();
+        
+        $(document).on("click","#")
+        
+        
+        
           })
 </script>
 <body>
@@ -125,7 +131,7 @@
     <div id="main_cate">
             <ul>
                 <li class="cate_img">
-                   <a href="#"  class="plate_div"><img src="${CP_RES}/img/plate07.jpg">
+                   <a href="#"  class="plate_div" id="plate02"><img id="plate02" src="${CP_RES}/img/plate07.jpg">
                       <span>접시</span>
                    </a>
                    <a href="#"  class="cup_div"><img src="${CP_RES}/img/main_cup11.jpg">
