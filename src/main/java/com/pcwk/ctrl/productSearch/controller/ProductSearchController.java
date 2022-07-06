@@ -84,7 +84,7 @@ public class ProductSearchController {
 		
 		//페이지사이즈
 		if(0==inVO.getPageSize()) {
-			inVO.setPageSize(10);
+			inVO.setPageSize(20);
 		}
 		
 		//페이지 번호
@@ -133,6 +133,7 @@ public class ProductSearchController {
 		//model.addAttribute("pageTotal", pageTotal);
 		model.addAttribute("list", list);
 		model.addAttribute("vo", inVO);
+		model.addAttribute("searchWord", searchWord);
 		
 		return "productSearch/productSearch";
 		

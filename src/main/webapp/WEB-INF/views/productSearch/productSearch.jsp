@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="CP" value="${pageContext.request.contextPath}"/>
 <c:set var="resources" value="/resources"/>
 <c:set var="CP_RES"    value="${CP }${resources}" />
@@ -14,6 +15,8 @@
     <link rel="stylesheet" type="text/css" href="${CP_RES }/css/main/main.css">
     <link rel="stylesheet" type="text/css" href="${CP_RES}/css/productSearch/productSearch.css">    
     <title>상품 검색</title>
+    <!-- font awesome -->
+<script src="https://kit.fontawesome.com/2974daa1cb.js" crossorigin="anonymous"></script>
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
 <script src="${CP_RES }/js/etc/jquery-1.12.4.js"></script>
 <!-- 사용자 정의 function, callAjax -->
@@ -77,80 +80,107 @@
                         </ul>
                     </c:otherwise>
                 </c:choose>
-                <form action="#" method="get" id="search" name="search">
-                    <input type="text" id="searchWord" class="searchWord"/>
-                    <button>
-                        <i class="fas fa-search fa-lg" id="doRetrive"></i>
+                <!-- 상품 검색 영역 시작(이은빈) ----------------------------------------->             
+                <form action="${CP}/productSearch/View.do" method="get" id="search" name="search">
+                    <input type="text" id="searchWord" class="searchWord" name="searchWord" value=""/>
+                    <button id="doRetrive">
+                        <i class="fas fa-search fa-lg" ></i>
                     </button>
                 </form>
+             <!-- 상품 검색 영역 끝(이은빈) ----------------------------------------->
             </div>
         </div>
     </div>
 
 <!-- 메인 헤더 영역 끝 (이은빈)-------------------------------------------------->
 <!-- 상품검색 페이지 시작(이은빈) -------------------------------------------------->
-
-
-
-  <!-- div container -->
-       <div class="container">
+    <!-- div container -->
+    <div class="container">
           <!-- 제목 -->
           <div class="page-header">
-              <h2>${searchWord}에 대한 검색결과입니다.</h2>
+              <h2>"${searchWord}"에 대한 검색결과입니다.</h2>
           </div>
-          <!--// 제목 ----------------------------------------------------------->
+          <!--// 제목 ---------------------------------->
                  
-       <!-- 검색영역 -->
+        <!-- 검색영역 -->
           <div class="row">
-            <form action="#" class="form-inline col-sm-12 col-md-12 col-lg-12 text-right">
+            <form action="#" class="form-inline">
                <div class="form-group">
-                 <select class="form-control  input-sm" name="searchDiv" id="searchDiv"> 
-                    <option value="">전체</option>
-                    <option value="10">제목</option>
-                    <option value="20">내용</option>
-                 </select>
-                 <input type="text" class="form-control input-sm"  name="searchWord" id=""   placeholder="검색어" />
-                 <select class="form-control  input-sm" name="pageSize"  id="pageSize"> 
-                    <option value="10">10</option>
-                    <option value="20">20</option>
-                    <option value="30">30</option>
-                 </select>  
-               <input type="button" class="btn btn-primary btn-sm" value="목록" id="" />
-               <input type="button" class="btn btn-primary btn-sm" value="등록" id="moveToReg"/>                              
+                 <input type="text" class="form-control"  name="searchWord" id="searchWord" 
+                        placeholder="검색어를 입력하세요" onfocus="this.placeholder=''" onblur="this.placeholder='검색어를 입력하세요'"/>
+                 <button id="doRetrive">
+                    <i class="fas fa-search fa-lg" ></i>
+                 </button>
                </div>
             </form>
-          
           </div>
-          <!--// 검색영역 ----------------------------------------------------------->
-          
-          <div class="page_name" >상품검색</div>
-        <div id="contents">
-             <c:choose>
-                <c:when test="${list.size()> 0 }">
-                  <c:forEach var="list"  items="${list }">
-                     <div id="list" style="float:left;padding:30px;width:33%">
-                   <img src="${CP_RES}/img/${list.pNum}.jpg" class="img_list" alt="상품 이미지" />
-                   <p class="p1">${list.pName}</p><br/>
-                   <p class="p1">${list.pPrice}원</p>
-                </div>
-                  </c:forEach>
-                </c:when>
-                <c:otherwise>
-                 <tr>
-                    <td colspan="99">No data found</td>
-                 </tr>
-                </c:otherwise>
-             </c:choose>         
-        </div>
-          <!-- pagenation -->
-          <div  class="text-center col-sm-12 col-md-12 col-lg-12">
-              <div id="page-selection" class="text-center page"></div>
-          </div>                    
-          <!--//pagenation ------------------------------------------------------>
+          <!--// 검색영역 -------------------------------------->
+	        <div id="contents">
+	             <c:choose>
+	                <c:when test="${list.size()> 0 }">
+	                  <c:forEach var="list"  items="${list }">
+	                     <div id="list" style="float:left;padding:30px;width:25%">
+	                   <img src="${CP_RES}/img/${list.pNum}.jpg" class="img_list" alt="상품 이미지" />
+	                   <p class="p1">${list.pName}</p><br/>
+	                   <p class="p1"><fmt:formatNumber type="number" maxFractionDigits="3" value="${list.pPrice }"/>원</p>
+	                </div>
+	                  </c:forEach>
+	                </c:when>
+	                <c:otherwise>
+	                 <div class="noData">
+	                    <p>검색 결과가 없습니다.</p>
+	                 </div>
+	                </c:otherwise>
+	             </c:choose>         
+	        </div>
        </div>
-       <!--// div container --------------------------------------------------->
-   
-     
-<!-- 상품검색 페이지 끝(이은빈) -------------------------------------------------->    
+       <!--// div container ------------------------------->
+<!-- 상품검색 페이지 끝(이은빈) ----------------------------------------------------->    
+<!-- footer 시작(이은빈) ---------------------------------------------------->
+         <div id="footer">
+                <div class="ft_content">
+                   <div class="logoNcopy">
+                       <div class="logo_text">
+                           Table<br>Ware
+                       </div>
+                       <p>
+                           CopyRright &copy; <br>All right reserved by CTRL
+                       </p>
+                   </div>
+                    
+                    <div class="ft_top ">
+                            <div class="fsec01 sec">
+                                <p class="tit">CS CENTER</p>
+                                <span class="first">02-313-7300</span>
+                                <span>WEEKDAY AM 9:00 ~ PM 6:00</span>
+                                <span>LUNCH PM 12:00 ~ PM 1:00</span>
+                                <span>WEEKEND &amp; HOLYDAY OFF</span>
+                            </div>
+                            <div class="fsec02 sec">
+                                <p class="tit">RETURN &amp; EXCHANGE</p>
+                                <span>반품 : 04100 서울특별시 마포구 서강로 136 아이비타워 3층 <br/> 반드시 고객센터에 접수 후 교환 및 반품해주세요.</span>
+                                <span>cj대한통운 고객센터 1588-1255</span> 
+                            </div>
+                    </div>
+                    <div class="util">
+                        <div class="util_inner">
+                            <ul class="menu">
+                                <li><a href="#"><span>이용약관</a></li>
+                                <li><a href="#">개인정보취급방침</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="ft_bottom ">
+                    <p class="address">
+                        <span>COMPANY : (주)TableWare CEO : CTRL    PHONE : 010-1234-5678</span></br> 
+                        <span>CONTACT : <strong><a href="https://github.com/hykim-king/CTRL.git" id="git">https://github.com/hykim-king/CTRL.git</a></strong></span></br>
+                        <span>BUSINESS LICENCE : [123-45-67890] | ADDRESS : 04100 서울특별시 마포구 서강로 136 아이비타워 3층 TableWare</span>
+                    </p>
+                </div>
+            </div>
+    
+        <!-- footer 끝 ------------------------------------------------------------->
+
 </body>
 </html>

@@ -31,19 +31,6 @@
         	
         console.log("document.ready");
             
-            $("#doRetrive").on("click",function(e){
-            console.log("doRetrieve");  
-            let searchWord = $("#searchWord").val();
-	        let pageSize = 10;
-	        let searchDiv = "";
-	        let pageNum = 1;
-//             let href = "${CP}/productSearch/View.do?searchWord="+searchWord+"&pageSize="+pageSize;
-            console.log("searchWord : " + searchWord);  
-            
-//             $("#search").attr("action", href);
-//             $("#search").submit();
-//             window.location.href = "${CP}/productSearch/View.do?searchWord="+searchWord+"&pageSize="+pageSize;
-        });
         
         // bowls 카테고리로 이동
         $("#bowls").on("click", function(e){
@@ -114,12 +101,14 @@
 	                    </ul>
                     </c:otherwise>
                 </c:choose>
+            <!-- 상품 검색 영역 시작(이은빈) ----------------------------------------->             
                 <form action="${CP}/productSearch/View.do" method="get" id="search" name="search">
                     <input type="text" id="searchWord" class="searchWord" name="searchWord" value=""/>
                     <button id="doRetrive">
                         <i class="fas fa-search fa-lg" ></i>
                     </button>
                 </form>
+			 <!-- 상품 검색 영역 끝(이은빈) ----------------------------------------->             
             </div>
         </div>
     </div>
