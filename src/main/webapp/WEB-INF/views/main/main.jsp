@@ -28,8 +28,22 @@
 <script type="text/javascript" src="${CP_RES}/js/login/login_popup.js"></script>
 <script type="text/javascript">
         $(document).ready(function(){
+        	
         console.log("document.ready");
-        
+            
+            $("#doRetrive").on("click",function(e){
+            console.log("doRetrieve");  
+            let searchWord = $("#searchWord").val();
+	        let pageSize = 10;
+	        let searchDiv = "";
+	        let pageNum = 1;
+//             let href = "${CP}/productSearch/View.do?searchWord="+searchWord+"&pageSize="+pageSize;
+            console.log("searchWord : " + searchWord);  
+            
+//             $("#search").attr("action", href);
+//             $("#search").submit();
+//             window.location.href = "${CP}/productSearch/View.do?searchWord="+searchWord+"&pageSize="+pageSize;
+        });
         
         // bowls 카테고리로 이동
         $("#bowls").on("click", function(e){
@@ -55,10 +69,6 @@
             console.log("pCategory:" + $("#pCategory").val());
             window.location.href = "${CP}/menu/menuMove.do?pCategory=plate";
         });
-        
-        $("#plate02").get(0).click();
-        
-        $(document).on("click","#")
         
           })
 </script>
@@ -105,9 +115,9 @@
                     </c:otherwise>
                 </c:choose>
                 <form action="${CP}/productSearch/View.do" method="get" id="search" name="search">
-                    <input type="text" id="searchWord" class="searchWord"/>
-                    <button>
-                        <i class="fas fa-search fa-lg" id="doRetrive"></i>
+                    <input type="text" id="searchWord" class="searchWord" name="searchWord" value=""/>
+                    <button id="doRetrive">
+                        <i class="fas fa-search fa-lg" ></i>
                     </button>
                 </form>
             </div>
@@ -130,22 +140,22 @@
             <ul>
                 <li class="cate_img">
                 
-                   <a href="#"  class="plate_div" id="plate02">
+                   <a href="${CP}/menu/menuMove.do?pCategory=plate"  class="plate_div" id="plate02">
 	                   <figure><img id="plate02" src="${CP_RES}/img/plate07.jpg">
 	                      <figcaption>plate</figcaption>
 	                   </figure>
                    </a>
-                   <a href="#"  class="cup_div">
+                   <a href="${CP}/menu/menuMove.do?pCategory=cup"  class="cup_div">
 	                   <figure><img src="${CP_RES}/img/main_cup11.jpg">
 	                       <figcaption>cup</figcaption>
 	                   </figure>
                    </a>
-                   <a href="#" class="glass_div">
+                   <a href="${CP}/menu/menuMove.do?pCategory=glass" class="glass_div">
                        <figure><img src="${CP_RES}/img/main_glass08.png">
                             <figcaption>glass</figcaption>
                        </figure>
                    </a>
-                   <a href="#" class="bowl_div">
+                   <a href="${CP}/menu/menuMove.do?pCategory=bowls" class="bowl_div">
                        <figure><img src="${CP_RES}/img/main_bowls05.jpg">
                            <figcaption>bowls</figcaption>
                        </figure>

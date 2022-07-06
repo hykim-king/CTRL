@@ -7,7 +7,7 @@
     <select id="doRetrieve" parameterType="SearchVO" resultType="ProductVO">
        SELECT A.*,B.*
        FROM (
-         SELECT TT1.rnum AS num,
+         SELECT 
                 TT1.p_num as "pNum",
                 TT1.p_category as "pCategory",
                 TT1.p_name as "pName",

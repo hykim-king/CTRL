@@ -28,67 +28,6 @@
       $(document).ready(function(){
         console.log("document.ready");  
         
-        function doRetrieve(page){
-            console.log("function doRetrieve ");  
-            console.log("page: "+page); 
-//             http://localhost:8081/ctrl/productSearch/View.do?searchDiv=&searchWord=1&pageSize=10#
-            let url = "${CP}/productSearch/doRetrive.do";
-            let method = "GET";
-            let async  = true;
-            let parameters = {
-                    searchWord:$("#searchWord").val(),
-                    pageSize:$("#pageSize").val(),
-                    pageNum:page
-            };      
-            
-            
-            EClass.callAjax(url, parameters, method, async, function(data) {
-                 console.log("EClass.callAjax data:"+data);
-                 
-                 //1.기존 table 데이터 삭제
-                 //동적으로 table 데이터 표시
-                 
-                 let parsedData = data;
-                 
-                 $("#board_table>tbody").empty();//기존 데이터 삭제
-                 
-                 console.log("parsedData.length:"+parsedData.length);
-                 
-                 let htmlData = "";//동적으로 tbody아래 데이터 생성
-                 let totalCnt =  0;//총글수
-                 let pageTotal=  1;//페이지 수
-                 
-                 //조회 데이터가 있는 경우
-                 if(null !=parsedData && parsedData.length>0){
-                     
-                      $.each(parsedData, function(i, productVO) {
-                          htmlData +="  <tr>                                                                   ";
-                          htmlData +="   <td class='text-center col-sm-1 col-md-1 col-lg-1'>"+<c:out value='productVO.pNum' />+"</td> ";
-                          htmlData +="   <td class='text-left   col-sm-6 col-md-6 col-lg-8'>"+<c:out value='productVO.pCategory' />+"</td> ";
-                          htmlData +="   <td class='text-center col-sm-2 col-md-2 col-lg-1'>"+<c:out value='productVO.pName' />+"</td> ";
-                          htmlData +="   <td class='text-center col-sm-2 col-md-2 col-lg-1'>"+<c:out value='productVO.pPrice' />+"</td> ";
-                          htmlData +="   <td class='text-right  col-sm-1 col-md-1 col-lg-1'>"+<c:out value='productVO.pSize' />+"</td> ";
-                          htmlData +="  </tr>                                                                   ";
-                      });
-                     
-                 }else{
-                    htmlData +=" <tr>                                                       ";
-                    htmlData +="    <td colspan='99' class='text-center'>No data found</td> ";
-                    htmlData +=" </tr>                                                      ";
-                    
-                 }
-                 //조회 데이터가 없는 경우
-                 $("#board_table>tbody").append(htmlData);
-                
-            });
-            
-        }
-        
-        $("#doRetrieve").on("click",function(e){
-            console.log("doRetrieve");  
-            doRetrieve(page);
-            
-        });
         
       //document.ready    
       });
@@ -117,7 +56,7 @@
                         <ul>
                          <li>
                            <a href="${CP}/login/doLogout.do">
-                            <span>${sessionScope.member.mName}님</span>
+                            <span>${sessionScope.member.mName}님 환영합니다.</span>
                             <span>&nbsp;로그아웃</span></a>
                          </li>
                          <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
@@ -138,7 +77,7 @@
                         </ul>
                     </c:otherwise>
                 </c:choose>
-                <form action="${CP}/productSearch/View.do" method="get" id="search" name="search">
+                <form action="#" method="get" id="search" name="search">
                     <input type="text" id="searchWord" class="searchWord"/>
                     <button>
                         <i class="fas fa-search fa-lg" id="doRetrive"></i>
@@ -170,13 +109,13 @@
                     <option value="10">제목</option>
                     <option value="20">내용</option>
                  </select>
-                 <input type="text" class="form-control input-sm"  name="searchWord" id="searchWord"   placeholder="검색어" />
+                 <input type="text" class="form-control input-sm"  name="searchWord" id=""   placeholder="검색어" />
                  <select class="form-control  input-sm" name="pageSize"  id="pageSize"> 
                     <option value="10">10</option>
                     <option value="20">20</option>
                     <option value="30">30</option>
                  </select>  
-               <input type="button" class="btn btn-primary btn-sm" value="목록" id="doRetrieve" />
+               <input type="button" class="btn btn-primary btn-sm" value="목록" id="" />
                <input type="button" class="btn btn-primary btn-sm" value="등록" id="moveToReg"/>                              
                </div>
             </form>

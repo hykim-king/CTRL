@@ -3,6 +3,8 @@ package com.pcwk.ctrl.productSearch.controller;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,8 +62,8 @@ public class ProductSearchController {
 		LOG.debug("=inVO=" + inVO);
 		LOG.debug("==============================");
 
-		List<ProductVO> list = productSearchService.doRetrieve(inVO);
-		Gson gson = new Gson();
+		
+		Gson gson = new Gson();List<ProductVO> list = productSearchService.doRetrieve(inVO);
 
 		jsonString = gson.toJson(list);
 
@@ -75,7 +77,7 @@ public class ProductSearchController {
 	
 	
 	@RequestMapping(value="/View.do",method=RequestMethod.GET)
-	public String productSearchView(Model model, SearchVO inVO) throws SQLException {
+	public String productSearchView(Model model, SearchVO inVO, HttpServletRequest req) throws SQLException {
 		LOG.debug("========================");
 		LOG.debug("=productSearchView()=");
 		LOG.debug("========================");		
@@ -95,15 +97,19 @@ public class ProductSearchController {
 			inVO.setSearchDiv(StringUtil.nvl(inVO.getSearchDiv(), ""));
 		}
 		
-		
 		//검색어
 		if(null == inVO.getSearchWord()) {
 			inVO.setSearchWord(StringUtil.nvl(inVO.getSearchWord(),""));
 		}
 		
 		
+		String searchWord = req.getParameter("searchWord");
+		String pageSize = req.getParameter("pageSize");
+		
 		LOG.debug("==============================");
 		LOG.debug("=inVO="+inVO);
+		LOG.debug("=searchWord="+searchWord);
+		LOG.debug("=pageSize="+pageSize);
 		LOG.debug("==============================");		
 		
 		
@@ -123,8 +129,8 @@ public class ProductSearchController {
 		}
 		
 		
-		model.addAttribute("totalCnt", totalCnt);
-		model.addAttribute("pageTotal", pageTotal);
+		//model.addAttribute("totalCnt", totalCnt);
+		//model.addAttribute("pageTotal", pageTotal);
 		model.addAttribute("list", list);
 		model.addAttribute("vo", inVO);
 		
