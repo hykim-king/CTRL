@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +43,7 @@ public class OrderController {
 	@RequestMapping(value = "/orderList.do", method = RequestMethod.GET
 			, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String doRetrieve(SearchVO inVO) throws SQLException {
+	public String doRetrieve(SearchVO inVO, HttpServletRequest req) throws SQLException {
 		
 		String jsonString ="";
 		
@@ -69,7 +72,8 @@ public class OrderController {
 	    	   inVO.setSearchWord(StringUtil.nvl(inVO.getSearchWord(), ""));
 	       }
 	       
-	   		
+	       	
+	       
 			List<OrderListVO> list = orderService.doRetrieve(inVO);
 			Gson gson = new Gson();
 		      
@@ -84,11 +88,8 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value="/orderView.do", method = RequestMethod.GET)
-	public String orderView(Model model, SearchVO inVO) throws SQLException {
+	public String orderView(Model model, SearchVO inVO, HttpServletRequest req) throws SQLException {
 		
-		if(null == inVO.getSearchWord()) {
-			inVO.setSearchWord("1");
-		}
 		
 		LOG.debug("==================");
 	    LOG.debug("=orderView=");
@@ -108,6 +109,20 @@ public class OrderController {
 	      if(null == inVO.getSearchDiv()) {
 	         inVO.setSearchDiv(StringUtil.nvl(inVO.getSearchDiv(), ""));
 	      }
+	      
+	        // 세션 받아오기
+	   		HttpSession session = req.getSession();
+	   	    Object member = session.getAttribute("member");
+	   		MemberVO memberVO = (MemberVO)member;
+	   		
+	   		if(session.getAttribute("member") != null) {
+	   			LOG.debug("***mNum"+memberVO.getmNum());
+		    	   inVO.setSearchWord(memberVO.getmNum()); // memberVO의 mNum을 SearchWord로 보내기
+
+	   		}else {
+	   			System.out.println("session:null");
+	   		}
+	   		// 세션 받아오기 끝
 	      
 	      LOG.debug("==============================");
 	      LOG.debug("***inVO "+ inVO);
