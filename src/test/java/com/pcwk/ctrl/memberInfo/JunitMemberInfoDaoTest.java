@@ -52,7 +52,7 @@ public class JunitMemberInfoDaoTest {
 
 	@Test
 	public void memberList() throws SQLException {
-		  List<MemberVO> list = dao.memberList();
+		  List<MemberVO> list = dao.memberList(member01);
 		  for(MemberVO vo:list) {
 			  LOG.debug("vo="+vo);
 		  }
