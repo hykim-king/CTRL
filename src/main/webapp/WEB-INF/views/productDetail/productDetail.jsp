@@ -435,9 +435,10 @@
                 <!--// 수량 -->
                 
                 <!-- 총금액 -->  
-                <p class="total_price">Total price : </p>
-                <div id="total_num">0</div><br/>
-                
+                <div class="totalDiv">
+	                <p class="total_price">Total price :  </p>
+	                <div id="total_num"> 0</div><br/>
+                </div>
                 <!-- 배송비 무료 공지 -->
                 <p id="delivery_free">배송비 무료</p>
                 
