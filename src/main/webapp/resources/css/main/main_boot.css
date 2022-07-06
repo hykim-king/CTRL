@@ -2,108 +2,109 @@
 
 /* 메인페이지 헤더 및 푸터 영역 css 시작 (이은빈)****************************************/
 @font-face {
-	font-family: 'Vitro_core'; /* 로고, 소제목 */
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Vitro_core.woff')
-		format('woff');
-	font-weight: normal;
-	font-style: normal;
+    font-family: 'Vitro_core'; /* 로고, 소제목 */
+    src:
+        url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Vitro_core.woff')
+        format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
-	font-family: 'Vitro_pride'; /* 나머지 글꼴, font-weight: bolder 적용! */
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Vitro_pride.woff')
-		format('woff');
-	font-weight: bolder;
-	font-style: normal;
+    font-family: 'Vitro_pride'; /* 나머지 글꼴, font-weight: bolder 적용! */
+    src:
+        url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Vitro_pride.woff')
+        format('woff');
+    font-weight: bolder;
+    font-style: normal;
 }
 
 * {
-	padding: 0;
-	margin: 0;
+    padding: 0;
+    margin: 0;
 }
 
 body {
-	min-width: 1680px; /* 최소 폭 */
-	font-family: Vitro_pride;
+    min-width: 1680px; /* 최소 폭 */
+    font-family: Vitro_pride;
 }
 
 #header {
-	top:0;
+    top:0;
     z-index: 999;   
-	width: 100%;
-	max-width: 1800px; /* 최대 폭, 값 없으면 화면 축소시 가운데로 x */
-	height: 140px;
-	margin: 0 auto 0;
-	display: flex;
-	position: fixed;
-	font-weight: bolder;
+    width: 100%;
+    max-width: 1800px; /* 최대 폭, 값 없으면 화면 축소시 가운데로 x */
+    height: 140px;
+    margin: 0 auto 0;
+    display: flex;
+    position: fixed;
+    font-weight: bolder;
     background: white;
 }
 
 #top {
-	width: 100%;
-	max-width: 1800px; /* 최대 폭, 값 없으면 화면 축소시 가운데로 x */
-	margin: 0 auto 0;
-	display: flex;
-	position: relative;
-	font-size: 150%;
-	font-weight: bolder;
-	
+    width: 100%;
+    max-width: 1800px; /* 최대 폭, 값 없으면 화면 축소시 가운데로 x */
+    margin: 0 auto 0;
+    display: flex;
+    position: relative;
+    bottom:1px;
+    font-size: 171%;
+    font-weight: bolder;
+    
 }
 
 
 #header a {
-	text-decoration: none;
-	color: #000;
+    text-decoration: none;
+    color: #000;
 }
 
 #logo img {
-	display: inline-block;
-	max-height: 140px;
+    display: inline-block;
+    max-height: 140px;
 }
 
 #logo a {
-	display: inline-block;
+    display: inline-block;
 }
 
 .menu_left {
-	float: left;
-	flex-grow: 1;
-	margin: 1% 0 0 1%;
+    float: left;
+    flex-grow: 1;
+    margin: 1% 0 0 1%;
 }
 
 .menu_right {
-	display: flex;
-	float: right;  
-	margin: 1% 1.5% 0 0;
+    display: flex;
+    float: right;  
+    margin: 1% 1.5% 0 0;
 }
 
 .menu_left>ul, .menu_right>ul {
-	list-style: none;
+    list-style: none;
 }
 
 .menu_left li, .menu_right li {
-	display: inline-block;
-	margin-right: 10px;
+    display: inline-block;
+    margin-right: 10px;
 }
 
 #search>input {
-	width: 100px;
-	border: none;
-	border-bottom: 1px solid black;
-	background-color: rgba(0, 0, 0, 0);
+    width: 100px;
+    border: none;
+    border-bottom: 1px solid black;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 #search>button {
-	background: none;
-	border: none;
+    background: none;
+    border: none;
 }
 
 #footer {
-	width: 100%;
-	position: relative;
+    width: 100%;
+    position: relative;
     top: 150px;
     display: inline-block;
     flex-direction: row;
@@ -113,7 +114,7 @@ body {
 }
 
 .ft_content {
-	display: flex;
+    display: flex;
     width: 100%;
     margin: 0;
     justify-content: space-between;
@@ -128,25 +129,25 @@ body {
 }
 
 .logoNcopy{
-	padding-left: 190px;
+    padding-left: 190px;
 }
 
 .logo_text{
-	font-size: 50px;
+    font-size: 50px;
     line-height: 100%;
-	font-family: 'Vitro_core';
-	font-weight: normal;
-	font-style: normal;
-	padding: 11px 0;
+    font-family: 'Vitro_core';
+    font-weight: normal;
+    font-style: normal;
+    padding: 11px 0;
 }
 
 .ft_bottom #git {
-	color: #fff;
-	text-decoration: none;
+    color: #fff;
+    text-decoration: none;
 }
 
 .address {
-	padding-left: 190px;
+    padding-left: 190px;
 }
 
 #footer .fsec01 .sec {
@@ -157,17 +158,17 @@ body {
 
 
 .ft_content p.tit {
-	font-size: 20px;
+    font-size: 20px;
     font-weight: bolder;
     margin: 10px 0 10px;
 }
 
 .fsec01 {
-	float: left;
-	position: relative;
+    float: left;
+    position: relative;
 }
 .fsec02 {
-	position: relative;
+    position: relative;
 }
 
 .ft_top .fsec01 span, .fsec02 span{
@@ -175,13 +176,13 @@ body {
 }
 
 .util_inner {
-	padding-right: 190px;
+    padding-right: 190px;
 }
 
 .util_inner>ul {
-	list-style: none;
-	display: block;
-	padding-top: 11px;
+    list-style: none;
+    display: block;
+    padding-top: 11px;
 }
 
 .util_inner>ul a {
@@ -191,17 +192,17 @@ body {
     font-size: 20px;
 }
 .menu>li, .ft_top .sec {
-	display: inline-block;
-	margin-left: 60px;
+    display: inline-block;
+    margin-left: 60px;
 }
 
 
 /* 메인페이지 헤더 및 푸터 영역 css 끝 (이은빈)******************************************/
 
 #main_body {
-	display: flex;
-	flex-direction: column;
-	z-index: -1;
+    display: flex;
+    flex-direction: column;
+    z-index: -1;
 }
 
 
@@ -222,10 +223,10 @@ body {
 
 /* 메인페이지 슬라이드 영역*/
 .main_slider {
-	text-align: center;
-	margin-bottom: 4%;
-	position: relative;
-	top: 140px;
+    text-align: center;
+    margin-bottom: 4%;
+    position: relative;
+    top: 140px;
     z-index: -1;
 }
 
@@ -261,8 +262,8 @@ body {
 
 
 .cate_img a {
-	position: relative;
-	 
+    position: relative;
+     
 }
 
 .cate_img {
@@ -272,18 +273,18 @@ background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 
 
 
 .cate_img {
-	display: flex;
-	justify-content: space-around;
-/* 	padding-top: 20%; */
+    display: flex;
+    justify-content: space-around;
+/*  padding-top: 20%; */
 }
 
 .cate_img img {
-/* 	display: inline-block; */
-	max-height: 300px;
+/*  display: inline-block; */
+    max-height: 300px;
 }
 
 .cate_img>ul {
-	list-style: none;
+    list-style: none;
 }
 
 

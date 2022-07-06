@@ -32,7 +32,7 @@
    <title>부트 스트랩-boot_list</title>
     <!-- 부트스트랩 -->
     <link href="${CP_RES}/css/etc/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="${CP_RES }/css/main/main.css">
+    <link rel="stylesheet" type="text/css" href="${CP_RES}/css/main/main.css">
     <link rel="stylesheet" type="text/css" href="${CP_RES}/css/menu/menu.css">
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
     <script src="${CP_RES}/js/etc/jquery-1.12.4.js"></script>
@@ -119,7 +119,7 @@
 <!-- 메인 헤더 영역 시작 (이은빈)----------------------------------------------->
     <div id="header">
             <div id="logo">
-                <a href="${CP}/main/main.do"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
+                <a href="#"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
             </div>
         <div id="top">
             <div class="menu_left">
@@ -136,7 +136,7 @@
                         <ul>
                          <li>
                            <a href="${CP}/login/doLogout.do">
-                            <span>${sessionScope.member.mName}님</span>
+                            <span>${sessionScope.member.mName}님 환영합니다.</span>
                             <span>&nbsp;로그아웃</span></a>
                          </li>
                          <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
@@ -150,17 +150,17 @@
                          <li>
                            <a href="${CP}/login/login.do">로그인</a>
                          </li>
-                         <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
+                         <li><a href="#">마이페이지</a></li>
                          <li><a href="#">장바구니</a></li>
                          <li><a href="#">FAQ</a></li>
                          <li><a href="#">공지사항</a></li>
                         </ul>
                     </c:otherwise>
                 </c:choose>
-                <form action="#" method="post" id="search" name="search">
-                    <input type="text" />
-                    <button>
-                        <i class="fas fa-search fa-lg"></i>
+                <form action="${CP}/productSearch/View.do" method="get" id="search" name="search">
+                    <input type="text" id="searchWord" class="searchWord" name="searchWord" value=""/>
+                    <button id="doRetrive">
+                        <i class="fas fa-search fa-lg" ></i>
                     </button>
                 </form>
             </div>

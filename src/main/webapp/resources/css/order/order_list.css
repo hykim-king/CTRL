@@ -98,6 +98,7 @@ label{
 /* ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ 주문조회 ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ */
 
 
+
 /* 상품 탑 테이블 */
 .order2{
     position: relative;
@@ -115,7 +116,7 @@ label{
     font-size: 22px;
     position: relative;
     left: 401px;
-    bottom: 518px;
+    bottom: 524px;
     table-layout: fixed;
 }
 
@@ -178,3 +179,5 @@ label{
     position:relative;
     bottom:350px;
 }
+
+
