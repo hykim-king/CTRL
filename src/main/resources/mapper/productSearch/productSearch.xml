@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pcwk.ctrl.productSearch">
+
+    
+    <!-- 목록조회 -->
+    <select id="doRetrieve" parameterType="SearchVO" resultType="ProductVO">
+       SELECT A.*,B.*
+       FROM (
+         SELECT TT1.rnum AS num,
+                TT1.p_num as "pNum",
+                TT1.p_category as "pCategory",
+                TT1.p_name as "pName",
+                TT1.p_price as "pPrice",
+                TT1.p_size   as "pSize"
+         FROM(
+	          SELECT ROWNUM AS rnum, T1.*
+	            FROM
+	            ( SELECT *
+	                FROM product
+	                --검색조건
+	                WHERE p_name LIKE '%' || #{searchWord} || '%'
+	                OR p_category LIKE '%' || #{searchWord} || '%'
+	                ORDER BY p_num DESC
+	                ) T1
+	                <![CDATA[ WHERE ROWNUM    <= ( #{pageSize} * (#{pageNum} - 1) + #{pageSize} ) ]]>
+	            )TT1
+	            <![CDATA[  WHERE rnum >= ( #{pageSize} * ( #{pageNum} - 1) +1)  ]]>
+	        ) A CROSS JOIN
+	        (SELECT COUNT(*) AS totalCnt
+	          FROM product
+	          --검색조건
+	          WHERE p_name LIKE '%' || #{searchWord} || '%'
+	          OR p_category LIKE '%' || #{searchWord} || '%'
+	        ) B    
+    
+    </select>
+
+
+
+</mapper>
