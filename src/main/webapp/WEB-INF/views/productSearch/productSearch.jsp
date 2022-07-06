@@ -31,7 +31,41 @@
       $(document).ready(function(){
         console.log("document.ready");  
         
+        /* 검색된 상품을 누르면 상품 상세 페이지로 넘어가는 코드 시작(김주혜) */
+         $(document).on("click", "#contents .img_list", function(e){
+             console.log('클릭');
+             let productImgSrc = $(this).attr("src");
+             let pNum = productImgSrc.substring(productImgSrc.lastIndexOf('/')+1,productImgSrc.lastIndexOf('.'));
+             console.log(productImgSrc);
+             console.log(pNum);
+             
+             let url = "${CP}/productDetail/doSelect.do";
+             let method = "GET";
+             let parameters = {
+                     pNum : pNum
+             }; 
+             
+             let async = true;
+             
+             EClass.callAjax(url, parameters, method, async, function(data){
+                 console.log(data);
+                 // {"pNum":"glass01","pName":"뚱뚱이 고블렛잔 ","pPrice":27700,"pSize":"530ml","no":0}
+                 let pNum = data.pNum;
+                 let pName = data.pName;
+                 let pPrice = data.pPrice;
+                 let pSize = data.pSize;
+                 
+                 let pageSize = 7;
+                 let pageNum = 1;
+                 
+                 window.location.href="${CP}/productDetail/view.do?pNum=" + pNum + "&pName=" + pName + 
+                         "&pPrice="+pPrice + "&pSize="+pSize+ "&pageSize="+pageSize + "&pageNum=" + pageNum;
+                 
+             }); 
+             
+         });        
         
+        /* 검색된 상품을 누르면 상품 상세 페이지로 넘어가는 코드 끝(김주혜) */
       //document.ready    
       });
       

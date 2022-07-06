@@ -34,7 +34,7 @@
     <!-- 부트스트랩 -->
     <link href="${CP_RES }/css/etc/bootstrap.min.css" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="${CP }/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="${CP_RES}/css/main/main_productDetail_header.css">
+    <link rel="stylesheet" type="text/css" href="${CP_RES}/css/main/main_boot.css">
     <link rel="stylesheet" type="text/css" href="${CP_RES }/css/productDetail/productDetail.css">
     
     <title>제품 상세 페이지</title>
@@ -398,12 +398,14 @@
                         </ul>
                     </c:otherwise>
                 </c:choose>
-                <form action="#" method="post" id="search" name="search">
-                    <input type="text" />
-                    <button>
-                        <i class="fas fa-search fa-lg"></i>
+            <!-- 상품 검색 영역 시작(이은빈) ----------------------------------------->             
+                <form action="${CP}/productSearch/View.do" method="get" id="search" name="search">
+                    <input type="text" id="searchWord" class="searchWord" name="searchWord" value=""/>
+                    <button id="doRetrive">
+                        <i class="fas fa-search fa-lg" ></i>
                     </button>
                 </form>
+             <!-- 상품 검색 영역 끝(이은빈) ----------------------------------------->          
             </div>
         </div>
     </div>
