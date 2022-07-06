@@ -93,7 +93,7 @@
 	                    <ul>
                          <li>
                            <a href="${CP}/login/doLogout.do">
-                            <span>${sessionScope.member.mName}님</span>
+                            <span>${sessionScope.member.mName}님 환영합니다.</span>
                             <span>&nbsp;로그아웃</span></a>
                          </li>
                          <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>

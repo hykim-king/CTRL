@@ -182,7 +182,7 @@
          <c:when test="${list.size() > 0}">
              <c:forEach var="list" items="${list}"> 
                   <div id="list" style="float:left;padding:30px;width:33%">
-                     <img src="${CP_RES}/img/${list.pNum}.jpg" class="img_list" alt="상품 이미지" />
+                     <a href="#"><img src="${CP_RES}/img/${list.pNum}.jpg" class="img_list" alt="상품 이미지" /></a>
                      <p class="p1">${list.pName}</p><br/>
                      <p class="p1"><fmt:formatNumber type="number" maxFractionDigits="3" value="${list.pPrice }"/>원</p>
                   </div>
