@@ -51,6 +51,42 @@
         $(document).ready(function(){
         console.log("document.ready"); 
         
+        /* 이미지 클릭시 상세페이지로 이동 (김주혜)*/
+        $(document).on("click", "#listTable img", function(e){
+            console.log('클릭');
+            let productImgSrc = $(this).attr("src");
+            let pNum = productImgSrc.substring(productImgSrc.lastIndexOf('/')+1,productImgSrc.lastIndexOf('.'));
+            console.log(productImgSrc);
+            console.log(pNum);
+            
+            let url = "${CP}/productDetail/doSelect.do";
+            let method = "GET";
+            let parameters = {
+                    pNum : pNum
+            }; 
+            
+            let async = true;
+            
+            EClass.callAjax(url, parameters, method, async, function(data){
+                console.log(data);
+                // {"pNum":"glass01","pName":"뚱뚱이 고블렛잔 ","pPrice":27700,"pSize":"530ml","no":0}
+                let pNum = data.pNum;
+                let pName = data.pName;
+                let pPrice = data.pPrice;
+                let pSize = data.pSize;
+                
+                let pageSize = 7;
+                let pageNum = 1;
+                
+                window.location.href="${CP}/productDetail/view.do?pNum=" + pNum + "&pName=" + pName + 
+                        "&pPrice="+pPrice + "&pSize="+pSize+ "&pageSize="+pageSize + "&pageNum=" + pageNum;
+                
+            }); 
+            
+        });
+        /* 이미지 클릭시 상세페이지로 이동 (김주혜)*/
+        
+        
         //뭔지 모르겠음 -> 안되면 지워보기
         renderingPage('${pageTotal}',1);
         
@@ -271,8 +307,8 @@
                <!-- 문자: 왼쪽, 숫자: 오른쪽, 같은면: 가운데 -->
                 <tr>
                     <th width="150"  class="oNum"> ${list.oNum}</th>
-                    <th width="130"><img src="${CP_RES}/img/${list.pNum}.jpg" alt="상품 이미지" width="90"/></th>
-                    <th width="330"><a class="text">${list.pName}</a></th>
+                    <th width="130"><a href="#"><img src="${CP_RES}/img/${list.pNum}.jpg" alt="상품 이미지" width="90"/></a></th>
+                    <th width="330"><a href="#" class="text">${list.pName}</a></th>
                     <th width="150">${list.pPrice}
                     </th>
                     <th width="90">${list.dBuy}</th>
