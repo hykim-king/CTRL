@@ -51,9 +51,21 @@ public class JUnitPayDaoTest {
 		LOG.debug("context:"+context);
 		LOG.debug("payDao:"+payDao);
 	}
+	
+	@Test
+	public void getoNumTest() throws SQLException{
+		OrderVO inVO = new OrderVO();
+		inVO.setmNum("b0eS7C0xv40MLAhDU5uIEQ7WJAbQNOm3v-KEtXp7Tzs");
+		inVO = payDao.getoNum(inVO);
+		LOG.debug("========================");
+		LOG.debug("=getoNumTest=");
+		LOG.debug("========================");
+		assertEquals(11, inVO.getoNum());
+	}
+	
 
 	@Test
-	//@Ignore
+	@Ignore
 	public void payOrderInsert() throws SQLException {
 		LOG.debug("========================");
 		LOG.debug("=1.payOrderInsert()=");
@@ -69,7 +81,7 @@ public class JUnitPayDaoTest {
 	}
 	
 	@Test
-	//@Ignore
+	@Ignore
 	public void payDetailInsert() throws SQLException {
 		LOG.debug("========================");
 		LOG.debug("=2.payOrderInsert()=");

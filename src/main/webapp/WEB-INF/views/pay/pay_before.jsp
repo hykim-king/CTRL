@@ -35,7 +35,7 @@
     <!-- jQuery -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 	<!-- iamport.payment.js -->
-	<script src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js" type="text/javascript"></script>
+	<script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js" type="text/javascript"></script>
     <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
     <link rel="shortcut icon" type="image/x-icon" href="${CP }/favicon.ico">
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
@@ -44,6 +44,7 @@
     <script src="${CP_RES }/js/etc/eclass.js"></script>
     <!-- 사용자 정의 function, isEmpty -->
     <script src="${CP_RES }/js/etc/eUtil.js"></script>
+    <script type="text/javascript" src="${CP_RES}/js/productDetail/productDetail.js"></script>
     
     <title>결제 전</title>
     
@@ -134,24 +135,26 @@
 <!-- 배송지 -->
     <div class="address">
         <h1 class="title">배송지</h1>
-            <input  class="Home" type="text" value="마포구 서강로 136 아이비타워 2층">
+            <input  class="Home" id="mAddr" type="text" value="">
         <h1 class="title">주문자</h1>
-            <p class="name">이름<input class="orderer" type="text" value="김태민"></p>
-            <p class="name">전화번호<input class="tel" type="tel" value="010-1234-5678"></p>
+            <p class="name">이름<input class="orderer" id="mName" type="text" value="${sessionScope.member.mName}"></p>
+            <p class="name">전화번호<input class="tel" id="mTel" type="tel" value="${sessionScope.member.mTel}"></p>
+            <p class="name" id="mEmail" style="display: none">${sessionScope.member.mEmail}</p>
         <h1 class="title">주문상품</h1>
-            <input class="img" type="image" src="${CP_RES}/img/<%=request.getParameter("pNum")%>.jpg" align="left" align="middle">
-            <p class="img1"><p id="product_name"><%=request.getParameter("product_name")%></p>
-            <p id="product_price"><fmt:formatNumber type="number"  maxFractionDigits="3" value='<%=request.getParameter("product_price")%>'/>원</p>
-            <p id="buy_number"><%=request.getParameter("buy_number")%>개</p>
+            <input class="img" type="image" src="${CP_RES}/img/${pNum}.jpg" align="left" align="middle">
+            <p id=pNum style="display: none">${pNum}</p>
+            <p class="img1"><p id="product_name">${product_name}</p>
+            <p id="product_price"><fmt:formatNumber type="number"  maxFractionDigits="3" value='${product_price}'/>원</p>
+            <p id="buyNumber">${buy_number}개</p>
     </div>	
         <div class="payment">
             <h1 class="title">결제금액</h1>
             <h1 class="pay1">총 상품 금액</h1>
-            <p class="pay2" id="totalNum"><fmt:formatNumber type="number"  maxFractionDigits="3" value='<%=request.getParameter("totalNum")%>'/>원</p>
+            <p class="pay2" id="totalNum"><fmt:formatNumber type="number" maxFractionDigits="3" value='${totalNum}'/>원</p>
             <h1 class="pay1">배송비</h1>
             <p class="pay2">무료</p>
-            <h1 class="pay1" id="totalNum">최종 결제 금액</h1>
-            <p class="pay2"><fmt:formatNumber type="number"  maxFractionDigits="3" value='<%=request.getParameter("totalNum")%>'/></p>
+            <h1 class="pay1">최종 결제 금액</h1>
+            <p class="pay2"><fmt:formatNumber type="number" maxFractionDigits="3" value='${totalNum}'/>원</p>
             <p><input class="check" type="checkbox" checked>아래 내용에 모두 동의합니다.(필수)</p>
             <p class="pay3">“쇼핑몰”은 이용자의 개인정보 수집시 서비스 제공을 위하여 필요한 범위에서 최소한의 개인정보를 수집합니다.
             “쇼핑몰”은 회원가입시 구매계약이행에 필요한 정보를 미리 수집하지 않습니다. 다만, 관련 법령상 의무이행을 위하여 구매계약 이전에 본인확인이 필요한 경우로서 최소한의 특정 개인정보를 수집하는 경우에는 그러하지 아니합니다.
@@ -164,7 +167,53 @@
             “쇼핑몰”은 개인정보의 수집•이용•제공에 관한 동의란을 미리 선택한 것으로 설정해두지 않습니다. 또한 개인정보의 수집•이용•제공에 관한 이용자의 동의거절시 제한되는 서비스를 구체적으로 명시하고, 필수수집항목이 아닌 개인정보의 수집•이용•제공에 관한 이용자의 동의 거절을 이유로 회원가입 등 서비스 제공을 제한하거나 거절하지 않습니다.</p>
             <input class="pay" type="button" value="결제">
         </div>
-        
+ 
+ 	<!-- footer 시작(이은빈) ---------------------------------------------------->
+<!-- 	     <div id="footer"> -->
+<!-- 	            <div class="ft_content"> -->
+<!-- 	               <div class="logoNcopy"> -->
+<!-- 	                   <div class="logo_text"> -->
+<!-- 	                       Table<br>Ware -->
+<!-- 	                   </div> -->
+<!-- 	                   <p> -->
+<!-- 	                       CopyRright &copy; <br>All right reserved by CTRL -->
+<!-- 	                   </p> -->
+<!-- 	               </div> -->
+	                
+<!-- 	                <div class="ft_top "> -->
+<!-- 	                        <div class="fsec01 sec"> -->
+<!-- 	                            <p class="tit">CS CENTER</p> -->
+<!-- 	                            <span class="first">02-313-7300</span> -->
+<!-- 	                            <span>WEEKDAY AM 9:00 ~ PM 6:00</span> -->
+<!-- 	                            <span>LUNCH PM 12:00 ~ PM 1:00</span> -->
+<!-- 	                            <span>WEEKEND &amp; HOLYDAY OFF</span> -->
+<!-- 	                        </div> -->
+<!-- 	                        <div class="fsec02 sec"> -->
+<!-- 	                            <p class="tit">RETURN &amp; EXCHANGE</p> -->
+<!-- 	                            <span>반품 : 04100 서울특별시 마포구 서강로 136 아이비타워 3층 <br/> 반드시 고객센터에 접수 후 교환 및 반품해주세요.</span> -->
+<!-- 	                            <span>cj대한통운 고객센터 1588-1255</span>  -->
+<!-- 	                        </div> -->
+<!-- 	                </div> -->
+<!-- 	                <div class="util"> -->
+<!-- 	                    <div class="util_inner"> -->
+<!-- 	                        <ul class="menu"> -->
+<!-- 	                            <li><a href="#"><span>이용약관</a></li> -->
+<!-- 	                            <li><a href="#">개인정보취급방침</a></li> -->
+<!-- 	                        </ul> -->
+<!-- 	                    </div> -->
+<!-- 	                </div> -->
+<!-- 	            </div> -->
+<!-- 	            <div class="ft_bottom "> -->
+<!-- 	                <p class="address"> -->
+<!-- 	                    <span>COMPANY : (주)TableWare CEO : CTRL    PHONE : 010-1234-5678</span></br>  -->
+<!-- 	                    <span>CONTACT : <strong><a href="https://github.com/hykim-king/CTRL.git" id="git">https://github.com/hykim-king/CTRL.git</a></strong></span></br> -->
+<!-- 	                    <span>BUSINESS LICENCE : [123-45-67890] | ADDRESS : 04100 서울특별시 마포구 서강로 136 아이비타워 3층 TableWare</span> -->
+<!-- 	                </p> -->
+<!-- 	            </div> -->
+<!-- 	        </div> -->
+	
+	    <!-- footer 끝 ------------------------------------------------------------->
+	           
     <script>
 	function getParameter(name) {
 	    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -174,91 +223,99 @@
 	}
 	</script>
         
-   <script type="text/javascript">
-    $('.pay').click(function(){
+ 	<script type="text/javascript">
+ 	
+ 	
+ 	
+    $('.pay').click(function() {
     	var IMP = window.IMP;
     	var amount = 100;
-		console.log(getParameter("product_price"));
     	IMP.init('imp91452155');
+    	console.log("click");
+    	console.log($("#mAddr").val());
         // IMP.request_pay(param, callback) 결제창 호출
         IMP.request_pay({ // param
             pg: "html5_inicis",//이니시스 웹표준 결제창
             pay_method: "card",//결제방법
             merchant_uid: 'merchant_'+new Date().getTime(),//주문번호
-            name: $("#product_name").text(),//상품명
-           	amount: $("#totalNum").text(),//가격
-            buyer_email: "gildong@gmail.com",//이메일 세션받을곳
-            buyer_name: "홍길동",//이름 - 세션받을곳
-            buyer_tel: "010-4242-4242",//연락처 세션받을곳
-            buyer_addr: "서울특별시 강남구 신사동",//주소 세션받을곳
-            count :1//상품건수	
-        }),function(rsp){//callback
-        	if(rsp.success){
+            name:  $("#product_name").text(),//상품명
+//            	amount: $("#totalNum").text().replace(",", "").split("원")[0],//가격
+           	amount: 100,//가격
+            buyer_email: $("#mEmail").text(),//이메일
+            buyer_name: "${sessionScope.member.mName}",//이름
+            buyer_tel: "${sessionScope.member.mTel}",//연락처
+            buyer_addr: $("#mAddr").val(),//주소
+            count :1//상품건수
+        }, function (rsp) { // callback
+            if (rsp.success) {
               	var msg = '결제가 완료되었습니다.';
               	console.log(rsp);
               	console.log('상품명: '+rsp.name);
-              	console.log('주문번호: '+merchant_uid);
               	console.log('상품 금액: '+rsp.paid_amount);
               	console.log('주문자 이름: '+rsp.buyer_name);
               	console.log('주문자 번호: '+rsp.buyer_tel);
               	console.log('주문자 주소: '+rsp.buyer_addr);
               	console.log('삼풍 수량: '+rsp.count);
-              	
-                payOrderInsert(merchant_uid, rsp.name, rsp.paid_amount, rsp.buyer_name,
-               			rsp.buyer_tel, rsp.buyer_addr, rsp.count , status);
-              	
-               	payDetailInsert(merchant_uid,rsp.count,name);
-               	
-               	window.location.href="/ctrl/pay/payAfter.do";
-                // 결제 성공 시 로직
-        	}else{
+              	//window.location.href="/ctrl/pay/payAfter.do";
+              	payOrderInsert(rsp.buyer_addr, rsp.buyer_name, rsp.buyer_tel, "${sessionScope.member.mNum}");
+            } else {
             	var msg = '결제가 실패하였습니다.'
-                	console.log(rsp);
-                    // 결제 실패 시 로직
-        	}
+            	console.log(rsp);
+                // 결제 실패 시 로직,
+            }
             alert(msg);
-        };
-        
-/*  	     function payOrderInsert(merchant_uid,name,paid_amount,buyer_name,buyer_tel,buyer_addr,count){
-	        let url = "${CP}/pay/payOrderInsert.do";
-	        let method = "GET";
-	  		let async = true;   
-	  	    let parameters = {
-	   			   oNum : merchant_uid,
-	  	   	   	   oName : buyer_name,
-	               oAddr : buyer_addr,
-	               oTel : buyer_tel,
-	               oStatus : "결제완료",
-	               oDt : SYSDATE,
-	               mNum : "222"
-		    };
-		    
-	      EClass.callAjax(url, parameters, method, async, function(data) {
-	          console.log("EClass.callAjax data : " + data);
-	            
-	      });
-	  };
-	  
-	    function payDetailInsert(merchant_uid, count, name){
-	      let url = "${CP}/pay/payDetailInsert.do";
-	      let method = "GET";
-			let async = true;
-	  	    let parameters = {
-	  	    	   oNum : merchant_uid,
-	  	    	   dNum : $("#dNum"),
-	  	    	   dBuy : $("buy_number"),
-	  	    	   pNum : $("#product_name").text(),
-	    };
-		    
-	    EClass.callAjax(url, parameters, method, async, function(data) {
-	        console.log("EClass.callAjax data : " + data);
-	          
-	    });
-	}; */
- });
+        });
+    });
     
-    	
+    function payOrderInsert(oAddr, oName, oTel, mNum){
+    	let url = "${CP}/pay/payOrderInsert.do";
+    	let method = "GET";
+    	let async = true;
+    	let parameters = {
+    			"oAddr" : oAddr,
+    			"oName" : oName,
+    			"oTel" : oTel,
+    			"mNum" : mNum
+    	};
+    	 EClass.callAjax(url, parameters, method, async, function(data) {
+    		console.log(data);
+    		getoNum(mNum);
+    		window.location.href="/ctrl/pay/payAfter.do";
+    	 });
+    }
+    
+    function getoNum(mNum){
+    	let url = "${CP}/pay/getoNum.do";
+    	let method = "GET";
+    	let async = true;
+    	let parameters = {
+    			"mNum" : mNum
+    	};
+    	let buyNumber = $("#buyNumber").text().split("개")[0];
+    	let pNum = $("#pNum").text();
+    	 EClass.callAjax(url, parameters, method, async, function(data) {
+    		console.log("getoNum data : " + data.oNum);
+    		payDetailInsert(data.oNum, buyNumber, pNum)
+    	 });
+    }
+    
+    
+    function payDetailInsert(oNum, dBuy, pNum){
+    	let url = "${CP}/pay/payDetailInsert.do";
+    	let method = "GET";
+    	let async = true;
+    	let parameters = {
+    			"oNum" : oNum,
+    			"dBuy" : dBuy,
+    			"pNum" : pNum
+    	};
+    	 EClass.callAjax(url, parameters, method, async, function(data) {
+    		console.log(data);
+    	 });
+    }
+    
+    
+    
     </script>
-
 </body>
 </html>

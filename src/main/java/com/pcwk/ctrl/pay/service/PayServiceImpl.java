@@ -19,6 +19,9 @@ public class PayServiceImpl implements PayService {
 	@Autowired
 	private PayDao payDao;
 	
+	//기본 생성자
+	public PayServiceImpl() {}
+	
 	@Override
 	public int payOrderInsert(OrderVO inVO) throws SQLException {
 		return payDao.payOrderInsert(inVO);
@@ -27,6 +30,11 @@ public class PayServiceImpl implements PayService {
 	@Override
 	public int payDetailInsert(DetailVO inVO) throws SQLException {
 		return payDao.payDetailInsert(inVO);
+	}
+
+	@Override
+	public OrderVO getoNum(OrderVO inVO) throws SQLException {
+		return payDao.getoNum(inVO);
 	}
 
 }

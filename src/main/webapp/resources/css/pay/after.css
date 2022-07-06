@@ -1,4 +1,4 @@
-/* 메인페이지 헤더 및 푸터 영역 css 시작 */
+/* 메인페이지 헤더 및 푸터 영역 css 시작 (이은빈)****************************************/
 @font-face {
 	font-family: 'Vitro_core'; /* 로고, 소제목 */
 	src:
@@ -24,33 +24,42 @@
 
 body {
 	min-width: 1680px; /* 최소 폭 */
-	min-height: 1100px;
 	font-family: Vitro_pride;
 }
 
-#header, #top {
+#header {
+	top:0;
+    z-index: 999;   
 	width: 100%;
-	max-width: 1800px; /*최대 폭, 값 없으면 화면 축소시 가운데로 x */
-	max-height: 1480px;
+	max-width: 1800px; /* 최대 폭, 값 없으면 화면 축소시 가운데로 x */
+	height: 140px;
 	margin: 0 auto 0;
 	display: flex;
-	position: relative;
+	position: fixed;
+	font-weight: bolder;
+    background: white;
 }
 
 #top {
-	font-size: 120%;
+	width: 100%;
+	max-width: 1800px; /* 최대 폭, 값 없으면 화면 축소시 가운데로 x */
+	margin: 0 auto 0;
+	display: flex;
+	position: relative;
+	font-size: 150%;
 	font-weight: bolder;
+	
 }
 
-a, a:active {
+
+#header a {
 	text-decoration: none;
-	color: black;
+	color: #000;
 }
 
 #logo img {
 	display: inline-block;
-	max-height: 120px;
-    
+	max-height: 140px;
 }
 
 #logo a {
@@ -89,7 +98,103 @@ a, a:active {
 	background: none;
 	border: none;
 }
-/* 메인페이지 헤더 및 푸터 영역 css 끝 */
+
+#footer {
+	width: 100%;
+	position: relative;
+    top: 150px;
+    display: inline-block;
+    flex-direction: row;
+    line-height: 170%;
+    background: #424242;
+    color: #fff;
+}
+
+.ft_content {
+	display: flex;
+    width: 100%;
+    margin: 0;
+    justify-content: space-between;
+    border-bottom: 1px solid #fff;
+}
+
+.util, .ft_top, .ft_bottom, .ft_content {
+    display: flex;
+    text-align: left;
+    color: #fff;
+    position: relative;
+}
+
+.logoNcopy{
+	padding-left: 190px;
+}
+
+.logo_text{
+	font-size: 50px;
+    line-height: 100%;
+	font-family: 'Vitro_core';
+	font-weight: normal;
+	font-style: normal;
+	padding: 11px 0;
+}
+
+.ft_bottom #git {
+	color: #fff;
+	text-decoration: none;
+}
+
+.address {
+	padding-left: 190px;
+}
+
+#footer .fsec01 .sec {
+    float: left;
+    box-sizing: border-box;
+    display: block;
+}
+
+
+.ft_content p.tit {
+	font-size: 20px;
+    font-weight: bolder;
+    margin: 10px 0 10px;
+}
+
+.fsec01 {
+	float: left;
+	position: relative;
+}
+.fsec02 {
+	position: relative;
+}
+
+.ft_top .fsec01 span, .fsec02 span{
+    display: block;
+}
+
+.util_inner {
+	padding-right: 190px;
+}
+
+.util_inner>ul {
+	list-style: none;
+	display: block;
+	padding-top: 11px;
+}
+
+.util_inner>ul a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: 20px;
+}
+.menu>li, .ft_top .sec {
+	display: inline-block;
+	margin-left: 60px;
+}
+
+
+/* 메인페이지 헤더 및 푸터 영역 css 끝 (이은빈)******************************************/
 
 /* 결제 완료 후 */
 .title{

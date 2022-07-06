@@ -37,48 +37,89 @@
     
     <title>결제 후</title>
     
-     <!-- font awesome -->
-	<script src="https://kit.fontawesome.com/2974daa1cb.js" crossorigin="anonymous"></script>
-    <script type="text/javascript">
-    $(document).ready(function(){
-        console.log("document.ready"); 
-      });
-    </script>
-    
-</head>
+<!-- font awesome -->
+<script src="https://kit.fontawesome.com/2974daa1cb.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="${CP_RES}/js/login/login_popup.js"></script>
+<script type="text/javascript">
+        
+        // bowls 카테고리로 이동
+        $("#bowls").on("click", function(e){
+            console.log("bowls:");
+            console.log("pCategory:" + $("#pCategory").val());
+            window.location.href = "${CP}/menu/menuMove.do?pCategory=bowls";
+        });
+        // cup 카테고리로 이동
+        $("#cup").on("click", function(e){
+            console.log("cup:");
+            console.log("pCategory:" + $("#pCategory").val());
+            window.location.href = "${CP}/menu/menuMove.do?pCategory=cup";
+        });
+        // cup 카테고리로 이동
+        $("#glass").on("click", function(e){
+            console.log("glass:");
+            console.log("pCategory:" + $("#pCategory").val());
+            window.location.href = "${CP}/menu/menuMove.do?pCategory=glass";
+        });
+        // cup 카테고리로 이동
+        $("#plate").on("click", function(e){
+            console.log("plate:");
+            console.log("pCategory:" + $("#pCategory").val());
+            window.location.href = "${CP}/menu/menuMove.do?pCategory=plate";
+        });
+</script>
 <body>
-	 <!-- 메인 헤더 영역 시작 -->
- <div id="header">
-    <div id="top">
-        <div id="logo">
-            <a href="#"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
+      <!-- 메인 헤더 영역 시작 (이은빈)----------------------------------------------->
+    <div id="header">
+            <div id="logo">
+                <a href="#"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
+            </div>
+        <div id="top">
+            <div class="menu_left">
+                <ul>
+                    <li><a href="#" id="bowls">접시</a></li>
+                    <li><a href="#" id="cup">머그컵</a></li>
+                    <li><a href="#" id="glass">유리잔</a></li>
+                    <li><a href="#" id="plate">보울/면기</a></li>
+                </ul>
+            </div>
+            <div class="menu_right">
+                <c:choose>
+                    <c:when test="${null !=sessionScope.member}">
+	                    <ul>
+                         <li>
+                           <a href="${CP}/login/doLogout.do">
+                            <span>${sessionScope.member.mName}님</span>
+                            <span>&nbsp;로그아웃</span></a>
+                         </li>
+                         <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
+                         <li><a href="#">장바구니</a></li>
+                         <li><a href="#">FAQ</a></li>
+                         <li><a href="#">공지사항</a></li>
+	                    </ul>
+                    </c:when>
+                    <c:otherwise>
+	                    <ul>
+                         <li>
+                           <a href="${CP}/login/login.do">로그인</a>
+                         </li>
+                         <li><a href="#">마이페이지</a></li>
+                         <li><a href="#">장바구니</a></li>
+                         <li><a href="#">FAQ</a></li>
+                         <li><a href="#">공지사항</a></li>
+	                    </ul>
+                    </c:otherwise>
+                </c:choose>
+                <form action="#" method="post" id="search" name="search">
+                    <input type="text" />
+                    <button>
+                        <i class="fas fa-search fa-lg"></i>
+                    </button>
+                </form>
+            </div>
         </div>
-        <div class="menu_left">
-            <ul>
-            <li><a href="#">접시</a></li>
-            <li><a href="#">머그컵</a></li>
-            <li><a href="#">유리잔</a></li>
-            <li><a href="#">보울/면기</a></li>
-            </ul>
-        </div>
-        <div class="menu_right">
-            <ul>
-            <li><a href="#">로그인</a></li>
-            <li><a href="#">마이페이지</a></li>
-            <li><a href="#">장바구니</a></li>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">공지사항</a></li>
-            </ul>
-            <form action="#" method="post" id="search" name="search">
-                <input type="text"/>
-                <button>
-                    <i class="fas fa-search fa-lg"></i>
-                </button>
-            </form>
-        </div> 
     </div>
-</div>
-<!-- 메인 헤더 영역 끝 -->
+
+    <!-- 메인 헤더 영역 끝 (이은빈)-------------------------------------------------->
 
 <!-- 결제 후 -->
 <div class="title">

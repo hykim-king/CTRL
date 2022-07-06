@@ -480,10 +480,10 @@
   	  	
     	let totalNum = $("#total_num").text(); // 상품 금액
   	  	let mminusComma = totalNum.replace(",", ""); // 상품금액에서 , 제거
-  	  	let total = minusComma.substring(0, minusComma.indexOf("원"));
-  	  	
+  	  	let total = mminusComma.substring(0, mminusComma.indexOf("원"));
+
         let productImgSrc = $('#productImg').attr("src");
-        let pNum = productImgSrc.substring(productImgSrc.lastIndexOf('/')+1,productImgSrc.lastIndexOf('.'));
+        let pNum = productImgSrc.substring(productImgSrc.lastIndexOf('/'C)+1,productImgSrc.lastIndexOf('.'));
         let product_name = $(".product_name").text();
         let buy_number = $("#buy_number").text();
         

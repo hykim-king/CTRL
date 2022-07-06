@@ -7,6 +7,9 @@ import com.pcwk.ctrl.cmn.OrderVO;
 
 public interface PayDao {
 	
+	
+	OrderVO getoNum(OrderVO inVO) throws SQLException;
+	
 	/**
 	 * 결제 완료 시 추가
 	 * @param inVO

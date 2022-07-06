@@ -15,7 +15,7 @@
 			#{oAddr},
 			#{oName},
 			#{oTel},
-			#{oStatus},
+			'결제완료',
 			SYSDATE,
 			#{mNum}
 		)
@@ -34,4 +34,14 @@
 			#{pNum}
 		)
 	</insert>
+	
+	<select id="getoNum" parameterType="OrderVO" resultType="OrderVO">
+	<![CDATA[
+		SELECT O_NUM AS oNum
+		FROM ORDER_T
+		WHERE m_Num = #{mNum}
+		AND ROWNUM < 2 
+		ORDER BY O_NUM DESC
+	]]>
+	</select>
 </mapper>

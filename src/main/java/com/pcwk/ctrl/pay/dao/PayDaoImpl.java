@@ -57,4 +57,18 @@ public class PayDaoImpl implements PayDao {
 		return flag;
 	}
 
+	@Override
+	public OrderVO getoNum(OrderVO inVO) throws SQLException {
+		OrderVO outvo = null;
+		String statement = this.NAMESPACE + ".getoNum";
+		LOG.debug("==============================");
+		LOG.debug("=param="+inVO.toString());
+		LOG.debug("=statement="+statement);
+		LOG.debug("==============================");
+		
+		outvo = sqlSessionTemplate.selectOne(statement, inVO);
+		
+		return outvo;
+	}
+
 }
