@@ -29,15 +29,15 @@
     <!-- 메인 헤더 영역 시작 (이은빈)----------------------------------------------->
     <div id="header">
             <div id="logo">
-                <a href="${CP}/main/main.do"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
+                <a href="#"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
             </div>
         <div id="top">
             <div class="menu_left">
                 <ul>
-                    <li><a href="${CP}/menu/menuMove.do?pCategory=plate" id="plate">접시</a></li>
-                    <li><a href="${CP}/menu/menuMove.do?pCategory=cup" id="cup">머그컵</a></li>
-                    <li><a href="${CP}/menu/menuMove.do?pCategory=glass" id="glass">유리잔</a></li>
-                    <li><a href="${CP}/menu/menuMove.do?pCategory=bowls" id="bowls">보울/면기</a></li>
+                    <li><a href="#" id="plate">접시</a></li>
+                    <li><a href="#" id="cup">머그컵</a></li>
+                    <li><a href="#" id="glass">유리잔</a></li>
+                    <li><a href="#" id="bowls">보울/면기</a></li>
                 </ul>
             </div>
             <div class="menu_right">
@@ -46,7 +46,7 @@
                         <ul>
                          <li>
                            <a href="${CP}/login/doLogout.do">
-                            <span>${sessionScope.member.mName}님</span>
+                            <span>${sessionScope.member.mName}님 환영합니다.</span>
                             <span>&nbsp;로그아웃</span></a>
                          </li>
                          <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
@@ -67,10 +67,10 @@
                         </ul>
                     </c:otherwise>
                 </c:choose>
-                <form action="#" method="post" id="search" name="search">
-                    <input type="text" />
-                    <button>
-                        <i class="fas fa-search fa-lg"></i>
+                <form action="${CP}/productSearch/View.do" method="get" id="search" name="search">
+                    <input type="text" id="searchWord" class="searchWord" name="searchWord" value=""/>
+                    <button id="doRetrive">
+                        <i class="fas fa-search fa-lg" ></i>
                     </button>
                 </form>
             </div>

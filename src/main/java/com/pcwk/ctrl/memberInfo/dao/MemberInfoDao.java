@@ -13,5 +13,5 @@ public interface MemberInfoDao {
 	 * @return List<MemberVO>
 	 * @throws SQLException
 	 */
-	public List<MemberVO> memberList();
+	public List<MemberVO> memberList(MemberVO inVO);
 }

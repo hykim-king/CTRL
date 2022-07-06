@@ -6,6 +6,6 @@ import com.pcwk.ctrl.cmn.MemberVO;
 
 public interface MemberInfoService {
 
-	public List<MemberVO> memberList();
+	public List<MemberVO> memberList(MemberVO inVO);
 
 }

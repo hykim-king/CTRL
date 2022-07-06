@@ -14,8 +14,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
 <link rel="shortcut icon" type="image/x-icon" href="${CP}/favicon.ico">
-<link rel="stylesheet" type="text/css" href="${CP_RES}/css/main/main.css">
-<link rel="stylesheet" type="text/css" href="${CP_RES}/css/cart/cart.css">
+<link rel="stylesheet" type="text/css"
+     href="${CP_RES}/css/main/main.css">
+<link rel="stylesheet" type="text/css"
+     href="${CP_RES}/css/cart/cart.css">
 <!-- 부트스트랩 -->
 <link href="${CP_RES }/css/etc/bootstrap.min.css" rel="stylesheet">
 
@@ -25,7 +27,6 @@
 <script src="https://kit.fontawesome.com/2974daa1cb.js"
      crossorigin="anonymous"></script>
 <script type="text/javascript" src="${CP_RES}/js/login/login_popup.js"></script>
-
 <body>
      <!-- 메인 헤더 영역 시작 -->
      <div id="header">
@@ -71,36 +72,53 @@
      <br />
      <br />
      <br />
-     <br />
-     ${inquiry[0].pName}
-     ${inquiry[0].pName}
+     <br /> ${inquiry[0].pName} ${inquiry[0].pName}
 
-     
+
+
+     <div class="name_1">
+          <span class="name_2"
+               style="border-radius: 15px 15px 15px 0; border: 3px solid #FFAD5B; padding: 0.5em 0.6em; color: #FF8000;">장바구니</span>
+     </div>
+
+
+
+     <table class="type11">
+          <thead>
+               <tr>
+                    <th scope="cols">타이틀</th>
+                    <th scope="cols">타이틀</th>
+                    <th scope="cols">타이틀</th>
+               </tr>
+          </thead>
+          <tbody>
+               <tr>
+                    <td>내용</td>
+                    <td>내용</td>
+                    <td>내용</td>
+               </tr>
+          </tbody>
+     </table>
      <!-- 장바 구니 -->
-               <table class="outbox">
-                    <thead>
-                         <tr class="out">
-                              <th width="5%;"  >NO.</th>
-                              <th width="40%;" >이미지</th>
-                              <th width="15%;" >상품명</th>
-                              <th width="10%;" >판매가</th>
-                              <th width="15%;" >수량</th>
-                              <th width="15%;" >합계</th>
-                         </tr>
-                    </thead>
-                    <tbody>
-                         <tr>
-                              <td>1</td>
-                              <td>게시글1</td>
-                              <td>${inquiry[0].pName}</td>
-                              <td>${inquiry[0].pPrice}</td>
-                              <td>${inquiry[1].pName}</td>
-                              <td style="display:none">1</td>
-                         </tr>
-                    </tbody>
-               </table>
-          <!--//장바 구니 ------------------------------------------->
-     
+     <!--//장바 구니 ------------------------------------------->
+
+     <c:choose>
+          <c:when test="${NoticeVO.size()  > 0}">
+               <c:forEach var="NoticeVO" items="${NoticeVO }">
+
+                    <div class="faq">
+                         <div class="faq_question">${NoticeVO.nTitle }</div>
+                         <div class="faq_answer_container">
+                              <div class="faq_answer">${NoticeVO.nContent}</div>
+                         </div>
+                    </div>
+                    <td>${inquiry[0].pName}</td>
+                    <td>${inquiry[0].pPrice}</td>
+                    <td>${inquiry[1].pName}</td>
+
+               </c:forEach>
+          </c:when>
+     </c:choose>
 
 
 </body>

@@ -15,8 +15,8 @@ public class MemberInfoServiceImpl implements MemberInfoService {
 	MemberInfoDaoImpl my_pageDao;
 	
 	@Override
-	public List<MemberVO> memberList(){
-		return my_pageDao.memberList();
+	public List<MemberVO> memberList(MemberVO inVO){
+		return my_pageDao.memberList(inVO);
 	}
 	
 }

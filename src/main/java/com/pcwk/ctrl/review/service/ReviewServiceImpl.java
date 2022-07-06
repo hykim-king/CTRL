@@ -63,17 +63,20 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public int doRdInsert(MemberVO mInVO, RdVO rInVO) throws SQLException {
-		// 1. 회원테이블 조회(관리자인지 여부, 이름 알아내기)
+		// 1. 회원테이블 조회(관리자인지 여부)
 		// 2. 관리자라면 관리자 댓글 입력
 		LOG.debug("===================");
 		LOG.debug("=mInVO="+mInVO);
 		LOG.debug("=rInVO="+rInVO);
 		LOG.debug("===================");
 		
+		// 1.
 		MemberVO outVO = reviewDao.doMemberSelect(mInVO);
 		LOG.debug("outVO.getmGrade() : " + outVO.getmGrade());
 		int rdFlag = 0;
-		if( outVO.getmGrade().equals("1") ) { // 관리자 1, 회원 0
+		
+		// 2.
+		if( outVO.getmGrade().equals("1") ) { // 관리자 1, 회원 2
 
 			rdFlag = reviewDao.doRdInsert(rInVO); 
 		}
@@ -94,13 +97,73 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public int rdUpdate(RdVO inVO) throws SQLException {
-		return reviewDao.rdUpdate(inVO);
+	public int rdUpdate(MemberVO mInVO, RdVO rdInVO) throws SQLException {
+		// 1. 회원테이블 조회(관리자인지 여부)
+		// 2. 관리자라면 관리자 댓글 수정
+		
+		// 1.
+		MemberVO outVO = reviewDao.doMemberSelect(mInVO);
+		LOG.debug("outVO.getmGrade() : " + outVO.getmGrade());
+		int rdFlag = 0;
+		
+		// 2.
+		if( outVO.getmGrade().equals("1") ) { // 관리자 1, 회원 2
+
+			rdFlag = reviewDao.rdUpdate(rdInVO); 
+		}
+		LOG.debug("===================");
+		LOG.debug("=rdFlag="+rdFlag);
+		LOG.debug("===================");
+		
+		return rdFlag;
 	}
 
 	@Override
-	public int doSelectGrade(MemberVO inVO) throws SQLException {
-		return reviewDao.doSelectGrade(inVO);
+	public int rdDelete(MemberVO mInVO, RdVO rdInVO) throws SQLException {
+		// 1. 회원테이블 조회(관리자인지 여부)
+		// 2. 관리자라면 관리자 댓글 삭제
+		
+		// 1.
+		MemberVO outVO = reviewDao.doMemberSelect(mInVO);
+		LOG.debug("outVO.getmGrade() : " + outVO.getmGrade());
+		int rdFlag = 0;
+		
+		// 2.
+		if( outVO.getmGrade().equals("1") ) { // 관리자 1, 회원 2
+
+			rdFlag = reviewDao.rdDelete(rdInVO); 
+		}
+		LOG.debug("===================");
+		LOG.debug("=rdFlag="+rdFlag);
+		LOG.debug("===================");
+		
+		return rdFlag;
+	}
+
+	@Override
+	public int reviewDelete(ReviewVO rInVO, RdVO rdInVO) throws SQLException {
+		// 1. review의 rnum이  rd테이블에 있는지 확인
+		// 2. 있으면  review의 rnum을 가진 rd 행을 삭제
+		// 3. review 삭제
+		int flag = 0;
+		
+		rdInVO.setrNum(rInVO.getrNum());
+		
+		// 1. 
+		int count = reviewDao.getRdCount(rdInVO);
+	
+		// 3.
+		if(1 == count) { // rd 테이블에 값이 있다면
+			int rdFlag = reviewDao.rdDelete(rdInVO); // rd 행 삭제
+			
+			if(1 == rdFlag) { // rd 행 삭제 성공하면
+				flag = reviewDao.reviewDelete(rInVO);			
+			} 
+		}else { // rd 테이블에 값이 없다면
+			flag = reviewDao.reviewDelete(rInVO);
+		} 
+		
+		return flag;
 	}
 
 	

@@ -31,7 +31,7 @@
     <link href="${CP_RES }/css/etc/bootstrap.min.css" rel="stylesheet">
     <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
     <link rel="shortcut icon" type="image/x-icon" href="${CP }/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="${CP_RES }/css/main/main.css">
+    <link rel="stylesheet" type="text/css" href="${CP_RES }/css/main/main_boot.css">
     <link rel="stylesheet" type="text/css" href="${CP_RES}/css/order/order_list.css">
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
     <script src="${CP_RES }/js/etc/jquery-1.12.4.js"></script>
@@ -50,6 +50,69 @@
     <script type="text/javascript">
         $(document).ready(function(){
         console.log("document.ready"); 
+        
+        /* 카테고리 누르면 이동 (최유빈) */
+        // bowls 카테고리로 이동
+        $("#bowls").on("click", function(e){
+            console.log("bowls:");
+            console.log("pCategory:" + $("#pCategory").val());
+            window.location.href = "${CP}/menu/menuMove.do?pCategory=bowls";
+        });
+        // cup 카테고리로 이동
+        $("#cup").on("click", function(e){
+            console.log("cup:");
+            console.log("pCategory:" + $("#pCategory").val());
+            window.location.href = "${CP}/menu/menuMove.do?pCategory=cup";
+        });
+        // glass 카테고리로 이동
+        $("#glass").on("click", function(e){
+            console.log("glass:");
+            console.log("pCategory:" + $("#pCategory").val());
+            window.location.href = "${CP}/menu/menuMove.do?pCategory=glass";
+        });
+        // plate 카테고리로 이동
+        $("#plate").on("click", function(e){
+            console.log("plate:");
+            console.log("pCategory:" + $("#pCategory").val());
+            window.location.href = "${CP}/menu/menuMove.do?pCategory=plate";
+        });
+        /* 카테고리 누르면 이동 (최유빈) */
+        
+        /* 이미지 클릭시 상세페이지로 이동 (김주혜)*/
+        $(document).on("click", "#listTable img", function(e){
+            console.log('클릭');
+            let productImgSrc = $(this).attr("src");
+            let pNum = productImgSrc.substring(productImgSrc.lastIndexOf('/')+1,productImgSrc.lastIndexOf('.'));
+            console.log(productImgSrc);
+            console.log(pNum);
+            
+            let url = "${CP}/productDetail/doSelect.do";
+            let method = "GET";
+            let parameters = {
+                    pNum : pNum
+            }; 
+            
+            let async = true;
+            
+            EClass.callAjax(url, parameters, method, async, function(data){
+                console.log(data);
+                // {"pNum":"glass01","pName":"뚱뚱이 고블렛잔 ","pPrice":27700,"pSize":"530ml","no":0}
+                let pNum = data.pNum;
+                let pName = data.pName;
+                let pPrice = data.pPrice;
+                let pSize = data.pSize;
+                
+                let pageSize = 7;
+                let pageNum = 1;
+                
+                window.location.href="${CP}/productDetail/view.do?pNum=" + pNum + "&pName=" + pName + 
+                        "&pPrice="+pPrice + "&pSize="+pSize+ "&pageSize="+pageSize + "&pageNum=" + pageNum;
+                
+            }); 
+            
+        });
+        /* 이미지 클릭시 상세페이지로 이동 (김주혜)*/
+        
         
         //뭔지 모르겠음 -> 안되면 지워보기
         renderingPage('${pageTotal}',1);
@@ -133,12 +196,12 @@
                  
                 $.each(parsedData, function(i, memberVO){
                      htmlData += "<tr> ";
-                     htmlData += "<th width='150'  class='oNum'>" +memberVO.oNum+"</th>"
-                     htmlData += "<th width='130'><img src='${CP_RES}/img/" +memberVO.pNum+ ".jpg' alt='상품 이미지' width='90'/></th>";
-                     htmlData += "<th width='330'><a class='text'>" +memberVO.pName+ "</a></th>";
-                     htmlData += "<th width='150'>" +memberVO.pPrice+ " </th>";
-                     htmlData += "<th width='90'>" +memberVO.dBuy+ "</th>";
-                     htmlData += "<th width='150'>"+memberVO.oStatus+ "<br><input class='btn-2 button' type='button' value='리뷰쓰기' ></th>";
+                     htmlData += "<th width='150'  class='oNum' style='text-align:center;' height='99.5'>" +memberVO.oNum+"</th>"
+                     htmlData += "<th width='130'><img src='${CP_RES}/img/" +memberVO.pNum+ ".jpg' alt='상품 이미지' width='92'/></th>";
+                     htmlData += "<th width='330' style='text-align:center;'><a class='text'>" +memberVO.pName+ "</a></th>";
+                     htmlData += "<th width='150' style='text-align:center;'>" +memberVO.pPrice+ "원</th>";
+                     htmlData += "<th width='90' style='text-align:center;'>" +memberVO.dBuy+ "개</th>";
+                     htmlData += "<th width='150' style='text-align:center;'>"+memberVO.oStatus+ "<br><input class='btn-2 button' type='button' value='리뷰쓰기' ></th>";
                      htmlData += "<th style='display: none;'>" +memberVO.dNum+ "</th>";
                      htmlData += "<th style='display: none;'>"+memberVO.oName+ "</th>";
                      htmlData += "<th style='display: none;'>"+memberVO.pNum+ "</th>";
@@ -195,44 +258,62 @@
 
 </head>
 <body>
- <!-- 메인 헤더 영역 시작(이은빈) -->
+ <!-- 메인 헤더 영역 시작 (이은빈)----------------------------------------------->
     <div id="header">
-        <div id="top">
             <div id="logo">
-                <a href="#"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
+                <a href="${CP}/main/main.do"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
             </div>
+        <div id="top">
             <div class="menu_left">
                 <ul>
-                    <li><a href="#">접시</a></li>
-                    <li><a href="#">머그컵</a></li>
-                    <li><a href="#">유리잔</a></li>
-                    <li><a href="#">보울/면기</a></li>
+                    <li><a href="#" id="plate">접시</a></li>
+                    <li><a href="#" id="cup">머그컵</a></li>
+                    <li><a href="#" id="glass">유리잔</a></li>
+                    <li><a href="#" id="bowls">보울/면기</a></li>
                 </ul>
             </div>
             <div class="menu_right">
-                <ul>
-                    <li>로그아웃</li>
-
-                    <li><a href="#">마이페이지</a></li>
-                    <li><a href="#">장바구니</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">공지사항</a></li>
-                </ul>
-                <form action="#" method="post" id="search" name="search">
-                    <input type="text" />
-                    <button>
-                        <i class="fas fa-search fa-lg"></i>
+                <c:choose>
+                    <c:when test="${null !=sessionScope.member}">
+                        <ul>
+                         <li>
+                           <a href="${CP}/login/doLogout.do">
+                            <span>${sessionScope.member.mName}님 환영합니다.</span>
+                            <span>&nbsp;로그아웃</span></a>
+                         </li>
+                         <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
+                         <li><a href="#">장바구니</a></li>
+                         <li><a href="#">FAQ</a></li>
+                         <li><a href="#">공지사항</a></li>
+                        </ul>
+                    </c:when>
+                    <c:otherwise>
+                        <ul>
+                         <li>
+                           <a href="${CP}/login/login.do">로그인</a>
+                         </li>
+                         <li><a href="#">마이페이지</a></li>
+                         <li><a href="#">장바구니</a></li>
+                         <li><a href="#">FAQ</a></li>
+                         <li><a href="#">공지사항</a></li>
+                        </ul>
+                    </c:otherwise>
+                </c:choose>
+                <form action="${CP}/productSearch/View.do" method="get" id="search" name="search">
+                    <input type="text" id="searchWord" class="searchWord" name="searchWord" value=""/>
+                    <button id="doRetrive">
+                        <i class="fas fa-search fa-lg" ></i>
                     </button>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- 메인 헤더 영역 끝 -->
+    <!-- 메인 헤더 영역 끝 (이은빈)-------------------------------------------------->
 
 
 
-<!-- 마이페이지 시작 -->
+<!------------------------- 주문조회 시작(최유빈) ------------------------------->
 <div id="contents">
 <!-- ▼▼▼▼▼▼▼▼▼▼▼▼▼ 마이페이지  사각형(최유빈)  ▼▼▼▼▼▼▼▼▼▼▼▼▼ -->
 <title>my_page</title>
@@ -249,12 +330,12 @@
   
   <table id="orderTable" class="order2" width = "1000" height="50px">
       <tr>
-         <th width="150"> 주문번호</th>
-         <th width="130"></th>
-         <th width="330">상품정보</th>
-         <th width="150">금액</th>
-         <th width="90">수량</th>
-         <th width="150">진행상태</th>
+         <th width="150" style="text-align:center;"> 주문번호</th>
+         <th width="130" style="text-align:center;"></th>
+         <th width="330" style="text-align:center;">상품정보</th>
+         <th width="150" style="text-align:center;">금액</th>
+         <th width="90"  style="text-align:center;">수량</th>
+         <th width="150" style="text-align:center;">진행상태</th>
          
          <!--  아래 세개는 리뷰 페이지를 위해 필요한 것  : 조회 필요-->
          <th width="100" style="display: none;">상세번호</th>
@@ -263,20 +344,20 @@
       </tr>
   </table>
       
-      <table class="order3" id="listTable" width = "1000" height="100">
+      <table class="order3" id="listTable" width = "1000" height="98">
       <tbody>
         <c:choose>
          <c:when test="${list.size() > 0}">
              <c:forEach var="list" items="${list}"> 
                <!-- 문자: 왼쪽, 숫자: 오른쪽, 같은면: 가운데 -->
                 <tr>
-                    <th width="150"  class="oNum"> ${list.oNum}</th>
-                    <th width="130"><img src="${CP_RES}/img/${list.pNum}.jpg" alt="상품 이미지" width="90"/></th>
-                    <th width="330"><a class="text">${list.pName}</a></th>
-                    <th width="150">${list.pPrice}
+                    <th width="150" class="oNum" style="text-align:center;" height="99.5"> ${list.oNum}</th>
+                    <th width="130" ><a href="#"><img src="${CP_RES}/img/${list.pNum}.jpg" alt="상품 이미지" width="92"/></a></th>
+                    <th width="330" style="text-align:center;"><a href="#" class="text">${list.pName}</a></th>
+                    <th width="150" style="text-align:center;">${list.pPrice}원
                     </th>
-                    <th width="90">${list.dBuy}</th>
-                    <th width="150">${list.oStatus}
+                    <th width="90" style="text-align:center;">${list.dBuy}개</th>
+                    <th width="150" style="text-align:center;">${list.oStatus}
                       <br><input class="btn-2 button" type="button" value="리뷰쓰기" >
                     </th>
                     <th style="display: none;">${list.dNum}</th>
@@ -298,5 +379,6 @@
             <div id="page-selection" class="text-center page"></div>
         </div>
         <!-- pagenation ---------------------------------------->
+<!------------------------- 주문조회 끝(최유빈) ------------------------------->
 </body>
 </html>

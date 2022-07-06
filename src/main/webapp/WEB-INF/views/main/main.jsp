@@ -28,8 +28,9 @@
 <script type="text/javascript" src="${CP_RES}/js/login/login_popup.js"></script>
 <script type="text/javascript">
         $(document).ready(function(){
+        	
         console.log("document.ready");
-        
+            
         
         // bowls 카테고리로 이동
         $("#bowls").on("click", function(e){
@@ -56,12 +57,6 @@
             window.location.href = "${CP}/menu/menuMove.do?pCategory=plate";
         });
         
-        $("#plate02").get(0).click();
-        
-        $(document).on("click","#")
-        
-        
-        
           })
 </script>
 <body>
@@ -85,7 +80,7 @@
 	                    <ul>
                          <li>
                            <a href="${CP}/login/doLogout.do">
-                            <span>${sessionScope.member.mName}님</span>
+                            <span>${sessionScope.member.mName}님 환영합니다.</span>
                             <span>&nbsp;로그아웃</span></a>
                          </li>
                          <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
@@ -99,19 +94,21 @@
                          <li>
                            <a href="${CP}/login/login.do">로그인</a>
                          </li>
-                         <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
+                         <li><a href="#">마이페이지</a></li>
                          <li><a href="#">장바구니</a></li>
                          <li><a href="#">FAQ</a></li>
                          <li><a href="#">공지사항</a></li>
 	                    </ul>
                     </c:otherwise>
                 </c:choose>
-                <form action="#" method="post" id="search" name="search">
-                    <input type="text" />
-                    <button>
-                        <i class="fas fa-search fa-lg"></i>
+            <!-- 상품 검색 영역 시작(이은빈) ----------------------------------------->             
+                <form action="${CP}/productSearch/View.do" method="get" id="search" name="search">
+                    <input type="text" id="searchWord" class="searchWord" name="searchWord" value=""/>
+                    <button id="doRetrive">
+                        <i class="fas fa-search fa-lg" ></i>
                     </button>
                 </form>
+			 <!-- 상품 검색 영역 끝(이은빈) ----------------------------------------->             
             </div>
         </div>
     </div>
@@ -131,17 +128,26 @@
     <div id="main_cate">
             <ul>
                 <li class="cate_img">
-                   <a href="#"  class="plate_div" id="plate02"><img id="plate02" src="${CP_RES}/img/plate07.jpg">
-                      <span>접시</span>
+                
+                   <a href="${CP}/menu/menuMove.do?pCategory=plate"  class="plate_div" id="plate02">
+	                   <figure><img id="plate02" src="${CP_RES}/img/plate07.jpg">
+	                      <figcaption>plate</figcaption>
+	                   </figure>
                    </a>
-                   <a href="#"  class="cup_div"><img src="${CP_RES}/img/main_cup11.jpg">
-                       <span>머그컵</span>
+                   <a href="${CP}/menu/menuMove.do?pCategory=cup"  class="cup_div">
+	                   <figure><img src="${CP_RES}/img/main_cup11.jpg">
+	                       <figcaption>cup</figcaption>
+	                   </figure>
                    </a>
-                   <a href="#" class="glass_div"><img src="${CP_RES}/img/main_glass08.png">
-                       <span>유리잔</span>
+                   <a href="${CP}/menu/menuMove.do?pCategory=glass" class="glass_div">
+                       <figure><img src="${CP_RES}/img/main_glass08.png">
+                            <figcaption>glass</figcaption>
+                       </figure>
                    </a>
-                   <a href="#" class="bowl_div"><img src="${CP_RES}/img/main_bowls05.jpg">
-                       <span>보울/면기</span>
+                   <a href="${CP}/menu/menuMove.do?pCategory=bowls" class="bowl_div">
+                       <figure><img src="${CP_RES}/img/main_bowls05.jpg">
+                           <figcaption>bowls</figcaption>
+                       </figure>
                    </a>
                  </li>
             </ul>

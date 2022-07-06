@@ -89,12 +89,17 @@ input[type="button"] {
 }
 
 /* 총 금액 */
+.totalDiv {
+	display: flex;
+}
+
 .total_price,
 #total_num {
     display: inline-block;
     font-size: 150%;
     font-weight: bolder;
     margin-bottom: 6px;
+    margin-right: 10px;
 }
 
 #delivery_free {
@@ -289,6 +294,7 @@ input[type="button"] {
 
 .rAlign {
     text-align: center;
+    font-weight: bolder;
 }
 
 /* 관리자 댓글이 닫혀 있을 때 화살표 */
@@ -320,7 +326,9 @@ input[type="button"] {
 
 #rdInsert,
 #rdUpdate,
-#reviewUpdate {
+#reviewUpdate,
+#reviewDelete,
+#rdDelete {
     width: 7%;
     font-size: 67%;
     position: absolute;
@@ -328,7 +336,13 @@ input[type="button"] {
     line-height: 0px;
 }
 
+#reviewUpdate,
 #rdUpdate {
+    margin-right: 67px;
+}
+
+#rdUpdate,
+#rdDelete {
     margin-top: 15px;
 }
 

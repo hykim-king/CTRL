@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pcwk.ctrl.review">
+     <!-- 관리자 댓글 삭제 -->
+     <delete id="rdDelete" parameterType="RdVO">
+        DELETE FROM rd
+        WHERE r_num = #{rNum}
+     </delete>
      
+     <!-- 회원 댓글 삭제 -->
+     <delete id="reviewDelete" parameterType="ReviewVO">
+        DELETE FROM review
+        WHERE r_num = #{rNum}
+     </delete>
+          
      <!-- 관리자 댓글 수정 -->
      <update id="rdUpdate" parameterType="ReviewVO">
         UPDATE rd
@@ -166,12 +177,12 @@
     
     <!-- 관리자가 작성한 리뷰 셀렉 -->
     <select id="doRdSelectOne" parameterType="RdVO" resultType="RdVO">
-       <![CDATA[ 
-        SELECT r_num as rNum,
-               rd_con as rdCon,
-               rd_reg as rdReg,
-               rd_name as rdName,
-               m_num as mNum
+        <![CDATA[ 
+        SELECT r_num,
+               rd_con,
+               rd_reg,
+               rd_name,
+               m_num
         FROM rd
         WHERE r_num = #{rNum}
         ]]>
