@@ -83,115 +83,23 @@
 
 
 
-     <table>
+     <table class="type11">
           <thead>
                <tr>
-                    <th>체크박스</th>
-                    <th>이미지</th>
-                    <th>상품명</th>
-                    <th>판매가</th>
-                    <th>수량</th>
-                    <th>합계</th>
+                    <th scope="cols">타이틀</th>
+                    <th scope="cols">타이틀</th>
+                    <th scope="cols">타이틀</th>
                </tr>
           </thead>
           <tbody>
                <tr>
-                    <td><img src="이미지"></td>
-                    <td>Ninja</td>
-                    <td>Asma Ad</td>
-                    <td>120</td>
-                    <td>
-                         <button class="view">view</button>
-                         <button class="delete">Delete</button>
-                    </td>
-                     <td>
-                         <button class="view">view</button>
-                         <button class="delete">Delete</button>
-                    </td>
-               </tr>
-
-               <tr>
-                    <td><img src="이미지" alt="img"></td>
-                    <td rowspan="2">Shades</td>
-                    <td>David</td>
-                    <td>180</td>
-                    <td>
-                         <button class="view">view</button>
-                         <button class="delete">Delete</button>
-                    </td>
-                     <td>
-                         <button class="view">view</button>
-                         <button class="delete">Delete</button>
-                    </td>
-               </tr>
-
-               <tr>
-                    <td><img src="이미지"
-                         alt="img"></td>
-                    <td>Alex</td>
-                    <td>160</td>
-                    <td>
-                         <button class="view">view</button>
-                         <button class="delete">Delete</button>
-                    </td>
-                     <td>
-                         <button class="view">view</button>
-                         <button class="delete">Delete</button>
-                    </td>
-               </tr>
-
-               <tr>
-                    <td><img src="이미지" alt="img"></td>
-                    <td rowspan="2">Valhala</td>
-                    <td>Kawtar</td>
-                    <td>190</td>
-                    <td>
-                         <button class="view">view</button>
-                         <button class="delete">Delete</button>
-                    </td>
-                     <td>
-                         <button class="view">view</button>
-                         <button class="delete">Delete</button>
-                    </td>
-               </tr>
-
-               <tr>
-                    <td><img src="이미지"
-                         alt="img"></td>
-                    <td>Katara</td>
-                    <td>110</td>
-                    <td>
-                         <button class="view">view</button>
-                         <button class="delete">Delete</button>
-                    </td>
-                     <td>
-                         <button class="view">view</button>
-                         <button class="delete">Delete</button>
-                    </td>
-               </tr>
-
-               <tr>
-                    <td><img src="이미지" alt="img"></td>
-                    <td>Union</td>
-                    <td>Ashraf</td>
-                    <td>90</td>
-                    <td>
-                         <button class="view">view</button>
-                         <button class="delete">Delete</button>
-                    </td>
-                     <td>
-                         <button class="view">view</button>
-                         <button class="delete">Delete</button>
-                    </td>
+                    <td>내용</td>
+                    <td>내용</td>
+                    <td>내용</td>
                </tr>
           </tbody>
-          <tfoot>
-               <td colspan="5" class="tablefoot"></td>
-          </tfoot>
      </table>
-
      <!-- 장바 구니 -->
-
      <!--//장바 구니 ------------------------------------------->
 
      <c:choose>
@@ -211,6 +119,7 @@
                </c:forEach>
           </c:when>
      </c:choose>
+
 
 </body>
 </html>

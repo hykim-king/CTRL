@@ -182,8 +182,6 @@
                    console.log("parsedData.length : " + parsedData.length);
                    
                    let htmlData = ""; // 동적으로 #review_table 아래 데이터 생성
-                   let totalCnt = 0; // 총글수
-                   let pageTotal = 1; // 페이지 수
                    
                    // 조회 데이터가 있는 경우
                    if(null != parsedData && parsedData.length > 0) {
@@ -379,7 +377,7 @@
                         <ul>
                          <li>
                            <a href="${CP}/login/doLogout.do">
-                            <span>${sessionScope.member.mName}님</span>
+                            <span>${sessionScope.member.mName}님 환영합니다.</span>
                             <span>&nbsp;로그아웃</span></a>
                          </li>
                          <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
