@@ -381,8 +381,8 @@
                          </li>
                          <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
                          <li><a href="${CP}/cart/cart.do">장바구니</a></li>
-                         <li><a href="#">FAQ</a></li>
-                         <li><a href="#">공지사항</a></li>
+                         <li><a href="${CP}/faq/faq.do">FAQ</a></li>
+                         <li><a href="${CP}/notice/notice.do">공지사항</a></li>
                         </ul>
                     </c:when>
                     <c:otherwise>
@@ -392,8 +392,8 @@
                          </li>
                          <li><a href="#">마이페이지</a></li>
                          <li><a href="#">장바구니</a></li>
-                         <li><a href="#">FAQ</a></li>
-                         <li><a href="#">공지사항</a></li>
+                         <li><a href="${CP}/faq/faq.do">FAQ</a></li>
+                         <li><a href="${CP}/notice/notice.do">공지사항</a></li>
                         </ul>
                     </c:otherwise>
                 </c:choose>
