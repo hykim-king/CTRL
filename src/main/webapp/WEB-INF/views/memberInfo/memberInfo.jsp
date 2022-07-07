@@ -15,16 +15,19 @@
     <link rel="stylesheet" type="text/css" href="${CP_RES}/css/memberInfo/memberInfo.css">
     
     <title>memberInfo</title>
-    <!-- jQuery -->
+    <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
     <script src="${CP_RES}/js/jquery-1.12.4.js"></script>
-    <script type="text/javascript" src="${CP_RES}/js/detail.js"></script>
-</head>
-<!-- font awesome -->
-<script src="https://kit.fontawesome.com/2974daa1cb.js"
+    <!-- 사용자 정의 function, callAjax -->
+    <script src="${CP_RES }/js/etc/eclass.js"></script>
+    <!-- 사용자 정의 function, isEmpty -->
+    <script src="${CP_RES }/js/etc/eUtil.js"></script>
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/2974daa1cb.js"
     crossorigin="anonymous"></script>
-<script type="text/javascript" src="${CP_RES}/js/login/login_popup.js"></script>
+    <script type="text/javascript" src="${CP_RES}/js/login/login_popup.js"></script>
 
 
+</head>
 <body>
     <!-- 메인 헤더 영역 시작 (이은빈)----------------------------------------------->
     <div id="header">
@@ -34,10 +37,10 @@
         <div id="top">
             <div class="menu_left">
                 <ul>
-                    <li><a href="#" id="plate">접시</a></li>
-                    <li><a href="#" id="cup">머그컵</a></li>
-                    <li><a href="#" id="glass">유리잔</a></li>
-                    <li><a href="#" id="bowls">보울/면기</a></li>
+                    <li><a href="${CP}/menu/menuMove.do?pCategory=plate" id="plate">접시</a></li>
+                    <li><a href="${CP}/menu/menuMove.do?pCategory=cup" id="cup">머그컵</a></li>
+                    <li><a href="${CP}/menu/menuMove.do?pCategory=glass" id="glass">유리잔</a></li>
+                    <li><a href="${CP}/menu/menuMove.do?pCategory=bowls" id="bowls">보울/면기</a></li>
                 </ul>
             </div>
             <div class="menu_right">

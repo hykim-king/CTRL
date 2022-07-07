@@ -32,7 +32,7 @@
    <title>${menuName}</title>
     <!-- 부트스트랩 -->
     <link href="${CP_RES}/css/etc/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="${CP_RES}/css/main/main.css">
+    <link rel="stylesheet" type="text/css" href="${CP_RES}/css/main/main_boot.css">
     <link rel="stylesheet" type="text/css" href="${CP_RES}/css/menu/menu.css">
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
     <script src="${CP_RES}/js/etc/jquery-1.12.4.js"></script>
