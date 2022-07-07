@@ -350,7 +350,9 @@
                
            });   
           
-           
+           $(".nologin").on("click",function(){
+        	   location.href="${CP}/login/login.do";
+           });
            /*----------------- 리뷰(김주혜) 끝-------------------*/
        });
 
@@ -443,8 +445,16 @@
                 
                 <!-- 장바구니, 구매 버튼 -->
                 <div class="submit_buttons">
-                     <input class="btn-2 button" type="submit" value="CART" >
-                     <input class="btn-1 button" type="submit" value="BUY">          
+	                <c:choose>
+	                    <c:when test="${null !=sessionScope.member}">
+	                     <input class="btn-2 button" type="submit" value="CART" >
+	                     <input class="btn-1 button" type="submit" value="BUY">      
+	                    </c:when>
+	                    <c:otherwise>
+		                     <input class="btn-2 button nologin" type="submit" value="CART">
+		                     <input class="btn-1 button nologin" type="submit" value="BUY">      
+	                    </c:otherwise>
+	                </c:choose>                
                 </div>            
             </form>
           </div> <!-- .info -->
