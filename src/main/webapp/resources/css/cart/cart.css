@@ -1,24 +1,21 @@
-table.type11 {
-	border-collapse: separate;
-	border-spacing: 1px;
-	text-align: center;
-	line-height: 1.5;
-	margin: 20px 10px;
+@charset "UTF-8";
+
+.box{
+	height: 90%;
 }
 
-table.type11 th {
-	width: 155px;
-	padding: 10px;
+html, body {
+	height: 100%;
+}
+
+.name_2 {
+	font-size: 50px;
 	font-weight: bold;
-	vertical-align: top;
-	color: #fff;
-	background: #ce4869;
 }
 
-table.type11 td {
-	width: 155px;
-	padding: 10px;
-	vertical-align: top;
-	border-bottom: 1px solid #ccc;
-	background: #eee;
+.name_1 {
+	text-align: center;
+	position: relative;
+	top: 20%;
+	transform: translateY(-50%);
 }
