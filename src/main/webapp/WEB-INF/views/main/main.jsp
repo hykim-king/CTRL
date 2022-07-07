@@ -84,9 +84,9 @@
                             <span>&nbsp;로그아웃</span></a>
                          </li>
                          <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
-                         <li><a href="#">장바구니</a></li>
-                         <li><a href="#">FAQ</a></li>
-                         <li><a href="#">공지사항</a></li>
+                         <li><a href="${CP}/cart/cart.do">장바구니</a></li>
+                         <li><a href="${CP}/faq/faq.do">FAQ</a></li>
+                         <li><a href="${CP}/notice/notice.do">공지사항</a></li>
 	                    </ul>
                     </c:when>
                     <c:otherwise>
@@ -96,8 +96,8 @@
                          </li>
                          <li><a href="#">마이페이지</a></li>
                          <li><a href="#">장바구니</a></li>
-                         <li><a href="#">FAQ</a></li>
-                         <li><a href="#">공지사항</a></li>
+                         <li><a href="${CP}/faq/faq.do">FAQ</a></li>
+                         <li><a href="${CP}/notice/notice.do">공지사항</a></li>
 	                    </ul>
                     </c:otherwise>
                 </c:choose>
@@ -117,7 +117,7 @@
     
 
     <!-- 이미지 슬라이드 영역 시작 -->
-     <div id="main_body">
+   <div id="main_body">
         <div class="main_slider">
             <img src="${CP_RES}/img/slider3.jpg" width="1680">
         </div>
@@ -154,12 +154,16 @@
         </div>
     <!-- 메인페이지 카테고리 영역 끝 -->
 
-    <!-- 베스트 상품 영역 시작-->
-    <div id="best">
-        <h2>Best Product</h2>
+    <!-- 메인스크롤 시작 -->
+    <div class="main_scroll" style="background:url('${CP_RES}/img/main_scroll.jpg')50% 50% no-repeat;background-attachment:fixed;background-size:cover;">
+	    <div class="scroll_inner">
+	        <div class="sr_sec" style="color:#ffffff;">     
+	            <h2>TableWare에 오신걸 환영합니다.<br>|</h2>
+	            <h2>WELCOME TO THE TableWare</h2>
+	        </div>
+	    </div>
     </div>
-    <!-- 베스트 상품 영역 끝-->
-    
+    <!-- 메인스크롤 끝-->
 	<!-- footer 시작(이은빈) ---------------------------------------------------->
 	     <div id="footer">
 	            <div class="ft_content">

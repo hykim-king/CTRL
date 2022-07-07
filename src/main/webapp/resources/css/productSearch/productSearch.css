@@ -68,7 +68,7 @@ button {
 
 .noData p {
     font-size: 25px;
-    padding-top: 60%;
+    margin-top: 60%;
     position: relative;
     bottom: 100px;
 }
