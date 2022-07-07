@@ -54,9 +54,9 @@
 			   C_TOTAL AS cTotal
 		FROM CART
 		WHERER M_NUM = ${mNum};
-	</select>
+	</select> -->
 	
-	<delete id="cartDelete" parameterType="CartVO">
+<!-- 	<delete id="cartDelete" parameterType="CartVO">
 		DELETE FROM CART WHERE M_NUM = ${mNum};
 	</delete> -->
 </mapper>
