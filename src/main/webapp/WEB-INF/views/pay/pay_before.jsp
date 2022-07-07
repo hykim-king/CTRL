@@ -106,9 +106,9 @@ $("#plate").on("click", function(e){
                             <span>&nbsp;로그아웃</span></a>
                          </li>
                          <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
-                         <li><a href="#">장바구니</a></li>
-                         <li><a href="#">FAQ</a></li>
-                         <li><a href="#">공지사항</a></li>
+                         <li><a href="${CP}/cart/cart.do">장바구니</a></li>
+                         <li><a href="${CP}/faq/faq.do">FAQ</a></li>
+                         <li><a href="${CP}/notice/notice.do">공지사항</a></li>
 	                    </ul>
                     </c:when>
                     <c:otherwise>
@@ -118,8 +118,8 @@ $("#plate").on("click", function(e){
                          </li>
                          <li><a href="#">마이페이지</a></li>
                          <li><a href="#">장바구니</a></li>
-                         <li><a href="#">FAQ</a></li>
-                         <li><a href="#">공지사항</a></li>
+                         <li><a href="${CP}/faq/faq.do">FAQ</a></li>
+                         <li><a href="${CP}/notice/notice.do">공지사항</a></li>
 	                    </ul>
                     </c:otherwise>
                 </c:choose>
@@ -245,8 +245,8 @@ $("#plate").on("click", function(e){
             pay_method: "card",//결제방법
             merchant_uid: 'merchant_'+new Date().getTime(),//주문번호
             name:  $("#product_name").text(),//상품명
-            amount: $("#totalNum").text().replace(",", "").split("원")[0],//가격
-           	//amount: 100,//가격
+            //amount: $("#totalNum").text().replace(",", "").split("원")[0],//가격
+           	amount: 100,//가격
             buyer_email: $("#mEmail").text(),//이메일
             buyer_name: "${sessionScope.member.mName}",//이름
             buyer_tel: "${sessionScope.member.mTel}",//연락처

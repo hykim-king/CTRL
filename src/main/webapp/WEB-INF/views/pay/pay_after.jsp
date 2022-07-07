@@ -95,11 +95,11 @@ $(document).ready(function(){
                            <a href="${CP}/login/doLogout.do">
                             <span>${sessionScope.member.mName}님 환영합니다.</span>
                             <span>&nbsp;로그아웃</span></a>
-                         </li>
+                          </li>
                          <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
-                         <li><a href="#">장바구니</a></li>
-                         <li><a href="#">FAQ</a></li>
-                         <li><a href="#">공지사항</a></li>
+                         <li><a href="${CP}/cart/cart.do">장바구니</a></li>
+                         <li><a href="${CP}/faq/faq.do">FAQ</a></li>
+                         <li><a href="${CP}/notice/notice.do">공지사항</a></li>
 	                    </ul>
                     </c:when>
                     <c:otherwise>
@@ -109,8 +109,8 @@ $(document).ready(function(){
                          </li>
                          <li><a href="#">마이페이지</a></li>
                          <li><a href="#">장바구니</a></li>
-                         <li><a href="#">FAQ</a></li>
-                         <li><a href="#">공지사항</a></li>
+                         <li><a href="${CP}/faq/faq.do">FAQ</a></li>
+                         <li><a href="${CP}/notice/notice.do">공지사항</a></li>
 	                    </ul>
                     </c:otherwise>
                 </c:choose>
