@@ -26,4 +26,5 @@ public interface PayDao {
 	 */
 	int payDetailInsert(DetailVO inVO) throws SQLException;
 	
+	
 }

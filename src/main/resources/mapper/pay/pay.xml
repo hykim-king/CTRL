@@ -44,4 +44,19 @@
 		ORDER BY O_NUM DESC
 	]]>
 	</select>
+	
+<!-- 	<select id="cartSelect" parameterType="CartVO" resultType="CartVO">
+		SELECT M_NUM AS mNum,
+			   CART_S.nextval,
+			   P_NUM AS pNum,
+			   C_BUY AS cBuy,
+			   P_PRICE AS pPrice,
+			   C_TOTAL AS cTotal
+		FROM CART
+		WHERER M_NUM = ${mNum};
+	</select>
+	
+	<delete id="cartDelete" parameterType="CartVO">
+		DELETE FROM CART WHERE M_NUM = ${mNum};
+	</delete> -->
 </mapper>

@@ -147,14 +147,16 @@ $("#plate").on("click", function(e){
             <p class="name">전화번호<input class="tel" id="mTel" type="tel" value="${sessionScope.member.mTel}"></p>
             <p class="name" id="mEmail" style="display: none">${sessionScope.member.mEmail}</p>
         <h1 class="title">주문상품</h1>
+        <div class="img2">
             <input class="img" type="image" src="${CP_RES}/img/${pNum}.jpg" align="left" align="middle">
             <p id=pNum style="display: none">${pNum}</p>
             <p class="img1"><p id="product_name">${product_name}</p>
             <p id="product_price"><fmt:formatNumber type="number"  maxFractionDigits="3" value='${product_price}'/>원</p>
             <p id="buyNumber">${buy_number}개</p>
+        </div>
     </div>
         <div class="payment">
-            <h1 class="title">결제금액</h1>
+            <h1 class="titleTotal">결제금액</h1>
             <h1 class="pay1">총 상품 금액</h1>
             <p class="pay2" id="totalNum"><fmt:formatNumber type="number" maxFractionDigits="3" value='${totalNum}'/>원</p>
             <h1 class="pay1">배송비</h1>
@@ -171,7 +173,7 @@ $("#plate").on("click", function(e){
             “쇼핑몰”은 개인정보 보호를 위하여 이용자의 개인정보를 처리하는 자를 최소한으로 제한하여야 하며 신용카드, 은행계좌 등을 포함한 이용자의 개인정보의 분실, 도난, 유출, 동의 없는 제3자 제공, 변조 등으로 인한 이용자의 손해에 대하여 모든 책임을 집니다.
             “쇼핑몰” 또는 그로부터 개인정보를 제공받은 제3자는 개인정보의 수집목적 또는 제공받은 목적을 달성한 때에는 당해 개인정보를 지체 없이 파기한다.
             “쇼핑몰”은 개인정보의 수집•이용•제공에 관한 동의란을 미리 선택한 것으로 설정해두지 않습니다. 또한 개인정보의 수집•이용•제공에 관한 이용자의 동의거절시 제한되는 서비스를 구체적으로 명시하고, 필수수집항목이 아닌 개인정보의 수집•이용•제공에 관한 이용자의 동의 거절을 이유로 회원가입 등 서비스 제공을 제한하거나 거절하지 않습니다.</p>
-            <input class="pay" type="button" value="결제">
+            <c:if test="${not empty sessionScope.member.mName}"><input class="pay" type="button" value="결제"></c:if>
         </div>
  </div>
 	<!-- footer 시작(이은빈) ---------------------------------------------------->
@@ -245,8 +247,8 @@ $("#plate").on("click", function(e){
             pay_method: "card",//결제방법
             merchant_uid: 'merchant_'+new Date().getTime(),//주문번호
             name:  $("#product_name").text(),//상품명
-            //amount: $("#totalNum").text().replace(",", "").split("원")[0],//가격
-           	amount: 60000,//가격
+            amount: $("#totalNum").text().replace(",", "").split("원")[0],//가격
+           	//amount: 60000,//가격
             buyer_email: $("#mEmail").text(),//이메일
             buyer_name: "${sessionScope.member.mName}",//이름
             buyer_tel: "${sessionScope.member.mTel}",//연락처

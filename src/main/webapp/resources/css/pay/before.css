@@ -157,7 +157,7 @@ body {
 
 .ft_content p.tit {
 	font-size: 20px;
-    font-weight: bolder;
+    /* font-weight: bolder; */
     margin: 10px 0 10px;
 }
 
@@ -198,6 +198,11 @@ body {
 /* 메인페이지 헤더 및 푸터 영역 css 끝 (이은빈)******************************************/
 
 /* 결제페이지 */
+
+input{
+	
+}
+
 .pay{
 	width: 130px;
 	height: 40px;
@@ -274,44 +279,66 @@ div.add{
 .title{
 	font-size: 160%;
 	margin-top: 3%;
+	font-family: 'Vitro_pride'; /* 나머지 글꼴, font-weight: bolder 적용! */
 }
 
 .Home{
 	width: 75%;
+	border: none;
+	border-bottom: 3px solid rgba(243, 156, 18, 0.48);
+	outline: none;
 	font-size: 100%;
-	margin: 5% 0 2% 10%;
+	margin: 2% 0 2% 10%;
+	font-family: 'Vitro_pride'; /* 나머지 글꼴, font-weight: bolder 적용! */
 }
 
 .name{
 	width: 60%;
 	font-size: 100%;
-	margin: 2% 0 2% 10%;
-}
-
-.orderer{
-	width: 20%;
-	font-size: 80%;
-	margin-left: 3%;
-	text-align: center;
-	font-weight: bolder;
+	margin: 2% 5% 2% 10%;
 }
 
 .tel{
-	width: 50%;
+	width: 70%;
 	font-size: 80%;
-	margin-left: 3%;
 	text-align: center;
 	font-weight: bolder;
+	margin-left: 5%;
+	border: none;
+	border-bottom: 3px solid rgba(243, 156, 18, 0.48);
+	outline: none;
+	font-family: 'Vitro_pride'; /* 나머지 글꼴, font-weight: bolder 적용! */
 }
+.orderer{
+	width: 70%;
+	font-size: 80%;
+	text-align: center;
+	font-weight: bolder;
+	margin-left: 17%;
+	border: none;
+	border-bottom: 3px solid rgba(243, 156, 18, 0.48);
+	outline: none;
+	font-family: 'Vitro_pride'; /* 나머지 글꼴, font-weight: bolder 적용! */
+}
+
 
 .img{
 	width: 20%;
 	height: 20%;
-	margin: 2% 3% 0 10%;
+	margin: 0% 3% 0 4%;
 }
 
 .img1{
 	margin-top: 7%;
+}
+
+.img2{
+	font-family: 'Vitro_pride'; 나머지 글꼴, font-weight: bolder 적용!
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Vitro_pride.woff')
+		format('woff');
+	font-weight: bolder;
+	font-style: normal;
 }
 
 div.payment{
@@ -363,4 +390,9 @@ div.payment{
 .mod{
 	display: flex;
 	margin-top: 10%;
+}
+
+.titleTotal{
+	margin: 5% 5% 5% 5%;
+	
 }
