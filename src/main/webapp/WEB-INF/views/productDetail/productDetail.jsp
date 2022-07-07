@@ -351,6 +351,7 @@
            });   
           
            $(".nologin").on("click",function(){
+        	   alert('로그인이 필요한 서비스입니다!');
         	   location.href="${CP}/login/login.do";
            });
            /*----------------- 리뷰(김주혜) 끝-------------------*/
