@@ -323,7 +323,6 @@ $("#plate").on("click", function(e){
     }
     
     
-    
     </script>
 </body>
 </html>

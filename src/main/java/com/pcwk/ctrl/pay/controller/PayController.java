@@ -2,6 +2,7 @@ package com.pcwk.ctrl.pay.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.pcwk.ctrl.cmn.CartVO;
 import com.pcwk.ctrl.cmn.DetailVO;
 import com.pcwk.ctrl.cmn.OrderVO;
 import com.pcwk.ctrl.pay.service.PayService;
@@ -33,6 +35,29 @@ public class PayController {
 	
 	@Autowired
 	PayService payService;
+	
+	@RequestMapping(value = "/cartSelect.do", method = RequestMethod.GET,
+			produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String cartSelect(CartVO inVO, Model model) throws SQLException{
+		String jsonString = "";
+		LOG.debug("=================================");
+		LOG.debug("cartSelect()");
+		LOG.debug("=================================");
+		
+		List<CartVO> list = payService.cartSelect(inVO);
+		Gson gson = new Gson();
+		jsonString = gson.toJson(list);
+		
+		LOG.debug("====================");
+		LOG.debug("=jsonString=" + jsonString);
+		LOG.debug("====================");
+		
+		model.addAttribute("list:"+list);
+		
+		return jsonString;
+		
+	}
 	
 	@RequestMapping(value = "/getoNum.do", method = RequestMethod.GET,
 			produces = "application/json;charset=UTF-8")

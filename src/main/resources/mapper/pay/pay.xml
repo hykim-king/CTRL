@@ -45,18 +45,18 @@
 	]]>
 	</select>
 	
-<!-- 	<select id="cartSelect" parameterType="CartVO" resultType="CartVO">
+ 	<select id="cartSelect" parameterType="CartVO" resultType="CartVO">
 		SELECT M_NUM AS mNum,
-			   CART_S.nextval,
+			   CART_S.nextval AS cNum,
 			   P_NUM AS pNum,
 			   C_BUY AS cBuy,
 			   P_PRICE AS pPrice,
 			   C_TOTAL AS cTotal
 		FROM CART
 		WHERER M_NUM = ${mNum};
-	</select> -->
+	</select>
 	
-<!-- 	<delete id="cartDelete" parameterType="CartVO">
-		DELETE FROM CART WHERE M_NUM = ${mNum};
-	</delete> -->
+ 	<delete id="cartDeleteAll" parameterType="CartVO">
+		DELETE FROM CART
+	</delete>
 </mapper>

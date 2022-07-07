@@ -1,12 +1,14 @@
 package com.pcwk.ctrl.pay.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.pcwk.ctrl.cmn.CartVO;
 import com.pcwk.ctrl.cmn.DetailVO;
 import com.pcwk.ctrl.cmn.OrderVO;
 import com.pcwk.ctrl.pay.dao.PayDao;
@@ -35,6 +37,16 @@ public class PayServiceImpl implements PayService {
 	@Override
 	public OrderVO getoNum(OrderVO inVO) throws SQLException {
 		return payDao.getoNum(inVO);
+	}
+
+	@Override
+	public List<CartVO> cartDelete(CartVO inVO) throws SQLException {
+		return payDao.cartDeleteAll(inVO);
+	}
+
+	@Override
+	public List<CartVO> cartSelect(CartVO inVO) throws SQLException{
+		return payDao.cartSelect(inVO);
 	}
 
 }
