@@ -72,7 +72,19 @@ public class OrderController {
 	    	   inVO.setSearchWord(StringUtil.nvl(inVO.getSearchWord(), ""));
 	       }
 	       
-	       	
+	        // 세션 받아오기
+	   		HttpSession session = req.getSession();
+	   	    Object member = session.getAttribute("member");
+	   		MemberVO memberVO = (MemberVO)member;
+	   		
+	   		if(session.getAttribute("member") != null) {
+	   			LOG.debug("***mNum"+memberVO.getmNum());
+		    	   inVO.setSearchWord(memberVO.getmNum()); // memberVO의 mNum을 SearchWord로 보내기
+
+	   		}else {
+	   			System.out.println("session:null");
+	   		}
+	   		// 세션 받아오기 끝	
 	       
 			List<OrderListVO> list = orderService.doRetrieve(inVO);
 			Gson gson = new Gson();

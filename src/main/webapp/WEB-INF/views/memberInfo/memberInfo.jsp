@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="${CP_RES }/css/main/main.css">
     <link rel="stylesheet" type="text/css" href="${CP_RES}/css/memberInfo/memberInfo.css">
     
-    <title>마이페이지</title>
+    <title>memberInfo</title>
     <!-- jQuery -->
     <script src="${CP_RES}/js/jquery-1.12.4.js"></script>
     <script type="text/javascript" src="${CP_RES}/js/detail.js"></script>
@@ -29,7 +29,7 @@
     <!-- 메인 헤더 영역 시작 (이은빈)----------------------------------------------->
     <div id="header">
             <div id="logo">
-                <a href="#"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
+                <a href="${CP}/main/main.do"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
             </div>
         <div id="top">
             <div class="menu_left">

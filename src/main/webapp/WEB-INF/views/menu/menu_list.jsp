@@ -29,7 +29,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
    <link rel="shortcut icon" type="image/x-icon" href="${CP }/favicon.ico">
-   <title>부트 스트랩-boot_list</title>
+   <title>${menuName}</title>
     <!-- 부트스트랩 -->
     <link href="${CP_RES}/css/etc/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${CP_RES}/css/main/main.css">
@@ -119,7 +119,7 @@
 <!-- 메인 헤더 영역 시작 (이은빈)----------------------------------------------->
     <div id="header">
             <div id="logo">
-                <a href="#"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
+                <a href="${CP}/main/main.do"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
             </div>
         <div id="top">
             <div class="menu_left">
@@ -150,7 +150,7 @@
                          <li>
                            <a href="${CP}/login/login.do">로그인</a>
                          </li>
-                         <li><a href="#">마이페이지</a></li>
+                         <li><a href="#"><p onclick="alert('로그인이 필요한 서비스 입니다.')">마이페이지<p></a></li>
                          <li><a href="#">장바구니</a></li>
                          <li><a href="#">FAQ</a></li>
                          <li><a href="#">공지사항</a></li>

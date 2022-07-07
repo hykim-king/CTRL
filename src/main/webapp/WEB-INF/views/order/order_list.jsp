@@ -46,7 +46,7 @@
                         crossorigin="anonymous"></script>
     <script type="text/javascript" src="${CP_RES}/js/login/login_popup.js"></script>
 
-    <title>주문 조회 페이지</title>
+    <title>order_list</title>
     <script type="text/javascript">
         $(document).ready(function(){
         console.log("document.ready"); 

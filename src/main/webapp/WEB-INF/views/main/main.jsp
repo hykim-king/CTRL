@@ -94,7 +94,7 @@
                          <li>
                            <a href="${CP}/login/login.do">로그인</a>
                          </li>
-                         <li><a href="#">마이페이지</a></li>
+                         <li><a href="#"><p onclick="alert('로그인이 필요한 서비스 입니다.')">마이페이지<p></a></li>
                          <li><a href="#">장바구니</a></li>
                          <li><a href="${CP}/faq/faq.do">FAQ</a></li>
                          <li><a href="${CP}/notice/notice.do">공지사항</a></li>
