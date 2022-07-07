@@ -436,7 +436,7 @@
                 <!-- 총금액 -->  
                 <div class="totalDiv">
 	                <p class="total_price">Total price :  </p>
-	                <div id="total_num"> 0</div><br/>
+	                <div id="total_num"><fmt:formatNumber type="number" maxFractionDigits="3" value="${productInfo.pPrice}"/>원</div><br/>
                 </div>
                 <!-- 배송비 무료 공지 -->
                 <p id="delivery_free">배송비 무료</p>
