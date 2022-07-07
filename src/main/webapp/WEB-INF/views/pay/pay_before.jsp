@@ -246,12 +246,13 @@ $("#plate").on("click", function(e){
             merchant_uid: 'merchant_'+new Date().getTime(),//주문번호
             name:  $("#product_name").text(),//상품명
             //amount: $("#totalNum").text().replace(",", "").split("원")[0],//가격
-           	amount: 100,//가격
+           	amount: 60000,//가격
             buyer_email: $("#mEmail").text(),//이메일
             buyer_name: "${sessionScope.member.mName}",//이름
             buyer_tel: "${sessionScope.member.mTel}",//연락처
             buyer_addr: $("#mAddr").val(),//주소
-            count :1//상품건수
+            count :1,//상품건수
+            card_quota:6
         }, function (rsp) { // callback
             if (rsp.success) {
               	var msg = '결제가 완료되었습니다.';
