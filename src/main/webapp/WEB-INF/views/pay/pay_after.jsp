@@ -41,45 +41,50 @@
 <script src="https://kit.fontawesome.com/2974daa1cb.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="${CP_RES}/js/login/login_popup.js"></script>
 <script type="text/javascript">
-        
-        // bowls 카테고리로 이동
-        $("#bowls").on("click", function(e){
-            console.log("bowls:");
-            console.log("pCategory:" + $("#pCategory").val());
-            window.location.href = "${CP}/menu/menuMove.do?pCategory=bowls";
-        });
-        // cup 카테고리로 이동
-        $("#cup").on("click", function(e){
-            console.log("cup:");
-            console.log("pCategory:" + $("#pCategory").val());
-            window.location.href = "${CP}/menu/menuMove.do?pCategory=cup";
-        });
-        // cup 카테고리로 이동
-        $("#glass").on("click", function(e){
-            console.log("glass:");
-            console.log("pCategory:" + $("#pCategory").val());
-            window.location.href = "${CP}/menu/menuMove.do?pCategory=glass";
-        });
-        // cup 카테고리로 이동
-        $("#plate").on("click", function(e){
-            console.log("plate:");
-            console.log("pCategory:" + $("#pCategory").val());
-            window.location.href = "${CP}/menu/menuMove.do?pCategory=plate";
-        });
+$(document).ready(function(){
+    console.log("document.ready");
+    
+    /*----------------- 헤더에서 각 카테고리로 이동하는 기능 시작(최유빈)-------------------*/
+     // bowls 카테고리로 이동
+     $("#bowls").on("click", function(e){
+         console.log("bowls:");
+         console.log("pCategory:" + $("#pCategory").val());
+         window.location.href = "${CP}/menu/menuMove.do?pCategory=bowls";
+     });
+     // cup 카테고리로 이동
+     $("#cup").on("click", function(e){
+         console.log("cup:");
+         console.log("pCategory:" + $("#pCategory").val());
+         window.location.href = "${CP}/menu/menuMove.do?pCategory=cup";
+     });
+     // glass 카테고리로 이동
+     $("#glass").on("click", function(e){
+         console.log("glass:");
+         console.log("pCategory:" + $("#pCategory").val());
+         window.location.href = "${CP}/menu/menuMove.do?pCategory=glass";
+     });
+     // plate 카테고리로 이동
+     $("#plate").on("click", function(e){
+         console.log("plate:");
+         console.log("pCategory:" + $("#pCategory").val());
+         window.location.href = "${CP}/menu/menuMove.do?pCategory=plate";
+     });
+    /*----------------- 헤더에서 각 카테고리로 이동하는 기능 끝(최유빈)-------------------*/
+});
 </script>
 <body>
       <!-- 메인 헤더 영역 시작 (이은빈)----------------------------------------------->
     <div id="header">
             <div id="logo">
-                <a href="${CP}/main/main.do"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
+                <a href="#"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
             </div>
         <div id="top">
             <div class="menu_left">
                 <ul>
-                    <li><a href="#" id="bowls">접시</a></li>
+                    <li><a href="#" id="plate">접시</a></li>
                     <li><a href="#" id="cup">머그컵</a></li>
                     <li><a href="#" id="glass">유리잔</a></li>
-                    <li><a href="#" id="plate">보울/면기</a></li>
+                    <li><a href="#" id="bowls">보울/면기</a></li>
                 </ul>
             </div>
             <div class="menu_right">
@@ -88,7 +93,7 @@
 	                    <ul>
                          <li>
                            <a href="${CP}/login/doLogout.do">
-                            <span>${sessionScope.member.mName}님</span>
+                            <span>${sessionScope.member.mName}님 환영합니다.</span>
                             <span>&nbsp;로그아웃</span></a>
                          </li>
                          <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
@@ -109,12 +114,14 @@
 	                    </ul>
                     </c:otherwise>
                 </c:choose>
-                <form action="#" method="post" id="search" name="search">
-                    <input type="text" />
-                    <button>
-                        <i class="fas fa-search fa-lg"></i>
+            <!-- 상품 검색 영역 시작(이은빈) ----------------------------------------->             
+                <form action="${CP}/productSearch/View.do" method="get" id="search" name="search">
+                    <input type="text" id="searchWord" class="searchWord" name="searchWord" value=""/>
+                    <button id="doRetrive">
+                        <i class="fas fa-search fa-lg" ></i>
                     </button>
                 </form>
+			 <!-- 상품 검색 영역 끝(이은빈) ----------------------------------------->             
             </div>
         </div>
     </div>
