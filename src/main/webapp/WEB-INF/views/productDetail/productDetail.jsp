@@ -34,7 +34,6 @@
     <!-- 부트스트랩 -->
     <link href="${CP_RES }/css/etc/bootstrap.min.css" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="${CP }/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="${CP_RES}/css/main/main_boot.css">
     <link rel="stylesheet" type="text/css" href="${CP_RES }/css/productDetail/productDetail.css">
     
     <title>제품 상세 페이지</title>
