@@ -82,7 +82,7 @@
       <!-- 메인 헤더 영역 시작 (이은빈)----------------------------------------------->
     <div id="header">
             <div id="logo">
-                <a href="#"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
+                <a href="${CP}/main/main.do"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
             </div>
         <div id="top">
             <div class="menu_left">
@@ -133,7 +133,8 @@
     <!-- 메인 헤더 영역 끝 (이은빈)-------------------------------------------------->
 
 <!-- 배송지 -->
-    <div class="address">
+<div class="mod">
+    <div class="add">
         <h1 class="title">배송지</h1>
             <input  class="Home" id="mAddr" type="text" value="">
         <h1 class="title">주문자</h1>
@@ -146,7 +147,7 @@
             <p class="img1"><p id="product_name">${product_name}</p>
             <p id="product_price"><fmt:formatNumber type="number"  maxFractionDigits="3" value='${product_price}'/>원</p>
             <p id="buyNumber">${buy_number}개</p>
-    </div>	
+    </div>
         <div class="payment">
             <h1 class="title">결제금액</h1>
             <h1 class="pay1">총 상품 금액</h1>
@@ -167,50 +168,50 @@
             “쇼핑몰”은 개인정보의 수집•이용•제공에 관한 동의란을 미리 선택한 것으로 설정해두지 않습니다. 또한 개인정보의 수집•이용•제공에 관한 이용자의 동의거절시 제한되는 서비스를 구체적으로 명시하고, 필수수집항목이 아닌 개인정보의 수집•이용•제공에 관한 이용자의 동의 거절을 이유로 회원가입 등 서비스 제공을 제한하거나 거절하지 않습니다.</p>
             <input class="pay" type="button" value="결제">
         </div>
- 
- 	<!-- footer 시작(이은빈) ---------------------------------------------------->
-<!-- 	     <div id="footer"> -->
-<!-- 	            <div class="ft_content"> -->
-<!-- 	               <div class="logoNcopy"> -->
-<!-- 	                   <div class="logo_text"> -->
-<!-- 	                       Table<br>Ware -->
-<!-- 	                   </div> -->
-<!-- 	                   <p> -->
-<!-- 	                       CopyRright &copy; <br>All right reserved by CTRL -->
-<!-- 	                   </p> -->
-<!-- 	               </div> -->
+ </div>
+	<!-- footer 시작(이은빈) ---------------------------------------------------->
+	     <div id="footer">
+	            <div class="ft_content">
+	               <div class="logoNcopy">
+	                   <div class="logo_text">
+	                       Table<br>Ware
+	                   </div>
+	                   <p>
+	                       CopyRright &copy; <br>All right reserved by CTRL
+	                   </p>
+	               </div>
 	                
-<!-- 	                <div class="ft_top "> -->
-<!-- 	                        <div class="fsec01 sec"> -->
-<!-- 	                            <p class="tit">CS CENTER</p> -->
-<!-- 	                            <span class="first">02-313-7300</span> -->
-<!-- 	                            <span>WEEKDAY AM 9:00 ~ PM 6:00</span> -->
-<!-- 	                            <span>LUNCH PM 12:00 ~ PM 1:00</span> -->
-<!-- 	                            <span>WEEKEND &amp; HOLYDAY OFF</span> -->
-<!-- 	                        </div> -->
-<!-- 	                        <div class="fsec02 sec"> -->
-<!-- 	                            <p class="tit">RETURN &amp; EXCHANGE</p> -->
-<!-- 	                            <span>반품 : 04100 서울특별시 마포구 서강로 136 아이비타워 3층 <br/> 반드시 고객센터에 접수 후 교환 및 반품해주세요.</span> -->
-<!-- 	                            <span>cj대한통운 고객센터 1588-1255</span>  -->
-<!-- 	                        </div> -->
-<!-- 	                </div> -->
-<!-- 	                <div class="util"> -->
-<!-- 	                    <div class="util_inner"> -->
-<!-- 	                        <ul class="menu"> -->
-<!-- 	                            <li><a href="#"><span>이용약관</a></li> -->
-<!-- 	                            <li><a href="#">개인정보취급방침</a></li> -->
-<!-- 	                        </ul> -->
-<!-- 	                    </div> -->
-<!-- 	                </div> -->
-<!-- 	            </div> -->
-<!-- 	            <div class="ft_bottom "> -->
-<!-- 	                <p class="address"> -->
-<!-- 	                    <span>COMPANY : (주)TableWare CEO : CTRL    PHONE : 010-1234-5678</span></br>  -->
-<!-- 	                    <span>CONTACT : <strong><a href="https://github.com/hykim-king/CTRL.git" id="git">https://github.com/hykim-king/CTRL.git</a></strong></span></br> -->
-<!-- 	                    <span>BUSINESS LICENCE : [123-45-67890] | ADDRESS : 04100 서울특별시 마포구 서강로 136 아이비타워 3층 TableWare</span> -->
-<!-- 	                </p> -->
-<!-- 	            </div> -->
-<!-- 	        </div> -->
+	                <div class="ft_top ">
+	                        <div class="fsec01 sec">
+	                            <p class="tit">CS CENTER</p>
+	                            <span class="first">02-313-7300</span>
+	                            <span>WEEKDAY AM 9:00 ~ PM 6:00</span>
+	                            <span>LUNCH PM 12:00 ~ PM 1:00</span>
+	                            <span>WEEKEND &amp; HOLYDAY OFF</span>
+	                        </div>
+	                        <div class="fsec02 sec">
+	                            <p class="tit">RETURN &amp; EXCHANGE</p>
+	                            <span>반품 : 04100 서울특별시 마포구 서강로 136 아이비타워 3층 <br/> 반드시 고객센터에 접수 후 교환 및 반품해주세요.</span>
+	                            <span>cj대한통운 고객센터 1588-1255</span> 
+	                        </div>
+	                </div>
+	                <div class="util">
+	                    <div class="util_inner">
+	                        <ul class="menu">
+	                            <li><a href="#">이용약관</a></li>
+	                            <li><a href="#">개인정보취급방침</a></li>
+	                        </ul>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="ft_bottom ">
+	                <p class="address">
+	                    <span>COMPANY : (주)TableWare CEO : CTRL    PHONE : 010-1234-5678</span></br> 
+	                    <span>CONTACT : <strong><a href="https://github.com/hykim-king/CTRL.git" id="git">https://github.com/hykim-king/CTRL.git</a></strong></span></br>
+	                    <span>BUSINESS LICENCE : [123-45-67890] | ADDRESS : 04100 서울특별시 마포구 서강로 136 아이비타워 3층 TableWare</span>
+	                </p>
+	            </div>
+	        </div>
 	
 	    <!-- footer 끝 ------------------------------------------------------------->
 	           

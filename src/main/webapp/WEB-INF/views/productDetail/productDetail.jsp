@@ -546,7 +546,7 @@
   	  	let total = mminusComma.substring(0, mminusComma.indexOf("원"));
 
         let productImgSrc = $('#productImg').attr("src");
-        let pNum = productImgSrc.substring(productImgSrc.lastIndexOf('/'C)+1,productImgSrc.lastIndexOf('.'));
+        let pNum = productImgSrc.substring(productImgSrc.lastIndexOf('/')+1,productImgSrc.lastIndexOf('.'));
         let product_name = $(".product_name").text();
         let buy_number = $("#buy_number").text();
         

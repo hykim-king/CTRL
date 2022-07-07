@@ -71,7 +71,7 @@
       <!-- 메인 헤더 영역 시작 (이은빈)----------------------------------------------->
     <div id="header">
             <div id="logo">
-                <a href="#"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
+                <a href="${CP}/main/main.do"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
             </div>
         <div id="top">
             <div class="menu_left">
@@ -129,7 +129,60 @@
     <h4>저희 쇼핑몰을 이용해 주셔서 감사합니다.</h4>
 </div>
 <div class="main">
-    <input class="btn" type="button" value="쇼핑 계속 하기" src="#">
+    <input class="btn" id="btn" type="button" value="쇼핑 계속 하기">
 </div>
+
+<script type="text/javascript">
+ $('.btn').click(function() {
+	 window.location.href="/ctrl/main/main.do";
+ });
+</script>
+<!--// 결제 후 ------------------------>
+
+	<!-- footer 시작(이은빈) ---------------------------------------------------->
+	     <div id="footer">
+	            <div class="ft_content">
+	               <div class="logoNcopy">
+	                   <div class="logo_text">
+	                       Table<br>Ware
+	                   </div>
+	                   <p>
+	                       CopyRright &copy; <br>All right reserved by CTRL
+	                   </p>
+	               </div>
+	                
+	                <div class="ft_top ">
+	                        <div class="fsec01 sec">
+	                            <p class="tit">CS CENTER</p>
+	                            <span class="first">02-313-7300</span>
+	                            <span>WEEKDAY AM 9:00 ~ PM 6:00</span>
+	                            <span>LUNCH PM 12:00 ~ PM 1:00</span>
+	                            <span>WEEKEND &amp; HOLYDAY OFF</span>
+	                        </div>
+	                        <div class="fsec02 sec">
+	                            <p class="tit">RETURN &amp; EXCHANGE</p>
+	                            <span>반품 : 04100 서울특별시 마포구 서강로 136 아이비타워 3층 <br/> 반드시 고객센터에 접수 후 교환 및 반품해주세요.</span>
+	                            <span>cj대한통운 고객센터 1588-1255</span> 
+	                        </div>
+	                </div>
+	                <div class="util">
+	                    <div class="util_inner">
+	                        <ul class="menu">
+	                            <li><a href="#"><span>이용약관</a></li>
+	                            <li><a href="#">개인정보취급방침</a></li>
+	                        </ul>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="ft_bottom ">
+	                <p class="address">
+	                    <span>COMPANY : (주)TableWare CEO : CTRL    PHONE : 010-1234-5678</span></br> 
+	                    <span>CONTACT : <strong><a href="https://github.com/hykim-king/CTRL.git" id="git">https://github.com/hykim-king/CTRL.git</a></strong></span></br>
+	                    <span>BUSINESS LICENCE : [123-45-67890] | ADDRESS : 04100 서울특별시 마포구 서강로 136 아이비타워 3층 TableWare</span>
+	                </p>
+	            </div>
+	        </div>
+	
+	    <!-- footer 끝 ------------------------------------------------------------->
 </body>
 </html>
