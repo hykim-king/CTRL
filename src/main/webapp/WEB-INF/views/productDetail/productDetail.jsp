@@ -567,13 +567,41 @@
     </script>
     <!-- //payBefore로 GET방식으로 값 넘기기(김병완) -->
     
-    <!-- addcart 에 get방식으로 값 넘기기 ( 김태민 ) -->
+     <!-- addcart 에 get방식으로 값 넘기기 ( 김태민 ) -->
     
   <script type="text/javascript">
            $(".btn-2").on("click", function(){
-                 let productImgSrc = $('#productImg').attr("src");
-                 let pNum = productImgSrc.substring(productImgSrc.lastIndexOf('/')+1,productImgSrc.lastIndexOf('.'));
-                 location.href = "/ctrl/cart/addcart.do?pNum=" + pNum ;
+//                  let productImgSrc = $('#productImg').attr("src");
+//                  let pNum = productImgSrc.substring(productImgSrc.lastIndexOf('/')+1,productImgSrc.lastIndexOf('.'));
+//                  location.href = "/ctrl/cart/addcart.do?pNum=" + pNum ;
+          let productPrice = $(".product_price").text(); // 상품 금액
+          let minusComma = productPrice.replace(",", ""); // 상품금액에서 , 제거
+          let priceNumber = minusComma.substring(0, minusComma.indexOf("원"));
+          
+     let totalNum = $("#total_num").text(); // 상품 금액
+          let mminusComma = totalNum.replace(",", ""); // 상품금액에서 , 제거
+          let total = mminusComma.substring(0, mminusComma.indexOf("원"));
+
+        let productImgSrc = $('#productImg').attr("src");
+        let pNum = productImgSrc.substring(productImgSrc.lastIndexOf('/')+1,productImgSrc.lastIndexOf('.'));
+        let product_name = $(".product_name").text();
+        let buy_number = $("#buy_number").text();
+        
+               console.log("click");
+               let url = "${CP}/cart/doInsert.do";
+               let method = "GET";
+               let async = true;
+               let parameters = {
+                     mNum : "${sessionScope.member.mNum}",
+                     pNum : pNum,
+                     pName : product_name,
+                     cBuy : buy_number,
+                     pPrice : priceNumber,
+                     cTotal : total
+               };
+               EClass.callAjax(url, parameters, method, async, function(data) {
+                    console.log(data);
+               });
            });
   </script>
   

@@ -1,12 +1,14 @@
 package com.pcwk.ctrl.cart.dao;
 
-
+import java.sql.SQLException;
 import java.util.List;
 
-import com.pcwk.ctrl.cmn.ProductVO;
+import com.pcwk.ctrl.cmn.CartVO;
 
 public interface CartDao {
 	
-	List<ProductVO> doCartSelect(ProductVO inVO);
+	int doInsert(CartVO inVO) throws SQLException;
+	
+	List<CartVO> doSelectList(CartVO inVO) throws SQLException;
 	
 }

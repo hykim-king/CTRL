@@ -75,7 +75,6 @@
      <br /> ${inquiry[0].pName} ${inquiry[0].pName}
 
 
-
      <div class="name_1">
           <span class="name_2"
                style="border-radius: 15px 15px 15px 0; border: 3px solid #FFAD5B; padding: 0.5em 0.6em; color: #FF8000;">장바구니</span>

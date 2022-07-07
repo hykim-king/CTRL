@@ -1,11 +1,13 @@
 package com.pcwk.ctrl.cart.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
-import com.pcwk.ctrl.cmn.ProductVO;
+import com.pcwk.ctrl.cmn.CartVO;
 
 public interface CartService {
+
+	public int doInsert(CartVO inVO) throws SQLException;
 	
-	public List<ProductVO> doCartSelect(ProductVO inVO);
-	
+	List<CartVO> doSelectList(CartVO inVO) throws SQLException;
 }

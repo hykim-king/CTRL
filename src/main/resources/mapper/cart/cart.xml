@@ -1,11 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pcwk.ctrl.cart">
-     <select id="doCartSelect" parameterType="ProductVO" resultType="ProductVO">
-          SELECT p_num AS pNum,
-                          p_name AS pName,
-                          p_price AS pPrice
-          FROM product
-          WHERE p_num = #{pNum}
+     <insert id="doInsert" parameterType="CartVO">
+          INSERT INTO cart (
+              m_num,
+              c_num,
+              p_num,
+              p_name,
+              c_buy,
+              p_price,
+              c_total
+          ) VALUES (
+              #{mNum},
+              CART_S.NEXTVAL,
+              #{pNum},
+              #{pName},
+              #{cBuy},
+              #{pPrice},
+              #{cTotal}
+          )
+     </insert>
+     
+     <select id="doSelectList" parameterType="CartVO" resultType="CartVO">
+          SELECT
+              m_num AS mNum,
+              c_num AS cNum,
+              p_num AS pNum,
+              p_name AS pName,
+              c_buy AS cBuy,
+              p_price AS pPrice,
+              c_total AS cTotal
+          FROM
+              cart
+          WHERE m_num = #{mNum}
      </select>
+
 </mapper>
