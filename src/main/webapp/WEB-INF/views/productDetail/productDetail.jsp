@@ -380,7 +380,7 @@
                             <span>&nbsp;로그아웃</span></a>
                          </li>
                          <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
-                         <li><a href="#">장바구니</a></li>
+                         <li><a href="${CP}/cart/cart.do">장바구니</a></li>
                          <li><a href="#">FAQ</a></li>
                          <li><a href="#">공지사항</a></li>
                         </ul>
@@ -425,7 +425,7 @@
             
                 <!-- 수량 -->
                 <div id="amount">
-                  <div id="buy_number">0</div>
+                  <div id="buy_number">1</div>
                         <div class="number_buttons">
                             <input type="button" id="plus" name="plus" value="+"/>              
                             <input type="button" id="minus" name="minus" value="-"/>
