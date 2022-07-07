@@ -84,7 +84,7 @@ public class LoginController {
 		inVO = naverProfileService.doMemberInsert(accessToken);
 		
 		if(null == inVO.getmAddr()) {
-			inVO.setmAddr(StringUtil.nvl(inVO.getmAddr(), ""));
+			inVO.setmAddr(StringUtil.nvl(inVO.getmAddr(), "서울특별시 마포구 서강로 136"));
 		}
 		
 		LOG.debug("memberCheck");
