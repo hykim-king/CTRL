@@ -33,7 +33,6 @@ body {
     top:0;
     z-index: 999;   
     width: 100%;
-    max-width: 1800px; /* 최대 폭, 값 없으면 화면 축소시 가운데로 x */
     height: 140px;
     margin: 0 auto 0;
     display: flex;
