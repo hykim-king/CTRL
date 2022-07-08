@@ -448,8 +448,8 @@
                 <div class="submit_buttons">
 	                <c:choose>
 	                    <c:when test="${null !=sessionScope.member}">
-	                     <input class="btn-2 button" type="submit" value="CART" >
-	                     <input class="btn-1 button" type="submit" value="BUY">      
+	                     <input class="btn-2 button cart" type="submit" value="CART" >
+	                     <input class="btn-1 button buy" type="submit" value="BUY">      
 	                    </c:when>
 	                    <c:otherwise>
 		                     <input class="btn-2 button nologin" type="submit" value="CART">
@@ -546,7 +546,7 @@
     
     <!-- payBefore로 GET방식으로 값 넘기기(김병완) -->
     <script type="text/javascript">
-    $(".btn-1").on("click", function(){
+    $(".buy").on("click", function(){
     	let productPrice = $(".product_price").text(); // 상품 금액
   	  	let minusComma = productPrice.replace(",", ""); // 상품금액에서 , 제거
   	  	let priceNumber = minusComma.substring(0, minusComma.indexOf("원"));
@@ -570,7 +570,7 @@
      <!-- addcart 에 get방식으로 값 넘기기 ( 김태민 ) -->
     
   <script type="text/javascript">
-           $(".btn-2").on("click", function(){
+           $(".cart").on("click", function(){
 //                  let productImgSrc = $('#productImg').attr("src");
 //                  let pNum = productImgSrc.substring(productImgSrc.lastIndexOf('/')+1,productImgSrc.lastIndexOf('.'));
 //                  location.href = "/ctrl/cart/addcart.do?pNum=" + pNum ;
