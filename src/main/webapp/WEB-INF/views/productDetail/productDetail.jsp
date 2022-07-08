@@ -36,7 +36,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="${CP }/favicon.ico">
     <link rel="stylesheet" type="text/css" href="${CP_RES }/css/productDetail/productDetail.css">
     
-    <title>제품 상세 페이지</title>
+    <title>TableWare</title>
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
     <script src="${CP_RES }/js/etc/jquery-1.12.4.js"></script>
     <!-- 사용자 정의 function, callAjax -->
