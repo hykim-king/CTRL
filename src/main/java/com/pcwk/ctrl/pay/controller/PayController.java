@@ -37,26 +37,39 @@ public class PayController {
 	@Autowired
 	PayService payService;
 	
-	@RequestMapping(value = "/cartSelect.do", method = RequestMethod.GET,
+	@RequestMapping(value = "/cartDelete.do", method = RequestMethod.GET,
 			produces = "application/json;charset=UTF-8")
 	@ResponseBody
+	public int cartDelete(CartVO inVO) throws SQLException{
+		
+		LOG.debug("=================================");
+		LOG.debug("cartDelete()");
+		LOG.debug("inVO"+inVO);
+		LOG.debug("=================================");
+		
+		int flag = payService.cartDelete(inVO);
+		
+		return flag;
+		
+	}
+	
+	@RequestMapping(value = "/cartSelect.do", method = RequestMethod.GET,
+			produces = "application/json;charset=UTF-8")
+	//@ResponseBody
 	public String cartSelect(CartVO inVO, Model model) throws SQLException{
-		String jsonString = "";
+		
+		
 		LOG.debug("=================================");
 		LOG.debug("cartSelect()");
 		LOG.debug("=================================");
 		
 		List<CartVO> list = payService.cartSelect(inVO);
-		Gson gson = new Gson();
-		jsonString = gson.toJson(list);
 		
-		LOG.debug("====================");
-		LOG.debug("=jsonString=" + jsonString);
-		LOG.debug("====================");
+		model.addAttribute("list",list);
 		
-		model.addAttribute("list:"+list);
+		LOG.debug(list);
 		
-		return jsonString;
+		return "pay/pay_before";
 		
 	}
 	

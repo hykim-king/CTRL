@@ -45,6 +45,16 @@
 	]]>
 	</select>
 	
+	<resultMap type="CartVO" id="reviewRdResultMap">
+        <id property="mNum" column="M_NUM" />
+        <result property="cNum" column="cNum"/>
+        <result property="pNum" column="P_NUM"/>
+        <result property="cBuy" column="C_BUY"/>
+        <result property="pPrice" column="P_PRICE"/>
+        <result property="cTotal" column="C_TOTAL"/>
+    </resultMap>
+	
+	
  	<select id="cartSelect" parameterType="CartVO" resultType="CartVO">
 		SELECT M_NUM AS mNum,
 			   CART_S.nextval AS cNum,
@@ -53,7 +63,7 @@
 			   P_PRICE AS pPrice,
 			   C_TOTAL AS cTotal
 		FROM CART
-		WHERER M_NUM = ${mNum};
+		WHERE M_NUM = #{mNum}
 	</select>
 	
  	<delete id="cartDeleteAll" parameterType="CartVO">

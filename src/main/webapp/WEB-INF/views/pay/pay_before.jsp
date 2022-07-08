@@ -287,7 +287,6 @@ $("#plate").on("click", function(e){
     	 EClass.callAjax(url, parameters, method, async, function(data) {
     		console.log("data"+data);
     		getoNum(mNum);
-     		
     	 });
     }
     
@@ -322,6 +321,34 @@ $("#plate").on("click", function(e){
     	 });
     }
     
+    function cartSelect(pNum, pName, cBuy, pPrice, cTotal) {
+		let url = "${CP}/pay/cartSelect.do";
+		let method = "GET";
+		let async = true;
+		let parameters = {
+				"pNum" : pNum,
+				"pName" : pName,
+				"cBuy" : cBuy,
+				"pPrice" : pPrice,
+				"cTotal" : cTotal
+		};
+		EClass.callAjax(url, parameters, method, async, function(data) {
+    		console.log(data);
+    		cartDelete(mNum);
+    	 });
+	}
+    
+    function cartDelete(mNum) {
+		let url = "${CP}/pay/cartDelete.do";
+		let method = "GET";
+		let async = true;
+		let parameters = {
+				 "mNum" : mNum
+		};
+		EClass.callAjax(url, parameters, method, async, function(data) {
+    		console.log(data);
+    	 });
+	}
     
     </script>
 </body>

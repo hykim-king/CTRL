@@ -15,6 +15,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.pcwk.ctrl.cmn.CartVO;
 import com.pcwk.ctrl.cmn.DetailVO;
 import com.pcwk.ctrl.cmn.OrderVO;
 import com.pcwk.ctrl.pay.dao.PayDao;
@@ -37,6 +38,7 @@ public class JUnitPayDaoTest {
 	
 	OrderVO  orderVO;
 	DetailVO detailVO;
+	CartVO cartVO;
 
 	@Before
 	public void setUp() throws Exception {
@@ -53,6 +55,36 @@ public class JUnitPayDaoTest {
 	}
 	
 	@Test
+	public void cartSelect() throws SQLException{
+		LOG.debug("========================");
+		LOG.debug("=1.cartSelect()=");
+		LOG.debug("========================");
+		
+		CartVO cart = new CartVO("b0eS7C0xv40MLAhDU5uIEQ7WJAbQNOm3v-KEtXp7Tzs",15558,
+				"cup01","cup02",1,1000,1000);
+		
+		
+		CartVO cart1 = (CartVO) payDao.cartSelect(cart);
+		
+		isRdSameData(cart,cart1);
+		
+	}
+	
+	private void isRdSameData(CartVO voVO, CartVO orgVO) {
+    	assertEquals(voVO.getcNum(), orgVO.getcNum());
+    	assertEquals(voVO.getcBuy(), orgVO.getcBuy());
+    	assertEquals(voVO.getcTotal(), orgVO.getcTotal());
+    	assertEquals(voVO.getmNum(), orgVO.getmNum());
+    	assertEquals(voVO.getpName(), orgVO.getpName());
+    	assertEquals(voVO.getpNum(), orgVO.getpNum());
+    	assertEquals(voVO.getpPrice(), orgVO.getpPrice());
+    }
+	
+	
+	
+	
+	@Test
+	@Ignore
 	public void getoNumTest() throws SQLException{
 		OrderVO inVO = new OrderVO();
 		inVO.setmNum("b0eS7C0xv40MLAhDU5uIEQ7WJAbQNOm3v-KEtXp7Tzs");

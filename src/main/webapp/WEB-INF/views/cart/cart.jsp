@@ -165,10 +165,10 @@
 					<c:when test="${list.size() > 0 }">
 						<c:forEach var="list" items="${list}">
 							<tr>
-								<td>${list.pName}</td>
-								<td>${list.pPrice}</td>
-								<td>${list.cBuy}</td>
-								<td>${list.cTotal}</td>
+								<td id="pName">${list.pName}</td>
+								<td id="pPrice">${list.pPrice}</td>
+								<td id="cBuy">${list.cBuy}</td>
+								<td id="cTotal">${list.cTotal}</td>
 								<td><button id="doDelete">삭제</button></td>
 								<td style="display: none">${list.cNum }</td>
 							</tr>
@@ -228,6 +228,16 @@
 	</div>
 
 	<!-- footer 끝 ------------------------------------------------------------->
+	
+	<!-- payBefore로 GET방식으로 값 넘기기(김병완) -->
+    <script type="text/javascript">
+    $(".btn").on("click", function(){
+		console.log("document.ready");
+        
+        location.href = "/ctrl/pay/payBefore.do"
+    
+    </script>
+    <!-- //payBefore로 GET방식으로 값 넘기기(김병완) -->
 
 </body>
 </html>
