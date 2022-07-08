@@ -16,7 +16,7 @@ public interface PayDao {
 	 * @throws SQLException
 	 */
 	
-	public List<CartVO>cartDeleteAll(CartVO inVO) throws SQLException;
+	public int cartDelete(CartVO inVO) throws SQLException;
 	
 	/**
 	 * 장바구니 조회
@@ -25,7 +25,7 @@ public interface PayDao {
 	 * @throws SQLException
 	 */
 	
-	public List<CartVO>cartSelect(CartVO inVO) throws SQLException;
+	List<CartVO> cartSelect(CartVO inVO) throws SQLException;
 	
 	
 	OrderVO getoNum(OrderVO inVO) throws SQLException;

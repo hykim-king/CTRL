@@ -35,7 +35,7 @@
     <!-- css -->
     <link href="${CP_RES}/css/pay/after.css" rel="stylesheet">
     
-    <title>결제 후</title>
+    <title>TableWare</title>
     
 <!-- font awesome -->
 <script src="https://kit.fontawesome.com/2974daa1cb.js" crossorigin="anonymous"></script>

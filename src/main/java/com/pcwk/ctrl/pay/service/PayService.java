@@ -16,7 +16,7 @@ public interface PayService {
 	 * @return
 	 * @throws SQLException
 	 */
-	public List<CartVO> cartDelete(CartVO inVO) throws SQLException;
+	public int cartDelete(CartVO inVO) throws SQLException;
 	
 	/**
 	 * 장바구니 조회

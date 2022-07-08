@@ -76,21 +76,19 @@ public class PayDaoImpl implements PayDao {
 	}
 
 	@Override
-	public List<CartVO> cartDeleteAll(CartVO inVO) throws SQLException {
-		List<CartVO> list = null;
+	public int cartDelete(CartVO inVO) throws SQLException {
+		int flag = 0;
+		
 		String statement = NAMESPACE+".cartDelete";
 		LOG.debug("==============================");
 		LOG.debug("=param="+inVO.toString());
 		LOG.debug("=statement="+statement);
 		LOG.debug("==============================");
 		
-		list = this.sqlSessionTemplate.selectList(statement, inVO);
+		flag = sqlSessionTemplate.insert(statement,inVO);
+		LOG.debug("=flag="+flag);
 		
-		for(CartVO vo :list) {
-			LOG.debug("vo:" + vo.toString());
-		}
-		
-		return list;
+		return flag;
 	}
 
 	@Override

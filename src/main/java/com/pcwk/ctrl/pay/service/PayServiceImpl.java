@@ -40,8 +40,8 @@ public class PayServiceImpl implements PayService {
 	}
 
 	@Override
-	public List<CartVO> cartDelete(CartVO inVO) throws SQLException {
-		return payDao.cartDeleteAll(inVO);
+	public int cartDelete(CartVO inVO) throws SQLException {
+		return payDao.cartDelete(inVO);
 	}
 
 	@Override
