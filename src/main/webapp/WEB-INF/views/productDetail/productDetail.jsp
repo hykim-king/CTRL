@@ -195,7 +195,7 @@
                            htmlData += " <div class='reivew_data'>                                                     ";
                            htmlData += "   <div style='display:none;' id='reviewNum'>"+reviewVO.rNum+"</div>";
                            htmlData += "   <div style='display:none;' id='reviewOname'>"+reviewVO.oName+"</div>";
-                            if(memberNum == "${sessionScope.member.mNum}") {  // 작성한 회원과 로그인한 사람이 같으면
+                            if(memberNum == "${sessionScope.member.mNum}" || cnt == 1) {  // 작성한 회원과 로그인한 사람이 같으면
                               htmlData += "  <input type='button' id='reviewDelete' value='삭제' class='btn-1 button'>";
                               htmlData += "  <input type='button' id='reviewUpdate' value='수정' class='btn-1 button'>";
                             } 
