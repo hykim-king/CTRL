@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 .box {
-	height: 90%;
+	height: 40%;
 }
 
 html, body {
@@ -15,15 +15,32 @@ html, body {
 
 .name_1 {
 	text-align: center;
-	position: relative;
-	margin-top: 15%;
+	position: static;
+	margin-top: 13%;
 	transform: translateY(-50%);
 }
 
+.outline {
+	text-align: center;
+	margin-top: 1%;
+	border-collapse: collapse;
+	transform: translateY(-50%);
+}
+.inline{
+	
+}
 
+table {
+	margin-left: auto;
+	margin-right: auto;
+	width: 60%;
+}
 
-
-
+.buying {
+	text-align: center;
+	position: relative;
+	transform: translateY(-50%);
+}
 
 .btn {
 	width: 300px;
