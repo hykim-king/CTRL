@@ -35,7 +35,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${CP_RES}/css/login/login_style.css">
 
-<title>네이버 로그인</title>
+<title>TableWare</title>
 </head>
 <body>
 	<div class="container">
