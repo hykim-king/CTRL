@@ -61,7 +61,7 @@
     <img src="https://img.shields.io/badge/bootstrap-7952B3?style=flat-square&logo=bootstrap&logoColor=white">
     <img src="https://img.shields.io/badge/github-181717?style=flat-square&logo=github&logoColor=white">
     <img src="https://img.shields.io/badge/apache
-    tomcat-F8DC75?style=flat-square&logo=apachetomcat&logoColor=black">
+    tomcat-F8DC75?style=flat-square&logo=apache tomcat&logoColor=black">
     <img src="https://img.shields.io/badge/JSON-000000?style=flat-square&logo=JSON&logoColor=white"/>
     <img src="https://img.shields.io/badge/Eclipse-2C2255?style=flat-square&logo=Eclipse&logoColor=white"/><br/>
     <img src="https://img.shields.io/badge/ApacheMaven-C71A36?style=flat-square&logo=ApacheMaven&logoColor=white"/>
