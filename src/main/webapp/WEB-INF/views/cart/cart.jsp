@@ -143,40 +143,6 @@
 			<span class="name_2"
 				style="border-radius: 15px 15px 15px 0; border: 3px solid #FFAD5B; padding: 0.5em 0.6em; color: #FF8000;">장바구니</span>
 		</div>
-<<<<<<< HEAD
-
-
-
-		<table class="type11">
-			<thead>
-				<tr>
-					<th scope="cols">상품이름</th>
-					<th scope="cols">가격</th>
-					<th scope="cols">수량</th>
-					<th scope="cols">총 금액</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:choose>
-					<c:when test="${list.size() > 0 }">
-						<c:forEach var="list" items="${list}">
-							<tr>
-								<td id="pName">${list.pName}</td>
-								<td id="pPrice">${list.pPrice}</td>
-								<td id="cBuy">${list.cBuy}</td>
-								<td id="cTotal">${list.cTotal}</td>
-								<td><button id="doDelete">삭제</button></td>
-								<td style="display: none">${list.cNum }</td>
-							</tr>
-						</c:forEach>
-					</c:when>
-				</c:choose>
-			</tbody>
-		</table>
-=======
->>>>>>> 2f428f7e7515fe2daf730342a08fd762f74ab857
-	</div>
-
 
 	<table class="outline">
 		<thead class="inline" style="border-bottom: 1px solid black">

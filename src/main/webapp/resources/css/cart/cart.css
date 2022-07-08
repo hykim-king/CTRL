@@ -22,10 +22,11 @@ html, body {
 
 .outline {
 	text-align: center;
-	margin-top: 1%;
+	margin-top: 10%;
 	border-collapse: collapse;
 	transform: translateY(-50%);
 }
+
 .inline{
 	
 }
