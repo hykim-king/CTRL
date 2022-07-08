@@ -31,7 +31,7 @@ html, body {
 
 .faq_container {
      position: relative;
-     top:40%;
+     margin-top: 10%;
      transform: translateY(-50%);
 }
 
@@ -49,6 +49,6 @@ html, body {
 .name_1 {
      text-align: center;
      position: relative;
-     top: 20%;
+     margin-top: 15%;
      transform: translateY(-50%);
 }
