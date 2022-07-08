@@ -1,6 +1,7 @@
 package com.pcwk.ctrl.cart.controller;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -32,6 +33,31 @@ public class CartController {
 	public CartController() {
 		
 	}
+	@RequestMapping(value = "/doDelete.do", method=RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String doDelete(CartVO inVO) throws SQLException{
+		String jsonString = "";
+		int flag = cartService.doDelete(inVO);
+		
+		LOG.debug("===========================");
+		LOG.debug("=inVO=" + inVO);
+		LOG.debug("=flag=" + flag);
+		LOG.debug("===========================");
+		String resultMsg = "";
+		if(flag == 1) {
+			resultMsg += "삭제성공 !";
+		}else {
+			resultMsg += "삭제실패";
+		}
+		MessageVO message = new MessageVO(String.valueOf(flag), resultMsg);
+		Gson gson = new Gson();
+		jsonString = gson.toJson(message);
+		LOG.debug("===========================");
+		LOG.debug("=jsonString=" + jsonString);
+		LOG.debug("===========================");
+		
+		return jsonString;
+	}
 	
 	@RequestMapping(value = "/doInsert.do", method=RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -62,16 +88,21 @@ public class CartController {
 	}
 	
 	@RequestMapping(value = "/cart.do", method=RequestMethod.GET)
-	public String cartView(HttpServletRequest request, Model model, HttpSession session) throws SQLException {
-		CartVO inVO = new CartVO("", 0, "", "", 0, 0, 0);
+	public String cartView(HttpServletRequest request, Model model, HttpSession session) throws Exception {
+		CartVO inVO = new CartVO("a", 0, "b", "c", 0, 0, 0);
 		MemberVO memVO = (MemberVO)session.getAttribute("member");
 //		inVO.setmNum(memVO.getmNum());
 		LOG.debug("memVO = " +memVO);
-//		List<CartVO> list = cartService.doSelectList(inVO);
-//		for(CartVO vo : list) {
-//			LOG.debug(" cartView vo = " + vo);
-//		}
-//		model.addAttribute("list", list);
+		LOG.debug("memVO = " +memVO.getmNum());
+		LOG.debug("inVO = " +inVO);
+		inVO.setmNum(memVO.getmNum());
+		LOG.debug("inVO = " +inVO);
+//		LOG.debug("inVO = " +inVO);
+		List<CartVO> list = cartService.doSelectList(inVO);
+		for(CartVO vo : list) {
+			LOG.debug(" cartView vo = " + vo);
+		}
+		model.addAttribute("list", list);
 		
 		return "cart/cart";
 	}

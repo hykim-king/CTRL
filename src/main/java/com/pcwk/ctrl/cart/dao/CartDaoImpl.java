@@ -45,4 +45,13 @@ public class CartDaoImpl implements CartDao {
 		return list;
 	}
 
+	@Override
+	public int doDelete(CartVO inVO) throws SQLException {
+		int flag = 0;
+		String statement = this.NAMESPACE + ".doDelete";
+		flag = sqlSessionTemplate.delete(statement, inVO);
+		
+		return flag;
+	}
+
 }

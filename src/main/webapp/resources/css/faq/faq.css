@@ -1,54 +1,54 @@
 @charset "UTF-8";
 /*FAQS*/
 html, body {
-	height: 100%;
+     height: 100%;
 }
 
 .box {
-	height: 80%;
+     height: 100%;
 }
 
 .faq_question {
-	margin: 0px;
-	padding: 0px 0px 5px 0px;
-	display: inline-block;
-	cursor: pointer;
-	font-weight: bold;
-	font-size: 30px;
+     margin: 0px;
+     padding: 0px 0px 5px 0px;
+     display: inline-block;
+     cursor: pointer;
+     font-weight: bold;
+     font-size: 30px;
 }
 
 .faq {
-	text-align: center;
+     text-align: center;
 }
 
 .faq_answer_container {
-	height: 0px;
-	overflow: hidden;
-	padding: 0px;
-	width: 40%;
-	margin: 0 auto;
+     height: 0px;
+     overflow: hidden;
+     padding: 0px;
+     width: 40%;
+     margin: 0 auto;
 }
 
 .faq_container {
-	position: relative;
-	top:40%;
-	transform: translateY(-50%);
+     position: relative;
+     top:40%;
+     transform: translateY(-50%);
 }
 
 .faq_answer {
-	word-break: keep-all;
-	font-size: 20px;
+     word-break: keep-all;
+     font-size: 20px;
 }
 
 
 .name_2 {
-	font-size: 50px;
-	font-weight: bold;
+     font-size: 50px;
+     font-weight: bold;
 }
 
 .name_1 {
-	text-align: center;
-	position: relative;
-	top: 20%;
-	transform: translateY(-50%);
+     text-align: center;
+     position: relative;
+     top: 20%;
+     transform: translateY(-50%);
 }

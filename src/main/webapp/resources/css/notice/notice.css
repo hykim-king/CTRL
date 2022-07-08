@@ -1,5 +1,20 @@
 @charset "UTF-8";
 /*FAQS*/
+html, body {
+     height: 100%;
+}
+
+.box {
+     height: 100%;
+}
+
+.ineer_box {
+     position: relative;
+     top: 40%;
+     transform: translateY(-50%);
+     height: 30%;
+}
+
 .faq_question {
      margin: 0px;
      padding: 0px 0px 5px 0px;
@@ -7,6 +22,10 @@
      cursor: pointer;
      font-weight: bold;
      font-size: 30px;
+}
+
+.faq {
+     text-align: center;
 }
 
 .faq_answer_container {
@@ -18,17 +37,15 @@
 }
 
 .faq_container {
-     text-align: center;
+     position: relative;
+     top: 40%;
+     transform: translateY(-50%);
 }
 
 .faq_answer {
      word-break: keep-all;
      font-size: 20px;
-}
-
-hr {
-     margin-left: auto;
-     margin-right: auto;
+     background: rgba(243, 156, 18, 0.48);
 }
 
 .name_2 {
@@ -38,4 +55,17 @@ hr {
 
 .name_1 {
      text-align: center;
+     position: relative;
+     top: 30%;
+     transform: translateY(-50%);
+     height: 30%;
+}
+
+.info {
+     text-align: center;
+     font-size: 90px;
+}
+
+.answer {
+     background color: rgba(243, 156, 18, 0.48);
 }

@@ -28,4 +28,9 @@ public class CartServiceImpl implements CartService {
 		return cartDao.doSelectList(inVO);
 	}
 
+	@Override
+	public int doDelete(CartVO inVO) throws SQLException {
+		return cartDao.doDelete(inVO);
+	}
+
 }
