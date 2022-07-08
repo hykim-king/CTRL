@@ -14,7 +14,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="${CP}/favicon.ico">
     <link rel="stylesheet" type="text/css" href="${CP_RES }/css/main/main.css">
     <link rel="stylesheet" type="text/css" href="${CP_RES}/css/productSearch/productSearch.css">    
-    <title>상품 검색</title>
+    <title>TableWare</title>
     <!-- font awesome -->
 <script src="https://kit.fontawesome.com/2974daa1cb.js" crossorigin="anonymous"></script>
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
