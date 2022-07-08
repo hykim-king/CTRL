@@ -28,7 +28,7 @@
 			D_BUY,
 			P_NUM
 		) VALUES(
-			#{oNum},
+			ORDER_S.currval,
 			DETAIL_S.nextval,<!-- 시퀀명.nextval -->
 			#{dBuy},
 			#{pNum}
@@ -40,7 +40,7 @@
 		SELECT O_NUM AS oNum
 		FROM ORDER_T
 		WHERE m_Num = #{mNum}
-		AND ROWNUM < 2 
+		AND ROWNUM <= 1
 		ORDER BY O_NUM DESC
 	]]>
 	</select>
@@ -57,6 +57,6 @@
 	</select>
 	
  	<delete id="cartDeleteAll" parameterType="CartVO">
-		DELETE FROM CART
+		DELETE FROM CART WHERE M_NUM = #{mNum}
 	</delete>
 </mapper>

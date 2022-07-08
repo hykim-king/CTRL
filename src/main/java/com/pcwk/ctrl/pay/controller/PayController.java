@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.pcwk.ctrl.cmn.CartVO;
 import com.pcwk.ctrl.cmn.DetailVO;
+import com.pcwk.ctrl.cmn.MessageVO;
 import com.pcwk.ctrl.cmn.OrderVO;
 import com.pcwk.ctrl.pay.service.PayService;
 import com.siot.IamportRestClient.IamportClient;
@@ -73,7 +74,8 @@ public class PayController {
 	@RequestMapping(value = "/payOrderInsert.do", method = RequestMethod.GET,
 			produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public int payOrderInsert(OrderVO inVO) throws SQLException{
+	public String payOrderInsert(OrderVO inVO) throws SQLException{
+		String jsonString = "";
 		
 		LOG.debug("=================================");
 		LOG.debug("payOrderInsert()");
@@ -81,8 +83,24 @@ public class PayController {
 		LOG.debug("=================================");
 		
 		int flag = payService.payOrderInsert(inVO);
+		LOG.debug("flag"+flag);
+		String resultMsg = "";
 		
-		return flag;
+		if(1 == flag) {
+			resultMsg = "등록안됨";
+		}else {
+			resultMsg = "등록좀되라";
+		}
+
+		MessageVO message = new MessageVO(String.valueOf(flag), resultMsg);
+		
+		jsonString = new Gson().toJson(message);
+		
+		LOG.debug("=================================");
+		LOG.debug("=jsonString="+jsonString);
+		LOG.debug("=================================");
+		
+		return jsonString;
 		
 	}
 	

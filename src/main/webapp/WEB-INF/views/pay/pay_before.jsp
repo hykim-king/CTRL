@@ -46,7 +46,7 @@
     <script src="${CP_RES }/js/etc/eUtil.js"></script>
     <script type="text/javascript" src="${CP_RES}/js/productDetail/productDetail.js"></script>
     
-    <title>결제 전</title>
+    <title>TableWare</title>
     
 <!-- font awesome -->
 <script src="https://kit.fontawesome.com/2974daa1cb.js" crossorigin="anonymous"></script>
@@ -264,12 +264,11 @@ $("#plate").on("click", function(e){
               	console.log('주문자 번호: '+rsp.buyer_tel);
               	console.log('주문자 주소: '+rsp.buyer_addr);
               	console.log('삼풍 수량: '+rsp.count);
-              	//window.location.href="/ctrl/pay/payAfter.do";
+              	//alert(" IMP");
               	payOrderInsert(rsp.buyer_addr, rsp.buyer_name, rsp.buyer_tel, "${sessionScope.member.mNum}");
             } else {
             	var msg = '결제가 실패하였습니다.'
             	console.log(rsp);
-                // 결제 실패 시 로직,
             }
             alert(msg);
         });
@@ -286,9 +285,9 @@ $("#plate").on("click", function(e){
     			"mNum" : mNum
     	};
     	 EClass.callAjax(url, parameters, method, async, function(data) {
-    		console.log(data);
+    		console.log("data"+data);
     		getoNum(mNum);
-    		window.location.href="/ctrl/pay/payAfter.do";
+     		
     	 });
     }
     
@@ -319,6 +318,7 @@ $("#plate").on("click", function(e){
     	};
     	 EClass.callAjax(url, parameters, method, async, function(data) {
     		console.log(data);
+    		window.location.href="/ctrl/pay/payAfter.do";
     	 });
     }
     
