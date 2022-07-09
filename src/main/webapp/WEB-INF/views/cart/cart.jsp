@@ -63,6 +63,7 @@
 
 		// 삭제
 		$(document).on("click", "#doDelete", function() {
+			alert("상품이 삭제되었습니다.");
 			//             console.log("cNum : " + $(this).parent().parent().children(2).eq(5).text());
 			let url = "${CP}/cart/doDelete.do";
 			let method = "GET";
@@ -109,7 +110,12 @@
 					<c:otherwise>
 						<ul>
 							<li><a href="${CP}/login/login.do">로그인</a></li>
-							<li><a href="#"><p onclick="alert('로그인이 필요한 서비스 입니다.')">마이페이지<p></a></li>
+							<li><a href="#"><p onclick="alert('로그인이 필요한 서비스 입니다.')">마이페이지
+
+
+
+									
+									<p></a></li>
 							<li><a href="#">장바구니</a></li>
 							<li><a href="${CP}/faq/faq.do">FAQ</a></li>
 							<li><a href="${CP}/notice/notice.do">공지사항</a></li>
@@ -144,97 +150,110 @@
 				style="border-radius: 15px 15px 15px 0; border: 3px solid #FFAD5B; padding: 0.5em 0.6em; color: #FF8000;">장바구니</span>
 		</div>
 
-	<table class="outline">
-		<thead class="inline" style="border-bottom: 1px solid black">
-			<tr>
-				<th scope="cols">이미지</th>
-				<th scope="cols">상품 정보</th>
-				<th scope="cols">가격</th>
-				<th scope="cols">수량</th>
-				<th scope="cols">총 금액</th>
-			</tr>
-		</thead>
+		<table class="outline">
+			<thead class="inline" style="border-bottom: 1px solid black">
+				<tr>
+					<th scope="cols">이미지</th>
+					<th scope="cols">상품 정보</th>
+					<th scope="cols">가격</th>
+					<th scope="cols">수량</th>
+					<th scope="cols">총 금액</th>
+				</tr>
+			</thead>
 
-		<tbody class="inline">
-			<c:choose>
-				<c:when test="${list.size() > 0 }">
-					<c:forEach var="list" items="${list}">
-						<tr>
-							<td><img alt="상품 이미지" src="${CP_RES}/img/${list.pNum}.jpg"
-								id="productImg" height="200px" width="200px"></td>
-							<td>${list.pName}</td>
-							<td>${list.pPrice}</td>
-							<td>${list.cBuy}</td>
-							<td>${list.cTotal}</td>
-							<td><button id="doDelete">삭제</button></td>
-							<td style="display: none">${list.cNum }</td>
-						</tr>
-					</c:forEach>
-				</c:when>
-			</c:choose>
-		</tbody>
-	</table>
-	<div class="buying">
-		<a>총 가격: </a> <input class="btn" type="submit" value="BUY">
-	</div>
-	S
-	<!-- footer 시작(이은빈) ---------------------------------------------------->
-	<div id="footer">
-		<div class="ft_content">
-			<div class="logoNcopy">
-				<div class="logo_text">
-					Table<br>Ware
+			<tbody class="inline">
+				<c:choose>
+					<c:when test="${list.size() > 0 }">
+						<c:forEach var="list" items="${list}">
+							<tr>
+								<td><img alt="상품 이미지" src="${CP_RES}/img/${list.pNum}.jpg"
+									id="productImg" height="200px" width="200px"></td>
+								<td>${list.pName}</td>
+								<td>${list.pPrice}</td>
+								<td>${list.cBuy}</td>
+								<td>${list.cTotal}</td>
+								<td><button id="doDelete">삭제</button></td>
+								<td style="display: none">${list.cNum}</td>
+							</tr>
+						</c:forEach>
+					</c:when>
+				</c:choose>
+			</tbody>
+		</table>
+		<div class="buying">
+			<a>총 가격: <c:choose>
+					<c:when test="${list.size() > 0 }">
+						<c:forEach var="list" items="${list}">
+							<tr>
+								<td>${totalMoney += list.cTotal}</td>
+							</tr>
+						</c:forEach>
+					</c:when>
+				</c:choose>
+			</a> <input class="btn" type="submit" value="BUY">
+		</div>
+
+		<!-- footer 시작(이은빈) ---------------------------------------------------->
+		<div id="footer">
+			<div class="ft_content">
+				<div class="logoNcopy">
+					<div class="logo_text">
+						Table<br>Ware
+					</div>
+					<p>
+						CopyRright &copy; <br>All right reserved by CTRL
+					</p>
 				</div>
-				<p>
-					CopyRright &copy; <br>All right reserved by CTRL
+
+				<div class="ft_top ">
+					<div class="fsec01 sec">
+						<p class="tit">CS CENTER</p>
+						<span class="first">02-313-7300</span> <span>WEEKDAY AM
+							9:00 ~ PM 6:00</span> <span>LUNCH PM 12:00 ~ PM 1:00</span> <span>WEEKEND
+							&amp; HOLYDAY OFF</span>
+					</div>
+					<div class="fsec02 sec">
+						<p class="tit">RETURN &amp; EXCHANGE</p>
+						<span>반품 : 04100 서울특별시 마포구 서강로 136 아이비타워 3층 <br /> 반드시
+							고객센터에 접수 후 교환 및 반품해주세요.
+						</span> <span>cj대한통운 고객센터 1588-1255</span>
+					</div>
+				</div>
+				<div class="util">
+					<div class="util_inner">
+						<ul class="menu">
+							<li><a href="#"><span>이용약관</span></a></li>
+							<li><a href="#">개인정보취급방침</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="ft_bottom ">
+				<p class="address">
+					<span>COMPANY : (주)TableWare CEO : CTRL PHONE :
+						010-1234-5678</span></br> <span>CONTACT : <strong><a
+							href="https://github.com/hykim-king/CTRL.git" id="git">https://github.com/hykim-king/CTRL.git</a></strong></span></br>
+					<span>BUSINESS LICENCE : [123-45-67890] | ADDRESS : 04100
+						서울특별시 마포구 서강로 136 아이비타워 3층 TableWare</span>
 				</p>
 			</div>
-
-			<div class="ft_top ">
-				<div class="fsec01 sec">
-					<p class="tit">CS CENTER</p>
-					<span class="first">02-313-7300</span> <span>WEEKDAY AM 9:00
-						~ PM 6:00</span> <span>LUNCH PM 12:00 ~ PM 1:00</span> <span>WEEKEND
-						&amp; HOLYDAY OFF</span>
-				</div>
-				<div class="fsec02 sec">
-					<p class="tit">RETURN &amp; EXCHANGE</p>
-					<span>반품 : 04100 서울특별시 마포구 서강로 136 아이비타워 3층 <br /> 반드시
-						고객센터에 접수 후 교환 및 반품해주세요.
-					</span> <span>cj대한통운 고객센터 1588-1255</span>
-				</div>
-			</div>
-			<div class="util">
-				<div class="util_inner">
-					<ul class="menu">
-						<li><a href="#"><span>이용약관</a></li>
-						<li><a href="#">개인정보취급방침</a></li>
-					</ul>
-				</div>
-			</div>
 		</div>
-		<div class="ft_bottom ">
-			<p class="address">
-				<span>COMPANY : (주)TableWare CEO : CTRL PHONE : 010-1234-5678</span></br>
-				<span>CONTACT : <strong><a
-						href="https://github.com/hykim-king/CTRL.git" id="git">https://github.com/hykim-king/CTRL.git</a></strong></span></br>
-				<span>BUSINESS LICENCE : [123-45-67890] | ADDRESS : 04100
-					서울특별시 마포구 서강로 136 아이비타워 3층 TableWare</span>
-			</p>
-		</div>
-	</div>
 
-	<!-- footer 끝 ------------------------------------------------------------->
-	
-	<!-- payBefore로 GET방식으로 값 넘기기(김병완) -->
-    <script type="text/javascript">
+		<!-- footer 끝 ------------------------------------------------------------->
+
+		<!-- 변수 ( 김태민 ) -->
+		<%!int totalMoney = 0;%>
+		<!-- 변수 ( 김태민 ) -->
+
+
+		<!-- payBefore로 GET방식으로 값 넘기기(김병완) -->
+		<script type="text/javascript">
     $(".btn").on("click", function(){
-		console.log("document.ready");
+          console.log("document.ready");
         
         location.href = "/ctrl/pay/payBefore.do"
     
     </script>
-    <!-- //payBefore로 GET방식으로 값 넘기기(김병완) -->
-
+		<!-- //payBefore로 GET방식으로 값 넘기기(김병완) -->
 </body>
 </html>

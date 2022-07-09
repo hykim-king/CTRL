@@ -571,6 +571,7 @@
     
   <script type="text/javascript">
            $(".btn-2").on("click", function(){
+        	   alert("상품이 장바구니에 담겼습니다.");
 //                  let productImgSrc = $('#productImg').attr("src");
 //                  let pNum = productImgSrc.substring(productImgSrc.lastIndexOf('/')+1,productImgSrc.lastIndexOf('.'));
 //                  location.href = "/ctrl/cart/addcart.do?pNum=" + pNum ;
