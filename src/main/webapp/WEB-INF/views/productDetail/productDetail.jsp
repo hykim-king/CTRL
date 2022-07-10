@@ -192,7 +192,7 @@
                            let memberNum = reviewVO.mNum;
                            let rdReg = reviewVO.rdReg;
                            
-                           htmlData += " <div class='reivew_data'>                                                     ";
+                           htmlData += " <div class='reivew_data'>                                              ";
                            htmlData += "   <div style='display:none;' id='reviewNum'>"+reviewVO.rNum+"</div>";
                            htmlData += "   <div style='display:none;' id='reviewOname'>"+reviewVO.oName+"</div>";
                             if(memberNum == "${sessionScope.member.mNum}" || cnt == 1) {  // 작성한 회원과 로그인한 사람이 같으면

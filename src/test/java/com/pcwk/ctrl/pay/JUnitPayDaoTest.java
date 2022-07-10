@@ -3,6 +3,7 @@ package com.pcwk.ctrl.pay;
 import static org.junit.Assert.*;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -64,24 +65,11 @@ public class JUnitPayDaoTest {
 				"cup01","cup02",1,1000,1000);
 		
 		
-		CartVO cart1 = (CartVO) payDao.cartSelect(cart);
+		List<CartVO> cart1 = payDao.cartSelect(cart);
 		
-		isRdSameData(cart,cart1);
+		assertEquals(2, cart1.size());
 		
 	}
-	
-	private void isRdSameData(CartVO voVO, CartVO orgVO) {
-    	assertEquals(voVO.getcNum(), orgVO.getcNum());
-    	assertEquals(voVO.getcBuy(), orgVO.getcBuy());
-    	assertEquals(voVO.getcTotal(), orgVO.getcTotal());
-    	assertEquals(voVO.getmNum(), orgVO.getmNum());
-    	assertEquals(voVO.getpName(), orgVO.getpName());
-    	assertEquals(voVO.getpNum(), orgVO.getpNum());
-    	assertEquals(voVO.getpPrice(), orgVO.getpPrice());
-    }
-	
-	
-	
 	
 	@Test
 	@Ignore

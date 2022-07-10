@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.pcwk.ctrl.cmn.CartVO;
+import com.pcwk.ctrl.cmn.DTO;
 import com.pcwk.ctrl.cmn.DetailVO;
 import com.pcwk.ctrl.cmn.OrderVO;
 
@@ -24,7 +25,7 @@ public interface PayService {
 	 * @return
 	 * @throws SQLException
 	 */
-	public List<CartVO> cartSelect(CartVO inVO) throws SQLException;
+	public List<CartVO> cartSelect();
 	
 	public OrderVO getoNum(OrderVO inVO) throws SQLException;
 	

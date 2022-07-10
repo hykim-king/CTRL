@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pcwk.ctrl.cmn.CartVO;
+import com.pcwk.ctrl.cmn.DTO;
 import com.pcwk.ctrl.cmn.DetailVO;
 import com.pcwk.ctrl.cmn.OrderVO;
 import com.pcwk.ctrl.pay.dao.PayDao;
@@ -45,8 +46,8 @@ public class PayServiceImpl implements PayService {
 	}
 
 	@Override
-	public List<CartVO> cartSelect(CartVO inVO) throws SQLException{
-		return payDao.cartSelect(inVO);
+	public List<CartVO> cartSelect(){
+		return payDao.cartSelect();
 	}
 
 }

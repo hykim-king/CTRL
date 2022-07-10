@@ -1,6 +1,7 @@
 package com.pcwk.ctrl.pay.dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.pcwk.ctrl.cmn.CartVO;
+import com.pcwk.ctrl.cmn.DTO;
 import com.pcwk.ctrl.cmn.DetailVO;
 import com.pcwk.ctrl.cmn.OrderVO;
 
@@ -92,20 +94,20 @@ public class PayDaoImpl implements PayDao {
 	}
 
 	@Override
-	public List<CartVO> cartSelect(CartVO inVO) throws SQLException {
+	public List<CartVO> cartSelect(){
 		List<CartVO> list = null;
-		String statement = NAMESPACE+".cartSelect";
+		String statement = this.NAMESPACE+".cartSelect";
+		
 		LOG.debug("==============================");
-		LOG.debug("=param="+inVO.toString());
 		LOG.debug("=statement="+statement);
+		LOG.debug("=sqlSessionTemplate="+sqlSessionTemplate);
 		LOG.debug("==============================");
 		
-		list = this.sqlSessionTemplate.selectList(statement, inVO);
+		list = this.sqlSessionTemplate.selectList(statement);
 		
 		for(CartVO vo :list) {
-			LOG.debug("vo:" + vo.toString());
+			LOG.debug("vo :" +vo.toString());
 		}
-		
 		return list;
 	}
 

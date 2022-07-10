@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.pcwk.ctrl.cmn.CartVO;
+import com.pcwk.ctrl.cmn.DTO;
 import com.pcwk.ctrl.cmn.DetailVO;
 import com.pcwk.ctrl.cmn.OrderVO;
 
@@ -25,7 +26,7 @@ public interface PayDao {
 	 * @throws SQLException
 	 */
 	
-	List<CartVO> cartSelect(CartVO inVO) throws SQLException;
+	List<CartVO> cartSelect();
 	
 	
 	OrderVO getoNum(OrderVO inVO) throws SQLException;

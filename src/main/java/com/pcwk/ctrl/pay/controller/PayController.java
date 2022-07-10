@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.pcwk.ctrl.cart.service.CartService;
 import com.pcwk.ctrl.cmn.CartVO;
 import com.pcwk.ctrl.cmn.DetailVO;
 import com.pcwk.ctrl.cmn.MessageVO;
@@ -36,6 +37,11 @@ public class PayController {
 	
 	@Autowired
 	PayService payService;
+	
+	@Autowired
+	CartService cartService; 
+	
+	public PayController() {}
 	
 	@RequestMapping(value = "/cartDelete.do", method = RequestMethod.GET,
 			produces = "application/json;charset=UTF-8")
@@ -55,21 +61,18 @@ public class PayController {
 	
 	@RequestMapping(value = "/cartSelect.do", method = RequestMethod.GET,
 			produces = "application/json;charset=UTF-8")
-	//@ResponseBody
-	public String cartSelect(CartVO inVO, Model model) throws SQLException{
-		
-		
+	public String cartSelect(Model model) {
 		LOG.debug("=================================");
 		LOG.debug("cartSelect()");
 		LOG.debug("=================================");
 		
-		List<CartVO> list = payService.cartSelect(inVO);
+		List<CartVO> list = payService.cartSelect();
+		
 		
 		model.addAttribute("list",list);
 		
-		LOG.debug(list);
+		return "pay/pay_before_cart";
 		
-		return "pay/pay_before";
 		
 	}
 	
@@ -100,9 +103,9 @@ public class PayController {
 		String resultMsg = "";
 		
 		if(1 == flag) {
-			resultMsg = "등록안됨";
-		}else {
 			resultMsg = "등록좀되라";
+		}else {
+			resultMsg = "등록안됨";
 		}
 
 		MessageVO message = new MessageVO(String.valueOf(flag), resultMsg);
