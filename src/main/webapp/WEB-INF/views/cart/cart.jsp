@@ -186,8 +186,8 @@
 		</tbody>
 	</table>
 	<div class="buying" style="border-top: 1px solid black;">
-		<br /> <a style="font-size: 20px;">총 가격: <c:out value="${total }원"></c:out>
-		<br />
+		<br /> <a style="font-size: 20px;">총 가격: <c:out
+				value="${total }원"></c:out> <br />
 		</a> <a> <input class="btn" type="submit" value="BUY"></a>
 	</div>
 

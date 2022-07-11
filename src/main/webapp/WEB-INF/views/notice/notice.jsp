@@ -89,8 +89,10 @@
 					<c:otherwise>
 						<ul>
 							<li><a href="${CP}/login/login.do">로그인</a></li>
-							<li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
-							<li><a href="#">장바구니</a></li>
+							<li><a href="#"><p onclick="alert('로그인이 필요한 서비스 입니다.')">마이페이지
+									<p></a></li>
+							<li><a href="#"><p onclick="alert('로그인이 필요한 서비스 입니다.')">장바구니
+									<p></a></li>
 							<li><a href="${CP}/faq/faq.do">FAQ</a></li>
 							<li><a href="${CP}/notice/notice.do">공지사항</a></li>
 						</ul>
@@ -127,7 +129,10 @@
 							<div class="faq_answer_container">
 								<div class="faq_answer">
 									<hr />
-									<div class="answer"><br/>${NoticeVO.nContent}<br/><br/></div>
+									<div class="answer">
+										<br />${NoticeVO.nContent}<br />
+										<br />
+									</div>
 									<hr />
 									<div class="info">${NoticeVO.nNum }&nbsp;&nbsp;/&nbsp;
 										&nbsp;${NoticeVO.nName }</div>
