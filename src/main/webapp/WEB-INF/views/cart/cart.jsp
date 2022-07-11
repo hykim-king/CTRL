@@ -32,52 +32,52 @@
 <script type="text/javascript" src="${CP_RES}/js/login/login_popup.js"></script>
 <script type="text/javascript" src="${CP_RES}/js/cart/cart.js"></script>
 <script type="text/javascript">
-    $(document).ready(function() {
+	$(document).ready(function() {
 
-        console.log("document.ready");
+		console.log("document.ready");
 
-        // bowls 카테고리로 이동
-        $("#bowls").on("click", function(e) {
-            console.log("bowls:");
-            console.log("pCategory:" + $("#pCategory").val());
-            window.location.href = "${CP}/menu/menuMove.do?pCategory=bowls";
-        });
-        // cup 카테고리로 이동
-        $("#cup").on("click", function(e) {
-            console.log("cup:");
-            console.log("pCategory:" + $("#pCategory").val());
-            window.location.href = "${CP}/menu/menuMove.do?pCategory=cup";
-        });
-        // glass 카테고리로 이동
-        $("#glass").on("click", function(e) {
-            console.log("glass:");
-            console.log("pCategory:" + $("#pCategory").val());
-            window.location.href = "${CP}/menu/menuMove.do?pCategory=glass";
-        });
-        // plate 카테고리로 이동
-        $("#plate").on("click", function(e) {
-            console.log("plate:");
-            console.log("pCategory:" + $("#pCategory").val());
-            window.location.href = "${CP}/menu/menuMove.do?pCategory=plate";
-        });
+		// bowls 카테고리로 이동
+		$("#bowls").on("click", function(e) {
+			console.log("bowls:");
+			console.log("pCategory:" + $("#pCategory").val());
+			window.location.href = "${CP}/menu/menuMove.do?pCategory=bowls";
+		});
+		// cup 카테고리로 이동
+		$("#cup").on("click", function(e) {
+			console.log("cup:");
+			console.log("pCategory:" + $("#pCategory").val());
+			window.location.href = "${CP}/menu/menuMove.do?pCategory=cup";
+		});
+		// glass 카테고리로 이동
+		$("#glass").on("click", function(e) {
+			console.log("glass:");
+			console.log("pCategory:" + $("#pCategory").val());
+			window.location.href = "${CP}/menu/menuMove.do?pCategory=glass";
+		});
+		// plate 카테고리로 이동
+		$("#plate").on("click", function(e) {
+			console.log("plate:");
+			console.log("pCategory:" + $("#pCategory").val());
+			window.location.href = "${CP}/menu/menuMove.do?pCategory=plate";
+		});
 
-        // 삭제
-        $(document).on("click", "#doDelete", function() {
-            alert("상품이 삭제되었습니다.");
-            //             console.log("cNum : " + $(this).parent().parent().children(2).eq(5).text());
-            let url = "${CP}/cart/doDelete.do";
-            let method = "GET";
-            let async = true;
-            let parameters = {
-                cNum : $(this).parent().parent().children(2).eq(6).text()
-            };
-            EClass.callAjax(url, parameters, method, async, function(data) {
-                console.log("data : " + data);
-                location.href = "/ctrl/cart/cart.do";
-            });
+		// 삭제
+		$(document).on("click", "#doDelete", function() {
+			alert("상품이 삭제되었습니다.");
+			//             console.log("cNum : " + $(this).parent().parent().children(2).eq(5).text());
+			let url = "${CP}/cart/doDelete.do";
+			let method = "GET";
+			let async = true;
+			let parameters = {
+				cNum : $(this).parent().parent().children(2).eq(6).text()
+			};
+			EClass.callAjax(url, parameters, method, async, function(data) {
+				console.log("data : " + data);
+				location.href = "/ctrl/cart/cart.do";
+			});
 
-        });
-    })
+		});
+	})
 </script>
 <body>
 	<!-- 메인 헤더 영역 시작 (이은빈)----------------------------------------------->
@@ -110,7 +110,8 @@
 					<c:otherwise>
 						<ul>
 							<li><a href="${CP}/login/login.do">로그인</a></li>
-							<li><a href="#"><p onclick="alert('로그인이 필요한 서비스 입니다.')">마이페이지<p></a></li>
+							<li><a href="#"><p onclick="alert('로그인이 필요한 서비스 입니다.')">마이페이지
+									<p></a></li>
 							<li><a href="#">장바구니</a></li>
 							<li><a href="${CP}/faq/faq.do">FAQ</a></li>
 							<li><a href="${CP}/notice/notice.do">공지사항</a></li>
@@ -144,9 +145,10 @@
 			style="border-radius: 15px 15px 15px 0; border: 5px solid rgba(243, 156, 18, 0.48); padding: 0.5em 0.6em; color: rgba(243, 156, 18, 0.48);">장바구니</span>
 	</div>
 	<table class="outline">
-		<thead style="border-bottom: 1px solid black; background: rgba(243, 156, 18, 0.48);">
+		<thead
+			style="border-bottom: 1px solid black; background: rgba(243, 156, 18, 0.48);">
 			<tr>
-				<th >이미지</th>
+				<th>이미지</th>
 				<th>상품 정보</th>
 				<th>가격</th>
 				<th>수량</th>
@@ -154,34 +156,39 @@
 				<th>삭제</th>
 			</tr>
 		</thead>
-		
-	<tbody class="inline">
-		<c:choose>
-			<c:when test="${list.size() > 0 }">
-				<c:forEach var="list" items="${list}">
-					<tr>
-						<td><img alt="상품 이미지" src="${CP_RES}/img/${list.pNum}.jpg"
-							id="productImg" height="200px" width="200px"></td>
-						<td>${list.pName}</td>
-						<td>${list.pPrice}</td>
-						<td>${list.cBuy}</td>
-						<td id="cTotal">${list.cTotal}</td>
-						<td><button id="doDelete"><img src="${CP_RES}/img/delete.png" height="30" width="30" style="bac"></button></td>
-						<td style="display: none">${list.cNum}</td>
-					</tr>
-					<c:set var="total" value="${total+ list.cTotal}" />
-				</c:forEach>
-			</c:when>
-			<c:otherwise>
-			<tr><td>장바구니가 비었습니다</td></tr>
-			</c:otherwise>
-		</c:choose>
 
-	</tbody>
-     </table>
+		<tbody class="inline">
+			<c:choose>
+				<c:when test="${list.size() > 0 }">
+					<c:forEach var="list" items="${list}">
+						<tr>
+							<td><img alt="상품 이미지" src="${CP_RES}/img/${list.pNum}.jpg"
+								id="productImg" height="200px" width="200px"></td>
+							<td>${list.pName}</td>
+							<td>${list.pPrice}</td>
+							<td>${list.cBuy}</td>
+							<td id="cTotal">${list.cTotal}</td>
+							<td><button id="doDelete">
+									<img src="${CP_RES}/img/delete.png" height="30" width="30"
+										style="">
+								</button></td>
+							<td style="display: none">${list.cNum}</td>
+						</tr>
+						<c:set var="total" value="${total+ list.cTotal}" />
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<tr>
+						<td>장바구니가 비었습니다</td>
+					</tr>
+				</c:otherwise>
+			</c:choose>
+
+		</tbody>
+	</table>
 	<div class="buying" style="border-top: 1px solid black;">
-	<br/>
-		<a>총 가격: <c:out value="${total }원"></c:out>
+		<br /> <a style="font-size: 20px;">총 가격: <c:out value="${total }원"></c:out>
+		<br />
 		</a> <a> <input class="btn" type="submit" value="BUY"></a>
 	</div>
 
@@ -237,13 +244,17 @@
 
 	<!-- 김병완 -->
 	<script type="text/javascript">
-		$(".btn").on("click",function(){
-			location.href = "${CP}/pay/cartSelect.do?total="+ ${total};
+		$(".btn").on("click", function() {
+			location.href = "${CP}/pay/cartSelect.do?total=" + $
+			{
+				total
+			}
+			;
 		});
 	</script>
 	<!--// 김병완 -->
 
-		
+
 
 
 </body>
