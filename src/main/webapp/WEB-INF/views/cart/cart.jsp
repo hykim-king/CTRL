@@ -163,10 +163,10 @@
 						<tr>
 							<td><img alt="상품 이미지" src="${CP_RES}/img/${list.pNum}.jpg"
 								id="productImg" height="200px" width="200px"></td>
-							<td>${list.pName}</td>
-							<td>${list.pPrice}</td>
-							<td>${list.cBuy}</td>
-							<td id="cTotal">${list.cTotal}</td>
+							<td style="font-size: 20px;">${list.pName}</td>
+							<td style="font-size: 20px;">${list.pPrice}</td>
+							<td style="font-size: 20px;">${list.cBuy}</td>
+							<td id="cTotal" style="font-size: 20px;">${list.cTotal}</td>
 							<td><button id="doDelete">
 									<img src="${CP_RES}/img/delete.png" height="30" width="30"
 										style="">
