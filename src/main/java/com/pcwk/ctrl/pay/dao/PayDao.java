@@ -26,7 +26,7 @@ public interface PayDao {
 	 * @throws SQLException
 	 */
 	
-	List<CartVO> cartSelect();
+	List<CartVO> cartSelect(CartVO cart) throws SQLException;
 	
 	
 	OrderVO getoNum(OrderVO inVO) throws SQLException;

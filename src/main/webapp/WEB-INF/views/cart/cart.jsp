@@ -239,7 +239,6 @@
 			</div>
 		</div>
 
-<<<<<<< HEAD
 	<!-- footer 끝 ------------------------------------------------------------->
 	
 	<script type="text/javascript">
@@ -247,23 +246,12 @@
 			location.href = "${CP}/pay/cartSelect.do";
 		});
 	</script>
-=======
+
 		<!-- footer 끝 ------------------------------------------------------------->
 
 		<!-- 변수 ( 김태민 ) -->
 		<%!int totalMoney = 0;%>
 		<!-- 변수 ( 김태민 ) -->
 
-
-		<!-- payBefore로 GET방식으로 값 넘기기(김병완) -->
-		<script type="text/javascript">
-    $(".btn").on("click", function(){
-          console.log("document.ready");
-        
-        location.href = "/ctrl/pay/payBefore.do"
-    
-    </script>
-		<!-- //payBefore로 GET방식으로 값 넘기기(김병완) -->
->>>>>>> d4c0ab450158c382ad1135a3389f1aaf7b9c165c
 </body>
 </html>

@@ -25,7 +25,7 @@ public interface PayService {
 	 * @return
 	 * @throws SQLException
 	 */
-	public List<CartVO> cartSelect();
+	public List<CartVO> cartSelect(CartVO cart) throws SQLException;
 	
 	public OrderVO getoNum(OrderVO inVO) throws SQLException;
 	
