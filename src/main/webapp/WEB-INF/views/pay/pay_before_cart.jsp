@@ -158,23 +158,18 @@ $("#plate").on("click", function(e){
             <p id="product_price"><fmt:formatNumber type="number"  maxFractionDigits="3" value='${list.pPrice}'/>원</p>
             <p id="buyNumber">${list.cBuy}개</p>
        </div>
-       <br>
-       <div class="img2">
-            <input class="img" type="image" src="${CP_RES}/img/${list.pNum}.jpg" align="left">
-            <p id=pNum style="display: none">${list.pNum}</p>
-            <p class="img1"><p id="product_name">${list.pNum}</p>
-            <p id="product_price"><fmt:formatNumber type="number"  maxFractionDigits="3" value='${list.pPrice}'/>원</p>
-            <p id="buyNumber">${list.cBuy}</p>
-        </div>
-    </div>
+      </c:forEach>
+     </c:when>
+   </c:choose> 
+      </div>
         <div class="payment">
             <h1 class="titleTotal">결제금액</h1>
             <h1 class="pay1">총 상품 금액</h1>
-            <p class="pay2" id="totalNum"><fmt:formatNumber type="number" maxFractionDigits="3" value='${list.cTotal}'/>원</p>
+            <p class="pay2" id="totalNum"><fmt:formatNumber type="number" maxFractionDigits="3" value='${total}'/>원</p>
             <h1 class="pay1">배송비</h1>
             <p class="pay2">무료</p>
             <h1 class="pay1">최종 결제 금액</h1>
-            <p class="pay2"><fmt:formatNumber type="number" maxFractionDigits="3" value='${list.cTotal}'/>원</p>
+            <p class="pay2"><fmt:formatNumber type="number" maxFractionDigits="3" value='${total}'/>원</p>
             <p><input class="check" type="checkbox" checked>아래 내용에 모두 동의합니다.(필수)</p>
             <p class="pay3">“쇼핑몰”은 이용자의 개인정보 수집시 서비스 제공을 위하여 필요한 범위에서 최소한의 개인정보를 수집합니다.
             “쇼핑몰”은 회원가입시 구매계약이행에 필요한 정보를 미리 수집하지 않습니다. 다만, 관련 법령상 의무이행을 위하여 구매계약 이전에 본인확인이 필요한 경우로서 최소한의 특정 개인정보를 수집하는 경우에는 그러하지 아니합니다.
@@ -186,11 +181,8 @@ $("#plate").on("click", function(e){
             “쇼핑몰” 또는 그로부터 개인정보를 제공받은 제3자는 개인정보의 수집목적 또는 제공받은 목적을 달성한 때에는 당해 개인정보를 지체 없이 파기한다.
             “쇼핑몰”은 개인정보의 수집•이용•제공에 관한 동의란을 미리 선택한 것으로 설정해두지 않습니다. 또한 개인정보의 수집•이용•제공에 관한 이용자의 동의거절시 제한되는 서비스를 구체적으로 명시하고, 필수수집항목이 아닌 개인정보의 수집•이용•제공에 관한 이용자의 동의 거절을 이유로 회원가입 등 서비스 제공을 제한하거나 거절하지 않습니다.</p>
             <c:if test="${not empty sessionScope.member.mName}"><input class="pay" type="button" value="결제"></c:if>
-       </c:forEach>
-     </c:when>
-   </c:choose>
-    </div>
- </div>
+  		</div>
+	</div>
 
 	<!-- footer 시작(이은빈) ---------------------------------------------------->
 	     <div id="footer">
@@ -333,27 +325,26 @@ $("#plate").on("click", function(e){
     	};
     	 EClass.callAjax(url, parameters, method, async, function(data) {
     		console.log(data);
-    		cartSelect(pNum, pName, cBuy, pPrice, cTotal)
-    		//window.location.href="/ctrl/pay/payAfter.do";
+    		cartDelete("${sessionScope.member.mNum}");
     	 });
     }
     
-    function cartSelect(pNum, pName, cBuy, pPrice, cTotal) {
-		let url = "${CP}/pay/cartSelect.do";
-		let method = "GET";
-		let async = true;
-		let parameters = {
-				"pNum" : pNum,
-				"pName" : pName,
-				"cBuy" : cBuy,
-				"pPrice" : pPrice,
-				"cTotal" : cTotal
-		};
-		EClass.callAjax(url, parameters, method, async, function(data) {
-    		console.log(data);
-    		cartDelete(mNum);
-    	 });
-	}
+    function cartSelect(pNum,pName,cBuy,pPrice,cTotal){
+    	let url = "${CP}/pay/cartSelect.do";
+    	let method = "GET";
+    	let async = true;
+    	let parameters = {
+        	mNum : "${sessionScope.member.mNum}",
+        	pNum : pNum,
+        	pName : product_name,
+       	 	cBuy : buy_number,
+        	pPrice : priceNumber,
+        	cTotal : total
+    };
+	EClass.callAjax(url, parameters, method, async, function(data) {
+		console.log(data);
+	  });
+   }
     
     function cartDelete(mNum) {
 		let url = "${CP}/pay/cartDelete.do";
@@ -364,6 +355,7 @@ $("#plate").on("click", function(e){
 		};
 		EClass.callAjax(url, parameters, method, async, function(data) {
     		console.log(data);
+    		window.location.href="/ctrl/pay/payAfter.do";
     	 });
 	}
     

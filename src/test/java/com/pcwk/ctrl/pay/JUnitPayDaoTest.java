@@ -62,12 +62,12 @@ public class JUnitPayDaoTest {
 		LOG.debug("========================");
 		
 		CartVO cart = new CartVO("b0eS7C0xv40MLAhDU5uIEQ7WJAbQNOm3v-KEtXp7Tzs",15558,
-				"cup01","cup02",1,1000,1000);
+				"cup01","cup01",1,1000,1000);
 		
 		
 		List<CartVO> cart1 = payDao.cartSelect(cart);
 		
-		assertEquals(2, cart1.size());
+		assertEquals(1, cart1.size());
 		
 	}
 	

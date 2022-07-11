@@ -110,12 +110,7 @@
 					<c:otherwise>
 						<ul>
 							<li><a href="${CP}/login/login.do">로그인</a></li>
-							<li><a href="#"><p onclick="alert('로그인이 필요한 서비스 입니다.')">마이페이지
-
-
-
-									
-									<p></a></li>
+							<li><a href="#"><p onclick="alert('로그인이 필요한 서비스 입니다.')">마이페이지<p></a></li>
 							<li><a href="#">장바구니</a></li>
 							<li><a href="${CP}/faq/faq.do">FAQ</a></li>
 							<li><a href="${CP}/notice/notice.do">공지사항</a></li>
@@ -188,6 +183,35 @@
 	</div>
 
 	<!-- 장바 구니 -->
+	
+           <tbody class="inline">
+            <c:choose>
+               <c:when test="${list.size() > 0 }">
+                  <c:forEach var="list" items="${list}">
+                     <tr>
+                        <td><img alt="상품 이미지" src="${CP_RES}/img/${list.pNum}.jpg"
+                           id="productImg" height="200px" width="200px"></td>
+                        <td>${list.pName}</td>
+                        <td>${list.pPrice}</td>
+                        <td>${list.cBuy}</td>
+                        <td id="cTotal" >${list.cTotal}</td>
+                        <td><button id="doDelete">삭제</button></td>
+                        <td style="display: none">${list.cNum}</td>
+                     </tr>
+                     <c:set var="total" value="${total+ list.cTotal}"/>
+                  </c:forEach>
+                  
+               </c:when>
+            </c:choose>
+            
+         </tbody>
+      </table>
+      
+      <div class="buying">
+         <a>총 가격: 
+          <c:out value="${total}원"></c:out>
+         </a>  <a> <input class="btn" type="submit" value="BUY"></a>
+        </div>
 
 	<!-- footer 시작(이은빈) ---------------------------------------------------->
 	<div id="footer">
@@ -233,7 +257,6 @@
 					서울특별시 마포구 서강로 136 아이비타워 3층 TableWare</span>
 			</p>
 		</div>
-
 	</div>
 
 	<!-- footer 끝 ------------------------------------------------------------->
@@ -256,5 +279,17 @@
         
     </script>
 	<!-- //payBefore로 GET방식으로 값 넘기기(김병완) -->
+
+	<!-- footer 끝 ------------------------------------------------------------->
+	
+	<script type="text/javascript">
+		$(".btn").on("click",function(){
+			location.href = "${CP}/pay/cartSelect.do?total="+${total};
+		});
+	</script>
+
+		<!-- footer 끝 ------------------------------------------------------------->
+
+
 </body>
 </html>

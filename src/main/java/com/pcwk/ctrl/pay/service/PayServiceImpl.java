@@ -46,8 +46,8 @@ public class PayServiceImpl implements PayService {
 	}
 
 	@Override
-	public List<CartVO> cartSelect(){
-		return payDao.cartSelect();
+	public List<CartVO> cartSelect(CartVO cart) throws SQLException{
+		return payDao.cartSelect(cart);
 	}
 
 }

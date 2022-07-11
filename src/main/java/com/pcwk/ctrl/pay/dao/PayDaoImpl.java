@@ -87,14 +87,14 @@ public class PayDaoImpl implements PayDao {
 		LOG.debug("=statement="+statement);
 		LOG.debug("==============================");
 		
-		flag = sqlSessionTemplate.insert(statement,inVO);
+		flag = sqlSessionTemplate.delete(statement,inVO);
 		LOG.debug("=flag="+flag);
 		
 		return flag;
 	}
 
 	@Override
-	public List<CartVO> cartSelect(){
+	public List<CartVO> cartSelect(CartVO cart) throws SQLException{
 		List<CartVO> list = null;
 		String statement = this.NAMESPACE+".cartSelect";
 		
@@ -103,7 +103,7 @@ public class PayDaoImpl implements PayDao {
 		LOG.debug("=sqlSessionTemplate="+sqlSessionTemplate);
 		LOG.debug("==============================");
 		
-		list = this.sqlSessionTemplate.selectList(statement);
+		list = this.sqlSessionTemplate.selectList(statement,cart);
 		
 		for(CartVO vo :list) {
 			LOG.debug("vo :" +vo.toString());

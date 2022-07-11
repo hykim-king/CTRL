@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 import com.pcwk.ctrl.cart.service.CartService;
 import com.pcwk.ctrl.cmn.CartVO;
 import com.pcwk.ctrl.cmn.DetailVO;
+import com.pcwk.ctrl.cmn.MemberVO;
 import com.pcwk.ctrl.cmn.MessageVO;
 import com.pcwk.ctrl.cmn.OrderVO;
 import com.pcwk.ctrl.pay.service.PayService;
@@ -61,15 +62,29 @@ public class PayController {
 	
 	@RequestMapping(value = "/cartSelect.do", method = RequestMethod.GET,
 			produces = "application/json;charset=UTF-8")
-	public String cartSelect(Model model) {
+	public String cartSelect(CartVO cart,Model model,HttpServletRequest req) throws SQLException{
 		LOG.debug("=================================");
 		LOG.debug("cartSelect()");
+		LOG.debug("cart"+cart);
 		LOG.debug("=================================");
 		
-		List<CartVO> list = payService.cartSelect();
+       	HttpSession session = req.getSession();
+       	Object member = session.getAttribute("member");
+       	MemberVO memberVO = (MemberVO)member;
+		
+        if(session.getAttribute("member") != null){
+        	LOG.debug("***mNum: "+memberVO.getmNum());
+        	cart.setmNum(memberVO.getmNum());
+        }else {
+            System.out.println("session:null");
+        }
+       	
+		List<CartVO> list = payService.cartSelect(cart);
 		
 		
 		model.addAttribute("list",list);
+		model.addAttribute("cart",cart);
+		model.addAttribute("total",req.getParameter("total"));
 		
 		return "pay/pay_before_cart";
 		
