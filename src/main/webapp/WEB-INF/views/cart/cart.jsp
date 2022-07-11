@@ -178,7 +178,7 @@
 				</c:when>
 				<c:otherwise>
 					<tr>
-						<td>장바구니가 비었습니다</td>
+						<td colspan="99" style="font-size: 50px"><br/>장바구니가 비었습니다<br/><img alt="" src="${CP_RES}/img/cart.png" height="100px" width="100px"><br/><br/></td>
 					</tr>
 				</c:otherwise>
 			</c:choose>
