@@ -36,6 +36,7 @@
 
 		console.log("document.ready");
 
+     
 		// bowls 카테고리로 이동
 		$("#bowls").on("click", function(e) {
 			console.log("bowls:");
@@ -77,6 +78,8 @@
 			});
 
 		});
+		
+		 
 	})
 </script>
 <body>
@@ -171,26 +174,24 @@
 								<td>${list.pName}</td>
 								<td>${list.pPrice}</td>
 								<td>${list.cBuy}</td>
-								<td>${list.cTotal}</td>
+								<td id="cTotal" >${list.cTotal}</td>
 								<td><button id="doDelete">삭제</button></td>
 								<td style="display: none">${list.cNum}</td>
 							</tr>
+							<c:set var="total" value="${total+ list.cTotal}"/>
 						</c:forEach>
+						
 					</c:when>
 				</c:choose>
+				
 			</tbody>
 		</table>
+		
 		<div class="buying">
-			<a>총 가격: <c:choose>
-					<c:when test="${list.size() > 0 }">
-						<c:forEach var="list" items="${list}">
-							<tr>
-								<td>${totalMoney += list.cTotal}</td>
-							</tr>
-						</c:forEach>
-					</c:when>
-				</c:choose>
-			</a> <input class="btn" type="submit" value="BUY">
+			<a>총 가격: 
+          <c:out value="${total }원"></c:out>
+			</a> 
+			<input class="btn" type="submit" value="BUY">
 		</div>
 
 		<!-- footer 시작(이은빈) ---------------------------------------------------->
@@ -260,10 +261,9 @@
     $(".btn").on("click", function(){
           console.log("document.ready");
         
-        location.href = "/ctrl/pay/payBefore.do"
-    
+        location.href = "/ctrl/pay/payBefore.do";
+    });
     </script>
 		<!-- //payBefore로 GET방식으로 값 넘기기(김병완) -->
->>>>>>> d4c0ab450158c382ad1135a3389f1aaf7b9c165c
 </body>
 </html>
