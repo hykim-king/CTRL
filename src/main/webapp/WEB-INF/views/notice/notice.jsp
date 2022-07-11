@@ -127,7 +127,7 @@
 							<div class="faq_answer_container">
 								<div class="faq_answer">
 									<hr />
-									<div class="answer">${NoticeVO.nContent}</div>
+									<div class="answer"><br/>${NoticeVO.nContent}<br/><br/></div>
 									<hr />
 									<div class="info">${NoticeVO.nNum }&nbsp;&nbsp;/&nbsp;
 										&nbsp;${NoticeVO.nName }</div>
