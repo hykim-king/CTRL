@@ -161,15 +161,15 @@ $("#plate").on("click", function(e){
       </c:forEach>
      </c:when>
    </c:choose> 
-         </div>
+      </div>
         <div class="payment">
             <h1 class="titleTotal">결제금액</h1>
             <h1 class="pay1">총 상품 금액</h1>
-            <p class="pay2" id="totalNum"><fmt:formatNumber type="number" maxFractionDigits="3" value='100'/>원</p>
+            <p class="pay2" id="totalNum"><fmt:formatNumber type="number" maxFractionDigits="3" value='${total}'/>원</p>
             <h1 class="pay1">배송비</h1>
             <p class="pay2">무료</p>
             <h1 class="pay1">최종 결제 금액</h1>
-            <p class="pay2"><fmt:formatNumber type="number" maxFractionDigits="3" value='100'/>원</p>
+            <p class="pay2"><fmt:formatNumber type="number" maxFractionDigits="3" value='${total}'/>원</p>
             <p><input class="check" type="checkbox" checked>아래 내용에 모두 동의합니다.(필수)</p>
             <p class="pay3">“쇼핑몰”은 이용자의 개인정보 수집시 서비스 제공을 위하여 필요한 범위에서 최소한의 개인정보를 수집합니다.
             “쇼핑몰”은 회원가입시 구매계약이행에 필요한 정보를 미리 수집하지 않습니다. 다만, 관련 법령상 의무이행을 위하여 구매계약 이전에 본인확인이 필요한 경우로서 최소한의 특정 개인정보를 수집하는 경우에는 그러하지 아니합니다.
@@ -328,6 +328,23 @@ $("#plate").on("click", function(e){
     		cartDelete("${sessionScope.member.mNum}");
     	 });
     }
+    
+    function cartSelect(pNum,pName,cBuy,pPrice,cTotal){
+    	let url = "${CP}/pay/cartSelect.do";
+    	let method = "GET";
+    	let async = true;
+    	let parameters = {
+        	mNum : "${sessionScope.member.mNum}",
+        	pNum : pNum,
+        	pName : product_name,
+       	 	cBuy : buy_number,
+        	pPrice : priceNumber,
+        	cTotal : total
+    };
+	EClass.callAjax(url, parameters, method, async, function(data) {
+		console.log(data);
+	  });
+   }
     
     function cartDelete(mNum) {
 		let url = "${CP}/pay/cartDelete.do";

@@ -84,6 +84,7 @@ public class PayController {
 		
 		model.addAttribute("list",list);
 		model.addAttribute("cart",cart);
+		model.addAttribute("total",req.getParameter("total"));
 		
 		return "pay/pay_before_cart";
 		

@@ -182,7 +182,7 @@
       
       <div class="buying">
          <a>총 가격: 
-          <c:out value="${total }원"></c:out>
+          <c:out value="${total}원"></c:out>
          </a>  <a> <input class="btn" type="submit" value="BUY"></a>
         </div>
 
@@ -232,40 +232,17 @@
             </div>
         </div>
 
-<<<<<<< HEAD
+
 	<!-- footer 끝 ------------------------------------------------------------->
 	
 	<script type="text/javascript">
 		$(".btn").on("click",function(){
-			location.href = "${CP}/pay/cartSelect.do";
+			location.href = "${CP}/pay/cartSelect.do?total="+${total};
 		});
 	</script>
 
 		<!-- footer 끝 ------------------------------------------------------------->
-=======
-        <!-- footer 끝 ------------------------------------------------------------->
->>>>>>> 9aefcdbb69780a359ea345c48b84ca7a028d4c78
 
-        <script type="text/javascript">
-        $(".btn").on("click",function(){
-            location.href = "${CP}/pay/cartSelect.do";
-        });
-    </script>
 
-        <!-- footer 끝 ------------------------------------------------------------->
-
-<<<<<<< HEAD
-=======
-
-        <!-- payBefore로 GET방식으로 값 넘기기(김병완) -->
-        <script type="text/javascript">
-    $(".btn").on("click", function(){
-          console.log("document.ready");
-        
-        location.href = "/ctrl/pay/payBefore.do"
-        
-    </script>
-        <!-- //payBefore로 GET방식으로 값 넘기기(김병완) -->
->>>>>>> 9aefcdbb69780a359ea345c48b84ca7a028d4c78
 </body>
 </html>
