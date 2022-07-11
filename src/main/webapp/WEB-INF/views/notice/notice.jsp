@@ -115,7 +115,7 @@
           <div class="ineer_box">
                <div class="name_1">
                     <span class="name_2"
-                         style="border-radius: 15px 15px 15px 0; border: 3px solid #FFAD5B; padding: 0.5em 0.6em; color: #FF8000;">공지사항</span>
+                         style="border-radius: 15px 15px 15px 0; border: 3px solid rgba(243, 156, 18, 0.48); padding: 0.5em 0.6em; color: rgba(243, 156, 18, 0.48);">공지사항</span>
                </div>
                <c:choose>
                     <c:when test="${NoticeVO.size()  > 0}">

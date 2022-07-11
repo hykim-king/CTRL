@@ -113,7 +113,7 @@
 	<div class="box">
 		<div class="name_1">
 			<span class="name_2"
-				style="border-radius: 15px 15px 15px 0; border: 5px solid #FFAD5B; padding: 0.5em 0.6em; color: #FF8000;">FAQ</span>
+				style="border-radius: 15px 15px 15px 0; border: 5px solid rgba(243, 156, 18, 0.48); padding: 0.5em 0.6em; color: rgba(243, 156, 18, 0.48);">FAQ</span>
 		</div>
 
 		<div class="faq_container">

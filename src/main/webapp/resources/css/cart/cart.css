@@ -1,13 +1,5 @@
 @charset "UTF-8";
 
-.box {
-	height: 40%;
-}
-
-html, body {
-	height: 100%;
-}
-
 .name_2 {
 	font-size: 50px;
 	font-weight: bold;
@@ -22,25 +14,19 @@ html, body {
 
 .outline {
 	text-align: center;
-	margin-top: 10%;
 	border-collapse: collapse;
-	transform: translateY(-50%);
-}
-
-.inline{
-	
-}
-
-table {
 	margin-left: auto;
 	margin-right: auto;
 	width: 60%;
+	margin-top: 3%;
 }
 
 .buying {
 	text-align: center;
-	position: relative;
-	transform: translateY(-50%);
+	border-collapse: collapse;
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .btn {

@@ -603,6 +603,7 @@
                EClass.callAjax(url, parameters, method, async, function(data) {
                     console.log(data);
                });
+               location.reload();
            });
   </script>
   
