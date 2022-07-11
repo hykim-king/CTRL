@@ -570,7 +570,7 @@
      <!-- addcart 에 get방식으로 값 넘기기 ( 김태민 ) -->
     
   <script type="text/javascript">
-           $(".btn-2").on("click", function(){
+           $(".cart").on("click", function(){
         	   alert("상품이 장바구니에 담겼습니다.");
 //                  let productImgSrc = $('#productImg').attr("src");
 //                  let pNum = productImgSrc.substring(productImgSrc.lastIndexOf('/')+1,productImgSrc.lastIndexOf('.'));
