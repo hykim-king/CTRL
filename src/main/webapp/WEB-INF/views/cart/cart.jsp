@@ -244,11 +244,7 @@
 	<!-- 김병완 -->
 	<script type="text/javascript">
 		$(".btn").on("click", function() {
-			location.href = "${CP}/pay/cartSelect.do?total=" + $
-			{
-				total
-			}
-			;
+			location.href = "${CP}/pay/cartSelect.do?total=" + ${total};
 		});
 	</script>
 	<!--// 김병완 -->
