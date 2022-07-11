@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="${CP_RES }/css/main/main.css">
     <link rel="stylesheet" type="text/css" href="${CP_RES}/css/memberInfo/memberInfo.css">
     
-    <title>memberInfo</title>
+    <title>TableWare</title>
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
     <script src="${CP_RES}/js/jquery-1.12.4.js"></script>
     <!-- 사용자 정의 function, callAjax -->
@@ -53,9 +53,9 @@
                             <span>&nbsp;로그아웃</span></a>
                          </li>
                          <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
-                         <li><a href="#">장바구니</a></li>
-                         <li><a href="#">FAQ</a></li>
-                         <li><a href="#">공지사항</a></li>
+                         <li><a href="${CP}/cart/cart.do">장바구니</a></li>
+                         <li><a href="${CP}/faq/faq.do">FAQ</a></li>
+                         <li><a href="${CP}/notice/notice.do">공지사항</a></li>
                         </ul>
                     </c:when>
                     <c:otherwise>
@@ -88,7 +88,6 @@
 <!-- 마이페이지 시작 -->
 <div id="contents">
 <!-- ▼▼▼▼▼▼▼▼▼▼▼▼▼ 마이페이지  사각형  ▼▼▼▼▼▼▼▼▼▼▼▼▼ -->
-<title>my_page</title>
 
 <div class="my_box">
     <ul>

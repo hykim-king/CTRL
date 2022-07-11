@@ -46,7 +46,7 @@
                         crossorigin="anonymous"></script>
     <script type="text/javascript" src="${CP_RES}/js/login/login_popup.js"></script>
 
-    <title>order_list</title>
+    <title>TableWare</title>
     <script type="text/javascript">
         $(document).ready(function(){
         console.log("document.ready"); 
@@ -282,9 +282,9 @@
                             <span>&nbsp;로그아웃</span></a>
                          </li>
                          <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
-                         <li><a href="#">장바구니</a></li>
-                         <li><a href="#">FAQ</a></li>
-                         <li><a href="#">공지사항</a></li>
+                         <li><a href="${CP}/cart/cart.do">장바구니</a></li>
+                         <li><a href="${CP}/faq/faq.do">FAQ</a></li>
+                         <li><a href="${CP}/notice/notice.do">공지사항</a></li>
                         </ul>
                     </c:when>
                     <c:otherwise>
@@ -316,7 +316,6 @@
 <!------------------------- 주문조회 시작(최유빈) ------------------------------->
 <div id="contents">
 <!-- ▼▼▼▼▼▼▼▼▼▼▼▼▼ 마이페이지  사각형(최유빈)  ▼▼▼▼▼▼▼▼▼▼▼▼▼ -->
-<title>my_page</title>
 
 <div class="my_box">
     <ul>
