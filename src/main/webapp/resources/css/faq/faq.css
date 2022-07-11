@@ -1,6 +1,17 @@
 @charset "UTF-8";
 /*FAQ*/
 
+.name_2 {
+     font-size: 50px;
+     font-weight: bold;
+}
+
+.name_1 {
+     text-align: center;
+     position: relative;
+     margin-top: 13%;
+     transform: translateY(-50%);
+}
 
 .faq_question {
      margin: 0px;
@@ -9,6 +20,10 @@
      cursor: pointer;
      font-weight: bold;
      font-size: 30px;
+}
+
+.faq_container {
+     margin-top: 3%;
 }
 
 .faq {
@@ -23,26 +38,9 @@
      margin: 0 auto;
 }
 
-.faq_container {
-     position: relative;
-     margin-top: 3%;
-     transform: translateY(-50%);
-}
+
 
 .faq_answer {
      word-break: keep-all;
-     font-size: 20px;
-}
-
-
-.name_2 {
-     font-size: 50px;
-     font-weight: bold;
-}
-
-.name_1 {
-     text-align: center;
-     position: relative;
-     margin-top: 15%;
-     transform: translateY(-50%);
+     font-size: 25px;
 }
