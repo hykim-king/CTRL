@@ -264,7 +264,7 @@
                console.log("tagCut : " + tagCut);
                
                
-               window.open("${CP}/review/reviewUpdatePopup.do?rNum="+rNumber+"&oName="+oName,"댓글 작성", "width=800, height=700, left=100, top=100");
+               window.open("${CP}/review/reviewUpdatePopup.do?rNum="+rNumber+"&oName="+oName,"리뷰 수정", "width=800, height=700, left=100, top=100");
                
            });
             
@@ -346,7 +346,7 @@
                var managerCommentTag = $(this).parents('.manager_comment').html();
                var rNumber = managerCommentTag.substring(managerCommentTag.indexOf('>')+1, managerCommentTag.indexOf('/')-1);
                rNumber = parseInt(rNumber);
-               window.open("${CP}/review/rdUpdatePopup.do?rNum="+rNumber,"댓글 작성", "width=800, height=700, left=100, top=100");
+               window.open("${CP}/review/rdUpdatePopup.do?rNum="+rNumber,"댓글 수정", "width=800, height=700, left=100, top=100");
                
            });   
           
@@ -439,7 +439,7 @@
                 <!-- 총금액 -->  
                 <div class="totalDiv">
 	                <p class="total_price">Total price :  </p>
-	                <div id="total_num"><fmt:formatNumber type="number" maxFractionDigits="3" value="${productInfo.pPrice}"/>원</div><br/>
+	                <div id="total_num"></div><br/>
                 </div>
                 <!-- 배송비 무료 공지 -->
                 <p id="delivery_free">배송비 무료</p>
