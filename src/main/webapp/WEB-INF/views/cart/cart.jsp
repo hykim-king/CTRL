@@ -111,10 +111,6 @@
 						<ul>
 							<li><a href="${CP}/login/login.do">로그인</a></li>
 							<li><a href="#"><p onclick="alert('로그인이 필요한 서비스 입니다.')">마이페이지
-
-
-
-									
 									<p></a></li>
 							<li><a href="#">장바구니</a></li>
 							<li><a href="${CP}/faq/faq.do">FAQ</a></li>
@@ -183,14 +179,9 @@
 		<div class="buying">
 			<a>총 가격: <c:choose>
 					<c:when test="${list.size() > 0 }">
-						<c:forEach var="list" items="${list}">
-							<tr>
-								<td>${totalMoney += list.cTotal}</td>
-							</tr>
-						</c:forEach>
+						<c:forEach var="list" items="${list}">${list.cTotal}</c:forEach>
 					</c:when>
-				</c:choose>
-			</a> <input class="btn" type="submit" value="BUY">
+				</c:choose></a> <a> <input class="btn" type="submit" value="BUY"></a>
 		</div>
 
 		<!-- footer 시작(이은빈) ---------------------------------------------------->
@@ -239,15 +230,14 @@
 			</div>
 		</div>
 
-<<<<<<< HEAD
-	<!-- footer 끝 ------------------------------------------------------------->
-	
-	<script type="text/javascript">
+		<!-- footer 끝 ------------------------------------------------------------->
+
+		<script type="text/javascript">
 		$(".btn").on("click",function(){
 			location.href = "${CP}/pay/cartSelect.do";
 		});
 	</script>
-=======
+
 		<!-- footer 끝 ------------------------------------------------------------->
 
 		<!-- 변수 ( 김태민 ) -->
@@ -261,9 +251,8 @@
           console.log("document.ready");
         
         location.href = "/ctrl/pay/payBefore.do"
-    
+        
     </script>
 		<!-- //payBefore로 GET방식으로 값 넘기기(김병완) -->
->>>>>>> d4c0ab450158c382ad1135a3389f1aaf7b9c165c
 </body>
 </html>
