@@ -241,8 +241,6 @@ $("#plate").on("click", function(e){
         
  	<script type="text/javascript">
  	
- 	
- 	
     $('.pay').click(function() {
     	var IMP = window.IMP;
     	var amount = 100;

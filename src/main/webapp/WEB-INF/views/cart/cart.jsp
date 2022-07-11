@@ -261,34 +261,15 @@
 
 	<!-- footer 끝 ------------------------------------------------------------->
 
-	<script type="text/javascript">
-        $(".btn").on("click",function(){
-            location.href = "${CP}/pay/cartSelect.do";
-        });
-    </script>
-
-	<!-- footer 끝 ------------------------------------------------------------->
-
-
-	<!-- payBefore로 GET방식으로 값 넘기기(김병완) -->
-	<script type="text/javascript">
-    $(".btn").on("click", function(){
-          console.log("document.ready");
-        
-        location.href = "/ctrl/pay/payBefore.do"
-        
-    </script>
-	<!-- //payBefore로 GET방식으로 값 넘기기(김병완) -->
-
-	<!-- footer 끝 ------------------------------------------------------------->
-	
+	<!-- 김병완 -->
 	<script type="text/javascript">
 		$(".btn").on("click",function(){
-			location.href = "${CP}/pay/cartSelect.do?total="+${total};
+			location.href = "${CP}/pay/cartSelect.do?total="+ ${total};
 		});
 	</script>
+	<!--// 김병완 -->
 
-		<!-- footer 끝 ------------------------------------------------------------->
+		
 
 
 </body>
