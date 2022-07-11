@@ -172,9 +172,6 @@
 					<c:set var="total" value="${total+ list.cTotal}" />
 				</c:forEach>
 			</c:when>
-			<c:otherwise>
-			<tr><td>장바구니가 비었습니다</td></tr>
-			</c:otherwise>
 		</c:choose>
 
 	</tbody>
@@ -186,6 +183,35 @@
 	</div>
 
 	<!-- 장바 구니 -->
+	
+           <tbody class="inline">
+            <c:choose>
+               <c:when test="${list.size() > 0 }">
+                  <c:forEach var="list" items="${list}">
+                     <tr>
+                        <td><img alt="상품 이미지" src="${CP_RES}/img/${list.pNum}.jpg"
+                           id="productImg" height="200px" width="200px"></td>
+                        <td>${list.pName}</td>
+                        <td>${list.pPrice}</td>
+                        <td>${list.cBuy}</td>
+                        <td id="cTotal" >${list.cTotal}</td>
+                        <td><button id="doDelete">삭제</button></td>
+                        <td style="display: none">${list.cNum}</td>
+                     </tr>
+                     <c:set var="total" value="${total+ list.cTotal}"/>
+                  </c:forEach>
+                  
+               </c:when>
+            </c:choose>
+            
+         </tbody>
+      </table>
+      
+      <div class="buying">
+         <a>총 가격: 
+          <c:out value="${total}원"></c:out>
+         </a>  <a> <input class="btn" type="submit" value="BUY"></a>
+        </div>
 
 	<!-- footer 시작(이은빈) ---------------------------------------------------->
 	<div id="footer">

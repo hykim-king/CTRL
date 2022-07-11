@@ -76,7 +76,7 @@ $(document).ready(function(){
       <!-- 메인 헤더 영역 시작 (이은빈)----------------------------------------------->
     <div id="header">
             <div id="logo">
-                <a href="#"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
+                <a href="${CP}/main/main.do"><img src="${CP_RES}/img/tableware_logo.png" alt="로고이미지"></a>
             </div>
         <div id="top">
             <div class="menu_left">
@@ -95,7 +95,7 @@ $(document).ready(function(){
                            <a href="${CP}/login/doLogout.do">
                             <span>${sessionScope.member.mName}님 환영합니다.</span>
                             <span>&nbsp;로그아웃</span></a>
-                          </li>
+                         </li>
                          <li><a href="${CP}/memberInfo/memberInfo.do">마이페이지</a></li>
                          <li><a href="${CP}/cart/cart.do">장바구니</a></li>
                          <li><a href="${CP}/faq/faq.do">FAQ</a></li>
