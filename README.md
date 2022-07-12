@@ -48,7 +48,48 @@
 <img src="EXERD.png"/>
 
 # 5. 프로젝트 시연
+ ## 메인 페이지
+ <div align="center">
+  <img src="https://user-images.githubusercontent.com/93705228/178392966-d06f3731-e82d-4f96-a8e4-ac4d9dd2ade7.gif"/>
+ </div>
+ 
+ ## 로그인
+ <div align="center">
+   <img src="https://user-images.githubusercontent.com/93705228/178393100-59121206-8b46-494d-8532-c4108edf878d.gif"/>
+ </div>
+ 
+ ## 검색
+ <div align="center">
+  <img src="https://user-images.githubusercontent.com/93705228/178393368-cde133dc-60a9-4c91-acfd-be38df9ea1ca.gif"/>
+ </div>
+ 
+ ## 상품 카테고리 페이지
+ <div align="center">
+  <img src="https://user-images.githubusercontent.com/93705228/178393550-5f4b6e3d-10cf-48f4-9838-6946e3ae006d.gif"/>
+ </div>
+ 
+ ## 상품 상세 페이지
+<div align="center">
+ <img src="https://user-images.githubusercontent.com/93705228/178393705-1613a803-3619-4048-9875-5cf1f4e49e7a.gif"/>
+</div>
 
+ ## 리뷰
+ <div align="center">
+ <img src="https://user-images.githubusercontent.com/93705228/178396645-27afc127-88f4-485a-b0b6-a7cda7c751e1.gif"/>
+</div>
+ 
+ ## 장바구니
+<div align="center">
+ <img src="https://user-images.githubusercontent.com/93705228/178395595-cceaf67d-1098-495a-b502-29778302378f.gif"/>
+</div>
+ 
+ ## 결제, FAQ, 공지사항
+ <div align="center">
+   <img src="https://user-images.githubusercontent.com/93705228/178395688-e9194c23-15fc-4541-9203-cf20d19fdb07.gif"/>
+   <br/><br/>
+   <img src="https://user-images.githubusercontent.com/93705228/178395782-4441bceb-df15-45c3-8f53-6a885dca29d8.gif"/>
+ </div>
+ 
 # 6. 사용한 기술
 <div align="center">
     <img src="사용기술.png"/>
