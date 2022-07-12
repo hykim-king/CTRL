@@ -367,10 +367,10 @@
         <div id="top">
             <div class="menu_left">
                 <ul>
-                    <li><a href="#" id="bowls">접시</a></li>
+                    <li><a href="#" id="plate">접시</a></li>
                     <li><a href="#" id="cup">머그컵</a></li>
                     <li><a href="#" id="glass">유리잔</a></li>
-                    <li><a href="#" id="plate">보울/면기</a></li>
+                    <li><a href="#" id="bowls">보울/면기</a></li>
                 </ul>
             </div>
             <div class="menu_right">
