@@ -509,9 +509,6 @@ input[type="button"] {
 
 .open {
   background-image: url("/ctrl/resources/img/up_button.svg");
-  display: block;
-  font-weight: bolder;
-  color: rgba(243, 156, 18, 0.48); 
 }
 .manager_comment {
     display: none;

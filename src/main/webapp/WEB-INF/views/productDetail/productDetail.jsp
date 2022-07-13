@@ -89,7 +89,7 @@
            $("#review_table").on("click", ".rdButton", function() {
                console.log("rdButton");
               console.log($('#buy_number').text());
-               $(this).toggleClass('open').siblings().removeClass('open');
+               $(this).toggleClass('open');
                $(this).next(".manager_comment").stop().slideToggle(250);
            });
            
